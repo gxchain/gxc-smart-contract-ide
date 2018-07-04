@@ -11,8 +11,15 @@ export default new Router({
             component: require('@/components/LandingPage').default
         },
         {
-            path: '*',
-            redirect: '/'
+            path: '/setting',
+            name: 'setting-page',
+            component: require('@/components/SettingPage').default,
+            redirect: '/setting/import-recover',
+            children: [{
+                path: '/setting/import-recover',
+                name: 'import-recover',
+                component: require('@/components/SettingPage/ImportRecover').default
+            }]
         }
     ]
 })

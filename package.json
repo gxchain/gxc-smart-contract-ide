@@ -58,10 +58,16 @@
   "dependencies": {
     "adm-zip": "^0.4.11",
     "axios": "^0.16.1",
+    "bluebird": "^3.5.1",
+    "gxbjs": "^1.2.81",
+    "gxbjs-ws": "^1.1.18",
     "iview": "^2.14.3",
+    "loadash": "^1.0.0",
+    "mockjs": "^1.0.1-beta3",
     "vue": "^2.3.3",
     "vue-codemirror": "^4.0.5",
     "vue-electron": "^1.0.6",
+    "vue-json-tree-view": "^2.1.4",
     "vue-router": "^2.5.3",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
