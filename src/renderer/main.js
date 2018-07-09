@@ -33,3 +33,5 @@ new Vue({
     store,
     template: '<App/>'
 }).$mount('#app')
+
+console.log('currentwalllll', store.state.currentWallet)

@@ -1,6 +1,6 @@
 import {Apis, Manager} from 'gxbjs-ws'
 
-let witnesses = ['ws://47.96.164.78:28090'] // TODO 待配置
+let witnesses = ['ws://192.168.1.126:28099'] // TODO 待配置
 let connectionManager = null
 let connected = false
 

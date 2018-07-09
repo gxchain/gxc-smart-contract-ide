@@ -26,12 +26,14 @@
                 <Sider hide-trigger :style="{background: '#fff'}">
                     右边功能面板
                     <Select v-model="networkPoint" class="network-point" placeholder="请选择接入点">
-                        <Option v-for="item in networkPoints" :value="item.value" :key="item.id">{{ item.title }}</Option>
+                        <Option v-for="item in networkPoints" :value="item.value" :key="item.id">{{ item.title }}
+                        </Option>
                     </Select>
                     <Button class="compileBtn" type="primary" @click="onCompile">编译</Button>
                     <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
                         <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
                     </Select>
+                    <Button class="compileBtn" type="primary" @click="onDeploy">部署</Button>
                 </Sider>
 
                 <!--功能面板预留-->
@@ -50,6 +52,7 @@
     import CopyBtn from '@/components/common/CopyBtn.vue'
     import AdmZip from 'adm-zip'
     import {mapState} from 'vuex'
+    import {deploy_contract} from '@/services/WalletService'
 
     export default {
         name: 'landing-page',
@@ -87,7 +90,10 @@
             //     })
         },
         components: {SystemInformation, FileTree, CodePanel, CopyBtn},
-        computed: mapState('ContractOperation', ['files']),
+        computed: {
+            ...mapState('ContractOperation', ['files']),
+            ...mapState(['wallets', 'currentWallet'])
+        },
         methods: {
             open(link) {
                 this.$electron.shell.openExternal(link)
@@ -174,6 +180,13 @@
             renderAbi(abi) {
                 this.abi = JSON.parse(abi)
                 // console.log('kkkkk', JSON.parse(abi))
+            },
+            onDeploy() {
+                deploy_contract(this.currentWallet.account, '1.3.1', '123123', true).then((resp) => {
+                    console.log('delopyed', resp)
+                }).catch(ex => {
+                    console.error('fiifififif', ex)
+                })
             }
         }
     }
