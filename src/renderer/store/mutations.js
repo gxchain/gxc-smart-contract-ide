@@ -23,4 +23,12 @@ mutations.SWITCH_CURRENT_WALLET = (state, wallet) => {
     state.currentWallet = wallet
 }
 
+mutations.UPDATE_BALANCES = (state, balances) => {
+    state.balances = balances
+}
+
+mutations.UPDATE_ASSETS = (state, assets) => {
+    state.assets = assets
+}
+
 export default mutations

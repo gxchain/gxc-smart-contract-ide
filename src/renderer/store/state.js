@@ -1,6 +1,8 @@
 const state = {
     wallets: [],
-    currentWallet: null
+    currentWallet: null,
+    balances: [],
+    assets: []
 }
 
 export default state
