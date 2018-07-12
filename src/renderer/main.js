@@ -4,7 +4,7 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
-import connect from './services/connect'
+import {connect} from './services/connect'
 
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
@@ -16,7 +16,11 @@ import TreeView from 'vue-json-tree-view'
 // import CopyBtn from '@/components/common/CopyBtn.vue'
 
 // 建立rpc连接
-connect()
+store.dispatch('updateApiServers').then(() => {
+    connect(() => {
+        console.log(store)
+    })
+})
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios

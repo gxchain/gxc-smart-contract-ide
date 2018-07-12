@@ -3,6 +3,7 @@
         <Layout>
             <Sider>
                 <router-link :to="{name:'import-recover'}">导入/恢复</router-link>
+                <router-link :to="{name:'api-server'}">接入点</router-link>
             </Sider>
             <Content>
                 <router-view></router-view>

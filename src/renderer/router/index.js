@@ -19,6 +19,10 @@ export default new Router({
                 path: '/setting/import-recover',
                 name: 'import-recover',
                 component: require('@/components/SettingPage/ImportRecover').default
+            }, {
+                path: '/setting/api-server',
+                name: 'api-server',
+                component: require('@/components/SettingPage/ApiServer').default
             }]
         }
     ]

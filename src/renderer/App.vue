@@ -46,7 +46,7 @@
             // TODO 需要在跟rpc建立连接后，添加connect事件
             setTimeout(() => {
                 this.updateCurrentBalancesAndAssets()
-            }, 1000)
+            }, 3000)
         }
     }
 </script>

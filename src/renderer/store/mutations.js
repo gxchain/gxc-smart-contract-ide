@@ -31,4 +31,38 @@ mutations.UPDATE_ASSETS = (state, assets) => {
     state.assets = assets
 }
 
+mutations.UPDATE_API_SERVERS_LATENCY = (state, latencies) => {
+    state.apiServers.forEach((node) => {
+        const latency = latencies[node.url]
+        if (!!latency) {
+            node.latency = latency
+        }
+    })
+}
+
+mutations.CHANGE_CURRENT_API_SERVER = (state, currentApiServer) => {
+    state.currentApiServer = currentApiServer
+}
+
+mutations.ADD_API_SERVER = (state, url) => {
+    state.apiServers.push({
+        url: url,
+        location: '',
+        latency: 0
+    })
+}
+
+mutations.REMOVE_API_SERVER = (state, url) => {
+    var idx = -1
+
+    state.apiServers.find((node, i) => {
+        if (node.url === url) {
+            idx = i
+            return true
+        }
+    })
+
+    state.apiServers.splice(idx, 1)
+}
+
 export default mutations
