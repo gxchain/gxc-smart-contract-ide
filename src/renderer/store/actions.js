@@ -46,7 +46,7 @@ actions.updateCurrentAssets = ({commit, state}, balances) => {
 }
 
 actions.updateApiServers = ({dispatch, state}) => {
-    // TODO 过滤
+    // TODO 过滤（根据latency排序）
     // 更新latency
     return dispatch('updateApiServersLatency')
 }

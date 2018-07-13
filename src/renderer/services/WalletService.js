@@ -141,7 +141,24 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
                 abi
             }))
 
-            return process_transaction(tr, from, password, broadcast)
+            return process_transaction(tr, from, password, broadcast).then((resp) => {
+                // 如果不broadcast，返回为对象
+                if (resp instanceof Array) {
+                    return fetch_account(contractName).then((account) => {
+                        resp[0].ext = {
+                            abi,
+                            from,
+                            contractName,
+                            contractId: account.id,
+                            fee: resp[0].trx.operations[0][1].fee
+                        }
+
+                        return resp
+                    })
+                }
+                // 时间、费用、费用类型
+                return resp
+            })
         }))
     })
 }

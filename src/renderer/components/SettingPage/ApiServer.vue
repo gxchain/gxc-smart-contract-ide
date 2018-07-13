@@ -61,6 +61,9 @@
                 }
             }
         },
+        mounted() {
+            this.$store.dispatch('updateApiServersLatency')
+        },
         methods: {
             onAddApiServerClick() {
                 this.addApiModalVisible = true

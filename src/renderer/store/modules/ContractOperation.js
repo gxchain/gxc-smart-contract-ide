@@ -1,7 +1,8 @@
 import ut from '@/util/util.js'
 
 const state = {
-    files: []
+    files: [],
+    contracts: []
 }
 
 const mutations = {
@@ -41,6 +42,15 @@ const mutations = {
                 file.title = title
             }
         })
+    },
+    APPEND_CONTRACT(state, contract) {
+        state.contracts.push(Object.assign({
+            abi: '',
+            from: '',
+            contractName: '',
+            contractId: '',
+            fee: {}
+        }, contract))
     }
 }
 
@@ -59,6 +69,9 @@ const actions = {
     },
     changeFileTitle({commit}, opts = {}) {
         commit('CHANGE_FILE_TITLE', opts)
+    },
+    appendContract({commit}, contract) {
+        commit('APPEND_CONTRACT', contract)
     }
 }
 

@@ -23,7 +23,7 @@
                         </Tabs>
                     </Layout>
                 </Layout>
-                <Sider hide-trigger :style="{background: '#fff'}">
+                <Sider class="rightPane" width="300">
                     右边功能面板
 
                     <Button class="compileBtn" type="primary" @click="onCompile">编译</Button>
@@ -33,6 +33,7 @@
                     <Input v-model="contractName" placeholder="合约名称"></Input>
                     <Button class="deployBtn" type="primary" @click="onDeploy">部署</Button>
                     <Button class="callBtn" type="primary" @click="onCall">调用</Button>
+                    <contract-list></contract-list>
                 </Sider>
 
                 <!--功能面板预留-->
@@ -65,10 +66,16 @@
     import FileTree from './common/FileTree'
     import CodePanel from './LandingPage/CodePanel'
     import CopyBtn from '@/components/common/CopyBtn.vue'
+    import ContractList from './LandingPage/ContractList'
     import AdmZip from 'adm-zip'
-    import {mapState} from 'vuex'
-    import {call_contract, deploy_contract, unlock_wallet} from '@/services/WalletService'
+    import {mapState, mapActions} from 'vuex'
+    import {
+        call_contract,
+        deploy_contract,
+        unlock_wallet
+    } from '@/services/WalletService'
     // import {ops} from 'gxbjs/es/index.js'
+    // import {types} from 'gxbjs/es/index.js'
 
     export default {
         name: 'landing-page',
@@ -102,10 +109,10 @@
             }
         },
         created() {
-
+            // console.log(ops.account_name.toHex({user: '1.2.342'}))
             // console.log('pppwekr', ops.abi_def.fromObject(JSON.parse(abi)))
             // setTimeout(() => {
-            //     serialize_contract_call_args('testlzy11', 'hi', {
+            //     serialize_contract_call_args('lzytest1', 'hi', {
             //         user: 342
             //     }).then(function (ret) {
             //         console.log('suc', ret)
@@ -126,7 +133,6 @@
             //     })
         },
         mounted() {
-            this.$store.dispatch('updateApiServersLatency')
             this.setCurrentFee()
             // this.onDeploy()
             // TODO temp test
@@ -225,7 +231,7 @@
 }`
             this.abi = JSON.parse(this.abi)
         },
-        components: {SystemInformation, FileTree, CodePanel, CopyBtn},
+        components: {SystemInformation, FileTree, CodePanel, CopyBtn, ContractList},
         computed: {
             ...mapState('ContractOperation', ['files']),
             ...mapState(['wallets', 'currentWallet', 'assets']),
@@ -243,6 +249,7 @@
             }
         },
         methods: {
+            ...mapActions('ContractOperation', ['appendContract']),
             open(link) {
                 this.$electron.shell.openExternal(link)
             },
@@ -349,7 +356,10 @@
                     contractName: this.contractName,
                     code: this.bytecode
                 }).then((resp) => {
-                    this.deployTransaction = resp
+                    // this.deployTransaction = resp
+                    // 将部署过的合约保存在本地
+                    console.log('deploy suc', resp)
+                    this.appendContract(resp[0].ext)
                 }).catch(ex => {
                     console.error('deploy contract fail', ex)
                 })
@@ -407,5 +417,9 @@
 
     .compileBtn {
 
+    }
+
+    .rightPane{
+        background: white;
     }
 </style>
