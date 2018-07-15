@@ -163,11 +163,11 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
     })
 }
 
-const call_contract = (from, target, fee_id, password, broadcast = true) => {
+const call_contract = (from, target, act, fee_id, password, broadcast = true) => {
     return new Promise((resolve, reject) => {
         resolve(Promise.all([fetch_account(from), fetch_account(target), unlock_wallet(from, password)]).then(results => {
             let fromAcc = results[0]
-            // let contractAccount = results[1]
+            let contractAccount = results[1]
             if (!fromAcc) {
                 // throw new Error(i18n.t('transfer.error.account.from_account_not_exist'))
             }
@@ -180,9 +180,9 @@ const call_contract = (from, target, fee_id, password, broadcast = true) => {
                 },
                 'account': fromAcc.id,
                 'act': {
-                    'account': 496,
-                    'name': 'hi',
-                    'data': '5601000000000000'
+                    'contract_id': contractAccount.id,
+                    'method_name': act.method_name,
+                    'data': act.data
                 }
             }))
             return process_transaction(tr, from, password, broadcast)
