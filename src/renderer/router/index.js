@@ -23,6 +23,10 @@ export default new Router({
                 path: '/setting/api-server',
                 name: 'api-server',
                 component: require('@/components/SettingPage/ApiServer').default
+            }, {
+                path: '/setting/compile-server',
+                name: 'compile-server',
+                component: require('@/components/SettingPage/CompileServer').default
             }]
         }
     ]

@@ -65,4 +65,27 @@ mutations.REMOVE_API_SERVER = (state, url) => {
     state.apiServers.splice(idx, 1)
 }
 
+mutations.CHANGE_CURRENT_COMPILE_SERVER = (state, currentCompileServer) => {
+    state.currentCompileServer = currentCompileServer
+}
+
+mutations.ADD_COMPILE_SERVER = (state, url) => {
+    state.compileServers.push({
+        url: url
+    })
+}
+
+mutations.REMOVE_COMPILE_SERVER = (state, url) => {
+    var idx = -1
+
+    state.compileServers.find((node, i) => {
+        if (node.url === url) {
+            idx = i
+            return true
+        }
+    })
+
+    state.compileServers.splice(idx, 1)
+}
+
 export default mutations

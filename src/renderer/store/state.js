@@ -16,7 +16,11 @@ const state = {
         location: '华北',
         latency: 0
     }],
-    currentApiServer: {}
+    currentApiServer: {},
+    compileServers: [{
+        url: 'http://localhost:3000/upload'
+    }],
+    currentCompileServer: {}
 }
 
 state.currentApiServer = state.apiServers[0]

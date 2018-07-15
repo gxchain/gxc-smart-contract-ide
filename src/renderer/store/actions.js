@@ -93,4 +93,30 @@ actions.removeApiServer = ({commit, dispatch, state}, url) => {
     }
 }
 
+actions.changeCurrentCompileServer = ({commit, state}, url) => {
+    const node = state.compileServers.filter(node => {
+        if (url === node.url) {
+            return true
+        }
+    })
+
+    if (!!node) {
+        commit('CHANGE_CURRENT_COMPILE_SERVER', node[0])
+    }
+}
+
+actions.addCompileServer = ({commit, state}, url) => {
+    commit('ADD_COMPILE_SERVER', url)
+}
+
+actions.removeCompileServer = ({commit, dispatch, state}, url) => {
+    if (state.compileServers.length === 1) {
+        return
+    }
+    commit('REMOVE_COMPILE_SERVER', url)
+    if (url === state.currentCompileServer.url) {
+        dispatch('changeCurrentCompileServer', state.compileServers[0].url)
+    }
+}
+
 export default actions
