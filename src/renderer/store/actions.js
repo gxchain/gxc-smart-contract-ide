@@ -4,6 +4,11 @@ import {reconnect} from '@/services/connect'
 
 const actions = {}
 
+actions.setLang = ({commit}, lang) => {
+    commit('SET_LANG', lang)
+    location.reload()
+}
+
 actions.appendWallet = ({commit, state}, wallet) => {
     if (state.wallets.length === 0) {
         commit('SWITCH_CURRENT_WALLET', wallet)

@@ -28,7 +28,7 @@
                 <Sider class="rightPane" width="300">
                     右边功能面板
 
-                    <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">编译</Button>
+                    <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">{{$t('index.compile')}}</Button>
                     <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
                         <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
                     </Select>

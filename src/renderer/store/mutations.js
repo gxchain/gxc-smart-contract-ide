@@ -1,5 +1,9 @@
 const mutations = {}
 
+mutations.SET_LANG = (state, lang) => {
+    state.lang = lang
+}
+
 mutations.APPEND_WALLET = (state, wallet) => {
     state.wallets.push(Object.assign({
         account: ''

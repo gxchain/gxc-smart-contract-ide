@@ -2,8 +2,21 @@
     <div id="app">
         <Layout>
             <Header>
+
                 <router-link :to="{name:'landing-page'}">主页</router-link>
                 <router-link :to="{name:'setting-page'}">setting-page</router-link>
+                <Dropdown trigger="click" style="float:right;" @on-click="onLanguageSelect">
+
+                    <Button type="primary">
+                        <svg class="icon" aria-hidden="true">
+                            <use :xlink:href="lang|iconclass"></use>
+                        </svg>
+                        <Icon type="arrow-down-b"></Icon>
+                    </Button>
+                    <DropdownMenu slot="list">
+                        <DropdownItem v-for="lang in langText" :name="lang.symbol">{{lang.text}}</DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
             </Header>
         </Layout>
         <router-view></router-view>
@@ -17,40 +30,40 @@
 
 <script>
     import {mapActions, mapState} from 'vuex'
+    import {lang2IconClassMap, langText} from '@/const/i18n'
 
     export default {
         name: 'gxb-wallet-2',
         computed: {
-            ...mapState(['currentWallet'])
+            ...mapState(['currentWallet', 'lang'])
+        },
+        data() {
+            return {
+                langText
+            }
         },
         methods: {
-            ...mapActions(['updateCurrentBalancesAndAssets'])
-            // fetch_balance() {
-            //     let wallet_balances
-            //     fetch_account_balances(this.currentWallet.account).then(function (balances) {
-            //         if (!balances) {
-            //             return
-            //         }
-            //         let asset_ids = wallet_balances.map(b => {
-            //             return b.asset_id
-            //         })
-            //         return get_assets_by_ids(asset_ids)
-            //     }).then(assets => {
-            //         this.currentFee = assets[0]
-            //     }).catch(ex => {
-            //         console.error(ex)
-            //     })
-            // }
+            ...mapActions(['updateCurrentBalancesAndAssets', 'setLang']),
+            onLanguageSelect(lang) {
+                this.setLang(lang)
+            }
         },
         created() {
             // TODO 需要在跟rpc建立连接后，添加connect事件
             setTimeout(() => {
                 this.updateCurrentBalancesAndAssets()
             }, 3000)
+        },
+        filters: {
+            'iconclass': (lang) => {
+                return '#' + lang2IconClassMap[lang]
+            }
         }
     }
 </script>
 
-<style>
-    /* CSS */
+<style scoped>
+    .icon{
+        font-size: 30px;
+    }
 </style>

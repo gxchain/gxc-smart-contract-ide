@@ -4,6 +4,8 @@ import axios from 'axios'
 import App from './App'
 import router from './router'
 import store from './store'
+import locales from '@/locales'
+import '@/assets/icons'
 import {connect} from './services/connect'
 
 import iView from 'iview'
@@ -35,5 +37,6 @@ new Vue({
     components: {App},
     router,
     store,
+    i18n: locales,
     template: '<App/>'
 }).$mount('#app')

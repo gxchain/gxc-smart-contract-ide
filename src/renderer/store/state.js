@@ -1,4 +1,5 @@
 const state = {
+    lang: 'en-US',
     wallets: [],
     currentWallet: null,
     balances: [],
