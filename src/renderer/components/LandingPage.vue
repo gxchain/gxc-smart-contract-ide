@@ -389,7 +389,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .ivu-icon-plus {
         color: white;
         font-size: 20px;

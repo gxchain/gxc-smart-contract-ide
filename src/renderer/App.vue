@@ -22,7 +22,18 @@
         <router-view></router-view>
         <Layout>
             <Footer class="layout-footer">
-                footer
+                <div class="status-item">
+                    <i class="pink-lamp"></i>
+                    <Tooltip :content="currentCompileServer.url" placement="top">
+                        <a class="text">当前编译服务</a>
+                    </Tooltip>
+                </div>
+                <div class="status-item">
+                    <i class="blue-lamp"></i>
+                    <Tooltip :content="currentApiServer.url" placement="top">
+                        <a class="text">当前接入点</a>
+                    </Tooltip>
+                </div>
             </Footer>
         </Layout>
     </div>
@@ -35,7 +46,7 @@
     export default {
         name: 'gxb-wallet-2',
         computed: {
-            ...mapState(['currentWallet', 'lang'])
+            ...mapState(['currentWallet', 'lang', 'currentCompileServer', 'currentApiServer'])
         },
         data() {
             return {
@@ -62,8 +73,26 @@
     }
 </script>
 
-<style scoped>
-    .icon{
+<style lang="scss" scoped>
+    @import '@/assets/scss/sprite.scss';
+
+    .status-item {
+        float: right;
+    }
+
+    .pink-lamp {
+        display: inline-block;
+        @include sprite($pink-lamp);
+    }
+
+    .blue-lamp {
+        display: inline-block;
+        @include sprite($blue-lamp);
+    }
+
+    .icon {
         font-size: 30px;
     }
+
+
 </style>
