@@ -16,12 +16,15 @@ actions.appendWallet = ({commit, state}, wallet) => {
     commit('APPEND_WALLET', wallet)
 }
 
-actions.removeWallet = ({commit}, account) => {
+actions.removeWallet = ({state, dispatch, commit}, account) => {
     commit('REMOVE_WALLET', account)
+    if (account === state.currentWallet.account) {
+        dispatch('changeWallet', state.wallets[0] && state.wallets[0].account)
+    }
 }
 
-actions.switchWallet = ({commit}, account) => {
-    commit('SWITCH_CURRENT_WALLET', account)
+actions.changeWallet = ({commit}, account) => {
+    commit('CHANGE_WALLET', account)
 }
 
 actions.updateCurrentBalancesAndAssets = ({dispatch, state}) => {

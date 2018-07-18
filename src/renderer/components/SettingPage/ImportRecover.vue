@@ -46,7 +46,7 @@
                                 },
                                 on: {
                                     click: () => {
-                                        this.removeWallet(params.account)
+                                        this.removeWallet(params.row.account)
                                     }
                                 }
                             }, 'Delete')

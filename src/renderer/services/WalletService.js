@@ -1,4 +1,4 @@
-import {Aes, key, PrivateKey, TransactionBuilder} from 'gxbjs/es/index.js'
+import {Aes, key, PrivateKey, TransactionBuilder} from 'gxbjs/lib/index.js'
 import {Apis} from 'gxbjs-ws'
 import Promise from 'bluebird'
 import uniq from 'lodash/uniq'

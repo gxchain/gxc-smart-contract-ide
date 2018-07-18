@@ -59,7 +59,7 @@
     "adm-zip": "^0.4.11",
     "axios": "^0.16.1",
     "bluebird": "^3.5.1",
-    "gxbjs": "^1.2.84",
+    "gxbjs": "gxchain/gxbjs#master",
     "gxbjs-ws": "^1.1.18",
     "iview": "^2.14.3",
     "jdenticon": "^2.1.0",

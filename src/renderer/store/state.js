@@ -1,7 +1,7 @@
 const state = {
     lang: 'en-US',
     wallets: [],
-    currentWallet: null,
+    currentWallet: {},
     balances: [],
     assets: [],
     apiServers: [{

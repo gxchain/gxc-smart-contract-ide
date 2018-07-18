@@ -8,7 +8,7 @@
                         <Icon type="gear-b"></Icon>
                         setting-page
                     </router-link>
-                    <Dropdown trigger="click" @on-click="onWalletSwitch">
+                    <Dropdown trigger="click" @on-click="onWalletChange">
                         <account-image :account="currentWallet.account" :size="15"></account-image>
                         <DropdownMenu slot="list">
                             <DropdownItem class="account-item"
@@ -71,12 +71,12 @@
             }
         },
         methods: {
-            ...mapActions(['updateCurrentBalancesAndAssets', 'setLang', 'switchWallet']),
+            ...mapActions(['updateCurrentBalancesAndAssets', 'setLang', 'changeWallet']),
             onLanguageSelect(lang) {
                 this.setLang(lang)
             },
-            onWalletSwitch(account) {
-                this.switchWallet(account)
+            onWalletChange(account) {
+                this.changeWallet(account)
             }
         },
         filters: {
