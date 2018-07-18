@@ -80,6 +80,7 @@
 
     export default {
         name: 'landing-page',
+        components: {SystemInformation, FileTree, CodePanel, CopyBtn, ContractList},
         data() {
             return {
                 passwordConfirmModalLoading: true,
@@ -220,7 +221,6 @@
 }`
             this.abi = JSON.parse(this.abi)
         },
-        components: {SystemInformation, FileTree, CodePanel, CopyBtn, ContractList},
         computed: {
             ...mapState('ContractOperation', ['files']),
             ...mapState(['wallets', 'currentWallet', 'assets']),

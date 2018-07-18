@@ -23,8 +23,12 @@ mutations.REMOVE_WALLET = (state, account) => {
     state.wallets.splice(idx, 1)
 }
 
-mutations.SWITCH_CURRENT_WALLET = (state, wallet) => {
-    state.currentWallet = wallet
+mutations.SWITCH_CURRENT_WALLET = (state, account) => {
+    state.wallets.find((wallet) => {
+        if (wallet.account === account) {
+            state.currentWallet = wallet
+        }
+    })
 }
 
 mutations.UPDATE_BALANCES = (state, balances) => {

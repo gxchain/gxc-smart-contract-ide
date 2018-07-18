@@ -1,26 +1,23 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-import App from './App'
 import router from './router'
 import store from './store'
 import locales from '@/locales'
 import '@/assets/icons'
 import {connect} from './services/connect'
 
+import App from './App'
+
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
-// import VueCodemirror from 'vue-codemirror'
-import 'codemirror/lib/codemirror.css'
-
 import TreeView from 'vue-json-tree-view'
-// import CopyBtn from '@/components/common/CopyBtn.vue'
 
 // 建立rpc连接
 store.dispatch('updateApiServers').then(() => {
     connect(() => {
-        console.log(store)
+        store.dispatch('updateCurrentBalancesAndAssets')
     })
 })
 
@@ -30,7 +27,6 @@ Vue.config.productionTip = false
 
 Vue.use(iView)
 Vue.use(TreeView)
-// Vue.use(VueCodemirror)
 
 /* eslint-disable no-new */
 new Vue({

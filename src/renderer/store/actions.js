@@ -20,8 +20,8 @@ actions.removeWallet = ({commit}, account) => {
     commit('REMOVE_WALLET', account)
 }
 
-actions.switchWallet = ({commit}, wallet) => {
-    commit('SWITCH_CURRENT_WALLET', wallet)
+actions.switchWallet = ({commit}, account) => {
+    commit('SWITCH_CURRENT_WALLET', account)
 }
 
 actions.updateCurrentBalancesAndAssets = ({dispatch, state}) => {

@@ -149,7 +149,7 @@ let rendererConfig = {
             '@': path.join(__dirname, '../src/renderer'),
             'vue$': 'vue/dist/vue.esm.js'
         },
-        modules: ["node_modules", path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest')],
+        modules: ["node_modules", path.resolve(__dirname, '../src/renderer/assets/images'), path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest')],
         extensions: ['.js', '.vue', '.json', '.css', '.node']
     },
     target: 'electron-renderer'

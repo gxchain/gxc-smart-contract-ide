@@ -10,6 +10,7 @@
 
     // TODO 无法直接用vue-codemirror，似乎打包有问题，无法执行到defineMode对应的回调，导致渲染异常
     import {codemirror} from 'vue-codemirror/src/index.js'
+    import 'codemirror/lib/codemirror.css'
 
     // language
     import 'codemirror/mode/clike/clike.js'

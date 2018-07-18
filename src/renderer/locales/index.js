@@ -1,7 +1,7 @@
+console.log('locales load')
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import store from '@/store'
-
 import en from './en-US'
 import zh from './zh-CN'
 
@@ -53,11 +53,7 @@ const dateTimeFormats = {
         }
     }
 }
-
 let locale = store.state.lang
-// let locale = get_item('_locale') || navigator.language;
-// locale = locale.split('-')[0].toLowerCase() + '-' + locale.split('-')[1].toUpperCase();
-// set_item('_locale', locale);
 
 export default new VueI18n({
     locale: locale,

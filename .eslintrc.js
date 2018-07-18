@@ -26,6 +26,8 @@ module.exports = {
         'space-before-function-paren': 0,
         'camelcase': 0,
         'eqeqeq': 0,
-        'no-extra-boolean-cast': 0
+        'no-extra-boolean-cast': 0,
+        'import/first': 0,
+        'no-return-assign': 0
     }
 }
