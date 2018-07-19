@@ -12,6 +12,8 @@ import App from './App'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
+import eventBus from '@/plugins/eventBus'
+
 import TreeView from 'vue-json-tree-view'
 
 // 建立rpc连接
@@ -27,6 +29,7 @@ Vue.config.productionTip = false
 
 Vue.use(iView)
 Vue.use(TreeView)
+Vue.use(eventBus)
 
 /* eslint-disable no-new */
 new Vue({

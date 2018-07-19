@@ -38,7 +38,8 @@
             return {
                 addApiModalVisible: false,
                 url: 'wss://',
-                removeApiModalVisible: false
+                removeApiModalVisible: false,
+                removeUrl: ''
             }
         },
         computed: {
@@ -49,14 +50,6 @@
                 },
                 set: function (v) {
                     this.$store.dispatch('changeCurrentApiServer', v)
-                    return v
-                }
-            },
-            removeUrl: {
-                get: function () {
-                    return this.currentApiServer.url
-                },
-                set: function (v) {
                     return v
                 }
             }
@@ -72,7 +65,11 @@
                 this.removeApiModalVisible = true
             },
             onAddOk() {
-                this.$store.dispatch('addApiServer', this.url)
+                this.$store.dispatch('addApiServer', this.url).then((flag) => {
+                    if (flag) {
+                        this.$Message.warning(this.$t('apiServer.exist'))
+                    }
+                })
                 this.resetAddModal()
             },
             onAddCancel() {
@@ -82,7 +79,9 @@
                 this.url = 'wss://'
             },
             onRemoveOk() {
-                this.$store.dispatch('removeApiServer', this.removeUrl)
+                this.$store.dispatch('removeApiServer', this.removeUrl).then(() => {
+                    this.removeUrl = ''
+                })
             }
         }
     }

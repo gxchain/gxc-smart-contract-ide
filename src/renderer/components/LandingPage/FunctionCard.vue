@@ -4,8 +4,8 @@
             <p slot="title">function name:{{name}}</p>
             <field-item v-for="field in fields" :name="field.name" :type="field.type"
                         :value.sync="field.value"></field-item>
+            <Button class="callBtn" type="primary" @click="onCall">调用</Button>
         </Card>
-        <Button class="callBtn" type="primary" @click="onCall">调用</Button>
     </div>
 </template>
 

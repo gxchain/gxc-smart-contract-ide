@@ -1,14 +1,16 @@
 import {Apis, Manager} from 'gxbjs-ws'
 import store from '@/store'
+import Vue from 'vue'
 // import va from '@/util/vue-agency'
+
+let errCount = 0
+let tempVue = new Vue()
 
 let connect = function (callback = function () {
 }, witnesses) {
     witnesses = store.state.apiServers.map((node) => {
         return node.url
     })
-    // witnesses = ['ws://192.168.1.126:28099', 'wss://node1.gxb.io', 'wss://node5.gxb.io', 'wss://node16.gxb.io']
-    console.log(store.state.currentApiServer)
     const connectionManager = new Manager({url: store.state.currentApiServer.url, urls: witnesses})
     connectionManager.connectWithFallback(true).then((resp) => {
         callback(resp)
@@ -16,24 +18,31 @@ let connect = function (callback = function () {
     return connectionManager
 }
 
-// 当链接改变时重连，apis.reset()，然后connect
-let reconnect = function (flag) {
+let reconnect = function () {
     Apis.reset(store.state.currentApiServer.url, true)
 }
 
 // websocket 状态处理
+// 如果处于'error'的连接状态，过一段时间会自动调用回调
 Apis.setRpcConnectionStatusCallback(function (status) {
     console.log('Witness status:', status)
 
-    if (status == 'open') { // 出错重连
-        // TODO 该节点连不上，正在尝试重连
-        // va.$Message.success('')
+    if (status == 'open') {
+        errCount = 0
+        tempVue.$eventBus.$emit('connect:open')
     }
 
     if (status == 'error') { // 出错重连
-        // TODO 该节点连不上，正在尝试重连
-        reconnect()
-        console.log('Connection failed,try another connection')
+        errCount++
+        if (errCount <= 1) {
+            tempVue.$eventBus.$emit('connect:error')
+            reconnect()
+        } else {
+            tempVue.$eventBus.$emit('connect:reconnectFail')
+        }
+    }
+    if (status === 'closed') {
+        tempVue.$eventBus.$emit('connect:closed')
     }
 })
 

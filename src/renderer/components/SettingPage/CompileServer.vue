@@ -38,7 +38,8 @@
             return {
                 addCompileModalVisible: false,
                 url: 'http://',
-                removeCompileModalVisible: false
+                removeCompileModalVisible: false,
+                removeUrl: ''
             }
         },
         computed: {
@@ -51,14 +52,6 @@
                     this.$store.dispatch('changeCurrentCompileServer', v)
                     return v
                 }
-            },
-            removeUrl: {
-                get: function () {
-                    return this.currentCompileServer.url
-                },
-                set: function (v) {
-                    return v
-                }
             }
         },
         methods: {
@@ -69,7 +62,11 @@
                 this.removeCompileModalVisible = true
             },
             onAddOk() {
-                this.$store.dispatch('addCompileServer', this.url)
+                this.$store.dispatch('addCompileServer', this.url).then((flag) => {
+                    if (flag) {
+                        this.$Message.warning(this.$t('compileServer.exist'))
+                    }
+                })
                 this.resetAddModal()
             },
             onAddCancel() {
@@ -79,7 +76,9 @@
                 this.url = 'http://'
             },
             onRemoveOk() {
-                this.$store.dispatch('removeCompileServer', this.removeUrl)
+                this.$store.dispatch('removeCompileServer', this.removeUrl).then(() => {
+                    this.removeUrl = ''
+                })
             }
         }
     }

@@ -74,7 +74,6 @@ const import_account = (wifKey, password) => {
                                 imported.push(wallet)
                                 store.dispatch('appendWallet', wallet)
                             } else {
-                                console.log('account:', account.name, 'already exist')
                                 exist.push({
                                     account: account.name
                                 })

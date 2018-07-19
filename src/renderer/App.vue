@@ -83,6 +83,24 @@
             'iconclass': (lang) => {
                 return '#' + lang2IconClassMap[lang]
             }
+        },
+        created() {
+            // rpc连接消息，如果直接在connect回调中触发消息，由于需要locales，所以会引发多重循环引用，导致程序出错
+            this.$eventBus.$on('connect:open', () => {
+                this.$Message.success(this.$t('connect.success'))
+            }, this)
+
+            this.$eventBus.$on('connect:closed', () => {
+                this.$Message.warning(this.$t('connect.closed'))
+            }, this)
+
+            this.$eventBus.$on('connect:error', () => {
+                this.$Message.error(this.$t('connect.error'))
+            }, this)
+
+            this.$eventBus.$on('connect:reconnectFail', () => {
+                this.$Message.error(this.$t('connect.reconnectFail'))
+            }, this)
         }
     }
 </script>

@@ -66,11 +66,14 @@ actions.updateApiServersLatency = ({commit, state}) => {
             return node.url
         })
     })
+    // TODO 目前，如果输入错误接入点，控制台会报错，原因是 checkConnections 中 `var conn = new _ChainWebSocket2.default(url, function () {})` 这句
     return manager.checkConnections().then((resp) => {
         commit('UPDATE_API_SERVERS_LATENCY', resp)
         return resp
+    }, (ex) => {
+        console.error('uplkejrjr', ex)
     }).catch(ex => {
-        console.errror(ex)
+        console.error('uplllll', ex)
     })
 }
 
@@ -83,12 +86,24 @@ actions.changeCurrentApiServer = ({commit, state}, url) => {
 
     if (!!node) {
         commit('CHANGE_CURRENT_API_SERVER', node[0])
-        reconnect(true)
+        reconnect()
     }
 }
 
 actions.addApiServer = ({commit, state}, url) => {
-    commit('ADD_API_SERVER', url)
+    // 是否url已存在
+    let flag = false
+    state.apiServers.find(node => {
+        if (url === node.url) {
+            flag = true
+        }
+    })
+    if (flag) {
+        return flag
+    } else {
+        commit('ADD_API_SERVER', url)
+        return flag
+    }
 }
 
 actions.removeApiServer = ({commit, dispatch, state}, url) => {
@@ -114,7 +129,19 @@ actions.changeCurrentCompileServer = ({commit, state}, url) => {
 }
 
 actions.addCompileServer = ({commit, state}, url) => {
-    commit('ADD_COMPILE_SERVER', url)
+    // 是否url已存在
+    let flag = false
+    state.compileServers.find(node => {
+        if (url === node.url) {
+            flag = true
+        }
+    })
+    if (flag) {
+        return flag
+    } else {
+        commit('ADD_COMPILE_SERVER', url)
+        return flag
+    }
 }
 
 actions.removeCompileServer = ({commit, dispatch, state}, url) => {
