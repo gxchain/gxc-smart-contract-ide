@@ -1,5 +1,5 @@
 <template>
-    <Tree ref="tree" :data="data" :render="renderContent"
+    <Tree class="filetree" ref="tree" :data="data" :render="renderContent"
           @on-select-change="$emit('on-select-change',$event)"></Tree>
 </template>
 <script>
@@ -17,7 +17,15 @@
                             return h('span', {
                                 style: {
                                     display: 'inline-block',
-                                    width: '100%'
+                                    width: '100%',
+                                    'font-size': '14px',
+                                    background: '#6699ff',
+                                    color: 'white',
+                                    'padding-left': '15px',
+                                    position: 'relative',
+                                    left: '-15px',
+                                    height: '50px',
+                                    'line-height': '50px'
                                 }
                             }, [
                                 h('span', [
@@ -26,7 +34,8 @@
                                             type: 'ios-folder-outline'
                                         },
                                         style: {
-                                            marginRight: '8px'
+                                            marginRight: '8px',
+                                            'font-size': '16px'
                                         }
                                     }),
                                     h('span', data.title)
@@ -43,7 +52,9 @@
                                             type: 'ios-plus-outline'
                                         },
                                         style: {
-                                            width: '52px'
+                                            'font-size': '16px',
+                                            'cursor': 'pointer',
+                                            'padding': '5px'
                                         },
                                         on: {
                                             click: () => {
@@ -163,6 +174,11 @@
                             props: {
                                 type: 'ios-minus-outline'
                             },
+                            style: {
+                                'font-size': '14px',
+                                'padding': '5px',
+                                'cursor': 'pointer'
+                            },
                             on: {
                                 click: () => {
                                     // 同选中
@@ -242,3 +258,20 @@
         }
     }
 </script>
+
+<style scoped>
+    .filetree >>> .ivu-tree-children{
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .filetree >>> .ivu-tree-arrow {
+        position: relative;
+        z-index: 2;
+        color: white;
+    }
+
+    .filetree >>> ul li {
+        margin: 0;
+    }
+</style>

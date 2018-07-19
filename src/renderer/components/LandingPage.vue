@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <Layout class="layout-container" style="flex-direction: row">
-            <Sider hide-trigger style="background:white;height:100%;overflow:auto;" width="240">
+            <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;" width="240">
                 <file-tree @on-select-change="onFileSelect"></file-tree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
