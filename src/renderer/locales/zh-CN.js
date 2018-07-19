@@ -13,6 +13,10 @@ const locale = {
     },
     compileServer: {
         'exist': '编译服务已存在'
+    },
+    header: {
+        setting: '设置',
+        account: '账户'
     }
 }
 

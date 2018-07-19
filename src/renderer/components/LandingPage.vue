@@ -1,49 +1,41 @@
 <template>
     <div class="layout">
-        <Layout>
-
-            <Layout>
-                <Sider hide-trigger :style="{background: '#fff'}">
-                    <file-tree @on-select-change="onFileSelect"></file-tree>
-                </Sider>
+        <Layout class="layout-container" style="flex-direction: row">
+            <Sider hide-trigger style="background:white;height:100%;overflow:auto;" width="240">
+                <file-tree @on-select-change="onFileSelect"></file-tree>
+            </Sider>
+            <Layout style="flex-direction: column;height:100%;overflow: auto;">
+                <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                    <code-panel></code-panel>
+                </Content>
                 <Layout>
-                    <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-                        <code-panel></code-panel>
-                    </Content>
-                    <Layout>
-                        <Tabs type="card" :animated="false">
-                            <TabPane label="LOGS">
-                                <p v-for="log in logs">level:{{log.level}},info:{{log.info}}</p>
-                            </TabPane>
-                            <TabPane label="BYTECODE">
-                                {{bytecode}}
-                                <copy-btn :value="bytecode"></copy-btn>
-                            </TabPane>
-                            <TabPane label="ABI">
-                                <tree-view :data="abi"></tree-view>
-                            </TabPane>
-                        </Tabs>
-                    </Layout>
+                    <Tabs type="card" :animated="false">
+                        <TabPane label="LOGS">
+                            <p v-for="log in logs">level:{{log.level}},info:{{log.info}}</p>
+                        </TabPane>
+                        <TabPane label="BYTECODE">
+                            {{bytecode}}
+                            <copy-btn :value="bytecode"></copy-btn>
+                        </TabPane>
+                        <TabPane label="ABI">
+                            <tree-view :data="abi"></tree-view>
+                        </TabPane>
+                    </Tabs>
                 </Layout>
-                <Sider class="rightPane" width="300">
-                    右边功能面板
-
-                    <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">
-                        {{$t('index.compile')}}
-                    </Button>
-                    <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
-                        <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
-                    </Select>
-                    <Input v-model="contractName" placeholder="合约名称"></Input>
-                    <Button class="deployBtn" type="primary" @click="onDeploy">部署</Button>
-                    <contract-list></contract-list>
-                </Sider>
-
-                <!--功能面板预留-->
-                <!--<Sider hide-trigger :style="{background: '#fff'}">-->
-                <!--</Sider>-->
             </Layout>
+            <Sider class="rightPane" width="320" style="height:100%;overflow: auto;">
+                右边功能面板
 
+                <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">
+                    {{$t('index.compile')}}
+                </Button>
+                <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
+                    <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
+                </Select>
+                <Input v-model="contractName" placeholder="合约名称"></Input>
+                <Button class="deployBtn" type="primary" @click="onDeploy">部署</Button>
+                <contract-list></contract-list>
+            </Sider>
         </Layout>
         <!--密码提示框-->
         <Modal :loading="passwordConfirmModalLoading" v-model="passwordConfirmModalVisible" @on-ok="onPasswordOk">
@@ -396,6 +388,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .layout-container {
+        height: calc(100vh - 64px - 32px);
+    }
+
     .ivu-icon-plus {
         color: white;
         font-size: 20px;

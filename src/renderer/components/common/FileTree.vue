@@ -38,11 +38,10 @@
                                         marginRight: '32px'
                                     }
                                 }, [
-                                    h('Button', {
-                                        props: Object.assign({}, this.buttonProps, {
-                                            icon: 'ios-plus-empty',
-                                            type: 'primary'
-                                        }),
+                                    h('Icon', {
+                                        props: {
+                                            type: 'ios-plus-outline'
+                                        },
                                         style: {
                                             width: '52px'
                                         },
@@ -57,7 +56,8 @@
                         }
                     }
                 ],
-                filesTree: []
+                filesTree: [],
+                lastAppendFiles: []
             }
         },
         computed: {
@@ -159,10 +159,10 @@
                             marginRight: '32px'
                         }
                     }, [
-                        h('Button', {
-                            props: Object.assign({}, this.buttonProps, {
-                                icon: 'ios-minus-empty'
-                            }),
+                        h('Icon', {
+                            props: {
+                                type: 'ios-minus-outline'
+                            },
                             on: {
                                 click: () => {
                                     // 同选中

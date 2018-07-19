@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import {app, BrowserWindow} from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -15,14 +15,16 @@ const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
 
-function createWindow () {
+function createWindow() {
     /**
-   * Initial window options
-   */
+     * Initial window options
+     */
     mainWindow = new BrowserWindow({
-        height: 563,
+        minHeight: 650,
+        minWidth: 1180,
+        height: 650,
         useContentSize: true,
-        width: 1000
+        width: 1180
     })
 
     mainWindow.loadURL(winURL)

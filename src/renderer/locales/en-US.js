@@ -13,6 +13,10 @@ const locale = {
     },
     compileServer: {
         'exist': 'compile server has already exist'
+    },
+    header: {
+        setting: 'setting',
+        account: 'account'
     }
 }
 

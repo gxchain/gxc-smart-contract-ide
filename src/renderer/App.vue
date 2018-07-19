@@ -1,15 +1,12 @@
 <template>
     <div id="app">
         <Layout>
-            <Header class="hd">
+            <Header class="hd" style="height: 64px;">
+                <router-link class="logo" :to="{name:'landing-page'}"></router-link>
                 <div class="right">
-                    <router-link :to="{name:'landing-page'}">主页</router-link>
-                    <router-link :to="{name:'setting-page'}">
-                        <Icon type="gear-b"></Icon>
-                        setting-page
-                    </router-link>
-                    <Dropdown trigger="click" @on-click="onWalletChange">
+                    <Dropdown class="accountSelect" trigger="click" @on-click="onWalletChange">
                         <account-image :account="currentWallet.account" :size="15"></account-image>
+                        <span class="text">{{$t('header.account')}}</span>
                         <DropdownMenu slot="list">
                             <DropdownItem class="account-item"
                                           :class="{'z-sel':wallet.account === currentWallet.account}"
@@ -17,14 +14,16 @@
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
-                    <Dropdown trigger="click" style="float:right;" @on-click="onLanguageSelect">
 
-                        <Button type="primary">
-                            <svg class="icon" aria-hidden="true">
-                                <use :xlink:href="lang|iconclass"></use>
-                            </svg>
-                            <Icon type="arrow-down-b"></Icon>
-                        </Button>
+                    <router-link class="setting" :to="{name:'setting-page'}">
+                        <Icon type="gear-b"></Icon>
+                        <span class="text">{{$t('header.setting')}}</span>
+                    </router-link>
+
+                    <Dropdown trigger="click" @on-click="onLanguageSelect">
+                        <svg class="icon" aria-hidden="true">
+                            <use :xlink:href="lang|iconclass"></use>
+                        </svg>
                         <DropdownMenu slot="list">
                             <DropdownItem v-for="lang in langText" :name="lang.symbol">{{lang.text}}</DropdownItem>
                         </DropdownMenu>
@@ -108,14 +107,59 @@
 <style lang="scss" scoped>
     @import '@/assets/scss/sprite.scss';
 
+    .logo {
+        display: inline-block;
+        width: 113px;
+        height: 32px;
+        margin-top: 12px;
+        background-size: cover;
+
+        background: url('~logo.svg');
+    }
+
     .hd {
         background: url('~top-banner.png');
         background-size: 100%;
         background-repeat: no-repeat;
+        padding: 0 35px;
+
+        .setting {
+            margin-right: 25px;
+            color: #c4c3d3;
+        }
 
         .right {
             float: right;
         }
+
+        .ivu-icon-gear-b {
+            font-size: 16px;
+            vertical-align: middle;
+        }
+
+        canvas {
+            vertical-align: middle;
+        }
+
+        .text {
+            vertical-align: middle;
+            color: #c4c3d3;
+        }
+
+        .accountSelect {
+            margin-right: 25px;
+            cursor: pointer;
+        }
+
+        // TODO 不生效
+        /*& >>> .ivu-select-dropdown {*/
+        /*top: 50px;*/
+        /*}*/
+    }
+
+    .layout-footer {
+        height: 32px;
+        padding: 0 35px;
     }
 
     .account-item {
@@ -139,6 +183,9 @@
     }
 
     .icon {
+        cursor: pointer;
+        position: relative;
+        top: 8px;
         font-size: 30px;
     }
 
