@@ -1,11 +1,14 @@
 <template>
-    <div class="layout">
-        <Card v-for="contract in contracts">
-            <p slot="title">{{contract.contractName}}
+    <div class="contractList-layout">
+        <h3 class="layout-title">合约列表</h3>
+        <div class="contract" v-for="contract in contracts">
+            <p class="title" slot="title">
+                {{contract.contractName}}
                 <Icon type="close" @click="onContractRemoveClick(contract)"></Icon>
             </p>
-            <function-card v-for="f in contract.functions" :contractName="contract.contractName" :name="f.name" :fields="f.fields"></function-card>
-        </Card>
+            <function-card v-for="f in contract.functions" :contractName="contract.contractName" :name="f.name"
+                           :fields="f.fields"></function-card>
+        </div>
     </div>
 </template>
 
@@ -52,5 +55,26 @@
 </script>
 
 <style scoped>
+    .contractList-layout {
+        border-top: 1px solid #313754;
+        height: calc(100vh - 221px);
+        padding: 16px 15px 0;
+        overflow: auto;
+    }
 
+    .layout-title {
+        color: white;
+        font-size: 14px;
+    }
+
+    .contract{
+        margin-top: 20px;
+        border-top: 2px solid #6699ff;
+        padding: 18px 20px 25px;
+        background: #32395e;
+    }
+
+    .title{
+        color: #c4c3d3;
+    }
 </style>

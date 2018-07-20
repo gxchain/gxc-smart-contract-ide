@@ -1,11 +1,9 @@
 <template>
-    <div class="layout">
-        <Card>
-            <p slot="title">function name:{{name}}</p>
-            <field-item v-for="field in fields" :name="field.name" :type="field.type"
-                        :value.sync="field.value"></field-item>
-            <Button class="callBtn" type="primary" @click="onCall">调用</Button>
-        </Card>
+    <div class="functionCard-layout">
+        <h3 class="title" slot="title">{{name}}</h3>
+        <field-item v-for="field in fields" :name="field.name" :type="field.type"
+                    :value.sync="field.value"></field-item>
+        <Button class="callBtn" type="primary" @click="onCall">调用</Button>
     </div>
 </template>
 
@@ -64,5 +62,16 @@
 </script>
 
 <style scoped>
+    .functionCard-layout {
+        margin-top: 20px;
+    }
 
+    .title {
+        color: white;
+        font-size: 12px;
+    }
+
+    .callBtn {
+        margin-top: 10px;
+    }
 </style>

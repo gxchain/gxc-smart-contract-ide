@@ -43,6 +43,15 @@ let rendererConfig = {
                 }
             },
             {
+                test: /\.scss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader',
+                    'sass-loader'
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
@@ -69,8 +78,8 @@ let rendererConfig = {
                     options: {
                         extractCSS: process.env.NODE_ENV === 'production',
                         loaders: {
-                            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-                            scss: 'vue-style-loader!css-loader!sass-loader'
+                            sass: 'vue-style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax=1',
+                            scss: 'vue-style-loader!css-loader!postcss-loader!sass-loader'
                         }
                     }
                 }

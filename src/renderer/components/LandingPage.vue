@@ -9,7 +9,7 @@
                     <code-panel></code-panel>
                 </Content>
                 <Layout style="height: 250px;flex-shrink:0;flex-grow:0;z-index:4;">
-                    <Tabs type="card" :animated="false">
+                    <Tabs class="tab-layout" type="card" :animated="false">
                         <TabPane label="LOGS">
                             <p v-for="log in logs">level:{{log.level}},info:{{log.info}}</p>
                         </TabPane>
@@ -24,16 +24,20 @@
                 </Layout>
             </Layout>
             <Sider class="rightPane" width="320" style="height:100%;overflow: auto;">
-                右边功能面板
-
-                <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">
-                    {{$t('index.compile')}}
-                </Button>
-                <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
-                    <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
-                </Select>
-                <Input v-model="contractName" placeholder="合约名称"></Input>
-                <Button class="deployBtn" type="primary" @click="onDeploy">部署</Button>
+                <div class="operation-panel">
+                    <div class="compile-area">
+                        <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
+                            <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
+                        </Select>
+                        <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">
+                            {{$t('index.compile')}}
+                        </Button>
+                    </div>
+                    <div class="deploy-area">
+                        <Input class="contractName" v-model="contractName" placeholder="合约名称"></Input>
+                        <Button class="deployBtn" type="primary" @click="onDeploy">部署</Button>
+                    </div>
+                </div>
                 <contract-list></contract-list>
             </Sider>
         </Layout>
@@ -399,7 +403,12 @@
 
     .entry-select {
         width: 200px;
-        float: right;
+        margin-right: 15px;
+    }
+
+    .contractName{
+        width: 200px;
+        margin-right: 15px;
     }
 
     .network-point {
@@ -412,6 +421,15 @@
     }
 
     .rightPane {
-        background: white;
+        background: #151935;
+    }
+
+    .operation-panel{
+        border-top: 1px solid #313754;
+        padding: 20px;
+    }
+
+    .deploy-area{
+        margin-top: 20px;
     }
 </style>
