@@ -105,7 +105,6 @@
                 'changeFileTitle'
             ]),
             renderContent(h, {root, node, data}) {
-                console.log('renderContentrenderContentrenderContentrenderContent')
                 var fileTextNode = null
 
                 if (data.editing) {

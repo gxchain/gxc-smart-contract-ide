@@ -159,7 +159,9 @@
 
     .layout-footer {
         height: 32px;
+        line-height: 32px;
         padding: 0 35px;
+        background: #1c2340;
     }
 
     .account-item {
@@ -170,14 +172,22 @@
 
     .status-item {
         float: right;
+
+        .text{
+            position: relative;
+            left: -6px;
+            color: #c4c3d3;
+        }
     }
 
     .pink-lamp {
+        vertical-align: middle;
         display: inline-block;
         @include sprite($pink-lamp);
     }
 
     .blue-lamp {
+        vertical-align: middle;
         display: inline-block;
         @include sprite($blue-lamp);
     }

@@ -5,10 +5,10 @@
                 <file-tree @on-select-change="onFileSelect"></file-tree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
-                <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+                <Content :style="{padding: '20px', background: '#fff', 'flex-basis':0, height:'calc(100vh - 346px)'}">
                     <code-panel></code-panel>
                 </Content>
-                <Layout>
+                <Layout style="height: 250px;flex-shrink:0;flex-grow:0;z-index:4;">
                     <Tabs type="card" :animated="false">
                         <TabPane label="LOGS">
                             <p v-for="log in logs">level:{{log.level}},info:{{log.info}}</p>
