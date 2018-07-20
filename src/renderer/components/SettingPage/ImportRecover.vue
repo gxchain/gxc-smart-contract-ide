@@ -17,7 +17,7 @@
             </FormItem>
         </Form>
 
-        <Button @click="onImportClick">导入</Button>
+        <Button class="import" type="primary" @click="onImportClick">导入</Button>
 
         <Table :columns="columns" :data="data"></Table>
     </div>
@@ -157,5 +157,9 @@
 </script>
 
 <style scoped>
-
+    .import{
+        width: 96px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
 </style>

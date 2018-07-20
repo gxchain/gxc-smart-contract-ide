@@ -54,11 +54,11 @@
     }
 
     .asset-select{
-        width: 60px;
+        width: 80px;
         margin-right: 6px;
     }
 
     .asset-amount{
-        width: 150px;
+        width: 160px;
     }
 </style>

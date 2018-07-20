@@ -5,8 +5,10 @@
                 {{item.location}} ({{ item.url }})-Latency:{{item.latency}}
             </Option>
         </Select>
-        <Button @click="onAddApiServerClick">添加接入点</Button>
-        <Button @click="onRemoveApiServerClick">移除接入点</Button>
+        <div class="btn-group">
+            <Button class="addPoint" type="primary" @click="onAddApiServerClick">添加接入点</Button>
+            <Button type="error" @click="onRemoveApiServerClick">移除接入点</Button>
+        </div>
         <Modal
                 class="addApiModal"
                 v-model="addApiModalVisible"
@@ -88,5 +90,11 @@
 </script>
 
 <style scoped>
+    .btn-group{
+        margin-top: 20px;
+    }
 
+    .addPoint{
+        margin-right: 10px;
+    }
 </style>

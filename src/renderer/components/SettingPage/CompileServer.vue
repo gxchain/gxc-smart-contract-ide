@@ -5,8 +5,10 @@
                 {{item.location}} ({{ item.url }})-Latency:{{item.latency}}
             </Option>
         </Select>
-        <Button @click="onAddCompileServerClick">添加服务器</Button>
-        <Button @click="onRemoveCompileServerClick">移除服务器</Button>
+        <div class="btn-group">
+            <Button type="primary" class="addCompileServer" @click="onAddCompileServerClick">添加服务器</Button>
+            <Button type="error" @click="onRemoveCompileServerClick">移除服务器</Button>
+        </div>
         <Modal
                 class="addCompileModal"
                 v-model="addCompileModalVisible"
@@ -85,5 +87,11 @@
 </script>
 
 <style scoped>
+    .btn-group{
+        margin-top: 20px;
+    }
 
+    .addCompileServer{
+        margin-right: 10px;
+    }
 </style>
