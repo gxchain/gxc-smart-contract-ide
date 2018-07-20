@@ -29,13 +29,13 @@
                         <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
                             <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
                         </Select>
-                        <Button class="compileBtn" type="primary" :loading="isCompiling" @click="onCompileClick">
+                        <Button class="compileBtn" type="ghost" :loading="isCompiling" @click="onCompileClick">
                             {{$t('index.compile')}}
                         </Button>
                     </div>
                     <div class="deploy-area">
                         <Input class="contractName" v-model="contractName" placeholder="合约名称"></Input>
-                        <Button class="deployBtn" type="primary" @click="onDeploy">部署</Button>
+                        <Button class="deployBtn" type="ghost" @click="onDeploy">部署</Button>
                     </div>
                 </div>
                 <contract-list></contract-list>
@@ -406,7 +406,7 @@
         margin-right: 15px;
     }
 
-    .contractName{
+    .contractName {
         width: 200px;
         margin-right: 15px;
     }
@@ -416,20 +416,31 @@
         float: left;
     }
 
-    .compileBtn {
-
+    .compileBtn, .deployBtn {
+        border-color: #6699ff;
+        color: #6699ff;
     }
 
     .rightPane {
         background: #151935;
     }
 
-    .operation-panel{
+    .operation-panel {
         border-top: 1px solid #313754;
         padding: 20px;
     }
 
-    .deploy-area{
+    .entry-select /deep/ .ivu-select-selection, .contractName /deep/ .ivu-input {
+        background: black;
+        color: #9090c8;
+        border: 1px solid #9090c8;
+
+        &:hover {
+            border-color: #6699ff;
+        }
+    }
+
+    .deploy-area {
         margin-top: 20px;
     }
 </style>

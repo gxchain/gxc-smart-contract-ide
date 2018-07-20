@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="801e3c2c-21bb-47db-9b61-c4246f65b25e" name="Default" comment="@dev adjust code panel">
-      <change afterPath="$PROJECT_DIR$/postcss.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/assets/scss/base.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/renderer/assets/scss/hack.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.electron-vue/webpack.renderer.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/.electron-vue/webpack.renderer.config.js" afterDir="false" />
+    <list default="true" id="801e3c2c-21bb-47db-9b61-c4246f65b25e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,8 +21,8 @@
       <file leaf-file-name="LandingPage.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="647">
-              <caret line="427" column="8" selection-start-line="427" selection-start-column="8" selection-end-line="427" selection-end-column="38" />
+            <state relative-caret-position="574">
+              <caret line="40" column="47" lean-forward="true" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Sider#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -47,8 +38,8 @@
       <file leaf-file-name="ContractList.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
+            <state relative-caret-position="741">
+              <caret line="74" column="32" lean-forward="true" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
               <folding>
                 <element signature="e#1857#1873#0" />
               </folding>
@@ -59,8 +50,8 @@
       <file leaf-file-name="FunctionCard.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="41" column="19" lean-forward="true" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+            <state relative-caret-position="75">
+              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -68,35 +59,51 @@
       <file leaf-file-name="FieldItem.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+            <state relative-caret-position="180">
+              <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/main.js">
+      <file leaf-file-name="SettingPage.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+            <state relative-caret-position="585">
+              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+              <folding>
+                <element signature="n#style#0;n#Sider#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Content#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webpack.renderer.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.electron-vue/webpack.renderer.config.js">
+      <file leaf-file-name="ApiServer.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="64" column="13" lean-forward="true" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+            <state relative-caret-position="823">
+              <caret line="98" column="5" lean-forward="true" selection-start-line="92" selection-start-column="4" selection-end-line="98" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="postcss.config.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/postcss.config.js">
+      <file leaf-file-name="CompileServer.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="273">
+              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImportRecover.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="684">
+              <caret line="152" column="18" lean-forward="true" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
+              <folding>
+                <element signature="e#995#1036#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -119,23 +126,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CodePanel.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/CodePanel.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="48" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="48" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#282#323#0" expanded="true" />
-                <element signature="e#433#487#0" expanded="true" />
-                <element signature="e#552#588#0" expanded="true" />
-                <element signature="e#656#700#0" expanded="true" />
-                <element signature="e#825#867#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -150,7 +140,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dropdownCls</find>
       <find>dropdown</find>
       <find>styles</find>
       <find>drop</find>
@@ -176,10 +165,11 @@
       <find>vue-loader</find>
       <find>use</find>
       <find>ivu-tabs-bar</find>
-      <find>entry-select</find>
       <find>compile</find>
       <find>100vh</find>
       <find>c4c3d3</find>
+      <find>entry-select</find>
+      <find>deployBtn</find>
     </findStrings>
     <replaceStrings>
       <replace>array</replace>
@@ -194,8 +184,8 @@
       <replace>/assets/images/</replace>
       <replace>form</replace>
       <replace>changeWallet</replace>
-      <replace>pwdCheck</replace>
       <replace>'</replace>
+      <replace>pwdCheck</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -214,7 +204,6 @@
         <option value="$PROJECT_DIR$/node_modules/gxbjs/es/serializer/src/types.js" />
         <option value="$PROJECT_DIR$/src/renderer/store/modules/ContractOperation.js" />
         <option value="$PROJECT_DIR$/node_modules/gxbjs/es/serializer/src/operations.js" />
-        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage.vue" />
         <option value="$PROJECT_DIR$/src/renderer/router/index.js" />
         <option value="$PROJECT_DIR$/src/renderer/assets/icons/multicolor-iconfont/index.js" />
         <option value="$PROJECT_DIR$/src/renderer/assets/icons/multicolor-iconfont/iconfont.css" />
@@ -236,12 +225,9 @@
         <option value="$PROJECT_DIR$/src/renderer/store/mutations.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/renderer/services/WalletService.js" />
-        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue" />
         <option value="$PROJECT_DIR$/src/renderer/plugins/eventBus.js" />
         <option value="$PROJECT_DIR$/src/renderer/services/connect.js" />
         <option value="$PROJECT_DIR$/src/renderer/store/actions.js" />
-        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue" />
         <option value="$PROJECT_DIR$/src/renderer/assets/images/logo.svg" />
         <option value="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" />
         <option value="$PROJECT_DIR$/src/renderer/locales/en-US.js" />
@@ -255,9 +241,13 @@
         <option value="$PROJECT_DIR$/postcss.config.js" />
         <option value="$PROJECT_DIR$/src/renderer/assets/scss/hack.scss" />
         <option value="$PROJECT_DIR$/src/renderer/assets/scss/base.scss" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" />
       </list>
     </option>
@@ -279,9 +269,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-613" />
+    <option name="x" value="669" />
     <option name="y" value="-1440" />
-    <option name="width" value="2560" />
+    <option name="width" value="1278" />
     <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -343,6 +333,14 @@
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="LandingPage" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="SettingPage" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -402,7 +400,7 @@
       <updated>1530098864913</updated>
       <workItem from="1530098866739" duration="17195000" />
       <workItem from="1530252607255" duration="9957000" />
-      <workItem from="1530598327412" duration="195913000" />
+      <workItem from="1530598327412" duration="199734000" />
     </task>
     <task id="LOCAL-00001" summary="@dev gitignore change">
       <created>1530188647835</created>
@@ -516,11 +514,25 @@
       <option name="project" value="LOCAL" />
       <updated>1532058929456</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="@dev adjust contract style">
+      <created>1532074727851</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1532074727851</updated>
+    </task>
+    <task id="LOCAL-00018" summary="@dev adjust setting page style">
+      <created>1532076974113</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1532076974113</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226801000" />
+    <option name="totallyTimeSpent" value="230622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-613" y="-1440" width="2560" height="1440" extended-state="0" />
@@ -603,19 +615,11 @@
     <MESSAGE value="@dev adjust layout" />
     <MESSAGE value="@dev adjust left sidebar style" />
     <MESSAGE value="@dev adjust code panel" />
-    <option name="LAST_COMMIT_MESSAGE" value="@dev adjust code panel" />
+    <MESSAGE value="@dev adjust contract style" />
+    <MESSAGE value="@dev adjust setting page style" />
+    <option name="LAST_COMMIT_MESSAGE" value="@dev adjust setting page style" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/jdenticon/dist/jdenticon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="1345" column="20" selection-start-line="1345" selection-start-column="11" selection-end-line="1345" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/common/AccountImage.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -632,16 +636,6 @@
           <caret line="91" column="52" lean-forward="true" selection-start-line="91" selection-start-column="52" selection-end-line="91" selection-end-column="52" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="92" column="32" lean-forward="true" selection-start-line="92" selection-start-column="32" selection-end-line="92" selection-end-column="32" />
-          <folding>
-            <element signature="e#995#1036#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -691,20 +685,6 @@
           <folding>
             <element signature="e#0#82#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="910">
-          <caret line="71" column="18" lean-forward="true" selection-start-line="67" selection-start-column="62" selection-end-line="71" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="51" column="55" lean-forward="true" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -977,10 +957,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="n#style#0;n#Sider#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Content#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="152" column="18" lean-forward="true" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
+          <folding>
+            <element signature="e#995#1036#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="823">
+          <caret line="98" column="5" lean-forward="true" selection-start-line="92" selection-start-column="4" selection-end-line="98" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="647">
-          <caret line="427" column="8" selection-start-line="427" selection-start-column="8" selection-end-line="427" selection-end-column="38" />
+        <state relative-caret-position="574">
+          <caret line="40" column="47" lean-forward="true" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Sider#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -992,24 +1021,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="58" column="5" lean-forward="true" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="41" column="19" lean-forward="true" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
+        <state relative-caret-position="741">
+          <caret line="74" column="32" lean-forward="true" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
           <folding>
             <element signature="e#1857#1873#0" />
           </folding>

@@ -60,6 +60,19 @@
         height: calc(100vh - 221px);
         padding: 16px 15px 0;
         overflow: auto;
+
+    }
+
+    .contractList-layout /deep/ .ivu-input{
+        border-color: #9090c8;
+        color: #9090c8;
+        background: transparent;
+    }
+
+    .contractList-layout /deep/ .ivu-select-selection{
+        border-color: #9090c8;
+        color: #9090c8;
+        background: transparent;
     }
 
     .layout-title {
