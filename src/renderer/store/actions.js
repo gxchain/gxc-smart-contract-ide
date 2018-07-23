@@ -9,11 +9,11 @@ actions.setLang = ({commit}, lang) => {
     location.reload()
 }
 
-actions.appendWallet = ({commit, state}, wallet) => {
-    if (state.wallets.length === 0) {
-        commit('SWITCH_CURRENT_WALLET', wallet)
-    }
+actions.appendWallet = ({dispatch, commit, state}, wallet) => {
     commit('APPEND_WALLET', wallet)
+    if (state.wallets.length === 1) {
+        dispatch('changeWallet', wallet.account)
+    }
 }
 
 actions.removeWallet = ({state, dispatch, commit}, account) => {
@@ -23,8 +23,9 @@ actions.removeWallet = ({state, dispatch, commit}, account) => {
     }
 }
 
-actions.changeWallet = ({commit}, account) => {
+actions.changeWallet = ({commit, dispatch}, account) => {
     commit('CHANGE_WALLET', account)
+    dispatch('updateCurrentBalancesAndAssets')
 }
 
 actions.updateCurrentBalancesAndAssets = ({dispatch, state}) => {
@@ -36,21 +37,25 @@ actions.updateCurrentBalancesAndAssets = ({dispatch, state}) => {
 }
 
 actions.updateCurrentBalances = ({commit, state}) => {
-    return fetch_account_balances(state.currentWallet.account).then((balances) => {
-        commit('UPDATE_BALANCES', balances)
-        return balances
-    })
+    if (state.currentWallet.account) {
+        return fetch_account_balances(state.currentWallet.account).then((balances) => {
+            commit('UPDATE_BALANCES', balances)
+            return balances
+        })
+    }
 }
 
 actions.updateCurrentAssets = ({commit, state}, balances) => {
-    let asset_ids = balances.map(b => {
-        return b.asset_id
-    })
+    if (!!balances) {
+        let asset_ids = balances.map(b => {
+            return b.asset_id
+        })
 
-    return get_assets_by_ids(asset_ids).then((assets) => {
-        commit('UPDATE_ASSETS', assets)
-        return assets
-    })
+        return get_assets_by_ids(asset_ids).then((assets) => {
+            commit('UPDATE_ASSETS', assets)
+            return assets
+        })
+    }
 }
 
 actions.updateApiServers = ({dispatch, state}) => {

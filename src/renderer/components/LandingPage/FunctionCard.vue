@@ -45,17 +45,15 @@
         methods: {
             onCall() {
                 // TODO data的处理
-                console.log(this.fields)
-                if (window.nnn) {
-                    call_contract(this.currentWallet.account, this.contractName, {
-                        'method_name': this.name,
-                        'data': '5601000000000000'
-                    }, '1.3.0', '123123', true).then((resp) => {
-                        console.log('called', resp)
-                    }).catch(ex => {
-                        console.error('cclclclclclcl', ex)
-                    })
-                }
+                call_contract(this.currentWallet.account, this.contractName, {
+                    'method_name': this.name,
+                    'data': '5601000000000000'
+                }, '1.3.0', '123123', true).then((resp) => {
+                    this.$store.dispatch('updateCurrentBalancesAndAssets')
+                    console.log('called', resp)
+                }).catch(ex => {
+                    console.error('cclclclclclcl', ex)
+                })
             }
         }
     }
@@ -73,5 +71,6 @@
 
     .callBtn {
         margin-top: 10px;
+        width: 90px;
     }
 </style>

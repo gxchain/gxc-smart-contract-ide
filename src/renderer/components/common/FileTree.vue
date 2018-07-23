@@ -5,13 +5,20 @@
 <script>
     import {mapState, mapActions} from 'vuex'
     import ContractOperationStore from '@/store/modules/ContractOperation.js'
+    import electron from 'electron'
+
+    const remote = electron.remote
+    const Menu = remote.Menu
+    const MenuItem = remote.MenuItem
 
     export default {
         data() {
             return {
                 data: [
                     {
-                        title: 'parent 1',
+                        menu: null,
+                        tempFileItemContext: null,
+                        title: 'default',
                         expand: true,
                         render: (h, {root, node, data}) => {
                             return h('span', {
@@ -77,6 +84,7 @@
         created() {
             // this.$set(this.data[0], 'children', this.files)
             this.initData()
+            this.initMenu()
 
             this.$store.subscribeAction((action, state) => {
                 // 添加文件
@@ -104,46 +112,49 @@
                 'selectFile',
                 'changeFileTitle'
             ]),
+            initMenu() {
+                this.menu = new Menu()
+                this.menu.append(new MenuItem({
+                    label: '编辑名称',
+                    click: () => {
+                        let value = ''
+                        // add edit modal
+                        // TODO 文件校验 /^[\w,\s-]+\.cpp|hpp$/
+                        this.$Modal.confirm({
+                            render: (h) => {
+                                return h('Input', {
+                                    props: {
+                                        title: '修改文件名称',
+                                        value: this.tempFileItemContext.title,
+                                        autofocus: true,
+                                        placeholder: 'Please enter your name...'
+                                    },
+                                    on: {
+                                        input: (val) => {
+                                            value = val
+                                        }
+                                    }
+                                })
+                            },
+                            onOk: () => {
+                                this.changeTitle(this.tempFileItemContext.id, value)
+                            }
+                        })
+                    }
+                }))
+            },
             renderContent(h, {root, node, data}) {
                 var fileTextNode = null
-
-                if (data.editing) {
-                    fileTextNode = h('Input', {
-                        props: {
-                            size: 'small',
-                            placeholder: 'small size',
-                            value: data.title,
-                            autofocus: true
+                fileTextNode = h('span', {
+                    on: {
+                        click: () => {
+                            this.select(data)
                         },
-                        attrs: {
-                            timestamp: +new Date()
-                        },
-                        on: {
-                            'on-blur': (evt) => {
-                                data.editing = false
-                                this.changeTitle(data.id, evt.target.value)
-                            }
-                        },
-                        methods: {
-                            doneEdit() {
-                                console.log('lzyzyzy')
-                            }
+                        dblclick: () => {
+                            data.editing = true
                         }
-                    }, data.title)
-
-                    console.log('lzyzyzy', fileTextNode)
-                } else {
-                    fileTextNode = h('span', {
-                        on: {
-                            click: () => {
-                                this.select(data)
-                            },
-                            dblclick: () => {
-                                data.editing = true
-                            }
-                        }
-                    }, data.title)
-                }
+                    }
+                }, data.title)
 
                 return h('span', {
                     style: {
@@ -151,13 +162,28 @@
                         width: '100%'
                     }
                 }, [
-                    h('span', [
+                    h('span', {
+                        style: {
+                            cursor: 'pointer'
+                        },
+                        class: {
+                            'file-item': true,
+                            'selected': !!data.selected
+                        },
+                        on: {
+                            contextmenu: () => {
+                                this.tempFileItemContext = data
+                                this.menu.popup(remote.getCurrentWindow())
+                            }
+                        }
+                    }, [
                         h('Icon', {
                             props: {
                                 type: 'ios-paper-outline'
                             },
                             style: {
-                                marginRight: '8px'
+                                marginRight: '8px',
+                                color: 'white'
                             }
                         }),
                         fileTextNode
@@ -166,7 +192,8 @@
                         style: {
                             display: 'inline-block',
                             float: 'right',
-                            marginRight: '32px'
+                            marginRight: '48px',
+                            marginTop: '2px'
                         }
                     }, [
                         h('Icon', {
@@ -180,8 +207,13 @@
                             },
                             on: {
                                 click: () => {
-                                    // 同选中
-                                    this.remove(root, node, data)
+                                    this.$Modal.confirm({
+                                        title: '删除文件',
+                                        content: '确认删除该文件？',
+                                        onOk: () => {
+                                            this.remove(root, node, data)
+                                        }
+                                    })
                                 }
                             }
                         })
@@ -197,10 +229,6 @@
             },
             remove(root, node, data) {
                 this.removeFile(data.id)
-                // const parentKey = root.find(el => el === node).parent
-                // const parent = root.find(el => el.nodeKey === parentKey).node
-                // const index = parent.children.indexOf(data)
-                // parent.children.splice(index, 1)
             },
             select(data) {
                 this.selectFile(data.id)
@@ -222,8 +250,7 @@
             },
             filterFile(file) {
                 return Object.assign({}, {
-                    expand: false,
-                    editing: false
+                    expand: false
                 }, file)
             },
             filterFiles(files) {
@@ -259,7 +286,7 @@
 </script>
 
 <style scoped>
-    .filetree >>> .ivu-tree-children{
+    .filetree >>> .ivu-tree-children {
         height: 50px;
         line-height: 50px;
     }
@@ -272,5 +299,9 @@
 
     .filetree >>> ul li {
         margin: 0;
+    }
+
+    .filetree >>> .file-item.selected {
+        color: rgb(102, 153, 255);
     }
 </style>

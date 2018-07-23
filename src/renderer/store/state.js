@@ -25,5 +25,6 @@ const state = {
 }
 
 state.currentApiServer = state.apiServers[0]
+state.currentCompileServer = state.compileServers[0]
 
 export default state

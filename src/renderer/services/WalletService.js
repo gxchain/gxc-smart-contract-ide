@@ -5,7 +5,6 @@ import uniq from 'lodash/uniq'
 import some from 'lodash/some'
 import store from '@/store'
 import find from 'lodash/find'
-import sha256 from 'sha256'
 // import Vue from 'vue'
 // import i18n from '@/locales'
 /**
@@ -113,7 +112,6 @@ const import_account = (wifKey, password) => {
  * @returns {*}
  */
 const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee_id = '', password = '', broadcast = true}) => {
-    let code_version = sha256(code)
     let vm_type = '0'
     let vm_version = '0'
 
@@ -136,7 +134,6 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
                 vm_type,
                 vm_version,
                 code,
-                code_version,
                 abi
             }))
 

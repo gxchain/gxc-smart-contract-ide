@@ -9,33 +9,44 @@
 //
 // At the bottom of this section, we provide information about the spritesheet itself
 // $spritesheet: width height image $spritesheet-sprites;
+$add-file-name: 'add-file';
+$add-file-x: 0px;
+$add-file-y: 0px;
+$add-file-offset-x: 0px;
+$add-file-offset-y: 0px;
+$add-file-width: 160px;
+$add-file-height: 181px;
+$add-file-total-width: 188px;
+$add-file-total-height: 181px;
+$add-file-image: '~sprite.png';
+$add-file: (0px, 0px, 0px, 0px, 160px, 181px, 188px, 181px, '~sprite.png', 'add-file', );
 $blue-lamp-name: 'blue-lamp';
-$blue-lamp-x: 0px;
+$blue-lamp-x: 160px;
 $blue-lamp-y: 0px;
-$blue-lamp-offset-x: 0px;
+$blue-lamp-offset-x: -160px;
 $blue-lamp-offset-y: 0px;
 $blue-lamp-width: 28px;
 $blue-lamp-height: 22px;
-$blue-lamp-total-width: 56px;
-$blue-lamp-total-height: 22px;
+$blue-lamp-total-width: 188px;
+$blue-lamp-total-height: 181px;
 $blue-lamp-image: '~sprite.png';
-$blue-lamp: (0px, 0px, 0px, 0px, 28px, 22px, 56px, 22px, '~sprite.png', 'blue-lamp', );
+$blue-lamp: (160px, 0px, -160px, 0px, 28px, 22px, 188px, 181px, '~sprite.png', 'blue-lamp', );
 $pink-lamp-name: 'pink-lamp';
-$pink-lamp-x: 28px;
-$pink-lamp-y: 0px;
-$pink-lamp-offset-x: -28px;
-$pink-lamp-offset-y: 0px;
+$pink-lamp-x: 160px;
+$pink-lamp-y: 22px;
+$pink-lamp-offset-x: -160px;
+$pink-lamp-offset-y: -22px;
 $pink-lamp-width: 28px;
 $pink-lamp-height: 22px;
-$pink-lamp-total-width: 56px;
-$pink-lamp-total-height: 22px;
+$pink-lamp-total-width: 188px;
+$pink-lamp-total-height: 181px;
 $pink-lamp-image: '~sprite.png';
-$pink-lamp: (28px, 0px, -28px, 0px, 28px, 22px, 56px, 22px, '~sprite.png', 'pink-lamp', );
-$spritesheet-width: 56px;
-$spritesheet-height: 22px;
+$pink-lamp: (160px, 22px, -160px, -22px, 28px, 22px, 188px, 181px, '~sprite.png', 'pink-lamp', );
+$spritesheet-width: 188px;
+$spritesheet-height: 181px;
 $spritesheet-image: '~sprite.png';
-$spritesheet-sprites: ($blue-lamp, $pink-lamp, );
-$spritesheet: (56px, 22px, '~sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($add-file, $blue-lamp, $pink-lamp, );
+$spritesheet: (188px, 181px, '~sprite.png', $spritesheet-sprites, );
 
 // The provided mixins are intended to be used with the array-like variables
 //

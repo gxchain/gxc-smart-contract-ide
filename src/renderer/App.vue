@@ -4,7 +4,7 @@
             <Header class="hd" style="height: 64px;">
                 <router-link class="logo" :to="{name:'landing-page'}"></router-link>
                 <div class="right">
-                    <Dropdown class="accountSelect" trigger="click" @on-click="onWalletChange">
+                    <Dropdown v-if="wallets.length>0" class="accountSelect" trigger="click" @on-click="onWalletChange">
                         <account-image :account="currentWallet.account" :size="15"></account-image>
                         <span class="text">{{$t('header.account')}}</span>
                         <DropdownMenu slot="list">
@@ -166,14 +166,15 @@
 
     .account-item {
         &.z-sel {
-            background: #0000cc;
+            background: rgba(40,123,211,.91);
+            color: #fff;
         }
     }
 
     .status-item {
         float: right;
 
-        .text{
+        .text {
             position: relative;
             left: -6px;
             color: #c4c3d3;

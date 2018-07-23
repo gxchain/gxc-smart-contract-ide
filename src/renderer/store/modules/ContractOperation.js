@@ -1,9 +1,60 @@
 import ut from '@/util/util.js'
 
+const util = {
+    formatFiles: function (files) {
+        return files.map(function (file) {
+            file.title = file.title || ''
+            file.id = file.id || ut.generateGuuId()
+            file.code = file.code || ''
+            file.selected = file.selected || false
+
+            return file
+        })
+    }
+}
+
+const exampleCode1 = `#include <gxblib/contract.hpp>
+#include <gxblib/dispatcher.hpp>
+#include <gxblib/print.hpp>
+#include <gxblib/types.h>
+
+using namespace graphene;
+
+class hello : public contract
+{
+  public:
+    hello(account_name n)
+        : contract(n)
+    {
+    }
+
+    /// @abi action
+    void hi(account_name user)
+    {
+        for (int i = 0; i < 2; ++i) {
+            print("hi, ", user, "\\n");
+        }
+    }
+};
+
+GXB_ABI(hello, (hi))
+`
+
+const exampleCode2 = `#include <gxblib/gxb.hpp>
+`
+
 const state = {
-    files: [],
+    files: [{
+        title: 'hello.cpp',
+        code: exampleCode1
+    }, {
+        title: 'hello.hpp',
+        code: exampleCode2
+    }],
     contracts: []
 }
+
+state.files = util.formatFiles(state.files)
 
 const mutations = {
     APPEND_FILE(state, files) {
@@ -85,19 +136,6 @@ const actions = {
     },
     removeContract({commit}, id) {
         commit('REMOVE_CONTRACT', id)
-    }
-}
-
-const util = {
-    formatFiles: function (files) {
-        return files.map(function (file) {
-            file.title = file.title || ''
-            file.id = file.id || ut.generateGuuId()
-            file.code = file.code || ''
-            file.selected = file.selected || false
-
-            return file
-        })
     }
 }
 
