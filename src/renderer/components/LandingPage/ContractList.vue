@@ -6,7 +6,7 @@
                 {{contract.contractName}}
                 <Icon type="close" @click="onContractRemoveClick(contract)"></Icon>
             </p>
-            <function-card v-for="f in contract.functions" :contractName="contract.contractName" :name="f.name"
+            <function-card v-for="f in contract.functions" :abi="contract.abi" :contractName="contract.contractName" :name="f.name"
                            :fields="f.fields"></function-card>
         </div>
     </div>
@@ -54,7 +54,26 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+    .ivu-icon-close{
+        display: none;
+        float: right;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .contract{
+        &:hover{
+            .ivu-icon-close{
+                display: block;
+            }
+        }
+    }
+
+    .title{
+        color: #c4c3d3;
+    }
+
     .contractList-layout {
         border-top: 1px solid #313754;
         height: calc(100vh - 221px);
@@ -85,9 +104,5 @@
         border-top: 2px solid #6699ff;
         padding: 18px 20px 25px;
         background: #32395e;
-    }
-
-    .title{
-        color: #c4c3d3;
     }
 </style>

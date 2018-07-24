@@ -175,11 +175,9 @@ const call_contract = (from, target, act, fee_id, password, broadcast = true) =>
                     'asset_id': fee_id
                 },
                 'account': fromAcc.id,
-                'act': {
-                    'contract_id': contractAccount.id,
-                    'method_name': act.method_name,
-                    'data': act.data
-                }
+                'contract_id': contractAccount.id,
+                'method_name': act.method_name,
+                'data': act.data
             }))
             return process_transaction(tr, from, password, broadcast)
         }))
