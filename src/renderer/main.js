@@ -4,6 +4,7 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import locales from '@/locales'
+import filters from '@/filters'
 import iviewLocales from 'iview/dist/locale/en-US'
 import '@/assets/icons'
 import {connect} from './services/connect'
@@ -37,6 +38,7 @@ if (store.state.lang === 'en-US') {
 Vue.use(iView, iviewOptions)
 Vue.use(TreeView)
 Vue.use(eventBus)
+Vue.mixin({filters})
 
 /* eslint-disable no-new */
 new Vue({

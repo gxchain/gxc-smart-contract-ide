@@ -3,10 +3,10 @@ const locale = {
         'compile': 'compile'
     },
     connect: {
-        'success': 'entry point connect success',
-        'closed': 'entry point connect closed',
-        'error': 'entry point connect error,now is trying to reconnect',
-        'reconnectFail': 'reconnect failed,please trying switch to another entry point'
+        'success': 'Entry point connect success',
+        'closed': 'Entry point connect closed',
+        'error': 'Entry point connect error,now is trying to reconnect',
+        'reconnectFail': 'Reconnect failed,please trying switch to another entry point'
     },
     apiServer: {
         messages: {
@@ -40,30 +40,30 @@ const locale = {
     },
     contract: {
         'title': 'Contract List',
-        'chooseEntryFile': 'choose entry file',
-        'inputContractName': 'input contract name',
+        'chooseEntryFile': 'Choose entry file',
+        'inputContractName': 'Enter contract name',
         'deploy': 'deploy'
     },
     files: {
-        addFile: 'add file',
+        addFile: 'Add File',
         title: {
             removeFile: 'Remove File',
             editFileName: 'Edit File Name'
         },
         validate: {
-            required: 'please enter file name',
-            fileFormat: 'incorrect file name format',
-            repeatName: 'repeated file name'
+            required: 'Please enter file name',
+            fileFormat: 'Incorrect file name format',
+            repeatName: 'Repeated file name'
         },
         placeholder: {
-            required: 'please enter file name'
+            required: 'Please enter file name'
         },
-        confirmRemoveFile: 'confirm remove this file？',
-        editFileName: 'edit file name'
+        confirmRemoveFile: 'Confirm remove this file？',
+        editFileName: 'Edit file name'
     },
     statusbar: {
-        currentApiServer: 'current api server',
-        currentCompileServer: 'current compile server'
+        currentApiServer: 'Current api server',
+        currentCompileServer: 'Current compile server'
     },
     importSetting: {
         title: {
@@ -72,9 +72,9 @@ const locale = {
             compileServer: 'Compile Server'
         },
         placeholder: {
-            wifKey: 'please enter wifKey',
-            pwd: 'please enter password',
-            pwdCheck: 'please confirm password'
+            wifKey: 'Please enter wifKey',
+            pwd: 'Please enter password',
+            pwdCheck: 'Please confirm password'
         },
         label: {
             importType: 'Import Type',

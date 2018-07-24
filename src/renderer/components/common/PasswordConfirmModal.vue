@@ -6,7 +6,8 @@
             </FormItem>
             <FormItem label="资产类型" prop="asset_id">
                 <Select v-model="form.asset_id" placeholder="请选择操作所消耗的资产类型">
-                    <Option v-for="asset in assets" :value="asset.id" :key="asset.id">{{ asset.id }}</Option>
+                    <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}
+                    </Option>
                 </Select>
             </FormItem>
             <FormItem label="当前余额">
@@ -55,14 +56,14 @@
             assets: function () {
                 return store.state.assets
             },
-            balances: function () {
-                return store.state.balances
+            formatBalances: function () {
+                return store.getters.formatBalances
             },
             restAmount: function () {
-                var asset = this.balances.find((asset) => {
-                    return asset.asset_id === this.form.asset_id
+                var balance = this.formatBalances.find((balance) => {
+                    return balance.id === this.form.asset_id
                 })
-                return asset ? asset.amount : 0
+                return balance ? balance.amount : 0
             }
         },
         created() {

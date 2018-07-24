@@ -30,6 +30,7 @@ actions.changeWallet = ({commit, dispatch}, account) => {
 
 actions.updateCurrentBalancesAndAssets = ({dispatch, state}) => {
     dispatch('updateCurrentBalances').then((balances) => {
+        debugger
         return dispatch('updateCurrentAssets', balances)
     }).catch(ex => {
         console.error(ex)
