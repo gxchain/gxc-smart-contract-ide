@@ -39,13 +39,13 @@
                 <div class="status-item">
                     <i class="pink-lamp"></i>
                     <Tooltip :content="currentCompileServer.url" placement="top">
-                        <a class="text">当前编译服务</a>
+                        <a class="text">{{$t('statusbar.currentCompileServer')}}</a>
                     </Tooltip>
                 </div>
                 <div class="status-item">
                     <i class="blue-lamp"></i>
                     <Tooltip :content="currentApiServer.url" placement="top">
-                        <a class="text">当前接入点</a>
+                        <a class="text">{{$t('statusbar.currentApiServer')}}</a>
                     </Tooltip>
                 </div>
             </Footer>

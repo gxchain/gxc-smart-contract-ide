@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <Layout class="layout-container" style="flex-direction: row">
-            <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;" width="240">
+            <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;" width="240">
                 <file-tree ref="filetree" @on-select-change="onFileSelect"></file-tree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
@@ -12,7 +12,7 @@
                     <template v-else>
                         <div class="empty-add-file">
                             <i @click="onAddFileClick" class="icon-add-file"></i>
-                            <p class="desc">add file</p>
+                            <p class="desc">{{$t('files.addFile')}}</p>
                         </div>
                     </template>
                 </Content>
@@ -34,7 +34,7 @@
             <Sider class="rightPane" width="320" style="height:100%;overflow: auto;">
                 <div class="operation-panel">
                     <div class="compile-area">
-                        <Select v-model="entry" class="entry-select" placeholder="请选择入口文件">
+                        <Select v-model="entry" class="entry-select" :placeholder="$t('contract.chooseEntryFile')">
                             <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
                         </Select>
                         <Button class="compileBtn" type="ghost" :loading="isCompiling" @click="onCompileClick">
@@ -42,8 +42,8 @@
                         </Button>
                     </div>
                     <div class="deploy-area">
-                        <Input class="contractName" v-model="contractName" placeholder="合约名称"></Input>
-                        <Button class="deployBtn" type="ghost" @click="onDeploy">部署</Button>
+                        <Input class="contractName" v-model="contractName" :placeholder="$t('contract.inputContractName')"></Input>
+                        <Button class="deployBtn" type="ghost" @click="onDeploy">{{$t('contract.deploy')}}</Button>
                     </div>
                 </div>
                 <contract-list></contract-list>
@@ -406,21 +406,17 @@
     }
 
     .entry-select {
-        width: 200px;
+        width: 180px;
         margin-right: 15px;
     }
 
     .contractName {
-        width: 200px;
+        width: 180px;
         margin-right: 15px;
     }
 
-    .network-point {
-        width: 200px;
-        float: left;
-    }
-
     .compileBtn, .deployBtn {
+        width: 75px;
         border-color: #6699ff;
         color: #6699ff;
     }

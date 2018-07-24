@@ -2,9 +2,10 @@ import ut from '@/util/util.js'
 
 const util = {
     formatFiles: function (files) {
+        var id = ut.generateGuuId()
         return files.map(function (file) {
-            file.title = file.title || ''
-            file.id = file.id || ut.generateGuuId()
+            file.title = file.title || id + '.cpp'
+            file.id = file.id || id
             file.code = file.code || ''
             file.selected = file.selected || false
 

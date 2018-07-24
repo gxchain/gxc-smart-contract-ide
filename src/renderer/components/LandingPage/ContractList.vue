@@ -1,6 +1,6 @@
 <template>
     <div class="contractList-layout">
-        <h3 class="layout-title">合约列表</h3>
+        <h3 class="layout-title">{{$t('contract.title')}}</h3>
         <div class="contract" v-for="contract in contracts">
             <p class="title" slot="title">
                 {{contract.contractName}}

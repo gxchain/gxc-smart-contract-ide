@@ -8,8 +8,8 @@ import zh from './zh-CN'
 Vue.use(VueI18n)
 
 const messages = {
-    'en-US': en,
-    'zh-CN': zh
+    'en-US': Object.assign({}, en),
+    'zh-CN': Object.assign({}, zh)
 }
 
 const numberFormats = {

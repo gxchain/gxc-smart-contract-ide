@@ -115,47 +115,88 @@
             initMenu() {
                 this.menu = new Menu()
                 this.menu.append(new MenuItem({
-                    label: '编辑名称',
+                    label: this.$t('files.editFileName'),
                     click: () => {
-                        let value = ''
-                        // add edit modal
-                        // TODO 文件校验 /^[\w,\s-]+\.cpp|hpp$/
+                        var that = this
+                        var model = {
+                            name: this.tempFileItemContext.title
+                        }
                         this.$Modal.confirm({
+                            title: this.$t('files.title.editFileName'),
+                            loading: true,
                             render: (h) => {
-                                return h('Input', {
-                                    props: {
-                                        title: '修改文件名称',
-                                        value: this.tempFileItemContext.title,
-                                        autofocus: true,
-                                        placeholder: 'Please enter your name...'
+                                return h('Form', {
+                                    ref: 'form',
+                                    style: {
+                                        'margin-top': '30px'
                                     },
-                                    on: {
-                                        input: (val) => {
-                                            value = val
+                                    props: {
+                                        rules: {
+                                            name: [
+                                                {
+                                                    required: true,
+                                                    message: this.$t('files.validate.required')
+                                                }, {
+                                                    validator: (rule, value, callback) => {
+                                                        let filenameReg = /^[\w,\s-]+\.cpp|hpp$/
+                                                        const err_msg = new Error(this.$t('files.validate.fileFormat'))
+                                                        if (filenameReg.test(value)) {
+                                                            callback()
+                                                        } else {
+                                                            callback(err_msg)
+                                                        }
+                                                    }
+                                                }, {
+                                                    validator: (rule, value, callback) => {
+                                                        const err_msg = new Error(this.$t('files.validate.repeatName'))
+                                                        this.filesTree.forEach((file) => {
+                                                            if (file.id !== this.tempFileItemContext.id) {
+                                                                if (file.title === value) {
+                                                                    callback(err_msg)
+                                                                }
+                                                            }
+                                                        })
+
+                                                        callback()
+                                                    }
+                                                }]
+                                        },
+                                        model: model
+                                    }
+                                }, [
+                                    h('FormItem', {
+                                        props: {
+                                            prop: 'name'
                                         }
+                                    }, [h('Input', {
+                                        props: {
+                                            value: model.name,
+                                            autofocus: true,
+                                            placeholder: this.$t('files.placeholder.required')
+                                        },
+                                        on: {
+                                            input(val) {
+                                                model.name = val
+                                            }
+                                        }
+                                    })])
+                                ])
+                            },
+                            onOk: function () {
+                                this.$refs.form.validate((valid) => {
+                                    if (valid) {
+                                        this.cancel()
+                                        that.changeTitle(that.tempFileItemContext.id, model.name)
+                                    } else {
+                                        this.buttonLoading = false
                                     }
                                 })
-                            },
-                            onOk: () => {
-                                this.changeTitle(this.tempFileItemContext.id, value)
                             }
                         })
                     }
                 }))
             },
             renderContent(h, {root, node, data}) {
-                var fileTextNode = null
-                fileTextNode = h('span', {
-                    on: {
-                        click: () => {
-                            this.select(data)
-                        },
-                        dblclick: () => {
-                            data.editing = true
-                        }
-                    }
-                }, data.title)
-
                 return h('span', {
                     style: {
                         display: 'inline-block',
@@ -164,7 +205,9 @@
                 }, [
                     h('span', {
                         style: {
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            width: '150px',
+                            display: 'inline-block'
                         },
                         class: {
                             'file-item': true,
@@ -174,6 +217,9 @@
                             contextmenu: () => {
                                 this.tempFileItemContext = data
                                 this.menu.popup(remote.getCurrentWindow())
+                            },
+                            click: () => {
+                                this.select(data)
                             }
                         }
                     }, [
@@ -186,7 +232,7 @@
                                 color: 'white'
                             }
                         }),
-                        fileTextNode
+                        h('span', {}, data.title)
                     ]),
                     h('span', {
                         style: {
@@ -208,8 +254,8 @@
                             on: {
                                 click: () => {
                                     this.$Modal.confirm({
-                                        title: '删除文件',
-                                        content: '确认删除该文件？',
+                                        title: this.$t('files.title.removeFile'),
+                                        content: this.$t('files.confirmRemoveFile'),
                                         onOk: () => {
                                             this.remove(root, node, data)
                                         }
@@ -222,9 +268,7 @@
             },
             append() {
                 // 修改files
-                this.lastAppendFiles = ContractOperationStore.util.formatFiles([{
-                    title: 'new-file.cpp'
-                }])
+                this.lastAppendFiles = ContractOperationStore.util.formatFiles([{}])
                 this.appendFile(this.lastAppendFiles)
             },
             remove(root, node, data) {
@@ -236,7 +280,6 @@
             appendX() {
                 this.filesTree = this.filesTree.concat(this.filterFiles(this.lastAppendFiles))
                 this.$set(this.data[0], 'children', this.filesTree)
-                console.log(this.filesTree)
             },
             removeX(id) {
                 const node = this.findNodeById(id)
@@ -245,8 +288,13 @@
                 this.$set(this.data[0], 'children', this.filesTree)
             },
             selectX(id) {
-                const node = this.findNodeById(id)
-                this.$refs.tree.handleSelect(node.nodeKey)
+                this.filesTree.forEach((file) => {
+                    if (file.id === id) {
+                        file.selected = true
+                    } else {
+                        file.selected = false
+                    }
+                })
             },
             filterFile(file) {
                 return Object.assign({}, {

@@ -4,6 +4,7 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import locales from '@/locales'
+import iviewLocales from 'iview/dist/locale/en-US'
 import '@/assets/icons'
 import {connect} from './services/connect'
 
@@ -28,7 +29,12 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
-Vue.use(iView)
+var iviewOptions = {}
+if (store.state.lang === 'en-US') {
+    iviewOptions.locale = iviewLocales
+}
+
+Vue.use(iView, iviewOptions)
 Vue.use(TreeView)
 Vue.use(eventBus)
 
