@@ -2,12 +2,14 @@
     <div class="layout">
         <Layout class="layout-container">
             <Sider style="background: #151935;">
-                <router-link class="nav-item" :to="{name:'import-recover'}">导入/恢复</router-link>
-                <router-link class="nav-item" :to="{name:'api-server'}">接入点</router-link>
-                <router-link class="nav-item" :to="{name:'compile-server'}">编译服务</router-link>
+                <router-link class="nav-item" :to="{name:'import-recover'}">{{$t('importSetting.title.importRecover')}}</router-link>
+                <router-link class="nav-item" :to="{name:'api-server'}">{{$t('importSetting.title.entryPoint')}}</router-link>
+                <router-link class="nav-item" :to="{name:'compile-server'}">{{$t('importSetting.title.compileServer')}}</router-link>
             </Sider>
             <Content style="padding: 20px 30px;">
-                <router-view></router-view>
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
             </Content>
         </Layout>
     </div>
@@ -15,7 +17,7 @@
 
 <script>
     export default {
-        name: 'SettingPage'
+        name: 'importSettingPage'
     }
 </script>
 

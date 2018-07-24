@@ -1,7 +1,8 @@
 <template>
     <div class="layout">
         <Layout class="layout-container" style="flex-direction: row">
-            <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;" width="240">
+            <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;"
+                   width="240">
                 <file-tree ref="filetree" @on-select-change="onFileSelect"></file-tree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
@@ -42,7 +43,8 @@
                         </Button>
                     </div>
                     <div class="deploy-area">
-                        <Input class="contractName" v-model="contractName" :placeholder="$t('contract.inputContractName')"></Input>
+                        <Input class="contractName" v-model="contractName"
+                               :placeholder="$t('contract.inputContractName')"></Input>
                         <Button class="deployBtn" type="ghost" @click="onDeploy">{{$t('contract.deploy')}}</Button>
                     </div>
                 </div>
@@ -292,7 +294,7 @@
 
                 this.isCompiling = true
 
-                this.$http.post(this.$store.state.currentCompileServer.url, data, config)
+                this.$http.post(this.$store.state.currentCompileServer.url + '/upload', data, config)
                     .then((res) => {
                         this.isCompiling = false
                         if (res.data.status === 'success') {

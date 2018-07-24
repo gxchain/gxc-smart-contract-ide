@@ -82,7 +82,7 @@ actions.updateApiServersLatency = ({commit, state}) => {
     })
 }
 
-actions.changeCurrentApiServer = ({commit, state}, url) => {
+actions.changeCurrentApiServer = ({dispatch, commit, state}, url) => {
     const node = state.apiServers.filter(node => {
         if (url === node.url) {
             return true
@@ -92,10 +92,11 @@ actions.changeCurrentApiServer = ({commit, state}, url) => {
     if (!!node) {
         commit('CHANGE_CURRENT_API_SERVER', node[0])
         reconnect()
+        dispatch('updateApiServers')
     }
 }
 
-actions.addApiServer = ({commit, state}, url) => {
+actions.addApiServer = ({dispatch, commit, state}, url) => {
     // 是否url已存在
     let flag = false
     state.apiServers.find(node => {
@@ -107,6 +108,7 @@ actions.addApiServer = ({commit, state}, url) => {
         return flag
     } else {
         commit('ADD_API_SERVER', url)
+        dispatch('updateApiServers')
         return flag
     }
 }
@@ -118,6 +120,8 @@ actions.removeApiServer = ({commit, dispatch, state}, url) => {
     commit('REMOVE_API_SERVER', url)
     if (url === state.currentApiServer.url) {
         dispatch('changeCurrentApiServer', state.apiServers[0].url)
+    } else {
+        dispatch('updateApiServers')
     }
 }
 

@@ -61,7 +61,7 @@ mutations.ADD_API_SERVER = (state, url) => {
     state.apiServers.push({
         url: url,
         location: '',
-        latency: 0
+        latency: '?'
     })
 }
 

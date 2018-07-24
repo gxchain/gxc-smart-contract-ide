@@ -2,29 +2,32 @@
     <div class="layout">
         <Select v-model="currentUrl">
             <Option v-for="item in compileServers" :value="item.url" :key="item.url">
-                {{item.location}} ({{ item.url }})-Latency:{{item.latency}}
+                {{item.location}} ({{ item.url }})
             </Option>
         </Select>
         <div class="btn-group">
-            <Button type="primary" class="addCompileServer" @click="onAddCompileServerClick">添加服务器</Button>
-            <Button type="error" @click="onRemoveCompileServerClick">移除服务器</Button>
+            <Button type="primary" class="addCompileServer" @click="onAddCompileServerClick">
+                {{$t('compileServer.addCompileServer')}}
+            </Button>
+            <Button type="error" @click="onRemoveCompileServerClick">{{$t('compileServer.removeCompileServer')}}
+            </Button>
         </div>
         <Modal
                 class="addCompileModal"
                 v-model="addCompileModalVisible"
-                title="添加服务器"
+                :title="$t('compileServer.addCompileServer')"
                 @on-ok="onAddOk"
                 @on-cancel="onAddCancel">
-            <Input placeholder="请输入服务器url" v-model="url"/>
+            <Input :placeholder="$t('compileServer.placeholder.addCompileServer')" v-model="url"/>
         </Modal>
         <Modal
                 class="removeCompileModal"
                 v-model="removeCompileModalVisible"
-                title="移除服务器"
+                :title="$t('compileServer.removeCompileServer')"
                 @on-ok="onRemoveOk">
-            <Select v-model="removeUrl" placeholder="请选择服务器">
+            <Select v-model="removeUrl" :placeholder="$t('compileServer.placeholder.removeCompileServer')">
                 <Option v-for="item in compileServers" :value="item.url" :key="item.url">
-                    {{item.location}} ({{ item.url }})-Latency:{{item.latency}}
+                    {{item.location}} ({{ item.url }})
                 </Option>
             </Select>
         </Modal>
@@ -66,7 +69,9 @@
             onAddOk() {
                 this.$store.dispatch('addCompileServer', this.url).then((flag) => {
                     if (flag) {
-                        this.$Message.warning(this.$t('compileServer.exist'))
+                        this.$Message.warning(this.$t('compileServer.messages.exist'))
+                    } else {
+                        this.$Message.success(this.$t('compileServer.messages.addSuc'))
                     }
                 })
                 this.resetAddModal()
@@ -79,6 +84,7 @@
             },
             onRemoveOk() {
                 this.$store.dispatch('removeCompileServer', this.removeUrl).then(() => {
+                    this.$Message.success(this.$t('compileServer.messages.removeSuc'))
                     this.removeUrl = ''
                 })
             }
@@ -87,11 +93,11 @@
 </script>
 
 <style scoped>
-    .btn-group{
+    .btn-group {
         margin-top: 20px;
     }
 
-    .addCompileServer{
+    .addCompileServer {
         margin-right: 10px;
     }
 </style>

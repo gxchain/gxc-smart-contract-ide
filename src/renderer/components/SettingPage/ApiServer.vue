@@ -6,23 +6,23 @@
             </Option>
         </Select>
         <div class="btn-group">
-            <Button class="addPoint" type="primary" @click="onAddApiServerClick">添加接入点</Button>
-            <Button type="error" @click="onRemoveApiServerClick">移除接入点</Button>
+            <Button class="addPoint" type="primary" @click="onAddApiServerClick">{{$t('apiServer.addEntryPoint')}}</Button>
+            <Button type="error" @click="onRemoveApiServerClick">{{$t('apiServer.removeEntryPoint')}}</Button>
         </div>
         <Modal
                 class="addApiModal"
                 v-model="addApiModalVisible"
-                title="添加节点"
+                :title="$t('apiServer.addEntryPoint')"
                 @on-ok="onAddOk"
                 @on-cancel="onAddCancel">
-            <Input placeholder="请输入节点url" v-model="url"/>
+            <Input :placeholder="$t('apiServer.placeholder.addEntryPoint')" v-model="url"/>
         </Modal>
         <Modal
                 class="removeApiModal"
                 v-model="removeApiModalVisible"
-                title="移除节点"
+                :title="$t('apiServer.removeEntryPoint')"
                 @on-ok="onRemoveOk">
-            <Select v-model="removeUrl" placeholder="请选择节点">
+            <Select v-model="removeUrl" :placeholder="$t('apiServer.placeholder.removeEntryPoint')">
                 <Option v-for="item in apiServers" :value="item.url" :key="item.url">
                     {{item.location}} ({{ item.url }})-Latency:{{item.latency}}
                 </Option>
@@ -56,7 +56,7 @@
                 }
             }
         },
-        mounted() {
+        activated() {
             this.$store.dispatch('updateApiServersLatency')
         },
         methods: {
@@ -69,7 +69,9 @@
             onAddOk() {
                 this.$store.dispatch('addApiServer', this.url).then((flag) => {
                     if (flag) {
-                        this.$Message.warning(this.$t('apiServer.exist'))
+                        this.$Message.warning(this.$t('apiServer.messages.exist'))
+                    } else {
+                        this.$Message.success(this.$t('apiServer.messages.addSuc'))
                     }
                 })
                 this.resetAddModal()
@@ -82,6 +84,7 @@
             },
             onRemoveOk() {
                 this.$store.dispatch('removeApiServer', this.removeUrl).then(() => {
+                    this.$Message.success(this.$t('apiServer.messages.removeSuc'))
                     this.removeUrl = ''
                 })
             }
@@ -90,11 +93,11 @@
 </script>
 
 <style scoped>
-    .btn-group{
+    .btn-group {
         margin-top: 20px;
     }
 
-    .addPoint{
+    .addPoint {
         margin-right: 10px;
     }
 </style>

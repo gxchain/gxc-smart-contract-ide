@@ -1,23 +1,23 @@
 <template>
     <div class="layout">
-        <Form ref="form" :rules="rules" :model="form" label-position="left" :label-width="100">
-            <FormItem label="导入方式">
-                <Select v-model="importType">
+        <Form ref="form" :rules="rules" :model="form" label-position="left" :label-width="120">
+            <FormItem :label="$t('importSetting.label.importType')" prop="importType">
+                <Select v-model="form.importType">
                     <Option v-for="item in importTypes" :value="item.value" :key="item.value">{{ item.label }}</Option>
                 </Select>
             </FormItem>
-            <FormItem label="私钥" prop="wifKey">
-                <Input v-model="form.wifKey" placeholder="私钥"></Input>
+            <FormItem :label="$t('importSetting.label.wifKey')" prop="wifKey">
+                <Input v-model="form.wifKey" :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
             </FormItem>
-            <FormItem label="Aligned title" prop="pwd">
-                <Input v-model="form.pwd" placeholder="密码"></Input>
+            <FormItem :label="$t('importSetting.label.pwd')" prop="pwd">
+                <Input v-model="form.pwd" :placeholder="$t('importSetting.placeholder.pwd')"></Input>
             </FormItem>
-            <FormItem label="Aligned title" prop="pwdCheck">
-                <Input v-model="form.pwdCheck" placeholder="密码"></Input>
+            <FormItem :label="$t('importSetting.label.pwdCheck')" prop="pwdCheck">
+                <Input v-model="form.pwdCheck" :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
             </FormItem>
         </Form>
 
-        <Button class="import" type="primary" @click="onImportClick">导入</Button>
+        <Button class="import" type="primary" @click="onImportClick">{{$t('importSetting.importTitle')}}</Button>
 
         <Table :columns="columns" :data="data"></Table>
     </div>
@@ -35,13 +35,17 @@
         data() {
             return {
                 rules: {
+                    importType: [{
+                        required: true,
+                        message: this.$t('importSetting.validate.importType.required')
+                    }],
                     wifKey: [{
                         required: true,
-                        message: '请输入私钥'
+                        message: this.$t('importSetting.validate.wifKey.required')
                     }, {
-                        validator(rule, value, callback) {
+                        validator: (rule, value, callback) => {
                             let wif_regex = /^5[HJK][1-9A-Za-z]{49}$/
-                            const err_msg = new Error('私钥格式错误')
+                            const err_msg = new Error(this.$t('importSetting.validate.wifKey.format'))
                             if (wif_regex.test(value)) {
                                 try {
                                     let private_key = PrivateKey.fromWif(value)
@@ -62,25 +66,23 @@
                     }],
                     pwd: [{
                         required: true,
-                        message: '请输入密码'
+                        message: this.$t('importSetting.validate.pwd.required')
                     }, {
                         type: 'string',
                         min: 6,
-                        message: 'The password length cannot be less than 6 bits',
-                        trigger: 'blur'
+                        message: this.$t('importSetting.validate.pwd.format')
                     }],
                     pwdCheck: [{
                         required: true,
-                        message: '请确认密码'
+                        message: this.$t('importSetting.validate.pwdCheck.required')
                     }, {
                         type: 'string',
                         min: 6,
-                        message: 'The password length cannot be less than 6 bits',
-                        trigger: 'blur'
+                        message: this.$t('importSetting.validate.pwd.format')
                     }, {
                         validator: (rule, value, callback) => {
                             if (value !== this.form.pwd) {
-                                callback(new Error('The two input passwords do not match!'))
+                                callback(new Error(this.$t('importSetting.validate.pwdCheck.doNotMatch')))
                             } else {
                                 callback()
                             }
@@ -90,18 +92,18 @@
                 form: {
                     wifKey: '',
                     pwd: '',
-                    pwdCheck: ''
+                    pwdCheck: '',
+                    importType: 'PRIVATE_KEY'
                 },
-                importType: 'PRIVATE_KEY',
                 importTypes: [{
                     value: 'PRIVATE_KEY',
-                    label: '导入私钥'
+                    label: this.$t('importSetting.label.importWifKey')
                 }],
                 columns: [{
-                    title: '账户',
+                    title: this.$t('importSetting.account'),
                     key: 'account'
                 }, {
-                    title: 'Action',
+                    title: this.$t('importSetting.action'),
                     key: 'action',
                     align: 'center',
                     render: (h, params) => {
@@ -116,7 +118,7 @@
                                         this.removeWallet(params.row.account)
                                     }
                                 }
-                            }, 'Delete')
+                            }, this.$t('importSetting.remove'))
                         ])
                     }
                 }]
@@ -126,9 +128,7 @@
             ...mapState({
                 data: state => {
                     return state.wallets.map((wallet) => {
-                        return Object.assign({
-                            operation: '删除'
-                        }, wallet)
+                        return Object.assign(wallet)
                     })
                 }
             })
@@ -142,13 +142,10 @@
                 this.$refs.form.validate((valid) => {
                     if (valid) {
                         import_account(this.form.wifKey, this.form.pwd).then((info) => {
-                            console.log('success')
+                            this.$Message.success(this.$t('importSetting.messages.importSuc'))
                         }).catch((ex) => {
-                            console.error(ex)
-                            // no_reference_account
+                            this.$Message.error(ex.message)
                         })
-                    } else {
-                        this.$Message.error('Fail!')
                     }
                 })
             }
@@ -157,7 +154,7 @@
 </script>
 
 <style scoped>
-    .import{
+    .import {
         width: 96px;
         margin-top: 10px;
         margin-bottom: 20px;

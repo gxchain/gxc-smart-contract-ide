@@ -7,11 +7,11 @@ const state = {
     apiServers: [{
         url: 'ws://192.168.1.126:28099',
         location: '',
-        latency: 0
+        latency: '?'
     }],
     currentApiServer: {},
     compileServers: [{
-        url: 'http://192.168.1.118:3000/upload'
+        url: 'http://192.168.1.118:3000'
     }],
     currentCompileServer: {}
 }
