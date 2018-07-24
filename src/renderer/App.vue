@@ -31,7 +31,9 @@
                 </div>
             </Header>
         </Layout>
-        <router-view></router-view>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
         <Layout>
             <Footer class="layout-footer">
                 <div class="status-item">

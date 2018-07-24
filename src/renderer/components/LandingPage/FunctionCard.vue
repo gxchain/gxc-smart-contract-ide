@@ -30,7 +30,6 @@
     } from '@/services/WalletService'
 
     async function formatField(type, value) {
-        console.log(type, value)
         if (type === 'account_name') {
             return fetch_account(value).then((account) => {
                 if (!account) {
@@ -111,6 +110,16 @@
         },
         methods: {
             onCall() {
+                if (!this.currentWallet.account) {
+                    this.$Modal.confirm({
+                        title: '前往导入账户',
+                        content: '您还未导入账户，是否前往导入账户？',
+                        onOk: () => {
+                            this.$router.push({name: 'import-recover'})
+                        }
+                    })
+                    return
+                }
                 const modal = new PasswordConfirmModal()
                 modal.$on('unlocked', async ({pwd, asset_id, asset}) => {
                     let params
