@@ -83,7 +83,11 @@ const locale = {
         title: {
             importRecover: 'Import',
             entryPoint: 'Entry Point',
-            compileServer: 'Compile Server'
+            compileServer: 'Compile Server',
+            removeAccount: 'Remove Account'
+        },
+        content: {
+            removeAccount: 'Confirm removing the account?'
         },
         placeholder: {
             wifKey: 'Please enter wifKey',
@@ -119,6 +123,7 @@ const locale = {
             importSuc: 'Import Success'
         },
         account: 'Account',
+        accountId: 'Account ID',
         action: 'Operation',
         remove: 'Remove',
         'importTitle': 'Import'

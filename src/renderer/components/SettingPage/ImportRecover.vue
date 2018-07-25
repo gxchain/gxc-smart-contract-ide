@@ -7,13 +7,15 @@
                 </Select>
             </FormItem>
             <FormItem :label="$t('importSetting.label.wifKey')" prop="wifKey">
-                <Input type="password" v-model="form.wifKey" :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
+                <Input type="password" v-model="form.wifKey"
+                       :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
             </FormItem>
             <FormItem :label="$t('importSetting.label.pwd')" prop="pwd">
                 <Input type="password" v-model="form.pwd" :placeholder="$t('importSetting.placeholder.pwd')"></Input>
             </FormItem>
             <FormItem :label="$t('importSetting.label.pwdCheck')" prop="pwdCheck">
-                <Input type="password" v-model="form.pwdCheck" :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
+                <Input type="password" v-model="form.pwdCheck"
+                       :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
             </FormItem>
         </Form>
 
@@ -103,6 +105,9 @@
                     title: this.$t('importSetting.account'),
                     key: 'account'
                 }, {
+                    title: this.$t('importSetting.accountId'),
+                    key: 'id'
+                }, {
                     title: this.$t('importSetting.action'),
                     key: 'action',
                     align: 'center',
@@ -115,7 +120,13 @@
                                 },
                                 on: {
                                     click: () => {
-                                        this.removeWallet(params.row.account)
+                                        this.$Modal.confirm({
+                                            title: this.$t('importSetting.title.removeAccount'),
+                                            content: this.$t('importSetting.content.removeAccount'),
+                                            onOk: () => {
+                                                this.removeWallet(params.row.account)
+                                            }
+                                        })
                                     }
                                 }
                             }, this.$t('importSetting.remove'))
@@ -128,7 +139,7 @@
             ...mapState({
                 data: state => {
                     return state.wallets.map((wallet) => {
-                        return Object.assign(wallet)
+                        return Object.assign({}, wallet, {id: wallet.id.split('.')[2]})
                     })
                 }
             })

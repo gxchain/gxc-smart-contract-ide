@@ -63,6 +63,7 @@ const import_account = (wifKey, password) => {
                             if (!alreadyExist) {
                                 // 修改store状态
                                 let wallet = {
+                                    id: account.id,
                                     account: account.name,
                                     password_pubkey,
                                     encryption_key,
@@ -158,7 +159,7 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
     })
 }
 
-const call_contract = (from, target, act, fee_id, password, broadcast = true) => {
+const call_contract = (from, target, act, fee_id, password, broadcast = true, amount = {}) => {
     return new Promise((resolve, reject) => {
         resolve(Promise.all([fetch_account(from), fetch_account(target), unlock_wallet(from, password)]).then(results => {
             let fromAcc = results[0]
@@ -168,7 +169,7 @@ const call_contract = (from, target, act, fee_id, password, broadcast = true) =>
             }
 
             let tr = new TransactionBuilder()
-            tr.add_operation(tr.get_type_operation('call_contract', {
+            let opts = {
                 'fee': {
                     'amount': 0,
                     'asset_id': fee_id
@@ -177,7 +178,12 @@ const call_contract = (from, target, act, fee_id, password, broadcast = true) =>
                 'contract_id': contractAccount.id,
                 'method_name': act.method_name,
                 'data': act.data
-            }))
+            }
+
+            if (!!amount.amount) {
+                opts.amount = amount
+            }
+            tr.add_operation(tr.get_type_operation('call_contract', opts))
             return process_transaction(tr, from, password, broadcast)
         }))
     })

@@ -1,6 +1,13 @@
 <template>
     <div class="functionCard-layout">
         <h3 class="title" slot="title">{{name}}</h3>
+        <h3 v-if="payable">附带资产</h3>
+        <div v-if="payable" class="extra-asset">
+            <Select v-model="amount.asset_id" class="asset-select" placeholder="请选择资产类型">
+                <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}</Option>
+            </Select>
+            <Input class="asset-amount" placeholder="资产数量" v-model="amount.amount"/>
+        </div>
         <fields ref="fields" :data="fields"></fields>
         <Button class="callBtn" type="primary" @click="onCall">调用</Button>
         <Modal
@@ -12,6 +19,7 @@
             <p>调用账户:{{currentWallet.account}}</p>
             <p>调用函数:{{name}}</p>
             <p style="word-break: break-all;">调用参数:{{callParams}}</p>
+            <p v-if="!!amount.amount">附带资金:{{amount.amount}}</p>
             <p>手续费类型:{{tempAsset.id}}</p>
             <p>调用费用:{{fee}}</p>
         </Modal>
@@ -20,7 +28,7 @@
 
 <script>
     import Fields from './Fields'
-    import {mapState} from 'vuex'
+    import {mapState, mapGetters} from 'vuex'
     import serializer from '@/util/serializer'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {
@@ -61,7 +69,11 @@
                 tempPwd: '',
                 confirmCallModalVisible: false,
                 callTransaction: null,
-                callParams: {}
+                callParams: {},
+                amount: {
+                    amount: null,
+                    asset_id: ''
+                }
             }
         },
         props: {
@@ -88,10 +100,15 @@
             base: {
                 type: String,
                 default: ''
+            },
+            payable: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
             ...mapState(['wallets', 'currentWallet', 'assets']),
+            ...mapGetters(['formatBalances']),
             fee() {
                 if (!this.callTransaction) {
                     return 0
@@ -126,7 +143,7 @@
                     call_contract(this.currentWallet.account, this.contractName, {
                         'method_name': this.name,
                         'data': data
-                    }, asset_id, pwd, false).then((resp) => {
+                    }, asset_id, pwd, false, this.amount).then((resp) => {
                         this.callParams = this.computeCallParams()
                         this.callTransaction = resp
                         this.tempPwd = pwd
@@ -144,7 +161,7 @@
                 call_contract(this.currentWallet.account, this.contractName, {
                     'method_name': this.name,
                     'data': data
-                }, this.tempAsset.id, this.tempPwd, true).then((resp) => {
+                }, this.tempAsset.id, this.tempPwd, true, this.amount).then((resp) => {
                     this.$Message.success('合约调用成功')
                     this.$store.dispatch('updateCurrentBalancesAndAssets')
                 }).catch(ex => {
@@ -177,5 +194,14 @@
     .callBtn {
         margin-top: 10px;
         width: 90px;
+    }
+
+    .asset-select {
+        width: 80px;
+        margin-right: 6px;
+    }
+
+    .asset-amount {
+        width: 160px;
     }
 </style>

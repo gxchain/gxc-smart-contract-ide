@@ -83,7 +83,11 @@ const locale = {
         title: {
             importRecover: '导入',
             entryPoint: '接入点',
-            compileServer: '编译服务器'
+            compileServer: '编译服务器',
+            removeAccount: '移除账户'
+        },
+        content: {
+            removeAccount: '确认移除账户？'
         },
         placeholder: {
             wifKey: '请填写私钥',
@@ -119,6 +123,7 @@ const locale = {
             importSuc: '导入成功'
         },
         account: '账户',
+        accountId: '账户ID',
         action: '操作',
         remove: '移除',
         importTitle: '导入'

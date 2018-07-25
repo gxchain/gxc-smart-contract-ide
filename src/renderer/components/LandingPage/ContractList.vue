@@ -6,7 +6,7 @@
                 {{contract.contractName}}
                 <Icon type="close" @click="onContractRemoveClick(contract)"></Icon>
             </p>
-            <function-card v-for="f in contract.functions" :abi="contract.abi" :contractName="contract.contractName"
+            <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi" :contractName="contract.contractName"
                            :name="f.name"
                            :fields="f.fields"></function-card>
         </div>
