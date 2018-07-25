@@ -1,64 +1,66 @@
 <template>
-    <div class="layout">
-        <template v-if="type==='asset'">
-            <h3>{{name}}</h3>
-            <Select v-model="mValueForAsset.asset_id" class="asset-select" placeholder="请选择资产类型">
-                <Option v-for="asset in assets" :value="asset.id" :key="asset.id">{{ asset.id }}</Option>
-            </Select>
-            <Input class="asset-amount" placeholder="资产数量" v-model="mValueForAsset.amount"/>
+    <div class="fieldItem-layout">
+        <template v-if="isFieldArray">
+            <array-field ref="arr" :name="name" :type="type|arrayTypeFormat"></array-field>
         </template>
         <template v-else>
-            <h3>{{name}}</h3><Input v-model="mValue" :placeholder="type"/>
+            <Single ref="single" :name="name" :type="type"></Single>
         </template>
     </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex'
+    import ArrayField from './FieldType/ArrayField'
+    import Single from './FieldType/Single'
 
     export default {
         name: 'FieldItem',
+        components: {
+            ArrayField,
+            Single
+        },
         props: {
             name: String,
-            type: String,
-            value: null
-        },
-        watch: {
-            'mValue': function () {
-                this.$emit('update:value', this.mValue)
-            },
-            'mValueForAsset.asset_id': function () {
-                this.$emit('update:value', this.mValueForAsset)
-            },
-            'mValueForAsset.amount': function () {
-                this.$emit('update:value', this.mValueForAsset)
-            }
-        },
-        computed: {
-            ...mapState(['assets'])
+            type: String
         },
         data() {
             return {
-                mValueForAsset: {},
-                mValue: ''
+                value: null
+            }
+        },
+        computed: {
+            isFieldArray() {
+                if (this.type.indexOf('[]') !== -1) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        },
+        methods: {
+            getValue() {
+                if (this.isFieldArray) {
+                    return this.$refs.arr.getValue()
+                } else {
+                    return this.$refs.single.getValue()
+                }
+            },
+            getField() {
+                return {
+                    name: this.name,
+                    type: this.type,
+                    value: this.getValue()
+                }
+            }
+        },
+        filters: {
+            arrayTypeFormat(value) {
+                return value.split('[')[0]
             }
         }
     }
 </script>
 
 <style scoped>
-    h3{
-        margin-top: 6px;
-        font-size: 12px;
-        color:#9090c8;
-    }
 
-    .asset-select{
-        width: 80px;
-        margin-right: 6px;
-    }
-
-    .asset-amount{
-        width: 160px;
-    }
 </style>

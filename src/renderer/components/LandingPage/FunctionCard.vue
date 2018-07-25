@@ -1,8 +1,7 @@
 <template>
     <div class="functionCard-layout">
         <h3 class="title" slot="title">{{name}}</h3>
-        <field-item v-for="field in fields" :name="field.name" :type="field.type"
-                    :value.sync="field.value"></field-item>
+        <fields ref="fields" :data="fields"></fields>
         <Button class="callBtn" type="primary" @click="onCall">调用</Button>
         <Modal
                 class="confirmCallModal"
@@ -12,7 +11,7 @@
             <p>合约名称:{{contractName}}</p>
             <p>调用账户:{{currentWallet.account}}</p>
             <p>调用函数:{{name}}</p>
-            <p>调用参数:{{call_params}}</p>
+            <p style="word-break: break-all;">调用参数:{{callParams}}</p>
             <p>手续费类型:{{tempAsset.id}}</p>
             <p>调用费用:{{fee}}</p>
         </Modal>
@@ -20,7 +19,7 @@
 </template>
 
 <script>
-    import FieldItem from './FieldItem'
+    import Fields from './Fields'
     import {mapState} from 'vuex'
     import serializer from '@/util/serializer'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
@@ -54,14 +53,15 @@
     export default {
         name: 'FunctionCard',
         components: {
-            FieldItem
+            Fields
         },
         data() {
             return {
                 tempAsset: {},
                 tempPwd: '',
                 confirmCallModalVisible: false,
-                callTransaction: null
+                callTransaction: null,
+                callParams: {}
             }
         },
         props: {
@@ -98,14 +98,6 @@
                 } else {
                     return this.callTransaction.serialize().operations[0][1].fee.amount / Math.pow(10, this.tempAsset.precision)
                 }
-            },
-            call_params() {
-                var ret = {}
-                this.fields.forEach(field => {
-                    ret[field.name] = field.value
-                })
-
-                return JSON.stringify(ret)
             }
         },
         methods: {
@@ -120,11 +112,12 @@
                     })
                     return
                 }
-                const modal = new PasswordConfirmModal()
+                const modal = new PasswordConfirmModal({i18n: this.$i18n})
                 modal.$on('unlocked', async ({pwd, asset_id, asset}) => {
                     let params
+                    var fields = this.$refs.fields.getFields()
                     try {
-                        params = await formatFields2Params(this.fields)
+                        params = await formatFields2Params(fields)
                     } catch (ex) {
                         this.$Message.error(`${ex.message}`)
                         return
@@ -134,6 +127,7 @@
                         'method_name': this.name,
                         'data': data
                     }, asset_id, pwd, false).then((resp) => {
+                        this.callParams = this.computeCallParams()
                         this.callTransaction = resp
                         this.tempPwd = pwd
                         this.tempAsset = asset
@@ -144,7 +138,8 @@
                 })
             },
             async onCallOk() {
-                const params = await formatFields2Params(this.fields)
+                var fields = this.$refs.fields.getFields()
+                const params = await formatFields2Params(fields)
                 const data = serializer.serializeCallData(this.name, params, this.abi).toString('hex')
                 call_contract(this.currentWallet.account, this.contractName, {
                     'method_name': this.name,
@@ -155,6 +150,15 @@
                 }).catch(ex => {
                     this.$Message.error(`${ex.message}`)
                 })
+            },
+            computeCallParams() {
+                var ret = {}
+                var fields = this.$refs.fields.getFields()
+                fields.forEach(field => {
+                    ret[field.name] = field.value
+                })
+
+                return JSON.stringify(ret)
             }
         }
     }

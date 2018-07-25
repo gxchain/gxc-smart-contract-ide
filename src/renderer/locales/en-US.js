@@ -1,4 +1,18 @@
 const locale = {
+    common: {
+        validate: {
+            pwd: {
+                required: 'Please enter password',
+                format: 'The password length cannot be less than 6 bits'
+            }
+        },
+        placeholder: {
+            pwd: 'Please enter password'
+        },
+        label: {
+            pwd: 'Password'
+        }
+    },
     index: {
         'compile': 'compile'
     },
@@ -108,6 +122,25 @@ const locale = {
         action: 'Operation',
         remove: 'Remove',
         'importTitle': 'Import'
+    },
+    unlock: {
+        title: 'Unlock',
+        messages: {
+            accountNotFound: 'Account not found',
+            invalidPassword: 'Invalid password'
+        },
+        label: {
+            assetType: 'Cost Type',
+            balance: 'Balance'
+        },
+        placeholder: {
+            assetType: 'Please select cost type'
+        },
+        validate: {
+            assetType: {
+                required: 'Please select cost type'
+            }
+        }
     }
 }
 

@@ -6,7 +6,8 @@
                 {{contract.contractName}}
                 <Icon type="close" @click="onContractRemoveClick(contract)"></Icon>
             </p>
-            <function-card v-for="f in contract.functions" :abi="contract.abi" :contractName="contract.contractName" :name="f.name"
+            <function-card v-for="f in contract.functions" :abi="contract.abi" :contractName="contract.contractName"
+                           :name="f.name"
                            :fields="f.fields"></function-card>
         </div>
     </div>
@@ -24,7 +25,15 @@
     }
 
     function contractFilter(contract) {
-        contract.functions = contract.abi.structs
+        contract.functions = contract.abi.actions.map((action) => {
+            var struct = contract.abi.structs.find((struct) => {
+                return struct.name === action.name
+            })
+            return {
+                ...struct,
+                ...action
+            }
+        })
         return contract
     }
 
@@ -55,22 +64,22 @@
 </script>
 
 <style scoped lang="scss">
-    .ivu-icon-close{
+    .ivu-icon-close {
         display: none;
         float: right;
         padding: 5px;
         cursor: pointer;
     }
 
-    .contract{
-        &:hover{
-            .ivu-icon-close{
+    .contract {
+        &:hover {
+            .ivu-icon-close {
                 display: block;
             }
         }
     }
 
-    .title{
+    .title {
         color: #c4c3d3;
     }
 
@@ -82,13 +91,13 @@
 
     }
 
-    .contractList-layout /deep/ .ivu-input{
+    .contractList-layout /deep/ .ivu-input {
         border-color: #9090c8;
         color: #9090c8;
         background: transparent;
     }
 
-    .contractList-layout /deep/ .ivu-select-selection{
+    .contractList-layout /deep/ .ivu-select-selection {
         border-color: #9090c8;
         color: #9090c8;
         background: transparent;
@@ -99,7 +108,7 @@
         font-size: 14px;
     }
 
-    .contract{
+    .contract {
         margin-top: 20px;
         border-top: 2px solid #6699ff;
         padding: 18px 20px 25px;

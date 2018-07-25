@@ -6,7 +6,6 @@ import some from 'lodash/some'
 import store from '@/store'
 import find from 'lodash/find'
 // import Vue from 'vue'
-// import i18n from '@/locales'
 /**
  * get account information by name
  * @param account_name
@@ -210,29 +209,31 @@ const process_transaction = (tr, account, password, broadcast) => {
 
 const unlock_wallet = (account, password) => {
     return new Promise((resolve, reject) => {
-        let wallets = store.state.wallets
-        let wallet = find(wallets, function (w) {
-            return w.account == account
-        })
-        wallet = Object.assign({}, wallet)
-        let password_private = PrivateKey.fromSeed(password)
-        let password_pubkey = password_private.toPublicKey().toPublicKeyString() // used to validate password
-        if (wallet == null) {
-            // reject(new Error(i18n.t('unlock.account_not_found')))
-            reject(new Error('unlock.account_not_found'))
-        } else if (password_pubkey != wallet.password_pubkey) {
-            // reject(new Error(i18n.t('unlock.error.invalid_password')))
-            reject(new Error('unlock.invalid_password'))
-        } else {
-            let password_aes = Aes.fromSeed(password)
-            let encryption_plainbuffer = password_aes.decryptHexToBuffer(wallet.encryption_key)
-            let aes_private = Aes.fromSeed(encryption_plainbuffer)
-            let wifKey = aes_private.decryptHexToText(wallet.encrypted_wifkey)
-            resolve({
-                wifKey,
-                wallet
+        import('@/locales').then(i18n => {
+            i18n = i18n.default
+            let wallets = store.state.wallets
+            let wallet = find(wallets, function (w) {
+                return w.account == account
             })
-        }
+            wallet = Object.assign({}, wallet)
+            let password_private = PrivateKey.fromSeed(password)
+            let password_pubkey = password_private.toPublicKey().toPublicKeyString() // used to validate password
+            if (wallet == null) {
+                // TODO 本来想在最前面引入i18n，但是引入会导致循环依赖的问题
+                reject(new Error(i18n.t('unlock.messages.accountNotFound')))
+            } else if (password_pubkey != wallet.password_pubkey) {
+                reject(new Error(i18n.t('unlock.messages.invalidPassword')))
+            } else {
+                let password_aes = Aes.fromSeed(password)
+                let encryption_plainbuffer = password_aes.decryptHexToBuffer(wallet.encryption_key)
+                let aes_private = Aes.fromSeed(encryption_plainbuffer)
+                let wifKey = aes_private.decryptHexToText(wallet.encrypted_wifkey)
+                resolve({
+                    wifKey,
+                    wallet
+                })
+            }
+        })
     })
 }
 

@@ -7,13 +7,13 @@
                 </Select>
             </FormItem>
             <FormItem :label="$t('importSetting.label.wifKey')" prop="wifKey">
-                <Input v-model="form.wifKey" :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
+                <Input type="password" v-model="form.wifKey" :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
             </FormItem>
             <FormItem :label="$t('importSetting.label.pwd')" prop="pwd">
-                <Input v-model="form.pwd" :placeholder="$t('importSetting.placeholder.pwd')"></Input>
+                <Input type="password" v-model="form.pwd" :placeholder="$t('importSetting.placeholder.pwd')"></Input>
             </FormItem>
             <FormItem :label="$t('importSetting.label.pwdCheck')" prop="pwdCheck">
-                <Input v-model="form.pwdCheck" :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
+                <Input type="password" v-model="form.pwdCheck" :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
             </FormItem>
         </Form>
 

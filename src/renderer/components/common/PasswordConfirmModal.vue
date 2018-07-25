@@ -1,22 +1,23 @@
 <template>
     <Modal :title="title" :loading="loading" v-model="model" @on-ok="onOk">
         <Form ref="form" :rules="rules" :model="form" label-position="left" :label-width="80">
-            <FormItem label="密码" prop="pwd">
-                <Input type="password" v-model="form.pwd" title="解锁钱包" placeholder="请输入密码"/>
+            <FormItem :label="$t('common.label.pwd')" prop="pwd">
+                <Input type="password" v-model="form.pwd" :placeholder="$t('common.placeholder.pwd')"/>
             </FormItem>
-            <FormItem label="资产类型" prop="asset_id">
-                <Select v-model="form.asset_id" placeholder="请选择操作所消耗的资产类型">
+            <FormItem :label="$t('unlock.label.assetType')" prop="asset_id">
+                <Select v-model="form.asset_id" :placeholder="$t('unlock.placeholder.assetType')">
                     <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}
                     </Option>
                 </Select>
             </FormItem>
-            <FormItem label="当前余额">
-                <p>{{restAmount}}</p>
+            <FormItem :label="$t('unlock.label.balance')">
+                <p>{{balance}}</p>
             </FormItem>
         </Form>
     </Modal>
 </template>
 <script>
+    // TODO i18必须从外部传入，否则会导致循环依赖问题
     import Vue from 'vue'
     import store from '@/store'
     import {
@@ -30,20 +31,20 @@
                 pwd: '',
                 loading: true,
                 model: false,
-                title: '确认密码',
+                title: this.$t('unlock.title'),
                 rules: {
                     pwd: [{
                         required: true,
-                        message: '请输入密码'
+                        message: this.$t('common.validate.pwd.required')
                     }, {
                         type: 'string',
                         min: 6,
-                        message: 'The password length cannot be less than 6 bits',
+                        message: this.$t('common.validate.pwd.format'),
                         trigger: 'blur'
                     }],
                     asset_id: [{
                         required: true,
-                        message: '请选择资产类型'
+                        message: this.$t('unlock.validate.assetType.required')
                     }]
                 },
                 form: {
@@ -53,13 +54,10 @@
             }
         },
         computed: {
-            assets: function () {
-                return store.state.assets
-            },
             formatBalances: function () {
                 return store.getters.formatBalances
             },
-            restAmount: function () {
+            balance: function () {
                 var balance = this.formatBalances.find((balance) => {
                     return balance.id === this.form.asset_id
                 })
@@ -81,7 +79,7 @@
                     if (valid) {
                         this.model = false
                         unlock_wallet(store.state.currentWallet.account, this.form.pwd).then(() => {
-                            var asset = this.assets.find((asset) => {
+                            var asset = this.formatBalances.find((asset) => {
                                 return asset.id === this.form.asset_id
                             })
                             this.$emit('unlocked', {...this.form, asset})
@@ -89,7 +87,6 @@
                             this.$Message.error(ex.message)
                         })
                     } else {
-                        this.$Message.error('Fail!')
                         this.$nextTick(() => {
                             this.loading = true
                         })

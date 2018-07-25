@@ -1,4 +1,18 @@
 const locale = {
+    common: {
+        validate: {
+            pwd: {
+                required: '请填写密码',
+                format: '密码格式有误(不能少于6位)'
+            }
+        },
+        placeholder: {
+            pwd: '请填写密码'
+        },
+        label: {
+            pwd: '密码'
+        }
+    },
     index: {
         'compile': '编译'
     },
@@ -108,6 +122,25 @@ const locale = {
         action: '操作',
         remove: '移除',
         importTitle: '导入'
+    },
+    unlock: {
+        title: '解锁',
+        messages: {
+            accountNotFound: '账户不存在',
+            invalidPassword: '密码错误'
+        },
+        label: {
+            assetType: '消费类型',
+            balance: '余额'
+        },
+        placeholder: {
+            assetType: '请选择消费类型'
+        },
+        validate: {
+            assetType: {
+                required: '请选择消费类型'
+            }
+        }
     }
 }
 
