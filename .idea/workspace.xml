@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="801e3c2c-21bb-47db-9b61-c4246f65b25e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/locales/en-US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/locales/en-US.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/services/WalletService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/services/WalletService.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,20 +24,21 @@
           <file leaf-file-name="FunctionCard.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
-                  <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+                <state relative-caret-position="17">
+                  <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
                   <folding>
                     <element signature="n#style#0;n#p#3;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="e#781#816#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ImportRecover.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ImportRecover.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="618">
-                  <caret line="129" column="37" lean-forward="true" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+                <state relative-caret-position="615">
+                  <caret line="41" column="86" lean-forward="true" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
                   <folding>
                     <element signature="e#1342#1383#0" expanded="true" />
                   </folding>
@@ -75,8 +73,20 @@
           <file leaf-file-name="Single.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="871">
-                  <caret line="72" column="5" lean-forward="true" selection-start-line="65" selection-start-column="4" selection-end-line="72" selection-end-column="5" />
+                <state relative-caret-position="15">
+                  <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="29" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ArrayField.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="736">
+                  <caret line="92" column="9" lean-forward="true" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+                  <folding>
+                    <element signature="n#style#0;n#h3#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -102,20 +112,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ContractList.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ContractList.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="67" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="67" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="yarn-error.log" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/yarn-error.log">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="686">
-                  <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+                <state relative-caret-position="180">
+                  <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
@@ -176,7 +177,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>call_para</find>
       <find>this.$eventBus</find>
       <find>callparams</find>
       <find>call</find>
@@ -196,16 +196,17 @@
       <find>call_cont</find>
       <find>call_con</find>
       <find>call_c</find>
-      <find>functions</find>
       <find>formatBalances</find>
       <find>data</find>
       <find>wallets</find>
       <find>appendWallet</find>
-      <find>get_assets_by_ids</find>
       <find>account</find>
-      <find>accountId</find>
       <find>import</find>
       <find>pwd</find>
+      <find>accountId</find>
+      <find>functions</find>
+      <find>get_assets_by_ids</find>
+      <find>function</find>
     </findStrings>
     <replaceStrings>
       <replace>array</replace>
@@ -228,8 +229,8 @@
       <replace>compileServer</replace>
       <replace>CompileServer</replace>
       <replace>importSetting</replace>
-      <replace>getFields</replace>
       <replace>compile server</replace>
+      <replace>getFields</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -284,17 +285,17 @@
         <option value="$PROJECT_DIR$/src/renderer/components/common/PasswordConfirmModal.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Array.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/Fields.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue" />
         <option value="$PROJECT_DIR$/src/renderer/util/serializer.js" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" />
         <option value="$PROJECT_DIR$/src/renderer/services/WalletService.js" />
         <option value="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" />
         <option value="$PROJECT_DIR$/src/renderer/locales/en-US.js" />
         <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" />
       </list>
     </option>
   </component>
@@ -435,6 +436,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="LandingPage" type="462c0819:PsiDirectoryNode" />
+              <item name="FieldType" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="SettingPage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -487,7 +497,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="operations&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;action&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js&#10;import&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue&#10;setting&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage.vue&#10;contr&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;sing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;singl&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;walle&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;func&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;opera&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;contract&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;operation&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;types&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/types.js&#10;se&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;serializer&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;state.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/state.js&#10;field&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldItem.vue&#10;serial&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js&#10;seriali&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;functio&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;pass&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;landing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue&#10;main.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;pa&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;main.j&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;passwo&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;rend&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/.electron-vue/webpack.renderer.config.js&#10;MAIN.J&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;miN.JA&#9;null&#9;null&#10;store/inde&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js&#10;locales&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales&#10;p&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;zh&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/zh-CN.js&#10;wallet&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;actions&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js&#10;contrac&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/modules/ContractOperation.js&#10;state&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/state.js&#10;index.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/iview/src/components/modal/index.js&#10;confirm.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/iview/src/components/modal/confirm.js&#10;connect.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/connect.js&#10;wal&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;con&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/modules/ContractOperation.js&#10;app.v&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;contractlist&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;appv&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;contra&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;cont&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/modules/ContractOperation.js&#10;hack.scs&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/assets/scss/hack.scss&#10;app.vue&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;impor&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue" />
+    <property name="SearchEverywhereHistoryKey" value="array&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/ArrayField.vue&#10;contra&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;operations&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;action&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js&#10;import&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue&#10;setting&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage.vue&#10;contr&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;sing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;singl&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;walle&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;func&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;opera&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;contract&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;operation&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;types&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/types.js&#10;se&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;serializer&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;state.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/state.js&#10;field&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldItem.vue&#10;serial&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js&#10;seriali&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;functio&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;pass&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;landing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue&#10;main.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;pa&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;main.j&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;passwo&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;rend&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/.electron-vue/webpack.renderer.config.js&#10;MAIN.J&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;miN.JA&#9;null&#9;null&#10;store/inde&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js&#10;locales&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales&#10;p&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;zh&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/zh-CN.js&#10;wallet&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;actions&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js&#10;contrac&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/modules/ContractOperation.js&#10;state&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/state.js&#10;index.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/iview/src/components/modal/index.js&#10;confirm.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/iview/src/components/modal/confirm.js&#10;connect.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/connect.js&#10;wal&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;con&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/modules/ContractOperation.js&#10;app.v&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;contractlist&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;appv&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;cont&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/modules/ContractOperation.js&#10;hack.scs&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/assets/scss/hack.scss&#10;app.vue&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
@@ -539,7 +549,7 @@
       <updated>1530098864913</updated>
       <workItem from="1530098866739" duration="17195000" />
       <workItem from="1530252607255" duration="9957000" />
-      <workItem from="1530598327412" duration="295655000" />
+      <workItem from="1530598327412" duration="298921000" />
     </task>
     <task id="LOCAL-00001" summary="@dev gitignore change">
       <created>1530188647835</created>
@@ -723,11 +733,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532505078510</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="@dev import setting add remove confirm;&#10;contract call add payable support">
+      <created>1532509609510</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1532509609510</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="326543000" />
+    <option name="totallyTimeSpent" value="329809000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-613" y="-1440" width="2560" height="1440" extended-state="0" />
@@ -772,7 +789,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="@dev adjust layout;import router;init wifkey import" />
     <MESSAGE value="@dev add deploy contract" />
     <MESSAGE value="@dev pass deploy contract" />
     <MESSAGE value="@dev add apiserver management" />
@@ -797,7 +813,8 @@
     <MESSAGE value="@dev finish most i18n details" />
     <MESSAGE value="@dev add formatBalances getter" />
     <MESSAGE value="@dev call contract add array support;&#10;contract filter actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="@dev call contract add array support;&#10;contract filter actions" />
+    <MESSAGE value="@dev import setting add remove confirm;&#10;contract call add payable support" />
+    <option name="LAST_COMMIT_MESSAGE" value="@dev import setting add remove confirm;&#10;contract call add payable support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1066,13 +1083,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/Fields.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1138,46 +1148,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="871">
-          <caret line="72" column="5" lean-forward="true" selection-start-line="65" selection-start-column="4" selection-end-line="72" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="67" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#Content#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="31" column="46" lean-forward="true" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#p#3;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/store/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#82#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1218,11 +1194,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="129" column="37" lean-forward="true" selection-start-line="129" selection-start-column="37" selection-end-line="129" selection-end-column="37" />
+        <state relative-caret-position="615">
+          <caret line="41" column="86" lean-forward="true" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
           <folding>
             <element signature="e#1342#1383#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="92" column="9" lean-forward="true" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#h3#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/store/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#82#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#p#3;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#781#816#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="10" lean-forward="true" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
         </state>
       </provider>
     </entry>

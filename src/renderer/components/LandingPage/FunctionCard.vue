@@ -1,7 +1,7 @@
 <template>
     <div class="functionCard-layout">
-        <h3 class="title" slot="title">{{name}}</h3>
-        <h3 v-if="payable">附带资产</h3>
+        <h3 class="title" slot="title">{{name}} <span v-if="payable" class="payable-tag">(payable)</span></h3>
+        <h3 class="extra-asset-title" v-if="payable">附带资产</h3>
         <div v-if="payable" class="extra-asset">
             <Select v-model="amount.asset_id" class="asset-select" placeholder="请选择资产类型">
                 <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}</Option>
@@ -184,6 +184,16 @@
 <style scoped>
     .functionCard-layout {
         margin-top: 20px;
+    }
+
+    .payable-tag{
+        color: #57a3f3;
+    }
+
+    .extra-asset-title{
+        margin-top: 6px;
+        color: #57a3f3;
+        font-size: 12px;
     }
 
     .title {

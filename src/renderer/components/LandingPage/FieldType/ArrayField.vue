@@ -1,11 +1,13 @@
 <template>
     <div class="array-layout">
-        <h3>{{name}}
+        <h3 style="position: relative;">{{name}}
             <Icon type="plus" @click="onAddItemClick"></Icon>
         </h3>
-        <single v-for="(item,idx) in items" :type="type">
-            <Icon type="minus" @click="onRemoveItemClick(idx)"></Icon>
-        </single>
+        <div class="wrap">
+            <single v-for="(item,idx) in items" :type="type">
+                <Icon type="minus" @click="onRemoveItemClick(idx)"></Icon>
+            </single>
+        </div>
     </div>
 </template>
 
@@ -62,10 +64,40 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     h3 {
         margin-top: 6px;
         font-size: 12px;
         color: #9090c8;
+    }
+
+    .ivu-icon-plus, .ivu-icon-minus {
+        display: none;
+        color: #57a3f3;
+        font-size: 14px;
+        position: absolute;
+        left: -20px;
+        top: -4px;
+        padding: 6px;
+        cursor: pointer;
+    }
+
+    .ivu-icon-minus {
+        color: #d00b0b;
+        top: 4px;
+    }
+
+    .array-layout{
+        &:hover .ivu-icon-plus, &:hover .ivu-icon-minus{
+            display: block;
+        }
+
+        .single-layout{
+            margin-top: 10px;
+
+            &:first-child{
+                margin-top: 0;
+            }
+        }
     }
 </style>

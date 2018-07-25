@@ -57,6 +57,10 @@
 </script>
 
 <style scoped>
+    .single-layout{
+        position: relative;
+    }
+
     h3 {
         margin-top: 6px;
         font-size: 12px;
