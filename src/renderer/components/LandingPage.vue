@@ -20,7 +20,9 @@
                 <Layout style="height: 250px;flex-shrink:0;flex-grow:0;z-index:4;">
                     <Tabs class="tab-layout" type="card" :animated="false">
                         <TabPane label="LOGS">
-                            <logs :logs="logger.logs"></logs>
+                            <div class="logs-wrap" style="height: 100%;" @contextmenu="onLogRightClick">
+                                <logs :logs="logger.logs"></logs>
+                            </div>
                         </TabPane>
                         <TabPane label="BYTECODE">
                             {{bytecode}}
@@ -57,10 +59,12 @@
                 v-model="confirmDeployModalVisible"
                 title="部署确认"
                 @on-ok="onDeployOk">
-            <p>合约名称:{{contractName}}</p>
-            <p>部署账户:{{currentWallet.account}}</p>
-            <p>手续费类型:{{tempAsset.symbol}}</p>
-            <p>部署费用:{{fee}}</p>
+            <Form class="pure-text-form" label-position="left" :label-width="120">
+                <FormItem :label="$t('contract.label.name')">{{contractName}}</FormItem>
+                <FormItem :label="$t('contract.label.entryFile')">{{entry}}</FormItem>
+                <FormItem :label="$t('contract.label.deployAccount')">{{currentWallet.account}}</FormItem>
+                <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}},  {{fee}}</FormItem>
+            </Form>
         </Modal>
     </div>
 </template>
@@ -78,6 +82,11 @@
     import {
         deploy_contract
     } from '@/services/WalletService'
+    import electron from 'electron'
+
+    const remote = electron.remote
+    const Menu = remote.Menu
+    const MenuItem = remote.MenuItem
 
     export default {
         name: 'landing-page',
@@ -91,19 +100,6 @@
                 bytecode: '',
                 abi: '',
                 logger: new Logger(),
-                networkPoint: '',
-                networkPoints: [
-                    {
-                        title: '线上网络',
-                        id: 0,
-                        value: 0
-                    },
-                    {
-                        title: '测试网络',
-                        id: 1,
-                        value: 1
-                    }
-                ],
                 isCompiling: false,
                 tempPwd: '',
                 tempAsset: {}
@@ -120,29 +116,33 @@
                 }
             }
         },
+        created() {
+            this.menu = new Menu()
+            this.menu.append(new MenuItem({
+                label: this.$t('log.clear'),
+                click: () => {
+                    this.logger.clear()
+                }
+            }))
+        },
         mounted() {
-            this.$eventBus.$on('log.push', (log) => {
+            this.$eventBus.$on('log:push', (log) => {
                 this.renderLog(log)
             })
         },
         methods: {
             ...mapActions('ContractOperation', ['appendContract']),
-            open(link) {
-                this.$electron.shell.openExternal(link)
-            },
-            onClick() {
-
+            onLogRightClick() {
+                this.menu.popup()
             },
             onFileSelect(evt) {
                 // TODO code panel里面用index，file tree用nodekey，这里进行转换，因为files没有被注入nodekey，考虑优化
                 // this.current = evt[0].nodeKey - 1
-                console.log('teststtss')
             },
             archiveFiles(entryName) {
                 // creating archives
                 var zip = new AdmZip()
 
-                // TODO 改this.files
                 this.files.forEach(function (file) {
                     zip.addFile(file.title, Buffer.alloc(file.code.length, file.code))
                 })
@@ -160,7 +160,7 @@
             },
             onCompileClick() {
                 if (!this.entry) {
-                    this.$Message.warning('请先选择入口文件')
+                    this.$Message.warning(this.$t('contract.validate.entryFile.required'))
                     return
                 }
 
@@ -190,17 +190,16 @@
                     .catch((err) => {
                         this.isCompiling = false
                         this.compileFail(err)
-                        console.log('errrrr', err)
                     })
             },
             compileSuc(res) {
-                this.$Message.success('编译成功')
+                this.$Message.success(this.$t('contract.messages.compileSuc'))
                 this.renderLog({info: res.stdout, level: 'success'})
                 this.renderBytecode(res.wasm)
                 this.renderAbi(res.abi)
             },
             compileFail(res) {
-                this.$Message.error('编译失败')
+                this.$Message.error(this.$t('contract.messages.compileFail'))
                 this.renderLog({info: res.stderr || res.message, level: 'error'})
                 this.renderBytecode('')
                 this.renderAbi('')
@@ -217,8 +216,8 @@
             onDeploy() {
                 if (!this.currentWallet.account) {
                     this.$Modal.confirm({
-                        title: '前往导入账户',
-                        content: '您还未导入账户，是否前往导入账户？',
+                        title: this.$t('common.title.guideToImport'),
+                        content: this.$t('common.content.guideToImport'),
                         onOk: () => {
                             this.$router.push({name: 'import-recover'})
                         }
@@ -227,18 +226,19 @@
                 }
                 // 如果没有编译过，需要先编译
                 if (!this.bytecode) {
-                    this.$Message.warning('Please compile first')
+                    this.$Message.warning(this.$t('contract.validate.needToCompileFirst'))
                     return
                 }
                 if (!this.contractName) {
-                    this.$Message.warning('请输入合约名称')
+                    this.$Message.warning(this.$t('contract.validate.name.required'))
                     return
                 } else if (!/^[~a-z0-9-]*$/.test(this.contractName)) {
-                    this.$Message.warning('合约名只能是字母、数字和-的组合')
+                    this.$Message.warning(this.$t('contract.validate.name.format'))
                     return
                 }
                 // this.$refs.pwdModal
                 const modal = new PasswordConfirmModal({
+                    // 必须在这里调用
                     i18n: this.$i18n
                 })
                 modal.$on('unlocked', ({pwd, asset_id, asset}) => {
@@ -256,6 +256,7 @@
                         this.tempAsset = asset
                         this.confirmDeployModalVisible = true
                     }).catch(ex => {
+                        this.renderLog({info: ex.message, level: 'error'})
                         this.$Message.error(`${ex.message}`)
                     })
                 })
@@ -270,18 +271,19 @@
                     contractName: this.contractName,
                     code: this.bytecode
                 }).then((resp) => {
-                    this.$Message.success('合约部署成功')
-                    this.$eventBus.$emit('log.push', {
-                        info: '部署成功',
+                    this.renderLog({
+                        info: this.$t('contract.messages.deploySuc'),
                         level: 'success'
                     })
+                    this.$Message.success(this.$t('contract.messages.deploySuc'))
                     // 将部署过的合约保存在本地
                     this.appendContract(resp[0].ext)
                     this.$store.dispatch('updateCurrentBalancesAndAssets')
                 }).catch(ex => {
-                    this.$Message.error(`deploy contract fail:${ex.message}`)
-                    this.$eventBus.$emit('log.push', {
-                        info: '部署失败',
+                    this.renderLog({info: ex.message, level: 'error'})
+                    this.$Message.error(this.$t('contract.messages.deployFail'))
+                    this.$eventBus.$emit('log:push', {
+                        info: this.$t('contract.messages.deployFail'),
                         level: 'error'
                     })
                 })
@@ -342,6 +344,7 @@
 
     .deploy-area {
         margin-top: 20px;
+        text-overflow: ellipsis;
     }
 
     .empty-add-file {
@@ -359,5 +362,23 @@
             color: #999;
             margin-top: -40px;
         }
+    }
+
+    .tab-layout /deep/ .ivu-tabs-content{
+        overflow: auto;
+        height: 218px;
+        padding: 15px;
+    }
+
+    .tab-layout /deep/ .ivu-tabs-bar{
+        margin-bottom: 0;
+    }
+
+    .tab-layout /deep/ .ivu-tabs-tabpane{
+        height: 100%;
+    }
+
+    .logs-wrap{
+        height: 100%;
     }
 </style>

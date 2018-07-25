@@ -1,8 +1,8 @@
 <template>
     <div class="contractList-layout">
-        <h3 class="layout-title">{{$t('contract.title')}}</h3>
+        <h3 class="layout-title">{{$t('contract.listTitle')}}</h3>
         <div class="contract" v-for="contract in contracts">
-            <p class="title" slot="title">
+            <p class="title">
                 {{contract.contractName}}
                 <Icon type="close" @click="onContractRemoveClick(contract)"></Icon>
             </p>
@@ -43,7 +43,6 @@
         computed: {
             ...mapState('ContractOperation', {
                 contracts: state => {
-                    console.log(contractsFilter(cloneDeep(state.contracts)))
                     return contractsFilter(cloneDeep(state.contracts))
                 }
             })
@@ -52,8 +51,8 @@
             ...mapActions('ContractOperation', ['removeContract']),
             onContractRemoveClick(contract) {
                 this.$Modal.confirm({
-                    title: 'test',
-                    content: '确定要删除吗？',
+                    title: this.$t('contract.title.removeContract'),
+                    content: this.$t('contract.content.removeContract'),
                     onOk: () => {
                         this.removeContract(contract.contractId)
                     }
@@ -81,6 +80,7 @@
 
     .title {
         color: #c4c3d3;
+        font-size: 14px;
     }
 
     .contractList-layout {

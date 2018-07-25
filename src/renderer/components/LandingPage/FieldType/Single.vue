@@ -3,10 +3,18 @@
         <slot></slot>
         <h3 v-if="!!name">{{name}}</h3>
         <template v-if="type==='asset'">
-            <Select v-model="asset_id" class="asset-select" placeholder="请选择资产类型">
+            <Select v-model="asset_id" class="asset-select" :placeholder="$t('common.placeholder.assetType')">
                 <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}</Option>
             </Select>
-            <Input class="asset-amount" placeholder="资产数量" v-model="amount"/>
+            <Input class="asset-amount" :placeholder="$t('common.placeholder.assetAmount')" v-model="amount"/>
+        </template>
+        <template v-else-if="type==='contract_asset'">
+            <Select v-model="asset_id" class="asset-select" :placeholder="$t('common.placeholder.assetType')">
+                <Option v-for="asset in formatBalances" :value="asset.id|assetIdFormat" :key="asset.id">
+                    {{ asset.symbol}}
+                </Option>
+            </Select>
+            <Input class="asset-amount" :placeholder="$t('common.placeholder.assetAmount')" v-model="amount"/>
         </template>
         <template v-else>
             <Input v-model="value" :placeholder="type"/>
@@ -43,7 +51,7 @@
         },
         methods: {
             getValue() {
-                if (this.type === 'asset') {
+                if (this.type === 'asset' || this.type === 'contract_asset') {
                     return {
                         asset_id: this.asset_id,
                         amount: +this.amount
@@ -52,12 +60,18 @@
                     return this.value
                 }
             }
+        },
+        filters: {
+            // asset_id 在 type 为contract_asset时需要处理为uint64型
+            assetIdFormat(value) {
+                return +value.split('.')[2]
+            }
         }
     }
 </script>
 
 <style scoped>
-    .single-layout{
+    .single-layout {
         position: relative;
     }
 

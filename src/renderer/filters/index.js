@@ -40,5 +40,13 @@ export default {
             return t.split('').reverse().join('')
         }
         return t.split('').reverse().join('') + '.' + r
+    },
+    assetId2Symbol(assetId) {
+        switch (assetId) {
+            case '1.3.0':
+                return 'GXC'
+            case '1.3.1':
+                return 'GXS'
+        }
     }
 }

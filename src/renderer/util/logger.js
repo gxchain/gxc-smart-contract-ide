@@ -20,6 +20,10 @@ class Logger {
             this.logs = this.logs.slice(exceed)
         }
     }
+
+    clear() {
+        this.logs = []
+    }
 }
 
 export default Logger

@@ -1,5 +1,12 @@
 const locale = {
     common: {
+        copy: 'Copy',
+        title: {
+            guideToImport: 'Go to import account'
+        },
+        content: {
+            guideToImport: `You haven't import account,go to import one?`
+        },
         validate: {
             pwd: {
                 required: 'Please enter password',
@@ -7,10 +14,20 @@ const locale = {
             }
         },
         placeholder: {
-            pwd: 'Please enter password'
+            pwd: 'Please enter password',
+            assetType: 'Please select asset type',
+            assetAmount: 'Please enter asset amount'
         },
         label: {
             pwd: 'Password'
+        },
+        messages: {
+            copySuc: 'Copy Success'
+        },
+        error: {
+            account: {
+                notFound: 'Account not found'
+            }
         }
     },
     index: {
@@ -53,10 +70,52 @@ const locale = {
         account: 'account'
     },
     contract: {
-        'title': 'Contract List',
+        'listTitle': 'Contract List',
         'chooseEntryFile': 'Choose entry file',
         'inputContractName': 'Enter contract name',
-        'deploy': 'deploy'
+        'deploy': 'Deploy',
+        call: 'Call',
+        carryAmount: 'Carry Amount',
+        title: {
+            removeContract: 'Remove Contract',
+            callConfirm: 'Call Confirm'
+        },
+        content: {
+            removeContract: 'Confirm remove the contract?'
+        },
+        error: {
+            fromAccountNotExist: 'account not exist',
+            paramCompute: 'Param compute error',
+            feeCompute: 'Fee compute error'
+        },
+        label: {
+            name: 'Contract Name',
+            entryFile: 'Entry File',
+            deployAccount: 'Deploy Account',
+            costType: 'Cost Type',
+            costAmount: 'Cost Amount',
+            methodName: 'Method Name',
+            params: 'Params',
+            carryAmount: 'Carry Amount'
+        },
+        validate: {
+            entryFile: {
+                required: 'Please select entry file'
+            },
+            needToCompileFirst: 'Need to compile first',
+            name: {
+                required: 'Please enter contract name',
+                format: 'Contract name consist of letter|number|-'
+            }
+        },
+        messages: {
+            deploySuc: 'Contract deploy success',
+            deployFail: 'Contract deploy failed',
+            compileSuc: 'Contract compile success',
+            compileFail: 'Contract compile failed',
+            callSuc: 'Contract call success',
+            callFail: 'Contract call failed'
+        }
     },
     files: {
         addFile: 'Add File',
@@ -122,6 +181,10 @@ const locale = {
         messages: {
             importSuc: 'Import Success'
         },
+        error: {
+            accountNotFound: 'Account Not Found',
+            exist: 'Account has already exist'
+        },
         account: 'Account',
         accountId: 'Account ID',
         action: 'Operation',
@@ -146,6 +209,9 @@ const locale = {
                 required: 'Please select cost type'
             }
         }
+    },
+    log: {
+        clear: 'Clear log'
     }
 }
 

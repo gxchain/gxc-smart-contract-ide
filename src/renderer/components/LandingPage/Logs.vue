@@ -1,6 +1,6 @@
 <template>
     <div class="logs-layout">
-        <p :class="{'error':log.level==='error'}" v-for="log in logs">{{log.info}}</p>
+        <p class="log-item" :class="{'error':log.level==='error'}" v-for="log in logs">{{log.info}}</p>
     </div>
 </template>
 
@@ -22,6 +22,14 @@
     .logs-layout {
         .error {
             color: red;
+        }
+    }
+
+    .log-item{
+        margin: 10px 0;
+
+        &:first-child{
+            margin-top: 0;
         }
     }
 </style>

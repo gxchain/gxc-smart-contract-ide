@@ -210,6 +210,7 @@
                             display: 'inline-block'
                         },
                         class: {
+                            'f-toe': true,
                             'file-item': true,
                             'selected': !!data.selected
                         },

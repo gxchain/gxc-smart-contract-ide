@@ -1,27 +1,28 @@
 <template>
     <div class="functionCard-layout">
-        <h3 class="title" slot="title">{{name}} <span v-if="payable" class="payable-tag">(payable)</span></h3>
-        <h3 class="extra-asset-title" v-if="payable">附带资产</h3>
+        <h3 class="title">{{name}} <span v-if="payable" class="payable-tag">(payable)</span></h3>
+        <h3 class="extra-asset-title" v-if="payable">{{$t('contract.carryAmount')}}</h3>
         <div v-if="payable" class="extra-asset">
-            <Select v-model="amount.asset_id" class="asset-select" placeholder="请选择资产类型">
+            <Select v-model="amount.asset_id" class="asset-select" :placeholder="$t('common.placeholder.assetType')">
                 <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}</Option>
             </Select>
-            <Input class="asset-amount" placeholder="资产数量" v-model="amount.amount"/>
+            <Input class="asset-amount" :placeholder="$t('common.placeholder.assetAmount')" v-model="amount.amount"/>
         </div>
         <fields ref="fields" :data="fields"></fields>
-        <Button class="callBtn" type="primary" @click="onCall">调用</Button>
+        <Button class="callBtn" type="primary" @click="onCall">{{$t('contract.call')}}</Button>
         <Modal
                 class="confirmCallModal"
                 v-model="confirmCallModalVisible"
-                title="调用确认"
+                :title="$t('contract.title.callConfirm')"
                 @on-ok="onCallOk">
-            <p>合约名称:{{contractName}}</p>
-            <p>调用账户:{{currentWallet.account}}</p>
-            <p>调用函数:{{name}}</p>
-            <p style="word-break: break-all;">调用参数:{{callParams}}</p>
-            <p v-if="!!amount.amount">附带资金:{{amount.amount}}</p>
-            <p>手续费类型:{{tempAsset.id}}</p>
-            <p>调用费用:{{fee}}</p>
+            <Form class="pure-text-form" label-position="left" :label-width="120">
+                <FormItem :label="$t('contract.label.name')">{{contractName}}</FormItem>
+                <FormItem :label="$t('contract.label.deployAccount')">{{currentWallet.account}}</FormItem>
+                <FormItem :label="$t('contract.label.methodName')">{{name}}</FormItem>
+                <FormItem style="word-break: break-all" :label="$t('contract.label.params')">{{callParams}}</FormItem>
+                <FormItem v-if="amount.amount" :label="$t('contract.label.carryAmount')">{{amount.asset_id|assetId2Symbol}},  {{amount.amount}}</FormItem>
+                <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}},  {{fee}}</FormItem>
+            </Form>
         </Modal>
     </div>
 </template>
@@ -40,7 +41,7 @@
         if (type === 'account_name') {
             return fetch_account(value).then((account) => {
                 if (!account) {
-                    throw new Error(`account doesn't exist`)
+                    throw new Error(this.$t('error.account.notFound'))
                 }
                 return +account.id.split('.')[2]
             })
@@ -121,8 +122,8 @@
             onCall() {
                 if (!this.currentWallet.account) {
                     this.$Modal.confirm({
-                        title: '前往导入账户',
-                        content: '您还未导入账户，是否前往导入账户？',
+                        title: this.$t('common.title.guideToImport'),
+                        content: this.$t('common.content.guideToImport'),
                         onOk: () => {
                             this.$router.push({name: 'import-recover'})
                         }
@@ -132,14 +133,19 @@
                 const modal = new PasswordConfirmModal({i18n: this.$i18n})
                 modal.$on('unlocked', async ({pwd, asset_id, asset}) => {
                     let params
+                    let data
                     var fields = this.$refs.fields.getFields()
                     try {
                         params = await formatFields2Params(fields)
+                        data = serializer.serializeCallData(this.name, params, this.abi).toString('hex')
                     } catch (ex) {
-                        this.$Message.error(`${ex.message}`)
+                        this.$eventBus.$emit('log:push', {
+                            info: ex.message,
+                            level: 'error'
+                        })
+                        this.$Message.error(this.$t('contract.error.paramCompute'))
                         return
                     }
-                    const data = serializer.serializeCallData(this.name, params, this.abi).toString('hex')
                     call_contract(this.currentWallet.account, this.contractName, {
                         'method_name': this.name,
                         'data': data
@@ -150,7 +156,11 @@
                         this.tempAsset = asset
                         this.confirmCallModalVisible = true
                     }).catch(ex => {
-                        this.$Message.error(`${ex.message}`)
+                        this.$eventBus.$emit('log:push', {
+                            info: ex.message,
+                            level: 'error'
+                        })
+                        this.$Message.error(this.$t('contract.error.feeCompute'))
                     })
                 })
             },
@@ -162,10 +172,18 @@
                     'method_name': this.name,
                     'data': data
                 }, this.tempAsset.id, this.tempPwd, true, this.amount).then((resp) => {
-                    this.$Message.success('合约调用成功')
+                    this.$eventBus.$emit('log:push', {
+                        info: this.$t('contract.messages.callSuc'),
+                        level: 'success'
+                    })
+                    this.$Message.success(this.$t('contract.messages.callSuc'))
                     this.$store.dispatch('updateCurrentBalancesAndAssets')
                 }).catch(ex => {
-                    this.$Message.error(`${ex.message}`)
+                    this.$eventBus.$emit('log:push', {
+                        info: ex.message,
+                        level: 'error'
+                    })
+                    this.$Message.error(this.$t('contract.messages.callFail'))
                 })
             },
             computeCallParams() {
@@ -186,11 +204,11 @@
         margin-top: 20px;
     }
 
-    .payable-tag{
+    .payable-tag {
         color: #57a3f3;
     }
 
-    .extra-asset-title{
+    .extra-asset-title {
         margin-top: 6px;
         color: #57a3f3;
         font-size: 12px;

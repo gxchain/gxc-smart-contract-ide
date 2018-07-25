@@ -50,7 +50,6 @@
                 } else {
                     this.imgShow = false
                     if (this.account) {
-                        console.log('jjjj', jdenticon)
                         jdenticon.update(this.$refs.canvas, this.hash, 0)
                     } else {
                         let ctx = this.$refs.canvas.getContext('2d')

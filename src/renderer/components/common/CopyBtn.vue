@@ -7,7 +7,9 @@
         props: {
             text: {
                 type: String,
-                default: '复制'
+                default() {
+                    return this.$t('common.copy')
+                }
             },
             value: {
                 type: String,
@@ -15,7 +17,9 @@
             },
             successMsg: {
                 type: String,
-                default: '复制成功'
+                default() {
+                    return this.$t('common.messages.copySuc')
+                }
             }
         },
         methods: {

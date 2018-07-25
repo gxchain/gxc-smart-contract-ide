@@ -1,5 +1,12 @@
 const locale = {
     common: {
+        copy: '复制',
+        title: {
+            guideToImport: '前往导入账户'
+        },
+        content: {
+            guideToImport: '您还未导入账户，是否前往导入账户？'
+        },
         validate: {
             pwd: {
                 required: '请填写密码',
@@ -7,10 +14,20 @@ const locale = {
             }
         },
         placeholder: {
-            pwd: '请填写密码'
+            pwd: '请填写密码',
+            assetType: '请选择资产类型',
+            assetAmount: '请填写资产数额'
         },
         label: {
             pwd: '密码'
+        },
+        messages: {
+            copySuc: '复制成功'
+        },
+        error: {
+            account: {
+                notFound: '账户不存在'
+            }
         }
     },
     index: {
@@ -53,10 +70,52 @@ const locale = {
         account: '账户'
     },
     contract: {
-        'title': '合约列表',
+        'listTitle': '合约列表',
         'chooseEntryFile': '请选择入口文件',
         'inputContractName': '请输入合约名称',
-        'deploy': '部署'
+        'deploy': '部署',
+        call: '调用',
+        carryAmount: '附带资产',
+        title: {
+            removeContract: '移除合约',
+            callConfirm: '调用确认'
+        },
+        content: {
+            removeContract: '确认移除该合约?'
+        },
+        error: {
+            fromAccountNotExist: '账户不存在',
+            paramCompute: '参数计算错误',
+            feeCompute: '费用计算错误'
+        },
+        label: {
+            name: '合约名称',
+            entryFile: '入口文件',
+            deployAccount: '部署账户',
+            costType: '消耗资产类型',
+            costAmount: '消耗数额',
+            methodName: '调用方法',
+            params: '调用参数',
+            carryAmount: '附带资产'
+        },
+        validate: {
+            entryFile: {
+                required: '请选择入口文件'
+            },
+            needToCompileFirst: '请先编译',
+            name: {
+                required: '请输入合约名称',
+                format: '合约名只能是字母、数字和-的组合'
+            }
+        },
+        messages: {
+            deploySuc: '合约部署成功',
+            deployFail: '合约部署失败',
+            compileSuc: '合约编译成功',
+            compileFail: '合约编译失败',
+            callSuc: '合约调用成功',
+            callFail: '合约调用失败'
+        }
     },
     files: {
         addFile: '添加文件',
@@ -122,6 +181,10 @@ const locale = {
         messages: {
             importSuc: '导入成功'
         },
+        error: {
+            accountNotFound: '账户不存在',
+            exist: '账户已存在'
+        },
         account: '账户',
         accountId: '账户ID',
         action: '操作',
@@ -146,6 +209,9 @@ const locale = {
                 required: '请选择消费类型'
             }
         }
+    },
+    log: {
+        clear: '清除日志'
     }
 }
 
