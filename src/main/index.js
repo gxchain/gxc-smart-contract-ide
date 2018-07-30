@@ -1,6 +1,6 @@
 'use strict'
 
-import {app, BrowserWindow} from 'electron'
+import {app, BrowserWindow, Menu} from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -14,6 +14,74 @@ let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
+
+function createMenu() {
+    const application = {
+        label: 'Application',
+        submenu: [
+            {
+                label: 'About Application',
+                selector: 'orderFrontStandardAboutPanel:'
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Quit',
+                accelerator: 'Command+Q',
+                click: () => {
+                    app.quit()
+                }
+            }
+        ]
+    }
+
+    const edit = {
+        label: 'Edit',
+        submenu: [
+            {
+                label: 'Undo',
+                accelerator: 'CmdOrCtrl+Z',
+                selector: 'undo:'
+            },
+            {
+                label: 'Redo',
+                accelerator: 'Shift+CmdOrCtrl+Z',
+                selector: 'redo:'
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Cut',
+                accelerator: 'CmdOrCtrl+X',
+                selector: 'cut:'
+            },
+            {
+                label: 'Copy',
+                accelerator: 'CmdOrCtrl+C',
+                selector: 'copy:'
+            },
+            {
+                label: 'Paste',
+                accelerator: 'CmdOrCtrl+V',
+                selector: 'paste:'
+            },
+            {
+                label: 'Select All',
+                accelerator: 'CmdOrCtrl+A',
+                selector: 'selectAll:'
+            }
+        ]
+    }
+
+    const template = [
+        application,
+        edit
+    ]
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template))
+}
 
 function createWindow() {
     /**
@@ -34,7 +102,10 @@ function createWindow() {
     })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+    createMenu()
+    createWindow()
+})
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {

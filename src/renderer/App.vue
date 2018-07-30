@@ -168,7 +168,7 @@
 
     .account-item {
         &.z-sel {
-            background: rgba(40,123,211,.91);
+            background: rgba(40, 123, 211, .91);
             color: #fff;
         }
     }

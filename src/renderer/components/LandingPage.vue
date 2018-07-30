@@ -63,7 +63,7 @@
                 <FormItem :label="$t('contract.label.name')">{{contractName}}</FormItem>
                 <FormItem :label="$t('contract.label.entryFile')">{{entry}}</FormItem>
                 <FormItem :label="$t('contract.label.deployAccount')">{{currentWallet.account}}</FormItem>
-                <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}},  {{fee}}</FormItem>
+                <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}}, {{fee}}</FormItem>
             </Form>
         </Modal>
     </div>
@@ -189,7 +189,7 @@
                     })
                     .catch((err) => {
                         this.isCompiling = false
-                        this.compileFail(err)
+                        this.compileFail(err.response.data)
                     })
             },
             compileSuc(res) {
@@ -257,7 +257,7 @@
                         this.confirmDeployModalVisible = true
                     }).catch(ex => {
                         this.renderLog({info: ex.message, level: 'error'})
-                        this.$Message.error(`${ex.message}`)
+                        this.$Message.error(this.$t('contract.error.feeCompute'))
                     })
                 })
             },
@@ -364,21 +364,21 @@
         }
     }
 
-    .tab-layout /deep/ .ivu-tabs-content{
+    .tab-layout /deep/ .ivu-tabs-content {
         overflow: auto;
         height: 218px;
         padding: 15px;
     }
 
-    .tab-layout /deep/ .ivu-tabs-bar{
+    .tab-layout /deep/ .ivu-tabs-bar {
         margin-bottom: 0;
     }
 
-    .tab-layout /deep/ .ivu-tabs-tabpane{
+    .tab-layout /deep/ .ivu-tabs-tabpane {
         height: 100%;
     }
 
-    .logs-wrap{
+    .logs-wrap {
         height: 100%;
     }
 </style>

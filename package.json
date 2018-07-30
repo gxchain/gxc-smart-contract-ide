@@ -1,7 +1,7 @@
 {
   "name": "gxb-wallet-2.0",
-  "version": "0.0.0",
-  "author": "",
+  "version": "0.0.1",
+  "author": "GXC TEAM",
   "description": "An electron-vue project",
   "license": null,
   "main": "./dist/electron/main.js",
@@ -19,7 +19,8 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "test": "npm run unit && npm run e2e",
     "unit": "karma start test/unit/karma.conf.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "npm run lint:fix",
+    "haha": "electron-builder --dir"
   },
   "build": {
     "productName": "gxb-wallet-2.0",
