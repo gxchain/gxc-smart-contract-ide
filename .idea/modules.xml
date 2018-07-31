@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/gxb-wallet-2.0.iml" filepath="$PROJECT_DIR$/.idea/gxb-wallet-2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gxb-wallet-alpha.iml" filepath="$PROJECT_DIR$/.idea/gxb-wallet-alpha.iml" />
     </modules>
   </component>
 </project>

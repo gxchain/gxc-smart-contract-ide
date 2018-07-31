@@ -23,6 +23,7 @@ const fetch_account = (account_name) => {
 const import_account = (wifKey, password) => {
     return new Promise((resolve, reject) => {
         import('@/locales').then(i18n => {
+            i18n = i18n.default
             let password_aes = Aes.fromSeed(password)
             let encryption_buffer = key.get_random_key().toBuffer()
             let encryption_key = password_aes.encryptToHex(encryption_buffer)
@@ -117,6 +118,7 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
 
     return new Promise((resolve, reject) => {
         import('@/locales').then(i18n => {
+            i18n = i18n.default
             resolve(Promise.all([fetch_account(from), unlock_wallet(from, password)]).then(results => {
                 let fromAcc = results[0]
                 if (!fromAcc) {
@@ -164,6 +166,7 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
 const call_contract = (from, target, act, fee_id, password, broadcast = true, amount = {}) => {
     return new Promise((resolve, reject) => {
         import('@/locales').then(i18n => {
+            i18n = i18n.default
             resolve(Promise.all([fetch_account(from), fetch_account(target), unlock_wallet(from, password)]).then(results => {
                 let fromAcc = results[0]
                 let contractAccount = results[1]
