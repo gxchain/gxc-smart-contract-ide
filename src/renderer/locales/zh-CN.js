@@ -85,6 +85,7 @@ const locale = {
         },
         error: {
             fromAccountNotExist: '账户不存在',
+            contractAccountNotExist: '合约不存在',
             paramCompute: '参数计算错误',
             feeCompute: '费用计算错误'
         },

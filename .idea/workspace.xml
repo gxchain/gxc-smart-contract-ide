@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="801e3c2c-21bb-47db-9b61-c4246f65b25e" name="Default" comment="@dev finish i18n;&#10;fix some details bug">
-      <change afterPath="$PROJECT_DIR$/build/icons/icon.png" afterDir="false" />
+    <list default="true" id="801e3c2c-21bb-47db-9b61-c4246f65b25e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/icons/256x256.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/icons/icon.icns" beforeDir="false" afterPath="$PROJECT_DIR$/build/icons/icon.icns" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/icons/icon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/build/icons/icon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/electron/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/locales/en-US.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/locales/en-US.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/services/WalletService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/services/WalletService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,20 +23,34 @@
     <splitter split-orientation="horizontal" split-proportion="0.4643502">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/index.js">
+          <file leaf-file-name="en-US.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/renderer/locales/en-US.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1350">
-                  <caret line="90" column="36" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+                <state relative-caret-position="877">
+                  <caret line="173" column="72" lean-forward="true" selection-start-line="173" selection-start-column="72" selection-end-line="173" selection-end-column="72" />
                 </state>
               </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".eslintrc.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/.eslintrc.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="420">
+                  <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="actions.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/renderer/store/actions.js">
+              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
           <file leaf-file-name="index.dev.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/index.dev.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+                <state relative-caret-position="330">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -48,23 +58,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/renderer/main.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="App.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="App.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/App.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
-                  <caret line="141" column="16" lean-forward="true" selection-start-line="141" selection-start-column="16" selection-end-line="141" selection-end-column="16" />
+                <state relative-caret-position="439">
+                  <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
                   <folding>
                     <element signature="n#style#0;n#Header#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                   </folding>
@@ -72,50 +70,51 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="operations.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js">
+          <file leaf-file-name="FileTree.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/renderer/components/common/FileTree.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17745">
-                  <caret line="1184" lean-forward="true" selection-start-line="1184" selection-end-line="1184" />
+                <state relative-caret-position="499">
+                  <caret line="47" column="57" lean-forward="true" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
                   <folding>
-                    <element signature="e#0#28#0" expanded="true" />
+                    <element signature="e#182#223#0" expanded="true" />
+                    <element signature="e#4659#9208#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/index.ejs">
+          <file leaf-file-name="tree.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/tree/tree.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="22" selection-start-line="22" selection-end-line="22" />
+                <state relative-caret-position="438">
+                  <caret line="120" column="23" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="webpack.renderer.config.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.electron-vue/webpack.renderer.config.js">
+          <file leaf-file-name="ContractOperation.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/renderer/store/modules/ContractOperation.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2025">
-                  <caret line="135" column="31" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
+                <state relative-caret-position="165">
+                  <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.gitignore">
+          <file leaf-file-name="operations.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" selection-start-line="12" selection-end-line="12" />
+                <state relative-caret-position="306">
+                  <caret line="1177" column="55" selection-start-line="1177" selection-start-column="55" selection-end-line="1177" selection-end-column="55" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="build.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/.electron-vue/build.js">
+          <file leaf-file-name="dev-client.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/.electron-vue/dev-client.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="480">
-                  <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+                <state relative-caret-position="600">
+                  <caret line="40" selection-start-line="40" selection-end-line="40" />
                 </state>
               </provider>
             </entry>
@@ -127,8 +126,8 @@
           <file leaf-file-name="en-US.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/locales/en-US.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="16" selection-end-line="218" />
+                <state relative-caret-position="1125">
+                  <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
                 </state>
               </provider>
             </entry>
@@ -145,8 +144,8 @@
           <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/package.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="585">
-                  <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+                <state relative-caret-position="810">
+                  <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -155,7 +154,7 @@
             <entry file="file://$PROJECT_DIR$/src/renderer/store/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="165">
-                  <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+                  <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
                   <folding>
                     <element signature="e#0#21#0" expanded="true" />
                   </folding>
@@ -184,29 +183,33 @@
           <file leaf-file-name="FunctionCard.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+                <state relative-caret-position="171">
+                  <caret line="164" column="22" lean-forward="true" selection-start-line="164" selection-start-column="22" selection-end-line="164" selection-end-column="22" />
                   <folding>
                     <element signature="n#style#0;n#FormItem#3;n#Form#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                    <element signature="e#1848#1877#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="zh-CN.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/renderer/locales/zh-CN.js">
+          <file leaf-file-name="WalletService.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/renderer/services/WalletService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1320">
-                  <caret line="88" column="22" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="22" />
+                <state relative-caret-position="2940">
+                  <caret line="202" column="3" selection-start-line="202" selection-start-column="3" selection-end-line="202" selection-end-column="3" />
+                  <folding>
+                    <element signature="e#0#75#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="LandingPage.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="LandingPage.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-453">
-                  <caret line="118" column="19" lean-forward="true" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+                <state relative-caret-position="438">
+                  <caret line="76" column="26" lean-forward="true" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
                   <folding>
                     <element signature="n#style#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#Sider#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -215,6 +218,15 @@
                     <element signature="n#style#0;n#div#0;n#TabPane#0;n#Tabs#0;n#Layout#0;n#Layout#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#Sider#1;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="adm-zip.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/node_modules/adm-zip/adm-zip.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="343">
+                  <caret line="210" column="39" lean-forward="true" selection-start-line="210" selection-start-column="39" selection-end-line="210" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -235,12 +247,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>st_operation</find>
-      <find>struct_def</find>
-      <find>nosort</find>
-      <find>prod</find>
-      <find>oncompile</find>
-      <find>icon</find>
       <find>clean</find>
       <find>\n</find>
       <find>axios</find>
@@ -265,6 +271,12 @@
       <find>BrowserWindow</find>
       <find>ricardian</find>
       <find>payable</find>
+      <find>formatFields2Params</find>
+      <find>bind</find>
+      <find>call_con</find>
+      <find>zip</find>
+      <find>lastAppendFiles</find>
+      <find>rebuildTree</find>
     </findStrings>
     <replaceStrings>
       <replace>array</replace>
@@ -330,14 +342,12 @@
         <option value="$PROJECT_DIR$/src/renderer/util/serializer.js" />
         <option value="$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/services/WalletService.js" />
         <option value="$PROJECT_DIR$/src/renderer/assets/scss/hack.scss" />
         <option value="$PROJECT_DIR$/src/renderer/util/logger.js" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/Logs.vue" />
         <option value="$PROJECT_DIR$/src/renderer/assets/scss/iviewOveride.scss" />
         <option value="$PROJECT_DIR$/src/renderer/assets/scss/helper.scss" />
         <option value="$PROJECT_DIR$/src/renderer/assets/scss/base.scss" />
-        <option value="$PROJECT_DIR$/src/renderer/components/common/FileTree.vue" />
         <option value="$PROJECT_DIR$/src/renderer/store/actions.js" />
         <option value="$PROJECT_DIR$/src/renderer/locales/index.js" />
         <option value="$PROJECT_DIR$/src/renderer/util/vue-agency.js" />
@@ -348,15 +358,17 @@
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue" />
         <option value="$PROJECT_DIR$/src/renderer/components/common/CopyBtn.vue" />
-        <option value="$PROJECT_DIR$/src/renderer/locales/en-US.js" />
-        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/renderer/store/index.js" />
-        <option value="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" />
         <option value="$PROJECT_DIR$/src/main/index.js" />
-        <option value="$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js" />
         <option value="$PROJECT_DIR$/src/renderer/components/LandingPage.vue" />
         <option value="$PROJECT_DIR$/src/renderer/App.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/services/WalletService.js" />
+        <option value="$PROJECT_DIR$/src/renderer/locales/zh-CN.js" />
+        <option value="$PROJECT_DIR$/src/renderer/locales/en-US.js" />
+        <option value="$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue" />
+        <option value="$PROJECT_DIR$/src/renderer/components/common/FileTree.vue" />
       </list>
     </option>
   </component>
@@ -388,95 +400,80 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
-              <item name=".electron-vue" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="filters" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="locales" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="renderer" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
               <item name="router" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="gxb-wallet-alpha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gxb-wallet-alpha" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gxb-wallet-2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gxb-wallet-2.0" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="renderer" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="opera&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;operatio&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;app.vue&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;store/inde&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js&#10;store.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/babel-core/lib/store.js&#10;landing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue&#10;seriali&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;operation&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;function&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;filters&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/filters&#10;land&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue&#10;compile&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/CompileServer.vue&#10;contra&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;sing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;logger.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/logger.js&#10;hack.&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/assets/scss/hack.scss&#10;file&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/FileTree.vue&#10;type.&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/types.js&#10;wall&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;pass&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;single&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;wallet&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;array&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/ArrayField.vue&#10;operations&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;action&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js&#10;import&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue&#10;setting&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage.vue&#10;contr&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;singl&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;walle&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;func&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;contract&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;types&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/types.js&#10;se&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;serializer&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;state.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/state.js&#10;field&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldItem.vue&#10;serial&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js&#10;functio&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;main.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;pa&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;main.j&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;passwo&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;rend&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/.electron-vue/webpack.renderer.config.js&#10;MAIN.J&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;miN.JA&#9;null&#9;null&#10;locales&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales&#10;p&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;zh&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/zh-CN.js&#10;actions&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js" />
+    <property name="SearchEverywhereHistoryKey" value="file&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-alpha/src/renderer/components/common/FileTree.vue&#10;landing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-alpha/src/renderer/components/LandingPage.vue&#10;func&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-alpha/src/renderer/components/LandingPage/FunctionCard.vue&#10;wallet&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-alpha/src/renderer/services/WalletService.js&#10;opera&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;operatio&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;app.vue&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue&#10;store/inde&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js&#10;store.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/babel-core/lib/store.js&#10;seriali&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;operation&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;function&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;filters&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/filters&#10;land&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue&#10;compile&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/CompileServer.vue&#10;contra&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;sing&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;logger.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/logger.js&#10;hack.&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/assets/scss/hack.scss&#10;type.&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/types.js&#10;wall&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;pass&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;single&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;array&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/ArrayField.vue&#10;operations&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/operations.js&#10;action&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js&#10;import&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue&#10;setting&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage.vue&#10;contr&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;singl&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldType/Single.vue&#10;walle&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js&#10;contract&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue&#10;types&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/types.js&#10;se&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;serializer&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/serializer/src/serializer.js&#10;state.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/state.js&#10;field&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldItem.vue&#10;serial&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js&#10;functio&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue&#10;main.js&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;pa&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;main.j&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;passwo&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;rend&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/.electron-vue/webpack.renderer.config.js&#10;MAIN.J&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js&#10;miN.JA&#9;null&#9;null&#10;locales&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales&#10;p&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue&#10;zh&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/zh-CN.js&#10;actions&#9;FILE&#9;file:///Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
@@ -487,7 +484,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -530,6 +527,8 @@
       <workItem from="1530252607255" duration="9957000" />
       <workItem from="1530598327412" duration="341033000" />
       <workItem from="1532938119650" duration="964000" />
+      <workItem from="1533025502743" duration="2837000" />
+      <workItem from="1533029802717" duration="7016000" />
     </task>
     <task id="LOCAL-00001" summary="@dev gitignore change">
       <created>1530188647835</created>
@@ -734,40 +733,53 @@
       <option name="project" value="LOCAL" />
       <updated>1532533514228</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="chore: remove Counter.js">
+      <created>1533120717636</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1533120717636</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372885000" />
+    <option name="totallyTimeSpent" value="382738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-613" y="-1440" width="2560" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.134375" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.25216138" />
       <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.25216138" />
       <window_info id="npm" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.20100865" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13164063" />
+      <window_info anchor="bottom" id="Statistic" weight="0.3868876" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.20100865" />
-      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="TypeScript" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TypeScript" order="0" />
-      <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" visible="true" weight="0.5400943" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/node_modules/karma/config.tpl.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -785,7 +797,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="@dev add apiserver management" />
     <MESSAGE value="@dev add contract panel" />
     <MESSAGE value="@dev add contract list" />
     <MESSAGE value="@dev add compile server feature" />
@@ -810,7 +821,8 @@
     <MESSAGE value="@dev import setting add remove confirm;&#10;contract call add payable support" />
     <MESSAGE value="@dev optimize array field and payable support style" />
     <MESSAGE value="@dev finish i18n;&#10;fix some details bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="@dev finish i18n;&#10;fix some details bug" />
+    <MESSAGE value="chore: remove Counter.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: remove Counter.js" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -818,55 +830,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/renderer/locales/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/plugins/eventBus.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="63" column="50" lean-forward="true" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/filters/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="26" lean-forward="true" selection-start-line="44" selection-start-column="26" selection-end-line="44" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/Fields.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -903,17 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/common/FileTree.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2897">
-          <caret line="30" column="59" lean-forward="true" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-          <folding>
-            <element signature="e#182#223#0" expanded="true" />
-            <element signature="e#4659#9208#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/common/CopyBtn.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -942,30 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#FormItem#3;n#Form#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderer/locales/en-US.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="16" selection-end-line="218" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.eslintrc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/SettingPage.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -973,20 +901,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/types.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="938" column="2" lean-forward="true" selection-start-line="938" selection-start-column="2" selection-end-line="938" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/serializer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/types.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/serializer.js" />
     <entry file="file://$PROJECT_DIR$/src/renderer/assets/logo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1011,131 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="uml://JavaScript-modules-diagram//Users/jaime/projects/gxb-wallet-2.0/src">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>JavaScript-modules-diagram</ID>
-          <OriginalElement>$PROJECT_DIR$/src</OriginalElement>
-          <nodes>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/common/AccountImage.vue#jdenticon#308;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/AccountImage.vue#sha256#364;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/SettingPage/ApiServer.vue#mapState#1463;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/App.vue#AccountImage#2685;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue#lang2IconClassMap#2625;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue#langText#2644;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue#mapActions#2579;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/App.vue#mapState#2591;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/ArrayField.vue#Single#412;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/CodePanel.vue#anyword-hint.js#750;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#brace-fold.js#1232;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#clike.js#552;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#closebrackets.js#1430;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#codemirror#441;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#codemirror.css#492;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#comment-fold.js#1331;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#dialog.css#872;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#dialog.js#825;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#foldcode.js#1086;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#foldgutter.css#1182;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#foldgutter.js#1133;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#indent-fold.js#1281;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#javascript.js#593;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#jump-to-line.js#1020;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#mapActions#300;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#mapState#290;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#search.js#920;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#searchcursor.js#967;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#show-hint.css#656;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#show-hint.js#705;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#ut#335;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/CodePanel.vue#xml-fold.js#1382;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/SettingPage/CompileServer.vue#mapState#1538;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/ContractList.vue#FunctionCard#652;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue#cloneDeep#745;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue#mapActions#709;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/ContractList.vue#mapState#699;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/modules/ContractOperation.js#ut#7;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/FieldItem.vue#ArrayField#356;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FieldItem.vue#Single#408;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/Fields.vue#FieldItem#181;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/common/FileTree.vue#ContractOperationStore#235;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/FileTree.vue#electron#313;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/FileTree.vue#mapActions#200;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/FileTree.vue#mapState#190;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue#Fields#1855;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue#PasswordConfirmModal#1982;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue#call_contract#2072;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue#fetch_account#2095;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue#mapGetters#1900;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue#mapState#1890;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage/FunctionCard.vue#serializer#1935;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/SettingPage/ImportRecover.vue#PrivateKey#1442;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue#import_account#1501;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue#mapActions#1406;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/SettingPage/ImportRecover.vue#mapState#1396;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage.vue#AdmZip#4029;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#CodePanel#3861;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#ContractList#3971;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#CopyBtn#3913;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#FileTree#3816;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#Logger#4062;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#Logs#4101;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#PasswordConfirmModal#4143;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#deploy_contract#4279;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#electron#4344;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#mapActions#4234;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/LandingPage.vue#mapState#4224;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/Logs.vue</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/common/PasswordConfirmModal.vue#Vue#959;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue#store#985;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/components/common/PasswordConfirmModal.vue#unlock_wallet#1027;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/components/LandingPage/FieldType/Single.vue#mapGetters#1164;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/services/WalletService.js#Aes#8;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#Apis#84;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#PrivateKey#18;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#Promise#113;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#TransactionBuilder#30;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#find#234;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#key#13;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#some#175;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#store#206;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/WalletService.js#uniq#144;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/actions.js#Manager#91;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js#fetch_account_balances#8;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js#get_assets_by_ids#32;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/actions.js#reconnect#124;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/adm-zip/adm-zip.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/hint/anyword-hint.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/bluebird/js/release/bluebird.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/brace-fold.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/bytebuffer/dist/bytebuffer-node.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/mode/clike/clike.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/edit/closebrackets.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/lib/codemirror.css</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/comment-fold.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/services/connect.js#Apis#8;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/connect.js#Manager#14;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/connect.js#Vue#74;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/connect.js#connect#174;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/services/connect.js#store#46;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/dialog/dialog.css</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/dialog/dialog.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/electron/electron.d.ts#BrowserWindow#54354;/Users/jaime/projects/gxb-wallet-2.0/node_modules/electron/electron.d.ts#app#2604;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/iview/dist/locale/en-US.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/locales/en-US.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/lodash/find.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/foldcode.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/foldgutter.css</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/foldgutter.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/getters.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vuex/types/helpers.d.ts#mapActions#1803;/Users/jaime/projects/gxb-wallet-2.0/node_modules/vuex/types/helpers.d.ts#mapGetters#1717;/Users/jaime/projects/gxb-wallet-2.0/node_modules/vuex/types/helpers.d.ts#mapState#1383;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/assets/icons/multicolor-iconfont/iconfont.css</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/assets/icons/multicolor-iconfont/iconfont.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/indent-fold.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vue-i18n/types/index.d.ts</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vue/types/index.d.ts</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vuex/types/index.d.ts</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vue-router/types/index.d.ts</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vuex-persistedstate/index.d.ts</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/axios/index.d.ts</node>
-            <node x="" y="">$PROJECT_DIR$/src/main/index.dev.js#app.on#450;/Users/jaime/projects/gxb-wallet-2.0/src/main/index.dev.js#index.js#373;/Users/jaime/projects/gxb-wallet-2.0/src/main/index.dev.js#installExtension#500;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/index.js#Vue#7;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#Vuex#29;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#actions#158;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#createPersistedState#225;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#getters#123;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#modules#193;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#mutations#84;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/store/index.js#state#53;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/assets/icons/index.js#index.js#0;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/gxbjs-ws/es/index.js#Apis#7;/Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs-ws/es/index.js#Manager#46;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vue-codemirror/src/index.js#codemirror#155;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/assets/icons/multicolor-iconfont/index.js#iconfont.css#20;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/assets/icons/multicolor-iconfont/index.js#iconfont.js#0;</node>
-            <node x="" y="">$PROJECT_DIR$/src/main/index.js#BrowserWindow#27;/Users/jaime/projects/gxb-wallet-2.0/src/main/index.js#app#22;/Users/jaime/projects/gxb-wallet-2.0/src/main/index.js#join#274;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vue-electron/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/router/index.js#Router#29;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/router/index.js#Vue#7;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/router/index.js#default#204;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/electron-devtools-installer/dist/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/gxbjs/lib/index.js#Aes#468;/Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/index.js#PrivateKey#501;/Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/index.js#TransactionBuilder#964;/Users/jaime/projects/gxb-wallet-2.0/node_modules/gxbjs/lib/index.js#key#770;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/locales/index.js#Vue#7;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/index.js#VueI18n#29;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/index.js#en#88;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/index.js#store#60;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/locales/index.js#zh#113;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/electron-debug/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/modules/index.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/iview/dist/styles/iview.css</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/iview/dist/iview.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/mode/javascript/javascript.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/jdenticon/dist/jdenticon.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/search/jump-to-line.js</node>
-            <node x="" y="">cloneDeep;isArray;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/util/logger.js#isArray#8;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/main.js#@/assets/icons#222;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#@/assets/scss/base.scss#378;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#App#297;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#TreeView#462;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#Vue#7;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#axios#29;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#connect#254;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#eventBus#419;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#filters#146;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#iView#322;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#index.js#678;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#iview.css#341;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#iviewLocales#178;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#locales#114;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#router#56;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/main.js#store#86;</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/mutations.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/sha256/lib/nodecrypto.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/search/search.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/search/searchcursor.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/util/serializer.js#ByteBuffer#117;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js#cloneDeep#154;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js#ops#58;/Users/jaime/projects/gxb-wallet-2.0/src/renderer/util/serializer.js#types#7;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/hint/show-hint.css</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/hint/show-hint.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/lodash/some.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/store/state.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/types.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/lodash/uniq.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/util/vue-agency.js#Vue#7;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/vue-json-tree-view/dist/vue-json-tree-view.min.js</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/codemirror/addon/fold/xml-fold.js</node>
-            <node x="" y="">$PROJECT_DIR$/src/renderer/locales/zh-CN.js</node>
-            <node x="" y="">@/assets/icons</node>
-            <node x="" y="">@/assets/scss/base.scss</node>
-            <node x="" y="">@/components/common/AccountImage</node>
-            <node x="" y="">@/components/common/CopyBtn.vue</node>
-            <node x="" y="">@/components/common/PasswordConfirmModal</node>
-            <node x="" y="">lang2IconClassMap;langText;</node>
-            <node x="" y="">@/filters</node>
-            <node x="" y="">@/locales</node>
-            <node x="" y="">@/plugins/eventBus</node>
-            <node x="" y="">call_contract;deploy_contract;fetch_account;fetch_account_balances;get_assets_by_ids;import_account;unlock_wallet;</node>
-            <node x="" y="">reconnect;</node>
-            <node x="" y="">@/store</node>
-            <node x="" y="">@/store/modules/ContractOperation.js</node>
-            <node x="" y="">@/util/logger</node>
-            <node x="" y="">@/util/serializer</node>
-            <node x="" y="">@/util/util.js</node>
-            <node x="" y="">default;</node>
-            <node x="" y="">app.on;</node>
-            <node x="" y="">$PROJECT_DIR$/node_modules/@types/node/index.d.ts#join#228411;</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.3080701754385966" x="1166.0" y="980.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>All</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>Details</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1146,13 +937,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/multispinner/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="22" column="51" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/multispinner/index.js" />
     <entry file="file://$PROJECT_DIR$/.electron-vue/webpack.main.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -1167,13 +952,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build/electron-builder.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/build/electron-builder.yaml" />
     <entry file="file://$PROJECT_DIR$/build/icons/256x256.png" />
     <entry file="file://$PROJECT_DIR$/src/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
@@ -1194,9 +973,7 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/build/icons/icon1.png" />
-    <entry file="file://$PROJECT_DIR$/dist/electron/renderer.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/electron/renderer.js" />
     <entry file="file://$PROJECT_DIR$/src/renderer/store/state.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1207,41 +984,129 @@
     <entry file="file://$PROJECT_DIR$/build/icons/icon.icns">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/babel-core/lib/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/babel-core/lib/store.js" />
     <entry file="file://$PROJECT_DIR$/src/renderer/store/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/index.dev.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JavaScript-modules-diagram//Users/jaime/projects/gxb-wallet-2.0/src">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JavaScript-modules-diagram</ID>
+          <OriginalElement>$PROJECT_DIR$/../gxb-wallet-2.0/src</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="594.0" y="668.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>All</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>Details</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/locales/zh-CN.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="88" column="22" selection-start-line="88" selection-start-column="12" selection-end-line="88" selection-end-column="22" />
+        <state relative-caret-position="378">
+          <caret line="61" column="44" lean-forward="true" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/services/WalletService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2940">
+          <caret line="202" column="3" selection-start-line="202" selection-start-column="3" selection-end-line="202" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="1177" column="55" selection-start-line="1177" selection-start-column="55" selection-end-line="1177" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/store/modules/Counter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.electron-vue/dev-client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.eslintrc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/store/actions.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/locales/en-US.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="877">
+          <caret line="173" column="72" lean-forward="true" selection-start-line="173" selection-start-column="72" selection-end-line="173" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage/FunctionCard.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="164" column="22" lean-forward="true" selection-start-line="164" selection-start-column="22" selection-end-line="164" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#FormItem#3;n#Form#0;n#Modal#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#1848#1877#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/components/LandingPage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-453">
-          <caret line="118" column="19" lean-forward="true" selection-start-line="118" selection-start-column="19" selection-end-line="118" selection-end-column="19" />
+        <state relative-caret-position="438">
+          <caret line="76" column="26" lean-forward="true" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Sider#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1253,39 +1118,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/gxbjs/lib/serializer/src/operations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17745">
-          <caret line="1184" lean-forward="true" selection-start-line="1184" selection-end-line="1184" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="90" column="36" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/index.dev.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="141" column="16" lean-forward="true" selection-start-line="141" selection-start-column="16" selection-end-line="141" selection-end-column="16" />
+        <state relative-caret-position="439">
+          <caret line="126" lean-forward="true" selection-start-line="126" selection-end-line="126" />
           <folding>
             <element signature="n#style#0;n#Header#0;n#Layout#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/adm-zip/adm-zip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="210" column="39" lean-forward="true" selection-start-line="210" selection-start-column="39" selection-end-line="210" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/iview/src/components/tree/tree.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="120" column="23" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/store/modules/ContractOperation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/renderer/components/common/FileTree.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="47" column="57" lean-forward="true" selection-start-line="47" selection-start-column="57" selection-end-line="47" selection-end-column="57" />
+          <folding>
+            <element signature="e#182#223#0" expanded="true" />
+            <element signature="e#4659#9208#0" />
           </folding>
         </state>
       </provider>

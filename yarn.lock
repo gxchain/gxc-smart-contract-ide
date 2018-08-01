@@ -4341,7 +4341,7 @@ gxbjs-ws@^1.1.18:
 
 gxbjs@gxchain/gxbjs#master:
   version "1.2.88"
-  resolved "https://codeload.github.com/gxchain/gxbjs/tar.gz/bd4a89681a38d8ece2a6f0999328125350dbe074"
+  resolved "https://codeload.github.com/gxchain/gxbjs/tar.gz/6ed50bf32a7f62146975760211aa7c1a2ff1444b"
   dependencies:
     babel-plugin-add-module-exports "^0.2.1"
     babel-preset-es2015 "^6.18.0"

@@ -84,7 +84,8 @@ const locale = {
             removeContract: 'Confirm remove the contract?'
         },
         error: {
-            fromAccountNotExist: 'account not exist',
+            fromAccountNotExist: 'Account not exist',
+            contractAccountNotExist: 'Contract not exist',
             paramCompute: 'Param compute error',
             feeCompute: 'Fee compute error'
         },

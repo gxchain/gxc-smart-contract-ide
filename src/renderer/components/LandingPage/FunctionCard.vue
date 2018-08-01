@@ -31,6 +31,7 @@
     import Fields from './Fields'
     import {mapState, mapGetters} from 'vuex'
     import serializer from '@/util/serializer'
+    import i18n from '@/locales'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {
         call_contract,
@@ -41,7 +42,7 @@
         if (type === 'account_name') {
             return fetch_account(value).then((account) => {
                 if (!account) {
-                    throw new Error(this.$t('error.account.notFound'))
+                    throw new Error(i18n.t('error.account.notFound'))
                 }
                 return +account.id.split('.')[2]
             })
