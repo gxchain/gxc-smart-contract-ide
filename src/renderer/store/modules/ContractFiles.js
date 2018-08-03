@@ -101,8 +101,8 @@ const state = {
 state.files = util.formatFiles(state.files)
 
 const mutations = {
-    REFRESH_FILES(state, files) {
-        state.files = files
+    REFRESH_FILES(state) {
+        state.files = cloneDeep(filesTreeModel.model)
     },
     SELECT_FILE(state, file) {
         state.currentSelectedFile = file
@@ -132,15 +132,16 @@ const actions = {
         }
         // must use deepClone, otherwise the model will tainted
         // by vue store which will throw error after call this function again
-        commit('REFRESH_FILES', cloneDeep(filesTreeModel.model))
+        commit('REFRESH_FILES')
     },
     changeFileStatus({commit}, {node, opts}) {
         var model = filesTreeModel.first(idEq(node.id)).model
         Object.assign(model, opts)
-        commit('REFRESH_FILES', cloneDeep(filesTreeModel.model))
+        commit('REFRESH_FILES')
     },
-    removeFile({commit}, id) {
-        commit('REMOVE_FILE', id)
+    removeFile({commit}, node) {
+        filesTreeModel.first(idEq(node.id)).drop()
+        commit('REFRESH_FILES')
     },
     selectFile({commit}, node) {
         const file = filesTreeModel.first(idEq(node.id)).model
