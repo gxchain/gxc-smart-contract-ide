@@ -3,7 +3,8 @@
         <Layout class="layout-container" style="flex-direction: row">
             <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;"
                    width="240">
-                <file-tree ref="filetree" @on-select-change="onFileSelect"></file-tree>
+                <!--<file-tree ref="filetree" @on-select-change="onFileSelect"></file-tree>-->
+                <fTree></fTree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
                 <Content :style="{padding: '20px', background: '#fff', 'flex-basis':0, height:'calc(100vh - 346px)'}">
@@ -40,14 +41,14 @@
                         <Select v-model="entry" class="entry-select" :placeholder="$t('contract.chooseEntryFile')">
                             <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
                         </Select>
-                        <Button class="compileBtn" type="ghost" :loading="isCompiling" @click="onCompileClick">
+                        <Button class="compileBtn" type="primary" ghost :loading="isCompiling" @click="onCompileClick">
                             {{$t('index.compile')}}
                         </Button>
                     </div>
                     <div class="deploy-area">
                         <Input class="contractName" v-model="contractName"
                                :placeholder="$t('contract.inputContractName')"></Input>
-                        <Button class="deployBtn" type="ghost" @click="onDeploy">{{$t('contract.deploy')}}</Button>
+                        <Button class="deployBtn" type="primary" ghost @click="onDeploy">{{$t('contract.deploy')}}</Button>
                     </div>
                 </div>
                 <contract-list></contract-list>
@@ -71,6 +72,7 @@
 
 <script>
     import FileTree from './common/FileTree'
+    import FTree from './LandingPage/FTree'
     import CodePanel from './LandingPage/CodePanel'
     import CopyBtn from '@/components/common/CopyBtn.vue'
     import ContractList from './LandingPage/ContractList'
@@ -90,7 +92,7 @@
 
     export default {
         name: 'landing-page',
-        components: {Logs, FileTree, CodePanel, CopyBtn, ContractList},
+        components: {Logs, FileTree, FTree, CodePanel, CopyBtn, ContractList},
         data() {
             return {
                 deployTransaction: null,

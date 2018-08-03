@@ -8,7 +8,7 @@
         }],
         "stage-0"
       ],
-      "plugins": ["istanbul"]
+      "plugins": ["istanbul"],
     },
     "main": {
       "presets": [
@@ -24,7 +24,8 @@
           "modules": false
         }],
         "stage-0"
-      ]
+      ],
+      "plugins": ["transform-vue-jsx"]
     },
     "web": {
       "presets": [
