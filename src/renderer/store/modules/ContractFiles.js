@@ -5,14 +5,13 @@ import {cloneDeep} from 'lodash'
 const util = {
     // 这里的files一定是一个object
     formatFiles: function (files) {
+        files = util.formatFile(files)
         if (files.children) {
             files.children = files.children.map(function (file) {
                 file = util.formatFile(file)
                 file = util.formatFiles(file)
                 return file
             })
-        } else {
-            files = util.formatFile(files)
         }
         return files
     },
@@ -122,13 +121,19 @@ function idEq(id) {
 }
 
 const actions = {
+    addProject({commit}, project) {
+        let tempNode = new TreeModel()
+        tempNode = tempNode.parse(util.formatFiles(project))
+        filesTreeModel.addChild(tempNode)
+        commit('REFRESH_FILES')
+    },
     appendFile({commit}, {target, opts = {}}) {
-        let temptarget = new TreeModel()
-        temptarget = temptarget.parse(util.formatFile(opts))
+        let tempNode = new TreeModel()
+        tempNode = tempNode.parse(util.formatFile(opts))
         if (target.isDirectory) {
-            filesTreeModel.first(idEq(target.id)).addChild(temptarget)
+            filesTreeModel.first(idEq(target.id)).addChild(tempNode)
         } else {
-            filesTreeModel.first(idEq(target.id)).parent.addChild(temptarget)
+            filesTreeModel.first(idEq(target.id)).parent.addChild(tempNode)
         }
         // must use deepClone, otherwise the model will tainted
         // by vue store which will throw error after call this function again

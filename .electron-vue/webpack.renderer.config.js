@@ -42,6 +42,8 @@ let rendererConfig = {
                     }
                 }
             },
+            // use lodash template engine
+            { test: /\.ejs$/, loader: 'ejs-loader' },
             {
                 test: /\.scss$/,
                 use: [

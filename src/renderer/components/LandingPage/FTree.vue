@@ -1,6 +1,13 @@
 <template>
     <div class="filetree-layout">
-        <Tree class="filetree" ref="tree" :data="data" :render="renderNode" @on-toggle-expand="onToggleExpand"></Tree>
+        <div class="bar">
+            <Icon type="ios-add" @click="onAddProjectClick"></Icon>
+            <span>{{$t('files.addProject')}}</span>
+        </div>
+        <div class="files-wrap">
+            <Tree class="filetree" ref="tree" :data="data" :render="renderNode"
+                  @on-toggle-expand="onToggleExpand"></Tree>
+        </div>
     </div>
 </template>
 
@@ -8,6 +15,7 @@
     import {cloneDeep} from 'lodash'
     import {mapState, mapActions} from 'vuex'
     import {Icon, Form, FormItem, Input} from 'iview'
+    import appJson from '@/template/app.json.ejs'
 
     import electron from 'electron'
 
@@ -36,28 +44,16 @@
         created() {
         },
         methods: {
-            ...mapActions('ContractFiles', ['appendFile', 'changeFileStatus', 'selectFile', 'openFile']),
-            popupDirectoryMenu(data) {
-                const directoryMenu = new Menu()
-                directoryMenu.append(new MenuItem({
-                    label: this.$t('files.addFile'),
-                    click: () => {
-                        this.appendFile({target: data})
-                    }
-                }))
-                directoryMenu.append(new MenuItem({
-                    label: this.$t('files.addFolder'),
-                    click: () => {
-                        this.appendFile({target: data, opts: {isDirectory: true}})
-                    }
-                }))
-                directoryMenu.append(new MenuItem({
-                    label: this.$t('files.title.editDirectoryName'),
-                    click: () => {
-                        this.openEditDirectoryNameModal(data)
-                    }
-                }))
-                directoryMenu.popup()
+            ...mapActions('ContractFiles', ['addProject', 'appendFile', 'changeFileStatus', 'selectFile', 'openFile', 'removeFile']),
+            onAddProjectClick() {
+                this.addProject({
+                    title: 'new-project',
+                    isDirectory: true,
+                    children: [{
+                        title: 'app.json',
+                        content: appJson({entry: ''})
+                    }]
+                })
             },
             popupFileMenu(data) {
                 const directoryMenu = new Menu()
@@ -76,12 +72,64 @@
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.title.editFileName'),
                     click: () => {
-                        this.openEditFileNameModal(data)
+                        this.showEditFileNameModal(data)
+                    }
+                }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.title.removeFile'),
+                    click: () => {
+                        this.showRemoveFileModal(data)
                     }
                 }))
                 directoryMenu.popup()
             },
-            openEditFileNameModal(data) {
+            popupDirectoryMenu(data) {
+                const directoryMenu = new Menu()
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.addFile'),
+                    click: () => {
+                        this.appendFile({target: data})
+                    }
+                }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.addFolder'),
+                    click: () => {
+                        this.appendFile({target: data, opts: {isDirectory: true}})
+                    }
+                }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.title.editDirectoryName'),
+                    click: () => {
+                        this.showEditDirectoryNameModal(data)
+                    }
+                }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.title.removeDirectory'),
+                    click: () => {
+                        this.showRemoveFileModal(data)
+                    }
+                }))
+                directoryMenu.popup()
+            },
+            showRemoveFileModal(data) {
+                let title
+                let content
+                if (data.isDirectory) {
+                    title = this.$t('files.title.removeDirectory')
+                    content = this.$t('files.confirmRemoveDirectory')
+                } else {
+                    title = this.$t('files.title.removeFile')
+                    content = this.$t('files.confirmRemoveFile')
+                }
+                this.$Modal.confirm({
+                    title: title,
+                    content: content,
+                    onOk: () => {
+                        this.removeFile(data)
+                    }
+                })
+            },
+            showEditFileNameModal(data) {
                 const that = this
                 const rules = {
                     name: [
@@ -90,7 +138,7 @@
                             message: this.$t('files.validate.required')
                         }, {
                             validator: (rule, value, callback) => {
-                                let filenameReg = /^[\w,\s-]+\.cpp|hpp$/
+                                let filenameReg = /^[\w,\s-]+\.cpp|hpp|json$/
                                 const err_msg = new Error(this.$t('files.validate.fileFormat'))
                                 if (filenameReg.test(value)) {
                                     callback()
@@ -134,7 +182,7 @@
                     }
                 })
             },
-            openEditDirectoryNameModal(data) {
+            showEditDirectoryNameModal(data) {
                 const that = this
                 const rules = {
                     name: [
@@ -242,7 +290,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .filetree-layout {
+    .files-wrap {
         overflow: auto;
     }
 
