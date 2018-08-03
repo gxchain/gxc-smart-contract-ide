@@ -121,6 +121,11 @@ const actions = {
         // by vue store which will throw error after call this function again
         commit('REFRESH_FILES', cloneDeep(filesTreeModel.model))
     },
+    changeFileStatus({commit}, {node, opts}) {
+        var model = filesTreeModel.first(idEq(node.id)).model
+        Object.assign(model, opts)
+        commit('REFRESH_FILES', cloneDeep(filesTreeModel.model))
+    },
     removeFile({commit}, id) {
         commit('REMOVE_FILE', id)
     },

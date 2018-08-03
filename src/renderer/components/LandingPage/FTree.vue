@@ -1,6 +1,6 @@
 <template>
     <div class="filetree-layout">
-        <Tree class="filetree" ref="tree" :data="data" :render="renderNode"></Tree>
+        <Tree class="filetree" ref="tree" :data="data" :render="renderNode" @on-toggle-expand="onToggleExpand"></Tree>
     </div>
 </template>
 
@@ -33,7 +33,7 @@
         created() {
         },
         methods: {
-            ...mapActions('ContractFiles', ['appendFile']),
+            ...mapActions('ContractFiles', ['appendFile', 'changeFileStatus']),
             popupDirectoryMenu(data) {
                 const directoryMenu = new Menu()
                 directoryMenu.append(new MenuItem({
@@ -86,6 +86,9 @@
                         </div>
                     )
                 }
+            },
+            onToggleExpand(node) {
+                this.changeFileStatus({node: node, opts: {expand: node.expand}})
             }
         }
     }
