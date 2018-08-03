@@ -5,11 +5,11 @@ import mutations from './mutations.js'
 import getters from './getters.js'
 import actions from './actions.js'
 import modules from './modules'
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate/index'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
     state,
     mutations,
     getters,
@@ -18,3 +18,9 @@ export default new Vuex.Store({
     modules,
     strict: process.env.NODE_ENV !== 'production'
 })
+
+for (let key in modules) {
+    modules[key].afterInit && modules[key].afterInit(store)
+}
+
+export default store

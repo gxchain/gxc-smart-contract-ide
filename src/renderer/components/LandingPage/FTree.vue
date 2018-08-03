@@ -39,7 +39,29 @@
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.addFile'),
                     click: () => {
-                        this.appendFile(data)
+                        this.appendFile({target: data})
+                    }
+                }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.addFolder'),
+                    click: () => {
+                        this.appendFile({target: data, opts: {isDirectory: true}})
+                    }
+                }))
+                directoryMenu.popup()
+            },
+            popupFileMenu(data) {
+                const directoryMenu = new Menu()
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.addFile'),
+                    click: () => {
+                        this.appendFile({target: data})
+                    }
+                }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.addFolder'),
+                    click: () => {
+                        this.appendFile({target: data, opts: {isDirectory: true}})
                     }
                 }))
                 directoryMenu.popup()
@@ -77,7 +99,7 @@
                     )
                 } else {
                     return (
-                        <div class={{fileItem: true}}>
+                        <div class={{fileItem: true}} on-contextmenu={this.popupFileMenu.bind(this, data)}>
                             <Icon type="ios-paper-outline" style={{
                                 marginRight: '8px',
                                 color: 'white'

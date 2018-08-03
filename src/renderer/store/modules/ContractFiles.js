@@ -25,11 +25,12 @@ const util = {
             file.content = file.content || ''
             file.opened = file.opened || false
         } else {
-            file.expand = file.expand || false
+            file.expand = file.expand || true
         }
         return file
     }
 }
+let filesTreeModel
 
 const exampleCode1 = `#include <gxblib/contract.hpp>
 #include <gxblib/dispatcher.hpp>
@@ -97,9 +98,6 @@ const state = {
 
 state.files = util.formatFiles(state.files)
 
-let filesTreeModel = new TreeModel()
-filesTreeModel = filesTreeModel.parse(cloneDeep(state.files))
-
 const mutations = {
     REFRESH_FILES(state, files) {
         state.files = files
@@ -113,10 +111,14 @@ function idEq(id) {
 }
 
 const actions = {
-    appendFile({commit}, node) {
-        let tempNode = new TreeModel()
-        tempNode = tempNode.parse(util.formatFile())
-        filesTreeModel.first(idEq(node.id)).addChild(tempNode)
+    appendFile({commit}, {target, opts = {}}) {
+        let temptarget = new TreeModel()
+        temptarget = temptarget.parse(util.formatFile(opts))
+        if (target.isDirectory) {
+            filesTreeModel.first(idEq(target.id)).addChild(temptarget)
+        } else {
+            filesTreeModel.first(idEq(target.id)).parent.addChild(temptarget)
+        }
         // must use deepClone, otherwise the model will tainted
         // by vue store which will throw error after call this function again
         commit('REFRESH_FILES', cloneDeep(filesTreeModel.model))
@@ -151,5 +153,11 @@ export default {
     state,
     mutations,
     actions,
-    util
+    util,
+    afterInit(store) {
+        // filesTreeModel wanna use data after plugin handled,and can not directly access files by `state.files`,
+        // because it's a pure object which wouldn't change by plugin
+        filesTreeModel = new TreeModel()
+        filesTreeModel = filesTreeModel.parse(cloneDeep(store.state.ContractFiles.files))
+    }
 }
