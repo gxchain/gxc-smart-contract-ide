@@ -7,7 +7,7 @@
 <script>
     import {cloneDeep} from 'lodash'
     import {mapState, mapActions} from 'vuex'
-    import {Icon} from 'iview'
+    import {Icon, Form, FormItem, Input} from 'iview'
 
     import electron from 'electron'
 
@@ -18,7 +18,10 @@
     export default {
         name: 'FTree',
         components: {
-            Icon
+            Icon,
+            Form,
+            FormItem,
+            Input
         },
         data() {
             return {}
@@ -48,6 +51,12 @@
                         this.appendFile({target: data, opts: {isDirectory: true}})
                     }
                 }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.title.editDirectoryName'),
+                    click: () => {
+                        this.openEditDirectoryNameModal(data)
+                    }
+                }))
                 directoryMenu.popup()
             },
             popupFileMenu(data) {
@@ -64,7 +73,119 @@
                         this.appendFile({target: data, opts: {isDirectory: true}})
                     }
                 }))
+                directoryMenu.append(new MenuItem({
+                    label: this.$t('files.title.editFileName'),
+                    click: () => {
+                        this.openEditFileNameModal(data)
+                    }
+                }))
                 directoryMenu.popup()
+            },
+            openEditFileNameModal(data) {
+                const that = this
+                const rules = {
+                    name: [
+                        {
+                            required: true,
+                            message: this.$t('files.validate.required')
+                        }, {
+                            validator: (rule, value, callback) => {
+                                let filenameReg = /^[\w,\s-]+\.cpp|hpp$/
+                                const err_msg = new Error(this.$t('files.validate.fileFormat'))
+                                if (filenameReg.test(value)) {
+                                    callback()
+                                } else {
+                                    callback(err_msg)
+                                }
+                            }
+                        }]
+                }
+
+                let model = {
+                    name: data.title
+                }
+
+                function handleInput(val) {
+                    model.name = val
+                }
+
+                this.$Modal.confirm({
+                    title: this.$t('files.title.editFileName'),
+                    loading: true,
+                    render: (h) => {
+                        return (
+                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
+                                <FormItem prop="name">
+                                    <Input on-input={handleInput} value={model.name} autofocus={true}
+                                        placeholder={this.$t('files.placeholder.required')}/>
+                                </FormItem>
+                            </Form>
+                        )
+                    },
+                    onOk: function () {
+                        this.$refs.form.validate((valid) => {
+                            if (valid) {
+                                this.cancel()
+                                that.changeFileStatus({node: data, opts: {title: model.name}})
+                            } else {
+                                this.buttonLoading = false
+                            }
+                        })
+                    }
+                })
+            },
+            openEditDirectoryNameModal(data) {
+                const that = this
+                const rules = {
+                    name: [
+                        {
+                            required: true,
+                            message: this.$t('files.validate.required')
+                        }, {
+                            validator: (rule, value, callback) => {
+                                let filenameReg = /^[\w,\s-]+$/
+                                const err_msg = new Error(this.$t('files.validate.directoryFormat'))
+                                if (filenameReg.test(value)) {
+                                    callback()
+                                } else {
+                                    callback(err_msg)
+                                }
+                            }
+                        }]
+                }
+
+                let model = {
+                    name: data.title
+                }
+
+                function handleInput(val) {
+                    model.name = val
+                }
+
+                this.$Modal.confirm({
+                    title: this.$t('files.title.editDirectoryName'),
+                    loading: true,
+                    render: (h) => {
+                        return (
+                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
+                                <FormItem prop="name">
+                                    <Input on-input={handleInput} value={model.name} autofocus={true}
+                                        placeholder={this.$t('files.placeholder.required')}/>
+                                </FormItem>
+                            </Form>
+                        )
+                    },
+                    onOk: function () {
+                        this.$refs.form.validate((valid) => {
+                            if (valid) {
+                                this.cancel()
+                                that.changeFileStatus({node: data, opts: {title: model.name}})
+                            } else {
+                                this.buttonLoading = false
+                            }
+                        })
+                    }
+                })
             },
             remove(root, node, data) {
                 const parentKey = root.find(el => el === node).parent
