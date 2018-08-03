@@ -63,8 +63,10 @@ const exampleCode2 = `#include <gxblib/gxb.hpp>
 `
 
 const state = {
+    currentSelectedFile: {},
+    currentOpenedFile: {},
     files: {
-        id: 0,
+        id: 1,
         isRoot: true,
         isDirectory: true,
         title: 'root',
@@ -101,6 +103,15 @@ state.files = util.formatFiles(state.files)
 const mutations = {
     REFRESH_FILES(state, files) {
         state.files = files
+    },
+    SELECT_FILE(state, file) {
+        state.currentSelectedFile = file
+    },
+    OPEN_FILE(state, file) {
+        state.currentOpenedFile = file
+    },
+    CHANGE_CURRENT_OPENED_FILE_CONTENT(state, content) {
+        state.currentOpenedFile.content = content
     }
 }
 
@@ -131,20 +142,24 @@ const actions = {
     removeFile({commit}, id) {
         commit('REMOVE_FILE', id)
     },
-    selectFile({commit}, id) {
-        commit('SELECT_FILE', id)
+    selectFile({commit}, node) {
+        const file = filesTreeModel.first(idEq(node.id)).model
+        commit('SELECT_FILE', cloneDeep(file))
     },
-    changeContent({commit}, opts = {}) {
-        commit('CHANGE_CONTENT', opts)
+    changeFileContent({commit, dispatch}, {target, content} = {}) {
+        commit('CHANGE_CURRENT_OPENED_FILE_CONTENT', content)
+        dispatch('changeFileStatus', {node: target, opts: {content}})
     },
     changeFileTitle({commit}, opts = {}) {
         commit('CHANGE_FILE_TITLE', opts)
     },
-    appendContract({commit}, contract) {
-        commit('APPEND_CONTRACT', contract)
-    },
-    removeContract({commit}, id) {
-        commit('REMOVE_CONTRACT', id)
+    openFile({commit, dispatch}, node) {
+        if (node.isDirectory) {
+            dispatch('changeFileStatus', {node, opts: {expand: !node.expand}})
+        } else {
+            const file = filesTreeModel.first(idEq(node.id)).model
+            commit('OPEN_FILE', cloneDeep(file))
+        }
     }
 }
 

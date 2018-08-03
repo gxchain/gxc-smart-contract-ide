@@ -24,7 +24,7 @@
             return {}
         },
         computed: {
-            ...mapState('ContractFiles', ['files']),
+            ...mapState('ContractFiles', ['files', 'currentSelectedFile']),
             data() {
                 var data = this.filterData(cloneDeep(this.files.children))
                 return data
@@ -33,7 +33,7 @@
         created() {
         },
         methods: {
-            ...mapActions('ContractFiles', ['appendFile', 'changeFileStatus']),
+            ...mapActions('ContractFiles', ['appendFile', 'changeFileStatus', 'selectFile', 'openFile']),
             popupDirectoryMenu(data) {
                 const directoryMenu = new Menu()
                 directoryMenu.append(new MenuItem({
@@ -66,14 +66,6 @@
                 }))
                 directoryMenu.popup()
             },
-            append(data) {
-                const children = data.children || []
-                children.push({
-                    title: 'appended node',
-                    expand: true
-                })
-                this.$set(data, 'children', children)
-            },
             remove(root, node, data) {
                 const parentKey = root.find(el => el === node).parent
                 const parent = root.find(el => el.nodeKey === parentKey).node
@@ -89,7 +81,10 @@
             renderNode(h, {root, node, data}) {
                 if (data.isDirectory) {
                     return (
-                        <div class={{fileItem: true}} on-contextmenu={this.popupDirectoryMenu.bind(this, data)}>
+                        <div class={{fileItem: true, selected: data.id === this.currentSelectedFile.id}}
+                            on-click={this.OnFileClick.bind(this, data)}
+                            on-dblclick={this.OnFileDblclick.bind(this, data)}
+                            on-contextmenu={this.popupDirectoryMenu.bind(this, data)}>
                             <Icon type="ios-folder-outline" style={{
                                 marginRight: '8px',
                                 color: 'white'
@@ -99,7 +94,10 @@
                     )
                 } else {
                     return (
-                        <div class={{fileItem: true}} on-contextmenu={this.popupFileMenu.bind(this, data)}>
+                        <div class={{fileItem: true, selected: data.id === this.currentSelectedFile.id}}
+                            on-click={this.OnFileClick.bind(this, data)}
+                            on-dblclick={this.OnFileDblclick.bind(this, data)}
+                            on-contextmenu={this.popupFileMenu.bind(this, data)}>
                             <Icon type="ios-paper-outline" style={{
                                 marginRight: '8px',
                                 color: 'white'
@@ -111,12 +109,22 @@
             },
             onToggleExpand(node) {
                 this.changeFileStatus({node: node, opts: {expand: node.expand}})
+            },
+            OnFileClick(data) {
+                this.selectFile(data)
+            },
+            OnFileDblclick(data) {
+                this.openFile(data)
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .filetree-layout {
+        overflow: auto;
+    }
+
     .filetree-layout /deep/ .ivu-tree-children > li {
         position: relative;
     }
@@ -128,6 +136,10 @@
         padding-left: 20px;
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .filetree-layout /deep/ .fileItem.selected {
+        background: blue;
     }
 
     .filetree-layout /deep/ .ivu-tree-arrow {

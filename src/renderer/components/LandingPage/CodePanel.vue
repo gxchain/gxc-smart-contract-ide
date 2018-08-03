@@ -1,12 +1,12 @@
 <template>
     <div class='wrapper' style='height: 100%;'>
-        <codemirror v-for='panel in panels' :key='panel.id' v-if='panel.selected'
-                    :options='cmOption' :value='panel.code' @input='onInput($event,panel)'></codemirror>
+        <codemirror v-if="!!file.id" :options='cmOption' :value='file.content' @input='onInput'></codemirror>
     </div>
 </template>
 <script>
     import {mapState, mapActions} from 'vuex'
     import ut from '@/util/util.js'
+    import {cloneDeep} from 'lodash'
 
     // TODO 无法直接用vue-codemirror，似乎打包有问题，无法执行到defineMode对应的回调，导致渲染异常
     import {codemirror} from 'vue-codemirror/src/index.js'
@@ -63,21 +63,18 @@
         },
         components: {codemirror},
         computed: {
-            ...mapState('ContractOperation', ['files']),
-            panels() {
-                const pnls = this.files.map(function (file) {
-                    return Object.assign({}, file)
-                })
-
-                return pnls
+            ...mapState('ContractFiles', ['currentOpenedFile']),
+            file() {
+                return cloneDeep(this.currentOpenedFile)
             }
         },
         methods: {
-            ...mapActions('ContractOperation', ['changeContent']),
-            onInput: ut.debounce(function (content, panel) {
-                this.changeContent({
-                    id: panel.id,
-                    content
+            ...mapActions('ContractFiles', ['changeFileContent']),
+            onInput: ut.debounce(function (content) {
+                this.changeFileContent({
+                    target: this.file,
+                    // can not use file.content here cause the input value hasn't sync yet
+                    content: content
                 })
             }, 300)
         }
