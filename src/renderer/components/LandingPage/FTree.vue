@@ -6,7 +6,7 @@
         </div>
         <div class="files-wrap">
             <Tree class="filetree" ref="tree" :data="data" :render="renderNode"
-                  @on-toggle-expand="onToggleExpand"></Tree>
+                    @on-toggle-expand="onToggleExpand"></Tree>
         </div>
     </div>
 </template>
@@ -15,9 +15,10 @@
     import {cloneDeep} from 'lodash'
     import {mapState, mapActions} from 'vuex'
     import {Icon, Form, FormItem, Input} from 'iview'
-    import appJson from '@/template/app.json.ejs'
+    import TemplateSelect from './TemplateSelect'
 
     import electron from 'electron'
+    import templateUtil from '@/util/templateUtil'
 
     const remote = electron.remote
     const Menu = remote.Menu
@@ -29,7 +30,8 @@
             Icon,
             Form,
             FormItem,
-            Input
+            Input,
+            TemplateSelect
         },
         data() {
             return {}
@@ -42,17 +44,46 @@
             }
         },
         created() {
+            console.log('tpl', templateUtil.compile('hello').render({title: 'lzyzyzy'}))
         },
         methods: {
             ...mapActions('ContractFiles', ['addProject', 'appendFile', 'changeFileStatus', 'selectFile', 'openFile', 'removeFile']),
             onAddProjectClick() {
-                this.addProject({
-                    title: 'new-project',
-                    isDirectory: true,
-                    children: [{
-                        title: 'app.json',
-                        content: appJson({entry: ''})
-                    }]
+                let selected
+                const that = this
+
+                function onSelect(sel) {
+                    selected = sel
+                }
+
+                this.$Modal.confirm({
+                    loading: true,
+                    title: this.$t('template.title.select'),
+                    width: 800,
+                    render: () => {
+                        return (
+                            <template-select on-select={onSelect}></template-select>
+                        )
+                    },
+                    onOk() {
+                        if (!!selected) {
+                            this.cancel()
+                            const compiled = templateUtil.compile(selected.title)
+                            // must use setTimeout instead of nextTick, iview bug skr
+                            setTimeout(() => {
+                                that.showEditDirectoryNameModal({
+                                    name: selected.title,
+                                    title: that.$t('template.title.create'),
+                                    callback: (name) => {
+                                        that.addProject(compiled.render({title: name}))
+                                    }
+                                })
+                            }, 300)
+                        } else {
+                            this.buttonLoading = false
+                            that.$Message.warning(this.$t('template.validate.required'))
+                        }
+                    }
                 })
             },
             popupFileMenu(data) {
@@ -100,7 +131,13 @@
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.title.editDirectoryName'),
                     click: () => {
-                        this.showEditDirectoryNameModal(data)
+                        this.showEditDirectoryNameModal({
+                            name: data.title,
+                            title: this.$t('files.title.editDirectoryName'),
+                            callback: (name) => {
+                                this.changeFileStatus({node: data, opts: {title: name}})
+                            }
+                        })
                     }
                 }))
                 directoryMenu.append(new MenuItem({
@@ -182,8 +219,7 @@
                     }
                 })
             },
-            showEditDirectoryNameModal(data) {
-                const that = this
+            showEditDirectoryNameModal({title, name, callback}) {
                 const rules = {
                     name: [
                         {
@@ -203,7 +239,7 @@
                 }
 
                 let model = {
-                    name: data.title
+                    name: name
                 }
 
                 function handleInput(val) {
@@ -211,7 +247,7 @@
                 }
 
                 this.$Modal.confirm({
-                    title: this.$t('files.title.editDirectoryName'),
+                    title: title,
                     loading: true,
                     render: (h) => {
                         return (
@@ -227,7 +263,7 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                that.changeFileStatus({node: data, opts: {title: model.name}})
+                                callback(model.name)
                             } else {
                                 this.buttonLoading = false
                             }

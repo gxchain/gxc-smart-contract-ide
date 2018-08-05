@@ -20,6 +20,9 @@ const util = {
         file.title = file.title || id + '.cpp'
         file.id = file.id || id
         file.isDirectory = file.isDirectory || false
+        if (file.children) {
+            file.isDirectory = true
+        }
         if (!file.isDirectory) {
             file.content = file.content || ''
             file.opened = file.opened || false
