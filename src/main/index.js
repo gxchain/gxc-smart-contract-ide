@@ -46,7 +46,6 @@ function createMenu() {
                 dialog.showOpenDialog({
                     properties: ['openDirectory']
                 }, (files) => {
-                    console.log('testt')
                     mainWindow.webContents.send('import-project', filesUtil.genProject(files[0]))
                 })
             }
@@ -87,7 +86,7 @@ function createMenu() {
             {
                 label: 'Select All',
                 accelerator: 'CmdOrCtrl+A',
-                role: 'selectAll'
+                role: 'selectall'
             }
         ]
     }

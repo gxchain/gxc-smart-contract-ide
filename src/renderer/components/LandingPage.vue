@@ -133,7 +133,7 @@
                     name: project.title,
                     title: this.$t('template.title.create'),
                     callback: (name) => {
-                        project.name = name
+                        project.title = name
                         this.$store.dispatch('ContractFiles/addProject', project, {root: true})
                     }
                 })
