@@ -2,13 +2,13 @@
     <div class="layout">
         <Layout class="layout-container" style="flex-direction: row">
             <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;"
-                   width="240">
+                    width="240">
                 <!--<file-tree ref="filetree" @on-select-change="onFileSelect"></file-tree>-->
                 <fTree></fTree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
                 <Content :style="{padding: '20px', background: '#fff', 'flex-basis':0, height:'calc(100vh - 346px)'}">
-                    <template v-if="files.length>0">
+                    <template v-if="projects.length>0">
                         <code-panel></code-panel>
                     </template>
                     <template v-else>
@@ -39,7 +39,8 @@
                 <div class="operation-panel">
                     <div class="compile-area">
                         <Select v-model="entry" class="entry-select" :placeholder="$t('contract.chooseEntryFile')">
-                            <Option v-for="item in files" :value="item.title" :key="item.id">{{ item.title }}</Option>
+                            <Option v-for="project in projects" :value="project.id" :key="project.id">{{ project.title }}
+                            </Option>
                         </Select>
                         <Button class="compileBtn" type="primary" ghost :loading="isCompiling" @click="onCompileClick">
                             {{$t('index.compile')}}
@@ -47,8 +48,9 @@
                     </div>
                     <div class="deploy-area">
                         <Input class="contractName" v-model="contractName"
-                               :placeholder="$t('contract.inputContractName')"></Input>
-                        <Button class="deployBtn" type="primary" ghost @click="onDeploy">{{$t('contract.deploy')}}</Button>
+                                :placeholder="$t('contract.inputContractName')"></Input>
+                        <Button class="deployBtn" type="primary" ghost @click="onDeploy">{{$t('contract.deploy')}}
+                        </Button>
                     </div>
                 </div>
                 <contract-list></contract-list>
@@ -80,7 +82,7 @@
     import Logger from '@/util/logger'
     import Logs from './LandingPage/Logs'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
-    import {mapState, mapActions} from 'vuex'
+    import {mapState, mapGetters, mapActions} from 'vuex'
     import {
         deploy_contract
     } from '@/services/WalletService'
@@ -108,7 +110,7 @@
             }
         },
         computed: {
-            ...mapState('ContractOperation', ['files']),
+            ...mapGetters('ContractFiles', ['projects']),
             ...mapState(['wallets', 'currentWallet', 'assets']),
             fee() {
                 if (!this.deployTransaction) {
@@ -141,24 +143,26 @@
                 // TODO code panel里面用index，file tree用nodekey，这里进行转换，因为files没有被注入nodekey，考虑优化
                 // this.current = evt[0].nodeKey - 1
             },
-            archiveFiles(entryName) {
+            archiveFiles(entry) {
+                function recur(zip, files, base = '') {
+                    files.forEach(function (file) {
+                        if (file.isDirectory) {
+                            zip.addFile(base + file.title + '/', Buffer.alloc(0))
+                            recur(zip, file.children, base + file.title + '/')
+                        } else {
+                            zip.addFile(base + file.title, Buffer.alloc(file.content.length, file.content))
+                        }
+                    })
+                }
                 // creating archives
                 var zip = new AdmZip()
 
-                this.files.forEach(function (file) {
-                    zip.addFile(file.title, Buffer.alloc(file.code.length, file.code))
-                })
+                var files = this.projects.find(project => {
+                    return project.id === entry
+                }).children
 
-                var entryFile = {
-                    name: 'app.json',
-                    content: `{"main":"${entryName}"}`
-                }
-
-                zip.addFile('app.json', Buffer.alloc(entryFile.content.length, entryFile.content))
-                // get everything as a buffer
+                recur(zip, files)
                 return zip.toBuffer()
-                // or write everything to disk
-                // zip.writeZip('./files.zip')
             },
             onCompileClick() {
                 if (!this.entry) {

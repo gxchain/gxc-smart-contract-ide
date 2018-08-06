@@ -1,3 +1,6 @@
+/**
+ * this util only support plain folder structure, tree support will support later
+ */
 // must require.context new template when add new template
 const util = {}
 const helloTpl = require.context('@/template/hello', true, /\.ejs$/)
