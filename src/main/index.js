@@ -1,6 +1,7 @@
 'use strict'
 
-import {app, BrowserWindow, Menu} from 'electron'
+import {app, BrowserWindow, Menu, dialog} from 'electron'
+import filesUtil from './util/filesUtil'
 
 /**
  * Set `__static` path to static files in production
@@ -21,7 +22,7 @@ function createMenu() {
         submenu: [
             {
                 label: 'About Application',
-                selector: 'orderFrontStandardAboutPanel:'
+                role: 'orderFrontStandardAboutPanel'
             },
             {
                 type: 'separator'
@@ -36,18 +37,34 @@ function createMenu() {
         ]
     }
 
+    const file = {
+        label: 'File',
+        submenu: [{
+            label: 'Import Project',
+            accelerator: 'CmdOrCtrl+i',
+            click() {
+                dialog.showOpenDialog({
+                    properties: ['openDirectory']
+                }, (files) => {
+                    console.log('testt')
+                    mainWindow.webContents.send('import-project', filesUtil.genProject(files[0]))
+                })
+            }
+        }]
+    }
+
     const edit = {
         label: 'Edit',
         submenu: [
             {
                 label: 'Undo',
                 accelerator: 'CmdOrCtrl+Z',
-                selector: 'undo:'
+                role: 'undo'
             },
             {
                 label: 'Redo',
                 accelerator: 'Shift+CmdOrCtrl+Z',
-                selector: 'redo:'
+                role: 'redo'
             },
             {
                 type: 'separator'
@@ -55,28 +72,29 @@ function createMenu() {
             {
                 label: 'Cut',
                 accelerator: 'CmdOrCtrl+X',
-                selector: 'cut:'
+                role: 'cut'
             },
             {
                 label: 'Copy',
                 accelerator: 'CmdOrCtrl+C',
-                selector: 'copy:'
+                role: 'copy'
             },
             {
                 label: 'Paste',
                 accelerator: 'CmdOrCtrl+V',
-                selector: 'paste:'
+                role: 'paste'
             },
             {
                 label: 'Select All',
                 accelerator: 'CmdOrCtrl+A',
-                selector: 'selectAll:'
+                role: 'selectAll'
             }
         ]
     }
 
     const template = [
         application,
+        file,
         edit
     ]
 

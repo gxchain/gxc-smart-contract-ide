@@ -3,8 +3,7 @@
         <Layout class="layout-container" style="flex-direction: row">
             <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;"
                     width="240">
-                <!--<file-tree ref="filetree" @on-select-change="onFileSelect"></file-tree>-->
-                <fTree></fTree>
+                <fTree ref="tree"></fTree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
                 <Content :style="{padding: '20px', background: '#fff', 'flex-basis':0, height:'calc(100vh - 346px)'}">
@@ -39,7 +38,8 @@
                 <div class="operation-panel">
                     <div class="compile-area">
                         <Select v-model="entry" class="entry-select" :placeholder="$t('contract.chooseEntryFile')">
-                            <Option v-for="project in projects" :value="project.id" :key="project.id">{{ project.title }}
+                            <Option v-for="project in projects" :value="project.id" :key="project.id">{{ project.title
+                                }}
                             </Option>
                         </Select>
                         <Button class="compileBtn" type="primary" ghost :loading="isCompiling" @click="onCompileClick">
@@ -73,7 +73,6 @@
 </template>
 
 <script>
-    import FileTree from './common/FileTree'
     import FTree from './LandingPage/FTree'
     import CodePanel from './LandingPage/CodePanel'
     import CopyBtn from '@/components/common/CopyBtn.vue'
@@ -91,10 +90,11 @@
     const remote = electron.remote
     const Menu = remote.Menu
     const MenuItem = remote.MenuItem
+    const ipcRenderer = electron.ipcRenderer
 
     export default {
         name: 'landing-page',
-        components: {Logs, FileTree, FTree, CodePanel, CopyBtn, ContractList},
+        components: {Logs, FTree, CodePanel, CopyBtn, ContractList},
         data() {
             return {
                 deployTransaction: null,
@@ -128,6 +128,16 @@
                     this.logger.clear()
                 }
             }))
+            ipcRenderer.on('import-project', (event, project) => {
+                this.$refs.tree.showEditDirectoryNameModal({
+                    name: project.title,
+                    title: this.$t('template.title.create'),
+                    callback: (name) => {
+                        project.name = name
+                        this.$store.dispatch('ContractFiles/addProject', project, {root: true})
+                    }
+                })
+            })
         },
         mounted() {
             this.$eventBus.$on('log:push', (log) => {
@@ -154,6 +164,7 @@
                         }
                     })
                 }
+
                 // creating archives
                 var zip = new AdmZip()
 
@@ -169,6 +180,7 @@
                     this.$Message.warning(this.$t('contract.validate.entryFile.required'))
                     return
                 }
+                // TODO 判断工程里面有没有app.json
 
                 // 压缩文件，调用编译服务
                 var buffer = this.archiveFiles(this.entry)
