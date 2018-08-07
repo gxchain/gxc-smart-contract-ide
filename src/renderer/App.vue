@@ -16,7 +16,7 @@
                     </Dropdown>
 
                     <router-link class="setting" :to="{name:'setting-page'}">
-                        <Icon type="gear-b"></Icon>
+                        <Icon type="ios-settings"></Icon>
                         <span class="text">{{$t('header.setting')}}</span>
                     </router-link>
 

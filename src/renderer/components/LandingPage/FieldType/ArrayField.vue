@@ -1,11 +1,11 @@
 <template>
     <div class="array-layout">
         <h3 style="position: relative;">{{name}}
-            <Icon type="plus" @click="onAddItemClick"></Icon>
+            <Icon type="ios-add" @click="onAddItemClick"></Icon>
         </h3>
         <div class="wrap">
             <single v-for="(item,idx) in items" :type="type">
-                <Icon type="minus" @click="onRemoveItemClick(idx)"></Icon>
+                <Icon type="ios-remove" @click="onRemoveItemClick(idx)"></Icon>
             </single>
         </div>
     </div>
