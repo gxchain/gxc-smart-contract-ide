@@ -28,6 +28,7 @@ const util = {
             file.opened = file.opened || false
         } else {
             file.expand = file.expand || true
+            file.children = file.children || []
         }
         return file
     }
@@ -49,6 +50,9 @@ const state = {
 const getters = {
     projects(state) {
         return state.files.children
+    },
+    files(state) {
+        return state.files
     }
 }
 
@@ -56,16 +60,39 @@ state.files = util.formatFiles(state.files)
 
 const mutations = {
     REFRESH_FILES(state) {
+        // must use deepClone, otherwise the model will tainted
+        // by vue store which will throw error after call this function again
         state.files = cloneDeep(filesTreeModel.model)
     },
-    SELECT_FILE(state, file) {
-        state.currentSelectedFile = file
+    APPEND_FILE(state, {target, opts = {}}) {
+        let tempNode = new TreeModel()
+        tempNode = tempNode.parse(util.formatFile(opts))
+        if (target.isDirectory) {
+            filesTreeModel.first(idEq(target.id)).addChild(tempNode)
+        } else {
+            filesTreeModel.first(idEq(target.id)).parent.addChild(tempNode)
+        }
     },
-    OPEN_FILE(state, file) {
-        state.currentOpenedFile = file
+    CHANGE_FILE_STATUS(state, {node, opts}) {
+        var model = filesTreeModel.first(idEq(node.id)).model
+        Object.assign(model, opts)
+    },
+    REMOVE_FILE(state, node) {
+        filesTreeModel.first(idEq(node.id)).drop()
+    },
+    SELECT_FILE(state, node) {
+        state.currentSelectedFile = filesTreeModel.first(idEq(node.id)).model || {}
+    },
+    OPEN_FILE(state, node) {
+        state.currentOpenedFile = filesTreeModel.first(idEq(node.id)).model
     },
     CHANGE_CURRENT_OPENED_FILE_CONTENT(state, content) {
         state.currentOpenedFile.content = content
+    },
+    ADD_PROJECT(state, project) {
+        let tempNode = new TreeModel()
+        tempNode = tempNode.parse(util.formatFiles(project))
+        filesTreeModel.addChild(tempNode)
     }
 }
 
@@ -77,53 +104,33 @@ function idEq(id) {
 
 const actions = {
     addProject({commit}, project) {
-        let tempNode = new TreeModel()
-        tempNode = tempNode.parse(util.formatFiles(project))
-        filesTreeModel.addChild(tempNode)
-        commit('REFRESH_FILES')
+        commit('ADD_PROJECT', project)
     },
-    appendFile({commit}, {target, opts = {}}) {
-        let tempNode = new TreeModel()
-        tempNode = tempNode.parse(util.formatFile(opts))
-        if (target.isDirectory) {
-            filesTreeModel.first(idEq(target.id)).addChild(tempNode)
-        } else {
-            filesTreeModel.first(idEq(target.id)).parent.addChild(tempNode)
-        }
-        // must use deepClone, otherwise the model will tainted
-        // by vue store which will throw error after call this function again
-        commit('REFRESH_FILES')
+    appendFile({commit}, payload) {
+        commit('APPEND_FILE', payload)
     },
-    changeFileStatus({commit}, {node, opts}) {
-        var model = filesTreeModel.first(idEq(node.id)).model
-        Object.assign(model, opts)
-        commit('REFRESH_FILES')
+    changeFileStatus({commit}, payload) {
+        commit('CHANGE_FILE_STATUS', payload)
     },
     removeFile({state, commit}, node) {
-        filesTreeModel.first(idEq(node.id)).drop()
-        commit('REFRESH_FILES')
+        commit('REMOVE_FILE', node)
 
         if (node.id === state.currentOpenedFile.id) {
             commit('OPEN_FILE', {})
         }
     },
     selectFile({commit}, node) {
-        const file = filesTreeModel.first(idEq(node.id)).model
-        commit('SELECT_FILE', cloneDeep(file))
+        commit('SELECT_FILE', node)
     },
     changeFileContent({commit, dispatch}, {target, content} = {}) {
         commit('CHANGE_CURRENT_OPENED_FILE_CONTENT', content)
-        dispatch('changeFileStatus', {node: target, opts: {content}})
-    },
-    changeFileTitle({commit}, opts = {}) {
-        commit('CHANGE_FILE_TITLE', opts)
+        // dispatch('changeFileStatus', {node: target, opts: {content}})
     },
     openFile({commit, dispatch}, node) {
         if (node.isDirectory) {
             dispatch('changeFileStatus', {node, opts: {expand: !node.expand}})
         } else {
-            const file = filesTreeModel.first(idEq(node.id)).model
-            commit('OPEN_FILE', cloneDeep(file))
+            commit('OPEN_FILE', node)
         }
     }
 }
@@ -139,6 +146,6 @@ export default {
         // filesTreeModel wanna use data after plugin handled,and can not directly access files by `state.files`,
         // because it's a pure object which wouldn't change by plugin
         filesTreeModel = new TreeModel()
-        filesTreeModel = filesTreeModel.parse(cloneDeep(store.state.ContractFiles.files))
+        filesTreeModel = filesTreeModel.parse(store.state.ContractFiles.files)
     }
 }

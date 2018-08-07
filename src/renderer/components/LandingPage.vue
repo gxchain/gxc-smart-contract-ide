@@ -12,8 +12,8 @@
                     </template>
                     <template v-else>
                         <div class="empty-add-file">
-                            <i @click="onAddFileClick" class="icon-add-file"></i>
-                            <p class="desc">{{$t('files.addFile')}}</p>
+                            <i @click="onAddProjectClick" class="icon-add-file"></i>
+                            <p class="desc">{{$t('files.addProject')}}</p>
                         </div>
                     </template>
                 </Content>
@@ -306,8 +306,8 @@
                     })
                 })
             },
-            onAddFileClick() {
-                this.$refs.filetree.append()
+            onAddProjectClick() {
+                this.$refs.tree.onAddProjectClick()
             }
         }
     }
