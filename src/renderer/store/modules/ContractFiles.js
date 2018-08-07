@@ -99,9 +99,13 @@ const actions = {
         Object.assign(model, opts)
         commit('REFRESH_FILES')
     },
-    removeFile({commit}, node) {
+    removeFile({state, commit}, node) {
         filesTreeModel.first(idEq(node.id)).drop()
         commit('REFRESH_FILES')
+
+        if (node.id === state.currentOpenedFile.id) {
+            commit('OPEN_FILE', {})
+        }
     },
     selectFile({commit}, node) {
         const file = filesTreeModel.first(idEq(node.id)).model
