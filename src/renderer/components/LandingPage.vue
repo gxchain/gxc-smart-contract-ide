@@ -17,24 +17,7 @@
                         </div>
                     </template>
                 </Content>
-                <Layout class="infoPanel">
-                    <Icon type="ios-arrow-down" />
-                    <Icon type="ios-arrow-up" />
-                    <Tabs class="tab-layout" type="card" :animated="false">
-                        <TabPane label="LOGS">
-                            <div class="logs-wrap" style="height: 100%;" @contextmenu="onLogRightClick">
-                                <logs :logs="logger.logs"></logs>
-                            </div>
-                        </TabPane>
-                        <TabPane label="BYTECODE">
-                            {{bytecode}}
-                            <copy-btn v-if="!!bytecode" :value="bytecode"></copy-btn>
-                        </TabPane>
-                        <TabPane label="ABI">
-                            <tree-view v-if="!!abi" :data="abi"></tree-view>
-                        </TabPane>
-                    </Tabs>
-                </Layout>
+                <info-panel :bytecode="bytecode" :abi="abi"></info-panel>
             </Layout>
             <Sider class="rightPane" width="320" style="height:100%;overflow: auto;">
                 <div class="operation-panel">
@@ -77,11 +60,9 @@
 <script>
     import FTree from './LandingPage/FTree'
     import CodePanel from './LandingPage/CodePanel'
-    import CopyBtn from '@/components/common/CopyBtn.vue'
     import ContractList from './LandingPage/ContractList'
+    import InfoPanel from './LandingPage/InfoPanel'
     import AdmZip from 'adm-zip'
-    import Logger from '@/util/logger'
-    import Logs from './LandingPage/Logs'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {mapState, mapGetters, mapActions} from 'vuex'
     import Rules from '@/const/rules'
@@ -89,15 +70,11 @@
         deploy_contract
     } from '@/services/WalletService'
     import electron from 'electron'
-
-    const remote = electron.remote
-    const Menu = remote.Menu
-    const MenuItem = remote.MenuItem
     const ipcRenderer = electron.ipcRenderer
 
     export default {
         name: 'landing-page',
-        components: {Logs, FTree, CodePanel, CopyBtn, ContractList},
+        components: {InfoPanel, FTree, CodePanel, ContractList},
         data() {
             return {
                 deployTransaction: null,
@@ -105,8 +82,7 @@
                 contractName: '',
                 entry: '',
                 bytecode: '',
-                abi: '',
-                logger: new Logger(),
+                abi: {},
                 isCompiling: false,
                 tempPwd: '',
                 tempAsset: {}
@@ -124,13 +100,6 @@
             }
         },
         created() {
-            this.menu = new Menu()
-            this.menu.append(new MenuItem({
-                label: this.$t('log.clear'),
-                click: () => {
-                    this.logger.clear()
-                }
-            }))
             ipcRenderer.on('import-project', (event, project) => {
                 this.$refs.tree.showEditDirectoryNameModal({
                     name: project.title,
@@ -142,20 +111,8 @@
                 })
             })
         },
-        mounted() {
-            this.$eventBus.$on('log:push', (log) => {
-                this.renderLog(log)
-            })
-        },
         methods: {
             ...mapActions('ContractOperation', ['appendContract']),
-            onLogRightClick() {
-                this.menu.popup()
-            },
-            onFileSelect(evt) {
-                // TODO code panel里面用index，file tree用nodekey，这里进行转换，因为files没有被注入nodekey，考虑优化
-                // this.current = evt[0].nodeKey - 1
-            },
             archiveFiles(entry) {
                 function recur(zip, files, base = '') {
                     files.forEach(function (file) {
@@ -223,16 +180,16 @@
                 this.$Message.error(this.$t('contract.messages.compileFail'))
                 this.renderLog({info: res.stderr || res.message, level: 'error'})
                 this.renderBytecode('')
-                this.renderAbi('')
+                this.renderAbi()
             },
             renderLog(log) {
-                this.logger.push(log)
+                this.$eventBus.$emit('log:push', log)
             },
             renderBytecode(bytecode) {
                 this.bytecode = bytecode
             },
             renderAbi(abi) {
-                this.abi = abi ? JSON.parse(abi) : ''
+                this.abi = abi ? JSON.parse(abi) : {}
             },
             onDeploy() {
                 if (!this.currentWallet.account) {
@@ -328,13 +285,6 @@
         flex-grow: 1;
     }
 
-    .infoPanel{
-        flex-grow:0;
-        flex-basis:auto;
-        flex-shrink:0;
-        z-index:4;
-    }
-
     .ivu-icon-plus {
         color: white;
         font-size: 20px;
@@ -395,27 +345,5 @@
             color: #999;
             margin-top: -40px;
         }
-    }
-
-    .tab-layout /deep/ .ivu-tabs-content {
-        transition: .5s height ease-in-out;
-        overflow: auto;
-        height: 218px;
-    }
-
-    .tab-layout /deep/ .ivu-tabs-tabpane{
-        padding: 15px;
-    }
-
-    .tab-layout /deep/ .ivu-tabs-bar {
-        margin-bottom: 0;
-    }
-
-    .tab-layout /deep/ .ivu-tabs-tabpane {
-        height: 100%;
-    }
-
-    .logs-wrap {
-        height: 100%;
     }
 </style>
