@@ -1,7 +1,9 @@
 <template>
-    <Layout class="infoPanel">
-        <!--<Icon type="ios-arrow-down"/>-->
-        <!--<Icon type="ios-arrow-up"/>-->
+    <Layout :class="{isFold:isFold}" class="infoPanel">
+        <div class="fold-trigger">
+            <Icon v-if="!isFold" @click="isFold=true" type="ios-arrow-down"/>
+            <Icon v-if="isFold" @click="isFold=false" type="ios-arrow-up"/>
+        </div>
         <Tabs class="infoPanel" type="card" :animated="false">
             <TabPane label="LOGS">
                 <div class="logs-wrap" style="height: 100%;" @contextmenu="onLogRightClick">
@@ -40,7 +42,8 @@
         },
         data() {
             return {
-                logger: new Logger()
+                logger: new Logger(),
+                isFold: false
             }
         },
         computed: {
@@ -74,12 +77,32 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss" type="text/scss">
     .infoPanel {
+        position: relative;
         flex-grow: 0;
         flex-basis: auto;
         flex-shrink: 0;
         z-index: 4;
+
+        &.isFold{
+            & /deep/ .ivu-tabs-content{
+                height: 0;
+            }
+        }
+    }
+
+    .fold-trigger{
+        position: absolute;
+        right: 10px;
+        top: 0;
+        z-index: 5;
+        font-size: 16px;
+
+        .ivu-icon{
+            padding: 8px;
+            cursor: pointer;
+        }
     }
 
     .infoPanel /deep/ .ivu-tabs-content {

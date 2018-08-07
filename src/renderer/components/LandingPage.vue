@@ -70,6 +70,7 @@
         deploy_contract
     } from '@/services/WalletService'
     import electron from 'electron'
+
     const ipcRenderer = electron.ipcRenderer
 
     export default {
@@ -273,14 +274,14 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" type="text/scss" scoped>
     @import '@/assets/scss/sprite.scss';
 
     .layout-container {
         height: calc(100vh - 64px - 32px);
     }
 
-    .code-wrap{
+    .code-wrap {
         height: 0;
         flex-grow: 1;
     }
