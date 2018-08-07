@@ -6,7 +6,7 @@
                 <fTree ref="tree"></fTree>
             </Sider>
             <Layout style="flex-direction: column;height:100%;overflow: auto;">
-                <Content :style="{padding: '20px', background: '#fff', 'flex-basis':0, height:'calc(100vh - 346px)'}">
+                <Content class="code-wrap">
                     <template v-if="projects.length>0">
                         <code-panel></code-panel>
                     </template>
@@ -17,7 +17,9 @@
                         </div>
                     </template>
                 </Content>
-                <Layout style="height: 250px;flex-shrink:0;flex-grow:0;z-index:4;">
+                <Layout class="infoPanel">
+                    <Icon type="ios-arrow-down" />
+                    <Icon type="ios-arrow-up" />
                     <Tabs class="tab-layout" type="card" :animated="false">
                         <TabPane label="LOGS">
                             <div class="logs-wrap" style="height: 100%;" @contextmenu="onLogRightClick">
@@ -82,6 +84,7 @@
     import Logs from './LandingPage/Logs'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {mapState, mapGetters, mapActions} from 'vuex'
+    import Rules from '@/const/rules'
     import {
         deploy_contract
     } from '@/services/WalletService'
@@ -250,7 +253,7 @@
                 if (!this.contractName) {
                     this.$Message.warning(this.$t('contract.validate.name.required'))
                     return
-                } else if (!/^[~a-z0-9-]*$/.test(this.contractName)) {
+                } else if (!Rules.contractNameFormat.test(this.contractName)) {
                     this.$Message.warning(this.$t('contract.validate.name.format'))
                     return
                 }
@@ -320,6 +323,18 @@
         height: calc(100vh - 64px - 32px);
     }
 
+    .code-wrap{
+        height: 0;
+        flex-grow: 1;
+    }
+
+    .infoPanel{
+        flex-grow:0;
+        flex-basis:auto;
+        flex-shrink:0;
+        z-index:4;
+    }
+
     .ivu-icon-plus {
         color: white;
         font-size: 20px;
@@ -383,8 +398,12 @@
     }
 
     .tab-layout /deep/ .ivu-tabs-content {
+        transition: .5s height ease-in-out;
         overflow: auto;
         height: 218px;
+    }
+
+    .tab-layout /deep/ .ivu-tabs-tabpane{
         padding: 15px;
     }
 

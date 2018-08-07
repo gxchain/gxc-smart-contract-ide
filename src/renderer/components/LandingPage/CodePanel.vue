@@ -38,6 +38,9 @@
 
     import 'codemirror/addon/edit/closebrackets.js'
 
+    // theme
+    import 'codemirror/theme/blackboard.css'
+
     export default {
         data() {
             return {
@@ -46,18 +49,14 @@
                         name: 'text/x-c++src',
                         useCPP: true
                     },
-                    // tabSize: 4,
-                    // styleActiveLine: true,
                     lineNumbers: true,
                     tabSize: 4,
                     line: true,
                     extraKeys: {'Alt-F': 'findPersistent'},
                     autoCloseBrackets: true,
                     foldGutter: true,
-                    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
-                    // line: true,
-                    // lineWrapping: true,
-                    // theme: 'default'
+                    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+                    theme: 'default'
                 }
             }
         },
