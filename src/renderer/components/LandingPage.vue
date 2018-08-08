@@ -134,6 +134,7 @@
                 }).children
 
                 recur(zip, files)
+                // zip.writeZip('/Users/jaime/tests/temptest/temp-zip/test.zip')
                 return zip.toBuffer()
             },
             onCompileClick() {
