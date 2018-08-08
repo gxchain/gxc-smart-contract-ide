@@ -1,6 +1,6 @@
 import ut from '@/util/util.js'
 import TreeModel from 'tree-model'
-import {cloneDeep} from 'lodash'
+import {findIndex} from 'lodash'
 
 const util = {
     // 这里的files一定是一个object
@@ -25,7 +25,6 @@ const util = {
         }
         if (!file.isDirectory) {
             file.content = file.content || ''
-            file.opened = file.opened || false
         } else {
             file.expand = file.expand || true
             file.children = file.children || []
@@ -38,6 +37,8 @@ let filesTreeModel
 const state = {
     currentSelectedFile: {},
     currentOpenedFile: {},
+    // TODO change file not sync
+    openedFiles: [],
     files: {
         id: 1,
         isRoot: true,
@@ -59,11 +60,6 @@ const getters = {
 state.files = util.formatFiles(state.files)
 
 const mutations = {
-    REFRESH_FILES(state) {
-        // must use deepClone, otherwise the model will tainted
-        // by vue store which will throw error after call this function again
-        state.files = cloneDeep(filesTreeModel.model)
-    },
     APPEND_FILE(state, {target, opts = {}}) {
         let tempNode = new TreeModel()
         tempNode = tempNode.parse(util.formatFile(opts))
@@ -84,10 +80,23 @@ const mutations = {
         state.currentSelectedFile = filesTreeModel.first(idEq(node.id)).model || {}
     },
     OPEN_FILE(state, node) {
-        state.currentOpenedFile = filesTreeModel.first(idEq(node.id)).model
+        state.openedFiles.push(filesTreeModel.first(idEq(node.id)).model)
     },
-    CHANGE_CURRENT_OPENED_FILE_CONTENT(state, content) {
-        state.currentOpenedFile.content = content
+    CHANGE_CURRENT_OPENED_FILE(state, id) {
+        state.currentOpenedFile = id ? state.openedFiles.find(file => file.id === id) : {}
+    },
+    CLOSE_OPENED_FILE(state, id) {
+        const index = findIndex(state.openedFiles, file => file.id === id)
+        state.openedFiles.splice(index, 1)
+    },
+    CHANGE_CURRENT_OPENED_FILE_BY_INDEX(state, idx) {
+        state.currentOpenedFile = idx === -1 ? {} : state.openedFiles[idx]
+    },
+    CHANGE_CURRENT_OPENED_FILE_CONTENT(state, {node, content}) {
+        const target = state.openedFiles.find(file => file.id === node.id)
+        if (!!target) {
+            target.content = content
+        }
     },
     ADD_PROJECT(state, project) {
         let tempNode = new TreeModel()
@@ -112,26 +121,58 @@ const actions = {
     changeFileStatus({commit}, payload) {
         commit('CHANGE_FILE_STATUS', payload)
     },
-    removeFile({state, commit}, node) {
+    removeFile({state, commit, dispatch}, node) {
         commit('REMOVE_FILE', node)
 
-        if (node.id === state.currentOpenedFile.id) {
-            commit('OPEN_FILE', {})
+        // if any file opened, must close
+        const file = state.openedFiles.find(file => file.id === node.id)
+        if (!!file) {
+            dispatch('closeOpenedFile', file.id)
         }
     },
     selectFile({commit}, node) {
         commit('SELECT_FILE', node)
     },
     changeFileContent({commit, dispatch}, {target, content} = {}) {
-        commit('CHANGE_CURRENT_OPENED_FILE_CONTENT', content)
-        // dispatch('changeFileStatus', {node: target, opts: {content}})
+        commit('CHANGE_CURRENT_OPENED_FILE_CONTENT', {node: target, content})
+        dispatch('changeFileStatus', {node: target, opts: {content}})
     },
-    openFile({commit, dispatch}, node) {
+    openFile({commit, dispatch, state}, node) {
         if (node.isDirectory) {
             dispatch('changeFileStatus', {node, opts: {expand: !node.expand}})
         } else {
-            commit('OPEN_FILE', node)
+            if (state.openedFiles.find(file => file.id === node.id)) {
+                dispatch('changeCurrentOpenedFile', node.id)
+            } else {
+                commit('OPEN_FILE', node)
+                dispatch('changeCurrentOpenedFile', node.id)
+            }
         }
+    },
+    changeCurrentOpenedFile({commit}, id) {
+        commit('CHANGE_CURRENT_OPENED_FILE', id)
+    },
+    closeOpenedFile({commit, state, dispatch}, id) {
+        const idx = findIndex(state.openedFiles, file => file.id === id)
+        let targetIndex
+        if (idx === 0) {
+            if (state.openedFiles.length > 1) {
+                targetIndex = 0
+            } else {
+                targetIndex = -1
+            }
+        } else {
+            targetIndex = idx - 1
+        }
+        commit('CLOSE_OPENED_FILE', id)
+        // close file is current opened file
+        if (id === state.currentOpenedFile.id) {
+            // change to another opened file
+            dispatch('changeCurrentOpenedFileByIndex', targetIndex)
+        }
+    },
+    changeCurrentOpenedFileByIndex({commit, state}, idx) {
+        commit('CHANGE_CURRENT_OPENED_FILE_BY_INDEX', idx)
     }
 }
 

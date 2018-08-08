@@ -82,7 +82,6 @@
         position: relative;
         flex-grow: 0;
         flex-basis: auto;
-        flex-shrink: 0;
         z-index: 4;
 
         &.isFold{
