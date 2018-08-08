@@ -2,18 +2,9 @@
     <div class="single-layout">
         <slot></slot>
         <h3 v-if="!!name">{{name}}</h3>
-        <template v-if="type==='asset'">
+        <template v-if="type==='asset'||type==='contract_asset'">
             <Select v-model="asset_id" class="asset-select" :placeholder="$t('common.placeholder.assetType')">
                 <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}</Option>
-            </Select>
-            <Input class="asset-amount" :placeholder="$t('common.placeholder.assetAmount')" v-model="amount"/>
-        </template>
-        <template v-else-if="type==='contract_asset'">
-            <Select v-model="asset_id" class="asset-select" :placeholder="$t('common.placeholder.assetType')">
-                <!--only difference with asset is contract_asset value should be transfer to uint64  -->
-                <Option v-for="asset in formatBalances" :value="asset.id|assetIdFormat" :key="asset.id">
-                    {{ asset.symbol}}
-                </Option>
             </Select>
             <Input class="asset-amount" :placeholder="$t('common.placeholder.assetAmount')" v-model="amount"/>
         </template>
@@ -60,12 +51,6 @@
                 } else {
                     return this.value
                 }
-            }
-        },
-        filters: {
-            // asset_id 在 type 为contract_asset时需要处理为uint64型
-            assetIdFormat(value) {
-                return +value.split('.')[2]
             }
         }
     }

@@ -1,10 +1,10 @@
 <template>
     <Layout :class="{isFold:isFold}" class="infoPanel">
-        <div class="fold-trigger">
-            <Icon v-if="!isFold" @click="isFold=true" type="ios-arrow-down"/>
-            <Icon v-if="isFold" @click="isFold=false" type="ios-arrow-up"/>
-        </div>
         <Tabs class="infoPanel" type="card" :animated="false">
+            <div class="fold-trigger" slot="extra">
+                <Icon v-if="!isFold" @click="isFold=true" type="ios-arrow-down"/>
+                <Icon v-if="isFold" @click="isFold=false" type="ios-arrow-up"/>
+            </div>
             <TabPane label="LOGS">
                 <div class="logs-wrap" style="height: 100%;" @contextmenu="onLogRightClick">
                     <logs :logs="logger.logs"></logs>
@@ -84,21 +84,18 @@
         flex-basis: auto;
         z-index: 4;
 
-        &.isFold{
-            & /deep/ .ivu-tabs-content{
+        &.isFold {
+            & /deep/ .ivu-tabs-content {
                 height: 0;
             }
         }
     }
 
-    .fold-trigger{
-        position: absolute;
-        right: 10px;
-        top: 0;
-        z-index: 5;
+    .fold-trigger {
+        margin-right: 4px;
         font-size: 16px;
 
-        .ivu-icon{
+        .ivu-icon {
             padding: 8px;
             cursor: pointer;
         }

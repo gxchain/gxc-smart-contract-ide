@@ -4,26 +4,58 @@ import {
     fetch_account
 } from '@/services/WalletService'
 
-util.formatField = async function (type, value) {
-    if (type === 'account_name') {
+const handlers = {
+    'account_name': async function (value) {
         return fetch_account(value).then((account) => {
             if (!account) {
                 throw new Error(i18n.t('error.account.notFound'))
             }
             return +account.id.split('.')[2]
         })
-    } else {
+    },
+    'contract_asset': function (value) {
+        value.asset_id = +value.asset_id.split('.')[2]
+        return value
+    },
+    defaultHandler: function (value) {
         return value
     }
+}
+
+util.formatField = async function (type, value) {
+    let handler = handlers[type]
+    if (!handler) {
+        handler = handlers.defaultHandler
+    }
+
+    value = await handler(value)
+    return value
 }
 
 util.formatFields2Params = async function (fields) {
     var ret = {}
     for (const field of fields) {
-        ret[field.name] = await util.formatField(field.type, field.value)
+        if (util.isArrayType(field.type)) {
+            ret[field.name] = await Promise.all(field.value.map(val => {
+                return util.formatField(util.getSingleType(field.type), val)
+            }))
+        } else {
+            ret[field.name] = await util.formatField(field.type, field.value)
+        }
     }
-
     return ret
+}
+
+util.isArrayType = function (type) {
+    if (type.indexOf('[]') !== -1) {
+        return true
+    } else {
+        return false
+    }
+}
+
+util.getSingleType = function (type) {
+    return type.split('[')[0]
 }
 
 export default util

@@ -12,6 +12,7 @@
 <script>
     import ArrayField from './FieldType/ArrayField'
     import Single from './FieldType/Single'
+    import fieldUtil from '@/util/fieldUtil'
 
     export default {
         name: 'FieldItem',
@@ -30,11 +31,7 @@
         },
         computed: {
             isFieldArray() {
-                if (this.type.indexOf('[]') !== -1) {
-                    return true
-                } else {
-                    return false
-                }
+                return fieldUtil.isArrayType(this.type)
             }
         },
         methods: {
