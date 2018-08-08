@@ -3,14 +3,15 @@
         <Layout>
             <Header class="hd" style="height: 64px;">
                 <router-link class="logo" :to="{name:'landing-page'}"></router-link>
+                <Button @click="testAddContract">添加合约(test)</Button>
                 <div class="right">
                     <Dropdown v-if="wallets.length>0" class="accountSelect" trigger="click" @on-click="onWalletChange">
                         <account-image :account="currentWallet.account" :size="15"></account-image>
                         <span class="text">{{$t('header.account')}}</span>
                         <DropdownMenu slot="list">
                             <DropdownItem class="account-item"
-                                          :class="{'z-sel':wallet.account === currentWallet.account}"
-                                          v-for="wallet in wallets" :name="wallet.account">{{wallet.account}}
+                                    :class="{'z-sel':wallet.account === currentWallet.account}"
+                                    v-for="wallet in wallets" :name="wallet.account">{{wallet.account}}
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
@@ -58,6 +59,8 @@
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
 
+    import * as testAbi from '../../test/unit/data/abi'
+
     export default {
         name: 'gxb-wallet-2',
         components: {
@@ -78,6 +81,15 @@
             },
             onWalletChange(account) {
                 this.changeWallet(account)
+            },
+            testAddContract() {
+                debugger
+                this.$store.dispatch('ContractOperation/appendContract', {
+                    abi: testAbi.case1,
+                    from: 'lzydophin94',
+                    contractName: 'test' + new Date(),
+                    contractId: new Date() + ''
+                }, {root: true})
             }
         },
         filters: {
@@ -106,7 +118,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" type="text/scss" scoped>
     @import '@/assets/scss/sprite.scss';
 
     .logo {
@@ -154,6 +166,7 @@
         }
 
         // TODO 不生效
+
         /*& >>> .ivu-select-dropdown {*/
         /*top: 50px;*/
         /*}*/
@@ -167,10 +180,12 @@
     }
 
     .account-item {
+
         &.z-sel {
             background: rgba(40, 123, 211, .91);
             color: #fff;
         }
+
     }
 
     .status-item {
@@ -181,6 +196,7 @@
             left: -6px;
             color: #c4c3d3;
         }
+
     }
 
     .pink-lamp {

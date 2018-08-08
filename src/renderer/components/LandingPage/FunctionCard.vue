@@ -31,34 +31,11 @@
     import Fields from './Fields'
     import {mapState, mapGetters} from 'vuex'
     import serializer from '@/util/serializer'
-    import i18n from '@/locales'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {
-        call_contract,
-        fetch_account
+        call_contract
     } from '@/services/WalletService'
-
-    async function formatField(type, value) {
-        if (type === 'account_name') {
-            return fetch_account(value).then((account) => {
-                if (!account) {
-                    throw new Error(i18n.t('error.account.notFound'))
-                }
-                return +account.id.split('.')[2]
-            })
-        } else {
-            return value
-        }
-    }
-
-    async function formatFields2Params(fields) {
-        var ret = {}
-        for (const field of fields) {
-            ret[field.name] = await formatField(field.type, field.value)
-        }
-
-        return ret
-    }
+    import fieldUtil from '@/util/fieldUtil'
 
     export default {
         name: 'FunctionCard',
@@ -137,7 +114,7 @@
                     let data
                     var fields = this.$refs.fields.getFields()
                     try {
-                        params = await formatFields2Params(fields)
+                        params = await fieldUtil.formatFields2Params(fields)
                         data = serializer.serializeCallData(this.name, params, this.abi).toString('hex')
                     } catch (ex) {
                         this.$eventBus.$emit('log:push', {
@@ -167,7 +144,7 @@
             },
             async onCallOk() {
                 var fields = this.$refs.fields.getFields()
-                const params = await formatFields2Params(fields)
+                const params = await fieldUtil.formatFields2Params(fields)
                 const data = serializer.serializeCallData(this.name, params, this.abi).toString('hex')
                 call_contract(this.currentWallet.account, this.contractName, {
                     'method_name': this.name,
