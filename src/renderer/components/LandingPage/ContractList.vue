@@ -1,10 +1,10 @@
 <template>
     <div class="contractList-layout">
-        <h3 class="layout-title">{{$t('contract.listTitle')}} <Icon type="ios-add" @click="onContractImportClick"></Icon></h3>
+        <h3 class="layout-title">{{$t('contract.listTitle')}} <Icon type="md-add" @click="onContractImportClick"></Icon></h3>
         <div class="contract" v-for="contract in contracts">
             <p class="title">
                 {{contract.contractName}}
-                <Icon type="ios-close" @click="onContractRemoveClick(contract)"></Icon>
+                <Icon type="md-close" @click="onContractRemoveClick(contract)"></Icon>
             </p>
             <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi" :contractName="contract.contractName"
                            :name="f.name"
@@ -152,8 +152,8 @@
     }
 </script>
 
-<style scoped lang="scss">
-    .ivu-icon-close {
+<style scoped type="text/scss" lang="scss">
+    .ivu-icon-md-close {
         display: none;
         float: right;
         padding: 5px;
@@ -162,7 +162,7 @@
 
     .contract {
         &:hover {
-            .ivu-icon-close {
+            .ivu-icon-md-close {
                 display: block;
             }
         }

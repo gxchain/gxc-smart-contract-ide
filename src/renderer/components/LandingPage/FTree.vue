@@ -1,7 +1,7 @@
 <template>
     <div class="filetree-layout">
         <div class="bar">
-            <Icon type="ios-add" @click="onAddProjectClick"></Icon>
+            <Icon type="md-add" @click="onAddProjectClick"></Icon>
             <span>{{$t('files.addProject')}}</span>
         </div>
         <div class="files-wrap">
