@@ -36,8 +36,7 @@ const locale = {
     connect: {
         'success': 'Entry point connect success',
         'closed': 'Entry point connect closed',
-        'error': 'Entry point connect error,now is trying to reconnect',
-        'reconnectFail': 'Reconnect failed,please trying switch to another entry point'
+        'error': 'Entry point connect error'
     },
     apiServer: {
         messages: {

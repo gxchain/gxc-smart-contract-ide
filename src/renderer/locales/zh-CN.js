@@ -36,8 +36,7 @@ const locale = {
     connect: {
         'success': '接入点连接成功',
         'closed': '接入点连接关闭',
-        'error': '接入点连接出错，正在尝试重连',
-        'reconnectFail': '重连失败，请尝试更换其他接入点'
+        'error': '接入点连接出错'
     },
     apiServer: {
         messages: {

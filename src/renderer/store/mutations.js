@@ -44,6 +44,10 @@ mutations.UPDATE_ASSETS = (state, assets) => {
     state.assets = assets
 }
 
+mutations.CHANGE_CURRENT_APISERVER_STATUS = (state, status) => {
+    state.currentApiServerStatus = status
+}
+
 mutations.UPDATE_API_SERVERS_LATENCY = (state, latencies) => {
     state.apiServers.forEach((node) => {
         const latency = latencies[node.url]

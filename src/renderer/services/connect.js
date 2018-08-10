@@ -3,7 +3,6 @@ import store from '@/store'
 import Vue from 'vue'
 // import va from '@/util/vue-agency'
 
-let errCount = 0
 let tempVue = new Vue()
 
 let connect = function (callback = function () {
@@ -19,28 +18,22 @@ let connect = function (callback = function () {
 }
 
 let reconnect = function () {
-    Apis.reset(store.state.currentApiServer.url, true)
+    connect()
 }
 
 // websocket 状态处理
 // 如果处于'error'的连接状态，过一段时间会自动调用回调
 Apis.setRpcConnectionStatusCallback(function (status) {
     console.log('Witness status:', status)
+    store.commit('CHANGE_CURRENT_APISERVER_STATUS', status)
 
     if (status == 'open') {
-        errCount = 0
         tempVue.$eventBus.$emit('connect:open')
     }
-
-    if (status == 'error') { // 出错重连
-        errCount++
-        if (errCount <= 1) {
-            tempVue.$eventBus.$emit('connect:error')
-            reconnect()
-        } else {
-            tempVue.$eventBus.$emit('connect:reconnectFail')
-        }
+    if (status == 'error') {
+        tempVue.$eventBus.$emit('connect:error')
     }
+
     if (status === 'closed') {
         tempVue.$eventBus.$emit('connect:closed')
     }

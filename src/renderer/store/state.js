@@ -10,6 +10,7 @@ const state = {
         latency: '?'
     }],
     currentApiServer: {},
+    currentApiServerStatus: 'closed',
     compileServers: [{
         url: 'http://192.168.1.118:3000'
     }],
