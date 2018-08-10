@@ -6,7 +6,6 @@ const actions = {}
 
 actions.setLang = ({commit}, lang) => {
     commit('SET_LANG', lang)
-    location.reload()
 }
 
 actions.appendWallet = ({dispatch, commit, state}, wallet) => {
