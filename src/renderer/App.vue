@@ -125,13 +125,14 @@
         display: inline-block;
         width: 113px;
         height: 32px;
-        margin-top: 12px;
+        margin-top: 20px;
         background-size: cover;
 
         background: url('~logo.svg');
     }
 
     .hd {
+        -webkit-app-region: drag;
         background: url('~top-banner.png');
         background-size: 100%;
         background-repeat: no-repeat;

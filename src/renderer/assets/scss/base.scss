@@ -5,3 +5,7 @@
 body{
   overflow: hidden;
 }
+
+*, *::after, *::before {
+  -webkit-user-select: none;
+}
