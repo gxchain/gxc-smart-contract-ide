@@ -92,6 +92,7 @@ const locale = {
             name: '合约名称',
             entryFile: '入口文件',
             deployAccount: '部署账户',
+            callAccount: '调用账户',
             costType: '消耗资产类型',
             costAmount: '消耗数额',
             methodName: '调用方法',

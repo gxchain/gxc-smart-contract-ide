@@ -64,6 +64,7 @@
     "fs-extra": "^7.0.0",
     "gxbjs": "gxchain/gxbjs#master",
     "gxbjs-ws": "^1.1.18",
+    "gxc-frontend-base": "gxchain/gxc-frontend-base#master",
     "iview": "^3.0.0",
     "jdenticon": "^2.1.0",
     "lodash": "^4.17.10",

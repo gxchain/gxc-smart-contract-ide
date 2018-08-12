@@ -1,14 +1,24 @@
 <template>
     <div class="contractList-layout">
-        <h3 class="layout-title">{{$t('contract.listTitle')}} <Icon type="md-add" @click="onContractImportClick"></Icon></h3>
-        <div class="contract" v-for="contract in contracts">
-            <p class="title">
-                {{contract.contractName}}
-                <Icon type="md-close" @click="onContractRemoveClick(contract)"></Icon>
-            </p>
-            <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi" :contractName="contract.contractName"
-                           :name="f.name"
-                           :fields="f.fields"></function-card>
+        <h3 class="layout-title">{{$t('contract.listTitle')}}
+            <Icon type="md-add" @click="onContractImportClick"></Icon>
+        </h3>
+        <div class="contract-wrap">
+            <Collapse v-for="contract in contracts" value="1">
+                <Panel name="1">
+                    <div class="f-toe" :title="contract.contractName"
+                            style="display:inline-block;width:210px;vertical-align: middle;">
+                        {{contract.contractName}}
+                    </div>
+                    <Icon type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
+                    <div slot="content">
+                        <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi"
+                                :contractName="contract.contractName"
+                                :name="f.name"
+                                :fields="f.fields"></function-card>
+                    </div>
+                </Panel>
+            </Collapse>
         </div>
     </div>
 </template>
@@ -57,7 +67,8 @@
         },
         methods: {
             ...mapActions('ContractOperation', ['removeContract', 'appendContract']),
-            onContractRemoveClick(contract) {
+            onContractRemoveClick(evt, contract) {
+                evt.stopPropagation()
                 this.$Modal.confirm({
                     title: this.$t('contract.title.removeContract'),
                     content: this.$t('contract.content.removeContract'),
@@ -153,19 +164,30 @@
 </script>
 
 <style scoped type="text/scss" lang="scss">
-    .ivu-icon-md-close {
-        display: none;
-        float: right;
-        padding: 5px;
-        cursor: pointer;
+    .ivu-collapse {
+        margin-top: 20px;
+        border: 0;
+        border-radius: 0;
+        border-top: 2px solid #6699ff;
+        background: #32395e;
     }
 
-    .contract {
-        &:hover {
-            .ivu-icon-md-close {
-                display: block;
-            }
+    .contractList-layout /deep/ .ivu-collapse>.ivu-collapse-item.ivu-collapse-item-active>.ivu-collapse-header{
+        border-bottom: 1px solid rgb(21, 25, 53);
+    }
+
+    .functionCard-layout {
+        &:first-child {
+            margin-top: 0;
         }
+    }
+
+    .contractList-layout /deep/ .ivu-collapse-content {
+        background: #32395e;
+    }
+
+    .contractList-layout /deep/ .ivu-collapse-header {
+        color: #c4c3d3;
     }
 
     .title {
@@ -196,12 +218,5 @@
     .layout-title {
         color: white;
         font-size: 14px;
-    }
-
-    .contract {
-        margin-top: 20px;
-        border-top: 2px solid #6699ff;
-        padding: 18px 20px 25px;
-        background: #32395e;
     }
 </style>

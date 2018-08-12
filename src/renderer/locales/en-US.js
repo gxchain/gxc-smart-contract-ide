@@ -92,6 +92,7 @@ const locale = {
             name: 'Contract Name',
             entryFile: 'Entry File',
             deployAccount: 'Deploy Account',
+            callAccount: 'Call Account',
             costType: 'Cost Type',
             costAmount: 'Cost Amount',
             methodName: 'Method Name',

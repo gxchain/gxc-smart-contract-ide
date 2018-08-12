@@ -38,15 +38,21 @@
         <Layout>
             <Footer class="layout-footer">
                 <div class="status-item">
-                    <i class="pink-lamp"></i>
+                    <i class="blue-lamp"></i>
                     <Tooltip :content="currentCompileServer.url" placement="top">
                         <a class="text">{{$t('statusbar.currentCompileServer')}}</a>
                     </Tooltip>
                 </div>
                 <div class="status-item">
-                    <i class="blue-lamp"></i>
-                    <Tooltip :content="currentApiServer.url" placement="top">
+                    <i v-if="currentApiServerStatus==='open'" class="blue-lamp"></i>
+                    <i v-if="currentApiServerStatus!=='open'" class="pink-lamp"></i>
+                    <Tooltip placement="top">
                         <a class="text">{{$t('statusbar.currentApiServer')}}</a>
+                        <div slot="content">
+                            <Button v-if="currentApiServerStatus!=='open'" type="error" size="small" shape="circle" icon="md-refresh"
+                                    @click="onReconnectClick"></Button>
+                            {{currentApiServer.url}}
+                        </div>
                     </Tooltip>
                 </div>
             </Footer>
@@ -58,6 +64,7 @@
     import {mapActions, mapState} from 'vuex'
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
+    import {reconnect} from '@/services/connect'
 
     import * as testAbi from '../../test/unit/data/abi'
 
@@ -67,7 +74,7 @@
             AccountImage
         },
         computed: {
-            ...mapState(['wallets', 'currentWallet', 'lang', 'currentCompileServer', 'currentApiServer'])
+            ...mapState(['wallets', 'currentWallet', 'lang', 'currentCompileServer', 'currentApiServer', 'currentApiServerStatus'])
         },
         data() {
             return {
@@ -77,13 +84,16 @@
         methods: {
             ...mapActions(['updateCurrentBalancesAndAssets', 'setLang', 'changeWallet']),
             onLanguageSelect(lang) {
+                this.$i18n.locale = lang
                 this.setLang(lang)
             },
             onWalletChange(account) {
                 this.changeWallet(account)
             },
+            onReconnectClick() {
+                reconnect()
+            },
             testAddContract() {
-                debugger
                 this.$store.dispatch('ContractOperation/appendContract', {
                     abi: testAbi.case1,
                     from: 'lzydophin94',
@@ -109,10 +119,6 @@
 
             this.$eventBus.$on('connect:error', () => {
                 this.$Message.error(this.$t('connect.error'))
-            }, this)
-
-            this.$eventBus.$on('connect:reconnectFail', () => {
-                this.$Message.error(this.$t('connect.reconnectFail'))
             }, this)
         }
     }
