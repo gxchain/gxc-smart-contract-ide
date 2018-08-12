@@ -12,4 +12,17 @@ getters.formatBalances = state => {
     })
 }
 
+getters.assetMap = state => {
+    const map = {}
+    state.balances.forEach((balance, i) => {
+        var asset = state.assets[i]
+        map[asset.id] = {
+            symbol: asset.symbol,
+            precision: asset.precision
+        }
+    })
+
+    return map
+}
+
 export default getters

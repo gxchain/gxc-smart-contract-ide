@@ -191,7 +191,9 @@ const call_contract = (from, target, act, fee_id, password, broadcast = true, am
                 }
 
                 if (!!amount.amount) {
-                    opts.amount = amount
+                    let computedAmount
+                    computedAmount = amount.amount * gxcUtil.accMult(amount.amount, Math.pow(10, store.getters.assetMap[amount.asset_id].precision))
+                    opts.amount = {...amount, amount: computedAmount}
                 }
                 tr.add_operation(tr.get_type_operation('call_contract', opts))
                 return process_transaction(tr, from, password, broadcast)

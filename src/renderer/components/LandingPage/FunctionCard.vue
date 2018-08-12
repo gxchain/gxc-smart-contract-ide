@@ -17,11 +17,13 @@
                 @on-ok="onCallOk">
             <Form class="pure-text-form" label-position="left" :label-width="120">
                 <FormItem :label="$t('contract.label.name')">{{contractName}}</FormItem>
-                <FormItem :label="$t('contract.label.deployAccount')">{{currentWallet.account}}</FormItem>
+                <FormItem :label="$t('contract.label.callAccount')">{{currentWallet.account}}</FormItem>
                 <FormItem :label="$t('contract.label.methodName')">{{name}}</FormItem>
                 <FormItem style="word-break: break-all" :label="$t('contract.label.params')">{{callParams}}</FormItem>
-                <FormItem v-if="amount.amount" :label="$t('contract.label.carryAmount')">{{amount.asset_id|assetId2Symbol}},  {{amount.amount}}</FormItem>
-                <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}},  {{fee}}</FormItem>
+                <FormItem v-if="amount.amount" :label="$t('contract.label.carryAmount')">
+                    {{amount.asset_id|assetId2Symbol}}, {{amount.amount}}
+                </FormItem>
+                <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}}, {{fee}}</FormItem>
             </Form>
         </Modal>
     </div>

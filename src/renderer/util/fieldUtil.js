@@ -1,5 +1,6 @@
 const util = {}
 import i18n from '@/locales'
+import store from '@/store'
 import {
     fetch_account
 } from '@/services/WalletService'
@@ -14,7 +15,12 @@ const handlers = {
         })
     },
     'contract_asset': function (value) {
+        value.amount = gxcUtil.accMult(value.amount, Math.pow(10, store.getters.assetMap[value.asset_id].precision))
         value.asset_id = +value.asset_id.split('.')[2]
+        return value
+    },
+    'asset': function (value) {
+        value.amount = gxcUtil.accMult(value.amount, Math.pow(10, store.getters.assetMap[value.asset_id].precision))
         return value
     },
     defaultHandler: function (value) {
