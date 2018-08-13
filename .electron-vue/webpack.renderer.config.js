@@ -43,7 +43,11 @@ let rendererConfig = {
                 }
             },
             // use lodash template engine
-            { test: /\.ejs$/, loader: 'ejs-loader' },
+            {
+                test: /\.ejs$/,
+                loader: 'raw-loader',
+                exclude: /index\.ejs/
+            },
             {
                 test: /\.scss$/,
                 use: [
@@ -66,7 +70,9 @@ let rendererConfig = {
             },
             {
                 test: /\.js$/,
-                use: 'babel-loader',
+                use: {
+                    loader: 'babel-loader'
+                },
                 exclude: /node_modules/
             },
             {
@@ -81,7 +87,13 @@ let rendererConfig = {
                         extractCSS: process.env.NODE_ENV === 'production',
                         loaders: {
                             sass: 'vue-style-loader!css-loader!postcss-loader!sass-loader?indentedSyntax=1',
-                            scss: 'vue-style-loader!css-loader!postcss-loader!sass-loader'
+                            scss: 'vue-style-loader!css-loader!postcss-loader!sass-loader',
+                            js: [{
+                                loader: 'babel-loader',
+                                options: {
+                                    forceEnv: 'renderer'
+                                }
+                            }]
                         }
                     }
                 }
