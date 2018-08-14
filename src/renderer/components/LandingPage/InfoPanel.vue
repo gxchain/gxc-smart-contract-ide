@@ -71,7 +71,7 @@
         },
         methods: {
             onLogRightClick() {
-                this.menu.popup()
+                this.menu.popup(remote.getCurrentWindow())
             }
         }
     }

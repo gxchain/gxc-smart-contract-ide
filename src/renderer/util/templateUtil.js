@@ -6,11 +6,12 @@ import {template} from 'lodash'
 const util = {}
 // TODO cannot use ejs loader, other wise there will be exception in production env
 const helloTpl = require.context('@/template/hello', true, /\.ejs$/)
-const transferTpl = require.context('@/template/transfer', true, /\.ejs$/)
+const bankTpl = require.context('@/template/bank', true, /\.ejs$/)
+const redpacketTpl = require.context('@/template/redpacket', true, /\.ejs$/)
 // import meta files
 const metaFiles = require.context('@/template', true, /meta\.js$/)
 
-const tplMap = {helloTpl, transferTpl}
+const tplMap = {helloTpl, bankTpl, redpacketTpl}
 // {hello:{title:'hello'...}}
 const metaMap = {}
 

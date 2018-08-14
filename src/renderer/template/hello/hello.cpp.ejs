@@ -1,20 +1,20 @@
-#include <gxblib/contract.hpp>
-#include <gxblib/dispatcher.hpp>
-#include <gxblib/print.hpp>
-#include <gxblib/types.h>
+#include <graphenelib/contract.hpp>
+#include <graphenelib/dispatcher.hpp>
+#include <graphenelib/print.hpp>
+#include <graphenelib/types.h>
 
 using namespace graphene;
 
-class hello : public contract
+class helloworld : public contract
 {
   public:
-    hello(account_name n)
-        : contract(n)
+    helloworld(uint64_t id)
+        : contract(id)
     {
     }
 
     /// @abi action
-    void hi(account_name user)
+    void hi(std::string user)
     {
         for (int i = 0; i < 2; ++i) {
             print("hi, ", user, "\n");
@@ -22,4 +22,4 @@ class hello : public contract
     }
 };
 
-GXB_ABI(hello, (hi))
+GRAPHENE_ABI(helloworld, (hi))

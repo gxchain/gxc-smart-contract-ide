@@ -112,7 +112,7 @@
                         this.showRemoveFileModal(data)
                     }
                 }))
-                directoryMenu.popup()
+                directoryMenu.popup(remote.getCurrentWindow())
             },
             popupDirectoryMenu(data) {
                 const directoryMenu = new Menu()

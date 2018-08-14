@@ -1,5 +1,5 @@
 export default {
-    title: 'transfer',
+    title: 'bank',
     description: 'This is a simple transfer contract template',
-    entry: 'transfer.cpp'
+    entry: 'bank.cpp'
 }
