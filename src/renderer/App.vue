@@ -37,6 +37,12 @@
         </keep-alive>
         <Layout>
             <Footer class="layout-footer f-cf">
+                <div class="f-fl">
+                    <div class="status-item">
+                        <Icon type="md-document"></Icon>
+                        <a class="text" @click="onDocumentClick">{{$t('statusbar.document')}}</a>
+                    </div>
+                </div>
                 <div class="f-fr">
                     <div class="status-item">
                         <i class="blue-lamp"></i>
@@ -65,6 +71,7 @@
 
 <script>
     import {mapActions, mapState} from 'vuex'
+    import {ipcRenderer} from 'electron'
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
@@ -96,6 +103,9 @@
             onReconnectClick() {
                 reconnect()
             },
+            onDocumentClick() {
+                ipcRenderer.send('loadDocumentWindow')
+            },
             testAddContract() {
                 this.$store.dispatch('ContractOperation/appendContract', {
                     abi: testAbi.case1,
@@ -123,12 +133,16 @@
             this.$eventBus.$on('connect:error', () => {
                 this.$Message.error(this.$t('connect.error'))
             }, this)
+        },
+        mounted() {
+            const animationEntry = document.getElementById('entry-animation-wrap')
+            animationEntry.classList.add('z-hide')
         }
     }
 </script>
 
 <style lang="scss" type="text/scss" scoped>
-    @import '@scss/sprite.scss';
+    @import '@styles/sprite.scss';
 
     .logo {
         display: inline-block;

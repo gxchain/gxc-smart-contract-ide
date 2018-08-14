@@ -8,16 +8,22 @@ import filters from '@/filters'
 import iviewLocales from 'iview/dist/locale/en-US'
 import '@/assets/icons'
 import {connect} from './services/connect'
+import {webFrame} from 'electron'
 
 import App from './App'
 
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import '@styles/base.scss'
+import '@styles/entryAnimation.scss'
 
 import eventBus from '@/plugins/eventBus'
 
 import TreeView from 'vue-json-tree-view'
+
+// disable pinch
+webFrame.setVisualZoomLevelLimits(1, 1)
+webFrame.setLayoutZoomLevelLimits(0, 0)
 
 // 建立rpc连接
 store.dispatch('updateApiServers').then(() => {

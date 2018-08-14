@@ -111,7 +111,8 @@ function createWindow() {
         height: 696,
         useContentSize: true,
         width: 1180,
-        titleBarStyle: 'hidden'
+        titleBarStyle: 'hidden',
+        backgroundColor: '#000'
     })
 
     mainWindow.loadURL(winURL)

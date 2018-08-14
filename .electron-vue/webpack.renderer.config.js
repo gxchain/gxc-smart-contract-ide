@@ -50,14 +50,10 @@ let rendererConfig = {
             },
             {
                 test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    {
-                        loader: 'sass-loader'
-                    }
-                ]
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'postcss-loader', 'sass-loader']
+                })
             },
             {
                 test: /\.css$/,
@@ -142,7 +138,7 @@ let rendererConfig = {
             },
             target: {
                 image: path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest/sprite.png'),
-                css: path.resolve(__dirname, '../src/renderer/assets/scss/sprite.scss')
+                css: path.resolve(__dirname, '../src/renderer/assets/styles/sprite.scss')
             },
             apiOptions: {
                 cssImageRef: "~sprite.png"
@@ -172,7 +168,8 @@ let rendererConfig = {
     resolve: {
         alias: {
             '@': path.join(__dirname, '../src/renderer'),
-            '@scss': path.join(__dirname, '../src/renderer/assets/scss'),
+            '@styles': path.join(__dirname, '../src/renderer/assets/styles'),
+            '@images': path.join(__dirname, '../src/renderer/assets/images'),
             'vue$': 'vue/dist/vue.esm.js'
         },
         modules: ["node_modules", path.resolve(__dirname, '../src/renderer/assets/images'), path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest')],
