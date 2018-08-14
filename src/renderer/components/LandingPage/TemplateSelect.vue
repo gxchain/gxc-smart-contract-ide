@@ -2,13 +2,13 @@
     <div class="template-select-layout">
         <Row>
             <Col v-for="meta in metas" span="6" offset="2">
-            <Poptip trigger="hover" word-wrap :content="meta.description">
-                <Card title="" :class="{selected:selected.title===meta.title}" style="text-align: center">
-                    <div class="cnt" @click="onTemplateClick(meta)">
-                        {{meta.title}}
-                    </div>
-                </Card>
-            </Poptip>
+                <Poptip trigger="hover" word-wrap :content="meta.description">
+                    <Card title="" :class="{selected:selected.title===meta.title}" style="text-align: center">
+                        <div class="cnt" @click="onTemplateClick(meta)">
+                            {{meta.title}}
+                        </div>
+                    </Card>
+                </Poptip>
             </Col>
         </Row>
     </div>
