@@ -91,7 +91,13 @@
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.addFile'),
                     click: () => {
-                        this.appendFile({target: data})
+                        this.showEditFileNameModal({
+                            name: '',
+                            title: this.$t('files.addFile'),
+                            callback: (name) => {
+                                this.appendFile({target: data, opts: {title: name}})
+                            }
+                        })
                     }
                 }))
                 directoryMenu.append(new MenuItem({
@@ -103,7 +109,13 @@
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.title.editFileName'),
                     click: () => {
-                        this.showEditFileNameModal(data)
+                        this.showEditFileNameModal({
+                            name: data.title,
+                            title: this.$t('files.title.editFileName'),
+                            callback: (name) => {
+                                this.changeFileStatus({node: data, opts: {title: name}})
+                            }
+                        })
                     }
                 }))
                 directoryMenu.append(new MenuItem({
@@ -166,8 +178,7 @@
                     }
                 })
             },
-            showEditFileNameModal(data) {
-                const that = this
+            showEditFileNameModal({title, name, callback}) {
                 const rules = {
                     name: [
                         {
@@ -187,7 +198,7 @@
                 }
 
                 let model = {
-                    name: data.title
+                    name: name
                 }
 
                 function handleInput(val) {
@@ -195,7 +206,7 @@
                 }
 
                 this.$Modal.confirm({
-                    title: this.$t('files.title.editFileName'),
+                    title: title,
                     loading: true,
                     render: (h) => {
                         return (
@@ -211,7 +222,7 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                that.changeFileStatus({node: data, opts: {title: model.name}})
+                                callback(model.name)
                             } else {
                                 this.buttonLoading = false
                             }
@@ -292,9 +303,10 @@
                             on-contextmenu={this.popupDirectoryMenu.bind(this, data)}>
                             <Icon type="ios-folder-outline" style={{
                                 marginRight: '8px',
-                                color: 'white'
+                                color: 'white',
+                                'vertical-align': 'middle'
                             }}/>
-                            <span>{data.title}</span>
+                            <span style={{'vertical-align': 'middle'}}>{data.title}</span>
                         </div>
                     )
                 } else {
@@ -305,9 +317,10 @@
                             on-contextmenu={this.popupFileMenu.bind(this, data)}>
                             <Icon type="ios-paper-outline" style={{
                                 marginRight: '8px',
-                                color: 'white'
+                                color: 'white',
+                                'vertical-align': 'middle'
                             }}/>
-                            <span>{data.title}</span>
+                            <span style={{'vertical-align': 'middle'}}>{data.title}</span>
                         </div>
                     )
                 }
@@ -327,6 +340,7 @@
 
 <style lang="scss" type="text/scss" scoped>
     @import '@styles/_variable.scss';
+
     .files-wrap {
         overflow: auto;
     }
@@ -345,7 +359,7 @@
     }
 
     .filetree-layout /deep/ .fileItem.selected {
-        color:$base-color;
+        color: $base-color;
     }
 
     .filetree-layout /deep/ .ivu-tree-arrow {

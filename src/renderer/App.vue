@@ -3,7 +3,7 @@
         <Layout>
             <Header class="hd" style="height: 64px;">
                 <router-link class="logo" :to="{name:'landing-page'}"></router-link>
-                <Button @click="testAddContract">添加合约(test)</Button>
+                <!--<Button @click="testAddContract">添加合约(test)</Button>-->
                 <div class="right">
                     <Dropdown v-if="wallets.length>0" class="accountSelect" trigger="click" @on-click="onWalletChange">
                         <account-image :account="currentWallet.account" :size="15"></account-image>
@@ -76,7 +76,7 @@
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
 
-    import * as testAbi from '../../test/unit/data/abi'
+    // import * as testAbi from '../../test/unit/data/abi'
 
     export default {
         name: 'gxb-wallet-2',
@@ -105,15 +105,15 @@
             },
             onDocumentClick() {
                 ipcRenderer.send('loadDocumentWindow')
-            },
-            testAddContract() {
-                this.$store.dispatch('ContractOperation/appendContract', {
-                    abi: testAbi.case1,
-                    from: 'lzydophin94',
-                    contractName: 'test' + new Date(),
-                    contractId: new Date() + ''
-                }, {root: true})
             }
+            // testAddContract() {
+            //     this.$store.dispatch('ContractOperation/appendContract', {
+            //         abi: testAbi.case1,
+            //         from: 'lzydophin94',
+            //         contractName: 'test' + new Date(),
+            //         contractId: new Date() + ''
+            //     }, {root: true})
+            // }
         },
         filters: {
             'iconclass': (lang) => {
