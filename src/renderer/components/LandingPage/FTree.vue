@@ -146,7 +146,7 @@
                         this.showRemoveFileModal(data)
                     }
                 }))
-                directoryMenu.popup()
+                directoryMenu.popup(remote.getCurrentWindow())
             },
             showRemoveFileModal(data) {
                 let title
@@ -325,7 +325,8 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" type="text/scss" scoped>
+    @import '@styles/_variable.scss';
     .files-wrap {
         overflow: auto;
     }
@@ -344,7 +345,7 @@
     }
 
     .filetree-layout /deep/ .fileItem.selected {
-        background: blue;
+        color:$base-color;
     }
 
     .filetree-layout /deep/ .ivu-tree-arrow {
