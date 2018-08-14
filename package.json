@@ -60,6 +60,7 @@
     "adm-zip": "^0.4.11",
     "axios": "^0.16.1",
     "bluebird": "^3.5.1",
+    "bourbon": "^5.1.0",
     "bytebuffer": "^5.0.1",
     "fs-extra": "^7.0.0",
     "gxbjs": "gxchain/gxbjs#master",

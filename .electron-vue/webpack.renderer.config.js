@@ -54,7 +54,9 @@ let rendererConfig = {
                     'style-loader',
                     'css-loader',
                     'postcss-loader',
-                    'sass-loader'
+                    {
+                        loader: 'sass-loader'
+                    }
                 ]
             },
             {
@@ -170,6 +172,7 @@ let rendererConfig = {
     resolve: {
         alias: {
             '@': path.join(__dirname, '../src/renderer'),
+            '@scss': path.join(__dirname, '../src/renderer/assets/scss'),
             'vue$': 'vue/dist/vue.esm.js'
         },
         modules: ["node_modules", path.resolve(__dirname, '../src/renderer/assets/images'), path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest')],

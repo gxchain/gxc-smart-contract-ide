@@ -36,24 +36,27 @@
             <router-view></router-view>
         </keep-alive>
         <Layout>
-            <Footer class="layout-footer">
-                <div class="status-item">
-                    <i class="blue-lamp"></i>
-                    <Tooltip :content="currentCompileServer.url" placement="top">
-                        <a class="text">{{$t('statusbar.currentCompileServer')}}</a>
-                    </Tooltip>
-                </div>
-                <div class="status-item">
-                    <i v-if="currentApiServerStatus==='open'" class="blue-lamp"></i>
-                    <i v-if="currentApiServerStatus!=='open'" class="pink-lamp"></i>
-                    <Tooltip placement="top">
-                        <a class="text">{{$t('statusbar.currentApiServer')}}</a>
-                        <div slot="content">
-                            <Button v-if="currentApiServerStatus!=='open'" type="error" size="small" shape="circle" icon="md-refresh"
-                                    @click="onReconnectClick"></Button>
-                            {{currentApiServer.url}}
-                        </div>
-                    </Tooltip>
+            <Footer class="layout-footer f-cf">
+                <div class="f-fr">
+                    <div class="status-item">
+                        <i class="blue-lamp"></i>
+                        <Tooltip :content="currentCompileServer.url" placement="top">
+                            <a class="text">{{$t('statusbar.currentCompileServer')}}</a>
+                        </Tooltip>
+                    </div>
+                    <div class="status-item">
+                        <i v-if="currentApiServerStatus==='open'" class="blue-lamp"></i>
+                        <i v-if="currentApiServerStatus!=='open'" class="pink-lamp"></i>
+                        <Tooltip placement="top">
+                            <a class="text">{{$t('statusbar.currentApiServer')}}</a>
+                            <div slot="content">
+                                <Button v-if="currentApiServerStatus!=='open'" type="error" size="small" shape="circle"
+                                        icon="md-refresh"
+                                        @click="onReconnectClick"></Button>
+                                {{currentApiServer.url}}
+                            </div>
+                        </Tooltip>
+                    </div>
                 </div>
             </Footer>
         </Layout>
@@ -125,7 +128,7 @@
 </script>
 
 <style lang="scss" type="text/scss" scoped>
-    @import '@/assets/scss/sprite.scss';
+    @import '@scss/sprite.scss';
 
     .logo {
         display: inline-block;
@@ -196,8 +199,7 @@
     }
 
     .status-item {
-        float: right;
-
+        display: inline-block;
         .text {
             position: relative;
             left: -6px;
