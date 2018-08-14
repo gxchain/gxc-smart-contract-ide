@@ -2,11 +2,13 @@
     <div class="template-select-layout">
         <Row>
             <Col v-for="meta in metas" span="6" offset="2">
-            <Card title="" :class="{selected:selected.title===meta.title}" style="text-align: center">
-                <div class="cnt" @click="onTemplateClick(meta)">
-                    {{meta.title}}
-                </div>
-            </Card>
+            <Poptip trigger="hover" word-wrap :content="meta.description">
+                <Card title="" :class="{selected:selected.title===meta.title}" style="text-align: center">
+                    <div class="cnt" @click="onTemplateClick(meta)">
+                        {{meta.title}}
+                    </div>
+                </Card>
+            </Poptip>
             </Col>
         </Row>
     </div>
@@ -36,9 +38,23 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" type="text/scss" scoped>
     .template-select-layout /deep/ .ivu-card-body {
         padding: 0;
+    }
+
+    .template-select-layout{
+        & /deep/ .ivu-poptip{
+            width: 100%;
+        }
+
+        & /deep/ .ivu-poptip-rel{
+            width: 100%;
+        }
+
+        & /deep/ .ivu-card{
+            width: 100%;
+        }
     }
 
     .cnt {
