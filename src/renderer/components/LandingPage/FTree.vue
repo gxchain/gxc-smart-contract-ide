@@ -100,12 +100,13 @@
                         })
                     }
                 }))
-                directoryMenu.append(new MenuItem({
-                    label: this.$t('files.addFolder'),
-                    click: () => {
-                        this.appendFile({target: data, opts: {isDirectory: true}})
-                    }
-                }))
+                // gxx-server not support multi layer directory briefly
+                // directoryMenu.append(new MenuItem({
+                //     label: this.$t('files.addFolder'),
+                //     click: () => {
+                //         this.appendFile({target: data, opts: {isDirectory: true}})
+                //     }
+                // }))
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.title.editFileName'),
                     click: () => {
@@ -134,12 +135,13 @@
                         this.appendFile({target: data})
                     }
                 }))
-                directoryMenu.append(new MenuItem({
-                    label: this.$t('files.addFolder'),
-                    click: () => {
-                        this.appendFile({target: data, opts: {isDirectory: true}})
-                    }
-                }))
+                // gxx-server not support multi layer directory briefly
+                // directoryMenu.append(new MenuItem({
+                //     label: this.$t('files.addFolder'),
+                //     click: () => {
+                //         this.appendFile({target: data, opts: {isDirectory: true}})
+                //     }
+                // }))
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.title.editDirectoryName'),
                     click: () => {
@@ -356,6 +358,7 @@
         padding-left: 20px;
         width: 100%;
         box-sizing: border-box;
+        cursor: pointer;
     }
 
     .filetree-layout /deep/ .fileItem.selected {
