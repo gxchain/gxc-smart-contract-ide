@@ -1,6 +1,6 @@
 'use strict'
 
-import {app, BrowserWindow, Menu, dialog} from 'electron'
+import {app, BrowserWindow, Menu, dialog, ipcMain} from 'electron'
 import filesUtil from './util/filesUtil'
 
 /**
@@ -12,6 +12,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
+let documentWindow
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
@@ -118,6 +119,24 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow = null
     })
+
+    ipcMain.on('loadDocumentWindow', loadDocumentWindow.bind(this, mainWindow))
+}
+
+function loadDocumentWindow(parent) {
+    if (!documentWindow) {
+        documentWindow = new BrowserWindow({
+            height: 500,
+            width: 1000,
+            parent: parent
+        })
+
+        documentWindow.loadURL('https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md')
+
+        documentWindow.on('closed', () => {
+            documentWindow = null
+        })
+    }
 }
 
 app.on('ready', () => {

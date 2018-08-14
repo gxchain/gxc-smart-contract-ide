@@ -276,7 +276,7 @@
 </script>
 
 <style lang="scss" type="text/scss" scoped>
-    @import '@/assets/scss/sprite.scss';
+    @import '@styles/sprite.scss';
 
     .layout-container {
         height: calc(100vh - 64px - 32px);
