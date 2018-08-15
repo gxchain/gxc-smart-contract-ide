@@ -227,7 +227,15 @@ const locale = {
     },
     template: {
         title: {
-            select: 'Select template'
+            select: 'Select Template',
+            create: 'Create Template'
+        },
+        placeholder: {
+            required: 'Please enter project name'
+        },
+        validate: {
+            required: 'Please enter project name',
+            format: 'Incorrect project name format: /^[\\w]+[\\w.-]*$/'
         }
     }
 }

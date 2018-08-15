@@ -224,6 +224,19 @@ const locale = {
     },
     log: {
         clear: '清除日志'
+    },
+    template: {
+        title: {
+            select: '选择模板',
+            create: '创建工程'
+        },
+        placeholder: {
+            required: '请输入工程名称'
+        },
+        validate: {
+            required: '请输入工程名称',
+            format: '工程名称格式错误: /^[\\w]+[\\w.-]*$/'
+        }
     }
 }
 

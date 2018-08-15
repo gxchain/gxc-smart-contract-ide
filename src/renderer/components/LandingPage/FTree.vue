@@ -78,6 +78,7 @@
                                 that.showEditDirectoryNameModal({
                                     name: selected.title,
                                     title: that.$t('template.title.create'),
+                                    type: 'template',
                                     callback: (name) => {
                                         that.addProject(compiled.render({title: name}))
                                     }
@@ -241,16 +242,17 @@
                     }
                 })
             },
-            showEditDirectoryNameModal({title, name, callback}) {
+            showEditDirectoryNameModal({title, name, callback, type = 'files'}) {
+                const placeholder = this.$t(`${type}.placeholder${type === 'files' ? '.directory' : ''}.required`)
                 const rules = {
                     name: [
                         {
                             required: true,
-                            message: this.$t('files.validate.directory.required')
+                            message: this.$t(`${type}.validate${type === 'files' ? '.directory' : ''}.required`)
                         }, {
                             validator: (rule, value, callback) => {
                                 let filenameReg = Rules.directoryFormat
-                                const err_msg = new Error(this.$t('files.validate.directory.format'))
+                                const err_msg = new Error(this.$t(`${type}.validate${type === 'files' ? '.directory' : ''}.format`))
                                 if (filenameReg.test(value)) {
                                     callback()
                                 } else {
@@ -276,7 +278,7 @@
                             <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
                                 <FormItem prop="name">
                                     <Input on-input={handleInput} value={model.name} autofocus={true}
-                                        placeholder={this.$t('files.placeholder.directory.required')}/>
+                                        placeholder={placeholder}/>
                                 </FormItem>
                             </Form>
                         )
@@ -385,7 +387,7 @@
         line-height: 32px;
         background: #050713;
 
-        .item{
+        .item {
             display: inline-block;
             color: #5874db;
             cursor: pointer;
