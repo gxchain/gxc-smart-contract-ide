@@ -57,7 +57,7 @@
             }
         },
         activated() {
-            this.$store.dispatch('updateApiServersLatency')
+            this.$store.dispatch('updateApiServers')
         },
         methods: {
             onAddApiServerClick() {

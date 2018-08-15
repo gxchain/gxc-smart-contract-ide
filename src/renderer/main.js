@@ -26,10 +26,9 @@ webFrame.setVisualZoomLevelLimits(1, 1)
 webFrame.setLayoutZoomLevelLimits(0, 0)
 
 // 建立rpc连接
-store.dispatch('updateApiServers').then(() => {
-    connect(() => {
-        store.dispatch('updateCurrentBalancesAndAssets')
-    })
+connect(() => {
+    store.dispatch('updateApiServers')
+    store.dispatch('updateCurrentBalancesAndAssets')
 })
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))

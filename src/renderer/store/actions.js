@@ -74,10 +74,6 @@ actions.updateApiServersLatency = ({commit, state}) => {
     return manager.checkConnections().then((resp) => {
         commit('UPDATE_API_SERVERS_LATENCY', resp)
         return resp
-    }, (ex) => {
-        console.error('uplkejrjr', ex)
-    }).catch(ex => {
-        console.error('uplllll', ex)
     })
 }
 
