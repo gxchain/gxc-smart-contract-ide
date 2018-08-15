@@ -1,8 +1,10 @@
 <template>
     <div class="filetree-layout">
         <div class="bar">
-            <Icon type="md-add" @click="onAddProjectClick"></Icon>
-            <span>{{$t('files.addProject')}}</span>
+            <div class="item">
+                <Icon type="md-add-circle" @click="onAddProjectClick"></Icon>
+                <span style="vertical-align: middle;">{{$t('files.addProject')}}</span>
+            </div>
         </div>
         <div class="files-wrap">
             <Tree class="filetree" ref="tree" :data="data" :render="renderNode"
@@ -364,7 +366,7 @@
         padding-left: 20px;
         width: 100%;
         box-sizing: border-box;
-        cursor:default;
+        cursor: default;
     }
 
     .filetree-layout /deep/ .fileItem.selected {
@@ -374,5 +376,22 @@
     .filetree-layout /deep/ .ivu-tree-arrow {
         position: relative;
         z-index: 3;
+    }
+
+    .bar {
+        padding-left: 18px;
+        height: 32px;
+        line-height: 32px;
+        background: #050713;
+
+        .item{
+            display: inline-block;
+            color: #5874db;
+            cursor: pointer;
+        }
+
+        .ivu-icon {
+            font-size: 18px;
+        }
     }
 </style>
