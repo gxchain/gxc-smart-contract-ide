@@ -1,8 +1,8 @@
 const getters = {}
 
 getters.formatBalances = state => {
-    return state.balances.map((balance, i) => {
-        var asset = state.assets[i]
+    return state.assets.map((asset, i) => {
+        var balance = state.balances[i]
         return {
             amount: balance.amount / Math.pow(10, asset.precision),
             id: asset.id,
@@ -14,9 +14,9 @@ getters.formatBalances = state => {
 
 getters.assetMap = state => {
     const map = {}
-    state.balances.forEach((balance, i) => {
-        var asset = state.assets[i]
-        map[asset.id] = {
+    state.assets.forEach((asset, i) => {
+        var balance = state.balances[i]
+        map[balance.id] = {
             symbol: asset.symbol,
             precision: asset.precision
         }
