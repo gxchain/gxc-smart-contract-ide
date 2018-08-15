@@ -54,7 +54,14 @@
     },
     "linux": {
       "icon": "build/icons"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "gxchain",
+        "repo": "gxchain-alpha"
+      }
+    ]
   },
   "dependencies": {
     "adm-zip": "^0.4.11",
