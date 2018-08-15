@@ -1,6 +1,8 @@
+import i18n from '@/locales'
+
 export default {
     title: 'hello',
-    description: 'helloworld 合约用于简单的演示，提供了一个hi方法，调用该合约会打印一行日志，不过这对前端并不可见',
+    description: i18n.t('template.meta.hello.description', 'en-US'),
     entry: 'hello.cpp',
     position: 2
 }
