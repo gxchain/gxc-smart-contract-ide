@@ -46,8 +46,6 @@
     }
 
     .template-select-layout {
-        margin-top: 15px;
-
         & /deep/ .ivu-poptip {
             width: 100%;
         }
@@ -58,6 +56,10 @@
 
         & /deep/ .ivu-card {
             width: 100%;
+        }
+
+        & /deep/ .ivu-col{
+            margin-top: 20px;
         }
     }
 

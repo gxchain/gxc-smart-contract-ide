@@ -3,15 +3,17 @@
  */
 // must require.context new template when add new template
 import {template} from 'lodash'
+
 const util = {}
 // TODO cannot use ejs loader, other wise there will be exception in production env
+const emptyTpl = require.context('@/template/empty', true, /\.ejs$/)
 const helloTpl = require.context('@/template/hello', true, /\.ejs$/)
 const bankTpl = require.context('@/template/bank', true, /\.ejs$/)
 const redpacketTpl = require.context('@/template/redpacket', true, /\.ejs$/)
 // import meta files
 const metaFiles = require.context('@/template', true, /meta\.js$/)
 
-const tplMap = {helloTpl, bankTpl, redpacketTpl}
+const tplMap = {emptyTpl, helloTpl, bankTpl, redpacketTpl}
 // {hello:{title:'hello'...}}
 const metaMap = {}
 
@@ -59,6 +61,8 @@ util.compile = function (directory) {
 
 util.metas = metaFiles.keys().map(key => {
     return metaFiles(key).default
+}).sort((a, b) => {
+    return a.position - b.position
 })
 
 export default util

@@ -119,6 +119,7 @@ const locale = {
         }
     },
     files: {
+        addProject: 'Add Project',
         addFile: 'Add File',
         title: {
             removeFile: 'Remove File',
@@ -213,6 +214,11 @@ const locale = {
     },
     log: {
         clear: 'Clear log'
+    },
+    template: {
+        title: {
+            select: 'Select template'
+        }
     }
 }
 

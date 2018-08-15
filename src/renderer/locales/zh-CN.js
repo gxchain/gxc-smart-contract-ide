@@ -119,6 +119,7 @@ const locale = {
         }
     },
     files: {
+        addProject: '添加工程',
         addFile: '添加文件',
         title: {
             removeFile: '删除文件',
