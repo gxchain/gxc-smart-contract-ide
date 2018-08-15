@@ -123,18 +123,28 @@ const locale = {
         addFile: '添加文件',
         title: {
             removeFile: '删除文件',
-            editFileName: '编辑文件名称'
+            editFileName: '编辑文件名称',
+            editDirectoryName: '编辑文件夹名称',
+            removeDirectory: '删除文件夹'
         },
         validate: {
             required: '请输入文件名',
-            fileFormat: '文件名格式错误: /^[\\w]+[\\w._-]*\\.cpp|hpp|json$/',
-            repeatName: '文件名重复'
+            fileFormat: '文件名格式错误: /^[\\w]+[\\w.-]*\\.cpp|hpp|json$/',
+            repeatName: '文件名重复',
+            directory: {
+                required: '请输入文件夹名称',
+                format: '文件夹名称格式错误: /^[\\w]+[\\w.-]*$/'
+            }
         },
         placeholder: {
-            required: '请输入文件名'
+            required: '请输入文件名',
+            directory: {
+                required: '请输入文件夹名称'
+            }
         },
         confirmRemoveFile: '确认删除该文件？',
-        editFileName: '编辑文件名称'
+        editFileName: '编辑文件名称',
+        confirmRemoveDirectory: '确认删除该文件夹'
     },
     statusbar: {
         currentApiServer: '当前接入点',

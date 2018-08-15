@@ -122,13 +122,18 @@ const actions = {
         commit('CHANGE_FILE_STATUS', payload)
     },
     removeFile({state, commit, dispatch}, node) {
-        commit('REMOVE_FILE', node)
-
-        // if any file opened, must close
-        const file = state.openedFiles.find(file => file.id === node.id)
-        if (!!file) {
-            dispatch('closeOpenedFile', file.id)
+        // close opened file first
+        const f = state.openedFiles.find(f => f.id === node.id)
+        if (!!f) {
+            dispatch('closeOpenedFile', f.id)
         }
+        filesTreeModel.first(idEq(node.id)).walk(file => {
+            const f = state.openedFiles.find(f => f.id === file.model.id)
+            if (!!f) {
+                dispatch('closeOpenedFile', f.id)
+            }
+        })
+        commit('REMOVE_FILE', node)
     },
     selectFile({commit}, node) {
         commit('SELECT_FILE', node)

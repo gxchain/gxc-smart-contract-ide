@@ -246,11 +246,11 @@
                     name: [
                         {
                             required: true,
-                            message: this.$t('files.validate.required')
+                            message: this.$t('files.validate.directory.required')
                         }, {
                             validator: (rule, value, callback) => {
-                                let filenameReg = /^[\w,\s-]+$/
-                                const err_msg = new Error(this.$t('files.validate.directoryFormat'))
+                                let filenameReg = Rules.directoryFormat
+                                const err_msg = new Error(this.$t('files.validate.directory.format'))
                                 if (filenameReg.test(value)) {
                                     callback()
                                 } else {
@@ -276,7 +276,7 @@
                             <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
                                 <FormItem prop="name">
                                     <Input on-input={handleInput} value={model.name} autofocus={true}
-                                        placeholder={this.$t('files.placeholder.required')}/>
+                                        placeholder={this.$t('files.placeholder.directory.required')}/>
                                 </FormItem>
                             </Form>
                         )

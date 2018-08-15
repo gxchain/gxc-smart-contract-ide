@@ -123,18 +123,28 @@ const locale = {
         addFile: 'Add File',
         title: {
             removeFile: 'Remove File',
-            editFileName: 'Edit File Name'
+            editFileName: 'Edit File Name',
+            editDirectoryName: 'Edit Directory Name',
+            removeDirectory: 'Remove Directory'
         },
         validate: {
             required: 'Please enter file name',
-            fileFormat: 'Incorrect file name format: /^[\\w]+[\\w._-]*\\.cpp|hpp|json$/',
-            repeatName: 'Repeated file name'
+            fileFormat: 'Incorrect file name format: /^[\\w]+[\\w.-]*\\.cpp|hpp|json$/',
+            repeatName: 'Repeated file name',
+            directory: {
+                required: 'Please enter directory name',
+                format: 'Incorrect directory name format: /^[\\w]+[\\w.-]*$/'
+            }
         },
         placeholder: {
-            required: 'Please enter file name'
+            required: 'Please enter file name',
+            directory: {
+                required: 'Please enter directory name'
+            }
         },
         confirmRemoveFile: 'Confirm remove this file？',
-        editFileName: 'Edit file name'
+        editFileName: 'Edit file name',
+        confirmRemoveDirectory: 'Confirm remove this directory？'
     },
     statusbar: {
         currentApiServer: 'Current api server',

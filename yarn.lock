@@ -4389,7 +4389,7 @@ gxbjs@gxchain/gxbjs#master:
 
 gxc-frontend-base@gxchain/gxc-frontend-base:
   version "0.1.0"
-  resolved "https://codeload.github.com/gxchain/gxc-frontend-base/tar.gz/3cb0ab8498538c093157dc81fcd48ade595b3fe7"
+  resolved "https://codeload.github.com/gxchain/gxc-frontend-base/tar.gz/e2cbd9f70d3b1b70b036f9e7dd8b70f71087537f"
 
 handle-thing@^1.2.5:
   version "1.2.5"
