@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import store from '@/store'
 import en from './en-US'
 import zh from './zh-CN'
 
@@ -52,7 +51,7 @@ const dateTimeFormats = {
         }
     }
 }
-let locale = store.state.lang
+let locale = localStorage.getItem('lang') || 'en-US'
 
 export default new VueI18n({
     locale: locale,

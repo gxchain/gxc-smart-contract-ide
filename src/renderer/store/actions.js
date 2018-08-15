@@ -4,10 +4,6 @@ import {reconnect} from '@/services/connect'
 
 const actions = {}
 
-actions.setLang = ({commit}, lang) => {
-    commit('SET_LANG', lang)
-}
-
 actions.appendWallet = ({dispatch, commit, state}, wallet) => {
     commit('APPEND_WALLET', wallet)
     if (state.wallets.length === 1) {

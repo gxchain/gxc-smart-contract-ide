@@ -68,6 +68,7 @@
     "gxc-frontend-base": "gxchain/gxc-frontend-base",
     "iview": "^3.0.0",
     "jdenticon": "^2.1.0",
+    "localforage": "^1.7.2",
     "lodash": "^4.17.10",
     "mockjs": "^1.0.1-beta3",
     "readdir-enhanced": "^2.2.1",

@@ -88,15 +88,16 @@
             AccountImage
         },
         computed: {
-            ...mapState(['wallets', 'currentWallet', 'lang', 'currentCompileServer', 'currentApiServer', 'currentApiServerStatus'])
+            ...mapState(['wallets', 'currentWallet', 'currentCompileServer', 'currentApiServer', 'currentApiServerStatus'])
         },
         data() {
             return {
+                lang: localStorage.getItem('lang') || 'en-US',
                 langText
             }
         },
         methods: {
-            ...mapActions(['updateCurrentBalancesAndAssets', 'setLang', 'changeWallet']),
+            ...mapActions(['updateCurrentBalancesAndAssets', 'changeWallet']),
             onLanguageSelect(lang) {
                 this.$i18n.locale = lang
                 this.setLang(lang)
@@ -112,6 +113,10 @@
             },
             onFeedbackClick() {
                 ipcRenderer.send('loadFeedbackWindow')
+            },
+            setLang(lang) {
+                localStorage.setItem('lang', lang)
+                this.lang = lang
             }
             // testAddContract() {
             //     this.$store.dispatch('ContractOperation/appendContract', {
