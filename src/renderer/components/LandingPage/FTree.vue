@@ -132,7 +132,13 @@
                 directoryMenu.append(new MenuItem({
                     label: this.$t('files.addFile'),
                     click: () => {
-                        this.appendFile({target: data})
+                        this.showEditFileNameModal({
+                            name: '',
+                            title: this.$t('files.addFile'),
+                            callback: (name) => {
+                                this.appendFile({target: data, opts: {title: name}})
+                            }
+                        })
                     }
                 }))
                 // gxx-server not support multi layer directory briefly

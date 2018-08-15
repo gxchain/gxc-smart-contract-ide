@@ -22,7 +22,7 @@
             <Sider class="rightPane" width="320" style="height:100%;overflow: auto;">
                 <div class="operation-panel">
                     <div class="compile-area">
-                        <Select v-model="entry" class="entry-select" :placeholder="$t('contract.chooseEntryFile')">
+                        <Select v-model="entry" class="entry-select" :placeholder="$t('contract.chooseProject')">
                             <Option v-for="project in projects" :value="project.id" :key="project.id">{{ project.title
                                 }}
                             </Option>
@@ -49,7 +49,7 @@
                 @on-ok="onDeployOk">
             <Form class="pure-text-form" label-position="left" :label-width="120">
                 <FormItem :label="$t('contract.label.name')">{{contractName}}</FormItem>
-                <FormItem :label="$t('contract.label.entryFile')">{{entry}}</FormItem>
+                <FormItem :label="$t('contract.label.entryProject')">{{entry}}</FormItem>
                 <FormItem :label="$t('contract.label.deployAccount')">{{currentWallet.account}}</FormItem>
                 <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}}, {{fee}}</FormItem>
             </Form>
@@ -137,12 +137,23 @@
                 // zip.writeZip('/Users/jaime/tests/temptest/temp-zip/test.zip')
                 return zip.toBuffer()
             },
+            existEntryFile(entryProjectId) {
+                var files = this.projects.find(project => {
+                    return project.id === entryProjectId
+                }).children
+                const entryFile = files.find(file => file.title === 'app.json')
+                return !!entryFile
+            },
             onCompileClick() {
                 if (!this.entry) {
-                    this.$Message.warning(this.$t('contract.validate.entryFile.required'))
+                    this.$Message.warning(this.$t('contract.validate.entryProject.required'))
                     return
                 }
-                // TODO 判断工程里面有没有app.json
+
+                if (!this.existEntryFile(this.entry)) {
+                    this.$Message.error(this.$t('contract.validate.entryFile.required'))
+                    return
+                }
 
                 // 压缩文件，调用编译服务
                 var buffer = this.archiveFiles(this.entry)
@@ -282,13 +293,13 @@
         height: calc(100vh - 64px - 32px);
     }
 
-    .filetree-layout{
+    .filetree-layout {
         display: flex;
         flex-direction: column;
         height: 100%;
     }
 
-    .filetree-layout /deep/ .files-wrap{
+    .filetree-layout /deep/ .files-wrap {
         flex-grow: 1;
     }
 

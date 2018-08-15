@@ -70,7 +70,7 @@ const locale = {
     },
     contract: {
         'listTitle': '合约列表',
-        'chooseEntryFile': '请选择入口文件',
+        'chooseProject': '请选择工程',
         'inputContractName': '请输入合约名称',
         'deploy': '部署',
         call: '调用',
@@ -90,7 +90,7 @@ const locale = {
         },
         label: {
             name: '合约名称',
-            entryFile: '入口文件',
+            entryProject: '工程',
             deployAccount: '部署账户',
             callAccount: '调用账户',
             costType: '消耗资产类型',
@@ -100,8 +100,8 @@ const locale = {
             carryAmount: '附带资产'
         },
         validate: {
-            entryFile: {
-                required: '请选择入口文件'
+            entryProject: {
+                required: '请选择工程'
             },
             needToCompileFirst: '请先编译',
             name: {

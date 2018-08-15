@@ -70,7 +70,7 @@ const locale = {
     },
     contract: {
         'listTitle': 'Contract List',
-        'chooseEntryFile': 'Choose entry file',
+        'chooseProject': 'Choose project',
         'inputContractName': 'Enter contract name',
         'deploy': 'Deploy',
         call: 'Call',
@@ -90,7 +90,7 @@ const locale = {
         },
         label: {
             name: 'Contract Name',
-            entryFile: 'Entry File',
+            entryProject: 'Project',
             deployAccount: 'Deploy Account',
             callAccount: 'Call Account',
             costType: 'Cost Type',
@@ -100,8 +100,8 @@ const locale = {
             carryAmount: 'Carry Amount'
         },
         validate: {
-            entryFile: {
-                required: 'Please select entry file'
+            entryProject: {
+                required: 'Please select project'
             },
             needToCompileFirst: 'Need to compile first',
             name: {
