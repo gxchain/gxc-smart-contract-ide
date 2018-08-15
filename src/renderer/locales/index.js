@@ -51,7 +51,7 @@ const dateTimeFormats = {
         }
     }
 }
-let locale = localStorage.getItem('lang') || 'en-US'
+let locale = localStorage.getItem('lang')
 
 export default new VueI18n({
     locale: locale,

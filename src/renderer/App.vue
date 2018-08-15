@@ -72,11 +72,15 @@
 </template>
 
 <script>
+    import {locale} from 'iview'
     import {mapActions, mapState} from 'vuex'
     import {ipcRenderer} from 'electron'
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
+
+    import en from 'iview/dist/locale/en-US'
+    import zh from 'iview/dist/locale/zh-CN'
 
     // import * as testAbi from '../../test/unit/data/abi'
 
@@ -90,13 +94,18 @@
         },
         data() {
             return {
-                lang: localStorage.getItem('lang') || 'en-US',
+                lang: localStorage.getItem('lang'),
                 langText
             }
         },
         methods: {
             ...mapActions(['updateCurrentBalancesAndAssets', 'changeWallet']),
             onLanguageSelect(lang) {
+                if (lang === 'zh-CN') {
+                    locale(zh)
+                } else {
+                    locale(en)
+                }
                 this.$i18n.locale = lang
                 this.setLang(lang)
             },
@@ -175,7 +184,7 @@
             margin-right: 25px;
             color: #c4c3d3;
 
-            .ivu-icon{
+            .ivu-icon {
                 font-size: 14px;
             }
         }

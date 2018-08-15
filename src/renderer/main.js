@@ -1,6 +1,6 @@
+import '@/storage/'
 import Vue from 'vue'
 import axios from 'axios'
-
 import router from './router'
 import store from './store'
 import locales from '@/locales'
@@ -36,7 +36,7 @@ Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 var iviewOptions = {}
-if (store.state.lang === 'en-US') {
+if (localStorage.getItem('lang') === 'en-US') {
     iviewOptions.locale = iviewLocales
 }
 
