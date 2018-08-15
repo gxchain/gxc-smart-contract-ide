@@ -49,7 +49,7 @@
                 @on-ok="onDeployOk">
             <Form class="pure-text-form" label-position="left" :label-width="120">
                 <FormItem :label="$t('contract.label.name')">{{contractName}}</FormItem>
-                <FormItem :label="$t('contract.label.entryProject')">{{entry}}</FormItem>
+                <FormItem :label="$t('contract.label.entryProject')">{{entryProjectName}}</FormItem>
                 <FormItem :label="$t('contract.label.deployAccount')">{{currentWallet.account}}</FormItem>
                 <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}}, {{fee}}</FormItem>
             </Form>
@@ -98,6 +98,10 @@
                 } else {
                     return this.deployTransaction.serialize().operations[0][1].fee.amount / Math.pow(10, this.tempAsset.precision)
                 }
+            },
+            entryProjectName() {
+                const project = this.projects.find(project => project.id === this.entry)
+                return project ? project.title : ''
             }
         },
         created() {

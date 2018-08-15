@@ -1,14 +1,15 @@
 <template>
     <div class="filetree-layout">
         <div class="bar">
-            <div class="item">
-                <Icon type="md-add-circle" @click="onAddProjectClick"></Icon>
+            <div class="item" @click="onAddProjectClick">
+                <Icon type="md-add-circle"></Icon>
                 <span style="vertical-align: middle;">{{$t('files.addProject')}}</span>
             </div>
         </div>
         <div class="files-wrap">
             <Tree class="filetree" ref="tree" :data="data" :render="renderNode"
-                    @on-toggle-expand="onToggleExpand"></Tree>
+                    @on-toggle-expand="onToggleExpand" emptyText="">
+            </Tree>
         </div>
     </div>
 </template>
