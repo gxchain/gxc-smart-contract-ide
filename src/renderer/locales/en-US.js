@@ -31,7 +31,7 @@ const locale = {
         }
     },
     index: {
-        'compile': 'compile'
+        'compile': 'Compile'
     },
     connect: {
         'success': 'Entry point connect success',
@@ -147,8 +147,10 @@ const locale = {
         confirmRemoveDirectory: 'Confirm remove this directory？'
     },
     statusbar: {
-        currentApiServer: 'Current api server',
-        currentCompileServer: 'Current compile server'
+        currentApiServer: 'Api Server',
+        currentCompileServer: 'Compile Server',
+        document: 'document',
+        feedback: 'feedback'
     },
     importSetting: {
         title: {

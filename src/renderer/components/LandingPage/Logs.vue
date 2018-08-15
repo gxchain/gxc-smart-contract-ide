@@ -18,17 +18,18 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped type="text/scss" lang="scss">
     .logs-layout {
         .error {
             color: red;
         }
     }
 
-    .log-item{
+    .log-item {
         margin: 10px 0;
+        user-select: auto;
 
-        &:first-child{
+        &:first-child {
             margin-top: 0;
         }
     }

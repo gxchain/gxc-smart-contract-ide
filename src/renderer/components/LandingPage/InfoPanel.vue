@@ -10,12 +10,11 @@
                     <logs :logs="logger.logs"></logs>
                 </div>
             </TabPane>
-            <TabPane label="BYTECODE">
+            <TabPane label="WASM">
                 {{bytecode}}
                 <copy-btn v-if="!!bytecode" :value="bytecode"></copy-btn>
             </TabPane>
             <TabPane label="ABI">
-                <!--TODO v-if-->
                 <tree-view v-if="!isAbiEmpty" :data="abi"></tree-view>
             </TabPane>
         </Tabs>

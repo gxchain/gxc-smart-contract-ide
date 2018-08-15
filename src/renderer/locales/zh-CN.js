@@ -147,8 +147,10 @@ const locale = {
         confirmRemoveDirectory: '确认删除该文件夹'
     },
     statusbar: {
-        currentApiServer: '当前接入点',
-        currentCompileServer: '当前编译服务'
+        currentApiServer: '接入点',
+        currentCompileServer: '编译服务',
+        document: '文档',
+        feedback: '反馈'
     },
     importSetting: {
         title: {

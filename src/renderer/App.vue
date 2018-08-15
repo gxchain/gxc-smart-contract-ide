@@ -17,7 +17,7 @@
                     </Dropdown>
 
                     <router-link class="setting" :to="{name:'setting-page'}">
-                        <Icon type="ios-settings"></Icon>
+                        <Icon type="md-settings"></Icon>
                         <span class="text">{{$t('header.setting')}}</span>
                     </router-link>
 
@@ -39,21 +39,13 @@
             <Footer class="layout-footer f-cf">
                 <div class="f-fl">
                     <div class="status-item">
-                        <Icon type="md-document"></Icon>
                         <a class="link" @click="onDocumentClick">{{$t('statusbar.document')}}</a>
                     </div>
                     <div class="status-item">
-                        <Icon type="md-document"></Icon>
                         <a class="link" @click="onFeedbackClick">{{$t('statusbar.feedback')}}</a>
                     </div>
                 </div>
                 <div class="f-fr">
-                    <div class="status-item">
-                        <i class="blue-lamp"></i>
-                        <Tooltip :content="currentCompileServer.url" placement="top">
-                            <a class="text">{{$t('statusbar.currentCompileServer')}}</a>
-                        </Tooltip>
-                    </div>
                     <div class="status-item">
                         <i v-if="currentApiServerStatus==='open'" class="blue-lamp"></i>
                         <i v-if="currentApiServerStatus!=='open'" class="pink-lamp"></i>
@@ -65,6 +57,12 @@
                                         @click="onReconnectClick"></Button>
                                 {{currentApiServer.url}}
                             </div>
+                        </Tooltip>
+                    </div>
+                    <div class="status-item">
+                        <i class="blue-lamp"></i>
+                        <Tooltip :content="currentCompileServer.url" placement="top">
+                            <a class="text">{{$t('statusbar.currentCompileServer')}}</a>
                         </Tooltip>
                     </div>
                 </div>
@@ -176,6 +174,10 @@
         .setting {
             margin-right: 25px;
             color: #c4c3d3;
+
+            .ivu-icon{
+                font-size: 14px;
+            }
         }
 
         .right {
@@ -235,6 +237,7 @@
         .link {
             color: rgb(111, 153, 248);
             text-decoration: underline;
+            margin-right: 20px;
         }
     }
 

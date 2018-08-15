@@ -8,18 +8,20 @@
             </FormItem>
             <FormItem :label="$t('importSetting.label.wifKey')" prop="wifKey">
                 <Input type="password" v-model="form.wifKey"
-                       :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
+                        :placeholder="$t('importSetting.placeholder.wifKey')"></Input>
             </FormItem>
             <FormItem :label="$t('importSetting.label.pwd')" prop="pwd">
                 <Input type="password" v-model="form.pwd" :placeholder="$t('importSetting.placeholder.pwd')"></Input>
             </FormItem>
             <FormItem :label="$t('importSetting.label.pwdCheck')" prop="pwdCheck">
                 <Input type="password" v-model="form.pwdCheck"
-                       :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
+                        :placeholder="$t('importSetting.placeholder.pwdCheck')"></Input>
             </FormItem>
         </Form>
 
-        <Button class="import" type="primary" @click="onImportClick">{{$t('importSetting.importTitle')}}</Button>
+        <Button class="import" type="primary" :loading="loading" @click="onImportClick">
+            {{$t('importSetting.importTitle')}}
+        </Button>
 
         <Table :columns="columns" :data="data"></Table>
     </div>
@@ -36,6 +38,7 @@
         name: 'ImportRecover',
         data() {
             return {
+                loading: false,
                 rules: {
                     importType: [{
                         required: true,
@@ -152,9 +155,12 @@
             import() {
                 this.$refs.form.validate((valid) => {
                     if (valid) {
+                        this.loading = true
                         import_account(this.form.wifKey, this.form.pwd).then((info) => {
+                            this.loading = false
                             this.$Message.success(this.$t('importSetting.messages.importSuc'))
                         }).catch((ex) => {
+                            this.loading = false
                             this.$Message.error(ex.message)
                         })
                     }
@@ -166,7 +172,7 @@
 
 <style scoped>
     .import {
-        width: 96px;
+        min-width: 96px;
         margin-top: 10px;
         margin-bottom: 20px;
     }

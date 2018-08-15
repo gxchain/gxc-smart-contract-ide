@@ -48,7 +48,9 @@ function createMenu() {
                 dialog.showOpenDialog({
                     properties: ['openDirectory']
                 }, (files) => {
-                    mainWindow.webContents.send('import-project', filesUtil.genProject(files[0]))
+                    if (!!files) {
+                        mainWindow.webContents.send('import-project', filesUtil.genProject(files[0]))
+                    }
                 })
             }
         }]
