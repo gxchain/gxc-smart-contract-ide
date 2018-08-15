@@ -52,7 +52,7 @@
                         <Tooltip placement="top">
                             <a class="text">{{$t('statusbar.currentApiServer')}}</a>
                             <div slot="content">
-                                <Button v-if="currentApiServerStatus!=='open'" type="error" size="small" shape="circle"
+                                <Button v-if="currentApiServerStatus!=='open' || currentApiServerStatus!=='reconnect'" type="error" size="small" shape="circle"
                                         icon="md-refresh"
                                         @click="onReconnectClick"></Button>
                                 {{currentApiServer.url}}

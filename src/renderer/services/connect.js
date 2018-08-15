@@ -1,9 +1,9 @@
 import {Apis, Manager} from 'gxbjs-ws'
 import store from '@/store'
-import Vue from 'vue'
+// import Vue from 'vue'
 // import va from '@/util/vue-agency'
 
-let tempVue = new Vue()
+// let tempVue = new Vue()
 
 let connect = function (callback = function () {
 }, witnesses) {
@@ -27,16 +27,17 @@ Apis.setRpcConnectionStatusCallback(function (status) {
     console.log('Witness status:', status)
     store.commit('CHANGE_CURRENT_APISERVER_STATUS', status)
 
-    if (status == 'open') {
-        tempVue.$eventBus.$emit('connect:open')
-    }
-    if (status == 'error') {
-        tempVue.$eventBus.$emit('connect:error')
-    }
-
-    if (status === 'closed') {
-        tempVue.$eventBus.$emit('connect:closed')
-    }
+    // TODO solve multi trigger bug
+    // if (status == 'open') {
+    //     tempVue.$eventBus.$emit('connect:open')
+    // }
+    // if (status == 'error') {
+    //     tempVue.$eventBus.$emit('connect:error')
+    // }
+    //
+    // if (status === 'closed') {
+    //     tempVue.$eventBus.$emit('connect:closed')
+    // }
 })
 
 export {
