@@ -3,17 +3,31 @@ const state = {
     currentWallet: {},
     balances: [],
     assets: [],
-    apiServers: [{
+    apiServers: [],
+    currentApiServer: {},
+    currentApiServerStatus: 'closed',
+    compileServers: [],
+    currentCompileServer: {}
+}
+
+if (process.env.NODE_ENV === 'development') {
+    state.apiServers.push({
         url: 'ws://192.168.1.126:28099',
         location: '',
         latency: '?'
-    }],
-    currentApiServer: {},
-    currentApiServerStatus: 'closed',
-    compileServers: [{
+    })
+    state.compileServers.push({
         url: 'http://192.168.1.118:3000'
-    }],
-    currentCompileServer: {}
+    })
+} else {
+    state.apiServers.push({
+        url: 'wss://testnet.gxchain.org',
+        location: '',
+        latency: '?'
+    })
+    state.compileServers.push({
+        url: 'https://testnet.gxx.gxchain.org'
+    })
 }
 
 state.currentApiServer = state.apiServers[0]
