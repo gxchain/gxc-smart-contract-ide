@@ -106,7 +106,7 @@ const locale = {
             needToCompileFirst: '请先编译',
             name: {
                 required: '请输入合约名称',
-                format: '合约名只能是字母、数字和-的组合'
+                format: '合约名格式错误: /^[\\w]+[\\w.-]*[\\w]$/'
             }
         },
         messages: {
@@ -126,7 +126,7 @@ const locale = {
         },
         validate: {
             required: '请输入文件名',
-            fileFormat: '文件名格式错误',
+            fileFormat: '文件名格式错误: /^[\\w]+[\\w._-]*\\.cpp|hpp|json$/',
             repeatName: '文件名重复'
         },
         placeholder: {

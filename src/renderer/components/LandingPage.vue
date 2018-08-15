@@ -65,7 +65,7 @@
     import AdmZip from 'adm-zip'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {mapState, mapGetters, mapActions} from 'vuex'
-    import Rules from '@/const/rules'
+    import {contractNameFormat} from '@base/rule/contract'
     import {
         deploy_contract
     } from '@/services/WalletService'
@@ -223,7 +223,7 @@
                 if (!this.contractName) {
                     this.$Message.warning(this.$t('contract.validate.name.required'))
                     return
-                } else if (!Rules.contractNameFormat.test(this.contractName)) {
+                } else if (!contractNameFormat.test(this.contractName)) {
                     this.$Message.warning(this.$t('contract.validate.name.format'))
                     return
                 }

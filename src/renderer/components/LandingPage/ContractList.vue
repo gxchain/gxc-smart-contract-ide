@@ -28,7 +28,7 @@
     import {mapState, mapActions} from 'vuex'
     import {cloneDeep} from 'lodash'
     import {fetch_account} from '@/services/WalletService'
-    import Rules from '@/const/rules'
+    import {contractNameFormat} from '@base/rule/contract'
     import {Form, FormItem, Input} from 'iview'
 
     function contractsFilter(contracts) {
@@ -117,7 +117,7 @@
                         }, {
                             validator: (rule, value, callback) => {
                                 const err_msg = new Error(this.$t('contract.validate.name.format'))
-                                if (Rules.contractNameFormat.test(value)) {
+                                if (contractNameFormat.test(value)) {
                                     callback()
                                 } else {
                                     callback(err_msg)

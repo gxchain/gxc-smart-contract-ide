@@ -106,7 +106,7 @@ const locale = {
             needToCompileFirst: 'Need to compile first',
             name: {
                 required: 'Please enter contract name',
-                format: 'Contract name consist of letter|number|-'
+                format: 'Contract name format error: /^[\\w]+[\\w.-]*[\\w]$/'
             }
         },
         messages: {
@@ -126,7 +126,7 @@ const locale = {
         },
         validate: {
             required: 'Please enter file name',
-            fileFormat: 'Incorrect file name format',
+            fileFormat: 'Incorrect file name format: /^[\\w]+[\\w._-]*\\.cpp|hpp|json$/',
             repeatName: 'Repeated file name'
         },
         placeholder: {

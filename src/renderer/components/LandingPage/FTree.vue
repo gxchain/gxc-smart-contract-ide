@@ -16,6 +16,7 @@
     import {mapState, mapActions} from 'vuex'
     import {Icon, Form, FormItem, Input} from 'iview'
     import TemplateSelect from './TemplateSelect'
+    import Rules from '@/const/rules'
 
     import electron from 'electron'
     import templateUtil from '@/util/templateUtil'
@@ -194,9 +195,8 @@
                             message: this.$t('files.validate.required')
                         }, {
                             validator: (rule, value, callback) => {
-                                let filenameReg = /^[\w,\s-]+\.cpp|hpp|json$/
                                 const err_msg = new Error(this.$t('files.validate.fileFormat'))
-                                if (filenameReg.test(value)) {
+                                if (Rules.fileFormat.test(value)) {
                                     callback()
                                 } else {
                                     callback(err_msg)

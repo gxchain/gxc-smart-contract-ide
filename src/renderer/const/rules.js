@@ -1,3 +1,3 @@
 export default {
-    contractNameFormat: /^[\w-]+$/
+    fileFormat: /^[\w]+[\w._-]*\.cpp|hpp|json$/
 }
