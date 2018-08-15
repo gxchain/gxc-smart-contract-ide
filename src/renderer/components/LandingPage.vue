@@ -282,6 +282,16 @@
         height: calc(100vh - 64px - 32px);
     }
 
+    .filetree-layout{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .filetree-layout /deep/ .files-wrap{
+        flex-grow: 1;
+    }
+
     .code-wrap {
         height: 0;
         flex-grow: 1;

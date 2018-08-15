@@ -358,7 +358,7 @@
         padding-left: 20px;
         width: 100%;
         box-sizing: border-box;
-        cursor: pointer;
+        cursor:default;
     }
 
     .filetree-layout /deep/ .fileItem.selected {
