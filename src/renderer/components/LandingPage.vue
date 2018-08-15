@@ -65,7 +65,7 @@
     import AdmZip from 'adm-zip'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {mapState, mapGetters, mapActions} from 'vuex'
-    import {contractNameFormat} from '@base/rule/contract'
+    import {contractNameFormat} from 'gxc-frontend-base/src/rule/contract'
     import {
         deploy_contract
     } from '@/services/WalletService'

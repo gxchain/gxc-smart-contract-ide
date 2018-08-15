@@ -170,7 +170,8 @@ let rendererConfig = {
             '@': path.join(__dirname, '../src/renderer'),
             '@styles': path.join(__dirname, '../src/renderer/assets/styles'),
             '@images': path.join(__dirname, '../src/renderer/assets/images'),
-            '@base': path.join(__dirname, '../node_modules/gxc-frontend-base/src'),
+            // TODO would throw exception when on production mode
+            // '@base': path.join(__dirname, '../node_modules/gxc-frontend-base/src'),
             'vue$': 'vue/dist/vue.esm.js'
         },
         modules: ["node_modules", path.resolve(__dirname, '../src/renderer/assets/images'), path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest')],

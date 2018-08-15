@@ -4380,7 +4380,7 @@ gxbjs-ws@^1.1.18:
     babel-preset-stage-1 "^6.16.0"
     ws "^2.2.0"
 
-gxbjs@gxchain/gxbjs#master:
+gxbjs@gxchain/gxbjs#e1a125e:
   version "1.2.89"
   resolved "https://codeload.github.com/gxchain/gxbjs/tar.gz/e1a125ecfa4c4e8ce5a2f51d7b251682339a3059"
   dependencies:
@@ -4401,7 +4401,7 @@ gxbjs@gxchain/gxbjs#master:
     secp256k1 "^3.3.0"
     secure-random "^1.1.1"
 
-gxc-frontend-base@gxchain/gxc-frontend-base:
+gxc-frontend-base@gxchain/gxc-frontend-base#e2cbd9f:
   version "0.1.0"
   resolved "https://codeload.github.com/gxchain/gxc-frontend-base/tar.gz/e2cbd9f70d3b1b70b036f9e7dd8b70f71087537f"
 

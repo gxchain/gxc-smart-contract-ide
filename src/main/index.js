@@ -25,7 +25,7 @@ function createMenu() {
         submenu: [
             {
                 label: 'About Application',
-                role: 'orderFrontStandardAboutPanel'
+                role: 'about'
             },
             {
                 type: 'separator'

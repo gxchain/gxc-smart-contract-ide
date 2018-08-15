@@ -29,7 +29,7 @@
     import {mapState, mapActions} from 'vuex'
     import {cloneDeep} from 'lodash'
     import {fetch_account} from '@/services/WalletService'
-    import {contractNameFormat} from '@base/rule/contract'
+    import {contractNameFormat} from 'gxc-frontend-base/src/rule/contract'
     import {Form, FormItem, Input} from 'iview'
 
     function contractsFilter(contracts) {
