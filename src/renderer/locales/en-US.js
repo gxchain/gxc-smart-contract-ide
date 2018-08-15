@@ -77,7 +77,14 @@ const locale = {
         carryAmount: 'Carry Amount',
         title: {
             removeContract: 'Remove Contract',
-            callConfirm: 'Call Confirm'
+            callConfirm: 'Call Confirm',
+            importContract: 'Import Contract'
+        },
+        placeholder: {
+            name: {
+                required: 'Please enter contract name',
+                format: 'Incorrect contract name format: /^[A-Za-z0-9]+[\\w.-]*[\\w]$/'
+            }
         },
         content: {
             removeContract: 'Confirm remove the contract?'

@@ -77,7 +77,14 @@ const locale = {
         carryAmount: '附带资产',
         title: {
             removeContract: '移除合约',
-            callConfirm: '调用确认'
+            callConfirm: '调用确认',
+            importContract: '导入合约'
+        },
+        placeholder: {
+            name: {
+                required: '请输入合约名称',
+                format: '合约名称格式错误: /^[A-Za-z0-9]+[\\w.-]*[\\w]$/'
+            }
         },
         content: {
             removeContract: '确认移除该合约?'

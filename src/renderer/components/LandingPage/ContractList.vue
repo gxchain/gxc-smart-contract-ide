@@ -1,7 +1,8 @@
 <template>
     <div class="contractList-layout">
-        <h3 class="layout-title">{{$t('contract.listTitle')}}
-            <Icon type="md-add" @click="onContractImportClick"></Icon>
+        <h3 class="layout-title">
+            <span style="vertical-align: middle">{{$t('contract.listTitle')}}</span>
+            <Icon type="md-add-circle" @click="onContractImportClick"></Icon>
         </h3>
         <div class="contract-wrap">
             <Collapse v-for="contract in contracts" value="1">
@@ -113,7 +114,7 @@
                     name: [
                         {
                             required: true,
-                            message: this.$t('files.validate.required')
+                            message: this.$t('contract.validate.name.required')
                         }, {
                             validator: (rule, value, callback) => {
                                 const err_msg = new Error(this.$t('contract.validate.name.format'))
@@ -142,7 +143,7 @@
                             <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
                                 <FormItem prop="name">
                                     <Input on-input={handleInput} value={model.name} autofocus={true}
-                                        placeholder={this.$t('contract.placeholder.required')}/>
+                                        placeholder={this.$t('contract.placeholder.name.required')}/>
                                 </FormItem>
                             </Form>
                         )
@@ -172,7 +173,16 @@
         background: #32395e;
     }
 
-    .contractList-layout /deep/ .ivu-collapse>.ivu-collapse-item.ivu-collapse-item-active>.ivu-collapse-header{
+    .ivu-icon-md-add-circle {
+        position: relative;
+        top: 1px;
+        vertical-align: middle;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 2px;
+    }
+
+    .contractList-layout /deep/ .ivu-collapse > .ivu-collapse-item.ivu-collapse-item-active > .ivu-collapse-header {
         border-bottom: 1px solid rgb(21, 25, 53);
     }
 
