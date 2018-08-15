@@ -40,7 +40,11 @@
                 <div class="f-fl">
                     <div class="status-item">
                         <Icon type="md-document"></Icon>
-                        <a class="text" @click="onDocumentClick">{{$t('statusbar.document')}}</a>
+                        <a class="link" @click="onDocumentClick">{{$t('statusbar.document')}}</a>
+                    </div>
+                    <div class="status-item">
+                        <Icon type="md-document"></Icon>
+                        <a class="link" @click="onFeedbackClick">{{$t('statusbar.feedback')}}</a>
                     </div>
                 </div>
                 <div class="f-fr">
@@ -105,6 +109,9 @@
             },
             onDocumentClick() {
                 ipcRenderer.send('loadDocumentWindow')
+            },
+            onFeedbackClick() {
+                ipcRenderer.send('loadFeedbackWindow')
             }
             // testAddContract() {
             //     this.$store.dispatch('ContractOperation/appendContract', {
@@ -220,6 +227,10 @@
             color: #c4c3d3;
         }
 
+        .link {
+            color: rgb(111, 153, 248);
+            text-decoration: underline;
+        }
     }
 
     .pink-lamp {

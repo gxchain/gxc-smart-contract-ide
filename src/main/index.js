@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== 'development') {
 
 let mainWindow
 let documentWindow
+let feedbackWindow
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
@@ -122,6 +123,7 @@ function createWindow() {
     })
 
     ipcMain.on('loadDocumentWindow', loadDocumentWindow.bind(this, mainWindow))
+    ipcMain.on('loadFeedbackWindow', loadFeedbackWindow.bind(this, mainWindow))
 }
 
 function loadDocumentWindow(parent) {
@@ -133,6 +135,22 @@ function loadDocumentWindow(parent) {
         })
 
         documentWindow.loadURL('https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md')
+
+        documentWindow.on('closed', () => {
+            documentWindow = null
+        })
+    }
+}
+
+function loadFeedbackWindow(parent) {
+    if (!feedbackWindow) {
+        documentWindow = new BrowserWindow({
+            height: 500,
+            width: 1000,
+            parent: parent
+        })
+
+        documentWindow.loadURL('http://blockcity.mikecrm.com/1WDrQXM')
 
         documentWindow.on('closed', () => {
             documentWindow = null
