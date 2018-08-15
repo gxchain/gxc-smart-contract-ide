@@ -1,9 +1,9 @@
 {
-  "name": "gxb-wallet-2.0",
+  "name": "gxchain-alpha",
   "version": "0.0.1",
   "author": "GXC TEAM",
-  "description": "An electron-vue project",
-  "license": null,
+  "description": "gxchain smart contract IDE alpha",
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
