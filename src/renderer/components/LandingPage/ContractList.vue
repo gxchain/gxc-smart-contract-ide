@@ -8,10 +8,10 @@
             <Collapse v-for="contract in contracts" value="1">
                 <Panel name="1">
                     <div class="f-toe" :title="contract.contractName"
-                            style="display:inline-block;width:210px;vertical-align: middle;">
+                            style="display:inline-block;width:200px;vertical-align: middle;">
                         {{contract.contractName}}
                     </div>
-                    <Icon type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
+                    <Icon class="closeContract" type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
                     <div slot="content">
                         <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi"
                                 :contractName="contract.contractName"
@@ -171,6 +171,12 @@
         border-radius: 0;
         border-top: 2px solid #6699ff;
         background: #32395e;
+    }
+
+    .closeContract {
+        position: absolute;
+        right: 0;
+        top: 12px;
     }
 
     .ivu-icon-md-add-circle {
