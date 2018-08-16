@@ -182,7 +182,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" type="text/scss" scoped>
     .functionCard-layout {
         margin-top: 20px;
     }
@@ -207,12 +207,18 @@
         width: 90px;
     }
 
+    .extra-asset{
+        display:flex;
+    }
+
     .asset-select {
-        width: 80px;
+        width: 0;
+        flex-grow: 1;
         margin-right: 6px;
     }
 
     .asset-amount {
-        width: 160px;
+        flex-grow: 2;
+        width: 0;
     }
 </style>

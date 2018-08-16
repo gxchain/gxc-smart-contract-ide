@@ -2,15 +2,15 @@
     <div class="single-layout">
         <slot></slot>
         <h3 v-if="!!name">{{name}}</h3>
-        <template v-if="type==='asset'||type==='contract_asset'">
+        <div class="input-wrap" v-if="type==='asset'||type==='contract_asset'">
             <Select v-model="asset_id" class="asset-select" :placeholder="$t('common.placeholder.assetType')">
                 <Option v-for="asset in formatBalances" :value="asset.id" :key="asset.id">{{ asset.symbol }}</Option>
             </Select>
             <Input class="asset-amount" :placeholder="$t('common.placeholder.assetAmount')" v-model="amount"/>
-        </template>
-        <template v-else>
+        </div>
+        <div class="input-wrap" v-else>
             <Input v-model="value" :placeholder="type"/>
-        </template>
+        </div>
     </div>
 </template>
 
@@ -67,12 +67,18 @@
         color: #9090c8;
     }
 
+    .input-wrap{
+        display: flex;
+    }
+
     .asset-select {
-        width: 80px;
+        width: 0;
+        flex-grow: 1;
         margin-right: 6px;
     }
 
     .asset-amount {
-        width: 160px;
+        flex-grow: 2;
+        width: 0;
     }
 </style>

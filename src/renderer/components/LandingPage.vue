@@ -319,18 +319,25 @@
         font-size: 20px;
     }
 
+    .compile-area, .deploy-area{
+        display: flex;
+    }
+
     .entry-select {
-        width: 180px;
+        width: 0;
+        flex-grow:3;
         margin-right: 15px;
     }
 
     .contractName {
-        width: 180px;
+        width: 0;
+        flex-grow:3;
         margin-right: 15px;
     }
 
     .compileBtn, .deployBtn {
-        width: 75px;
+        width: 0;
+        flex-grow:1;
         border-color: #6699ff;
         color: #6699ff;
     }
