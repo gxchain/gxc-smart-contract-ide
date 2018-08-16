@@ -6,6 +6,7 @@ import some from 'lodash/some'
 import store from '@/store'
 import find from 'lodash/find'
 import i18n from '@/locales'
+import {accMult} from 'gxc-frontend-base/src/script/util/index'
 // import Vue from 'vue'
 /**
  * get account information by name
@@ -185,7 +186,7 @@ const call_contract = (from, target, act, fee_id, password, broadcast = true, am
 
             if (!!amount.amount) {
                 let computedAmount
-                computedAmount = gxcUtil.accMult(amount.amount, Math.pow(10, store.getters.assetMap[amount.asset_id].precision))
+                computedAmount = accMult(amount.amount, Math.pow(10, store.getters.assetMap[amount.asset_id].precision))
                 opts.amount = {...amount, amount: computedAmount}
             }
             tr.add_operation(tr.get_type_operation('call_contract', opts))

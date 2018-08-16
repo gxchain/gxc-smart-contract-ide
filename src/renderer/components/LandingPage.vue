@@ -266,8 +266,9 @@
                     contractName: this.contractName,
                     code: this.bytecode
                 }).then((resp) => {
+                    const txid = resp[0].id
                     this.renderLog({
-                        info: this.$t('contract.messages.deploySuc'),
+                        info: this.$t('contract.messages.deploySuc') + `,txid:${txid}`,
                         level: 'success'
                     })
                     this.$Message.success(this.$t('contract.messages.deploySuc'))

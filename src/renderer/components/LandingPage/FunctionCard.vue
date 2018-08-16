@@ -119,6 +119,7 @@
                         params = await fieldUtil.formatFields2Params(fields)
                         data = serializer.serializeCallData(this.name, params, this.abi).toString('hex')
                     } catch (ex) {
+                        console.error(ex)
                         this.$eventBus.$emit('log:push', {
                             info: ex.message,
                             level: 'error'
@@ -136,6 +137,7 @@
                         this.tempAsset = asset
                         this.confirmCallModalVisible = true
                     }).catch(ex => {
+                        console.error(ex)
                         this.$eventBus.$emit('log:push', {
                             info: ex.message,
                             level: 'error'
@@ -152,8 +154,9 @@
                     'method_name': this.name,
                     'data': data
                 }, this.tempAsset.id, this.tempPwd, true, this.amount).then((resp) => {
+                    const txid = resp[0].id
                     this.$eventBus.$emit('log:push', {
-                        info: this.$t('contract.messages.callSuc'),
+                        info: this.$t('contract.messages.callSuc') + `,txid:${txid}`,
                         level: 'success'
                     })
                     this.$Message.success(this.$t('contract.messages.callSuc'))

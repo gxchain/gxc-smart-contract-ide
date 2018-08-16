@@ -14,9 +14,8 @@ getters.formatBalances = state => {
 
 getters.assetMap = state => {
     const map = {}
-    state.assets.forEach((asset, i) => {
-        var balance = state.balances[i]
-        map[balance.id] = {
+    state.assets.forEach((asset) => {
+        map[asset.id] = {
             symbol: asset.symbol,
             precision: asset.precision
         }

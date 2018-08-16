@@ -4,6 +4,7 @@ import store from '@/store'
 import {
     fetch_account
 } from '@/services/WalletService'
+import {accMult} from 'gxc-frontend-base/src/script/util/index'
 
 const handlers = {
     'account_name': async function (value) {
@@ -15,12 +16,12 @@ const handlers = {
         })
     },
     'contract_asset': function (value) {
-        value.amount = gxcUtil.accMult(value.amount, Math.pow(10, store.getters.assetMap[value.asset_id].precision))
+        value.amount = accMult(value.amount, Math.pow(10, store.getters.assetMap[value.asset_id].precision))
         value.asset_id = +value.asset_id.split('.')[2]
         return value
     },
     'asset': function (value) {
-        value.amount = gxcUtil.accMult(value.amount, Math.pow(10, store.getters.assetMap[value.asset_id].precision))
+        value.amount = accMult(value.amount, Math.pow(10, store.getters.assetMap[value.asset_id].precision))
         return value
     },
     defaultHandler: function (value) {
