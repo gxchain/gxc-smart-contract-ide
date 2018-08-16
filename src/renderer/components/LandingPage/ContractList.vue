@@ -176,7 +176,7 @@
     .closeContract {
         position: absolute;
         right: 0;
-        top: 12px;
+        top: 14px;
     }
 
     .ivu-icon-md-add-circle {
