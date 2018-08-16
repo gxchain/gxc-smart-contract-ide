@@ -1,27 +1,35 @@
-# gxb-wallet-2.0
+<p align="center">
+    <img src="./static/icon.png">
+</p>
+<h1 align="center">Gxchain-alpha</h1>
 
-> An electron-vue project
+gxchain smart contract IDE alpha
 
-#### Build Setup
-
-``` bash
-# install dependencies
+## Install
+```bash
+git clone https://github.com/gxchain/gxchain-alpha.git
+cd gxchain-alpha
 npm install
-
-# serve with hot reload at localhost:9080
-npm run dev
-
-# build electron application for production
-npm run build
-
-# run unit & end-to-end tests
-npm test
-
-
-# lint all JS/Vue component files in `src/`
-npm run lint
-
 ```
+
+## Dev
+```bash
+npm run dev
+```
+
+## Build
+use electron builder to build
+```bash
+npm run build
+```
+
+## Document
+You could find some useful instruction [here](https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md)
+
+## Resource
+You could find some desgin details on this [demonstration](https://slides.com/jaredliu/deck/)
+
+
 
 ---
 
