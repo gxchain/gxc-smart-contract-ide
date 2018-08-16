@@ -47,12 +47,12 @@
                 </div>
                 <div class="f-fr">
                     <div class="status-item">
-                        <i v-if="currentApiServerStatus==='open'" class="blue-lamp"></i>
-                        <i v-if="currentApiServerStatus!=='open'" class="pink-lamp"></i>
+                        <i v-if="currentApiServerStatus==='open' || currentApiServerStatus=='reconnect'" class="blue-lamp"></i>
+                        <i v-else class="pink-lamp"></i>
                         <Tooltip placement="top">
                             <a class="text">{{$t('statusbar.currentApiServer')}}</a>
                             <div slot="content">
-                                <Button v-if="currentApiServerStatus!=='open' || currentApiServerStatus!=='reconnect'" type="error" size="small" shape="circle"
+                                <Button v-if="currentApiServerStatus!=='open' && currentApiServerStatus!=='reconnect'" type="error" size="small" shape="circle"
                                         icon="md-refresh"
                                         @click="onReconnectClick"></Button>
                                 {{currentApiServer.url}}
