@@ -18,10 +18,22 @@ npm run dev
 ```
 
 ## Build
-use electron builder to build
+powered by electron builder
 ```bash
+// build all platform
 npm run build
+
+// build mac
+npm run build:mac
+
+// build windows
+npm run build:win
+
+// build linux
+npm run build:linux
 ```
+
+you could find executable or installer in `build` directory
 
 ## Document
 You could find some useful instruction [here](https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md)
