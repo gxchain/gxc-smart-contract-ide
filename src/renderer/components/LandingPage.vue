@@ -351,8 +351,11 @@
     }
 
     .operation-panel {
+        position: relative;
+        z-index: 901;
         border-top: 1px solid #313754;
         padding: 20px;
+        background: #151935;
     }
 
     .entry-select /deep/ .ivu-select-selection, .contractName /deep/ .ivu-input {

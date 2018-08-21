@@ -8,7 +8,7 @@
             <Collapse v-for="contract in contracts" value="1">
                 <Panel name="1">
                     <div class="f-toe" :title="contract.contractName"
-                            style="display:inline-block;width:200px;vertical-align: middle;">
+                            style="display:inline-block;width:200px;vertical-align: middle;position: relative;top: -1px;">
                         {{contract.contractName}}
                     </div>
                     <Icon class="closeContract" type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
