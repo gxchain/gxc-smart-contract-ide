@@ -9,6 +9,7 @@ import iviewLocales from 'iview/dist/locale/en-US'
 import '@/assets/icons'
 import {connect} from './services/connect'
 import {webFrame} from 'electron'
+import logUtil from '@/util/logUtil'
 
 import App from './App'
 
@@ -34,6 +35,8 @@ connect(() => {
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
+
+Vue.prototype.$logUtil = logUtil
 
 var iviewOptions = {}
 if (localStorage.getItem('lang') === 'en-US') {

@@ -11,7 +11,8 @@ module.exports = {
     extends: 'standard',
     globals: {
         __static: true,
-        gxcUtil: true
+        gxcUtil: true,
+        MtaH5: true
     },
     plugins: [
         'html'

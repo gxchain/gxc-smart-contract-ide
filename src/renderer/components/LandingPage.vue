@@ -149,6 +149,7 @@
                 return !!entryFile
             },
             onCompileClick() {
+                this.$logUtil.logClick('compileclick')
                 if (!this.entry) {
                     this.$Message.warning(this.$t('contract.validate.entryProject.required'))
                     return
@@ -209,6 +210,7 @@
                 this.abi = abi ? JSON.parse(abi) : {}
             },
             onDeploy() {
+                this.$logUtil.logClick('deployClick')
                 if (!this.currentWallet.account) {
                     this.$Modal.confirm({
                         title: this.$t('common.title.guideToImport'),
@@ -266,6 +268,7 @@
                     contractName: this.contractName,
                     code: this.bytecode
                 }).then((resp) => {
+                    this.$logUtil.logClick('deploySuc')
                     const txid = resp[0].id
                     this.renderLog({
                         info: this.$t('contract.messages.deploySuc') + `,txid:${txid}`,
@@ -276,6 +279,7 @@
                     this.appendContract(resp[0].ext)
                     this.$store.dispatch('updateCurrentBalancesAndAssets')
                 }).catch(ex => {
+                    this.$logUtil.logClick('deployFail')
                     this.renderLog({info: ex.message, level: 'error'})
                     this.$Message.error(this.$t('contract.messages.deployFail'))
                     this.$eventBus.$emit('log:push', {

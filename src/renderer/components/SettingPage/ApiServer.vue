@@ -71,6 +71,7 @@
                     if (flag) {
                         this.$Message.warning(this.$t('apiServer.messages.exist'))
                     } else {
+                        this.$logUtil.logClick('addEntryPointSuc')
                         this.$Message.success(this.$t('apiServer.messages.addSuc'))
                     }
                 })

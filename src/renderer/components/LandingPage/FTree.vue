@@ -80,6 +80,7 @@
                                     title: that.$t('template.title.create'),
                                     type: 'template',
                                     callback: (name) => {
+                                        that.$logUtil.logClick('createTemplateSuc')
                                         that.addProject(compiled.render({title: name}))
                                     }
                                 })

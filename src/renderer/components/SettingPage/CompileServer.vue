@@ -71,6 +71,7 @@
                     if (flag) {
                         this.$Message.warning(this.$t('compileServer.messages.exist'))
                     } else {
+                        this.$logUtil.logClick('addCompileServerSuc')
                         this.$Message.success(this.$t('compileServer.messages.addSuc'))
                     }
                 })

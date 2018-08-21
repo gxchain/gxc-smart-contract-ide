@@ -150,6 +150,7 @@
         methods: {
             ...mapActions(['appendWallet', 'removeWallet']),
             onImportClick() {
+                this.$logUtil.logClick('importClick')
                 this.import()
             },
             import() {
@@ -157,9 +158,11 @@
                     if (valid) {
                         this.loading = true
                         import_account(this.form.wifKey, this.form.pwd).then((info) => {
+                            this.$logUtil.logClick('importSuc')
                             this.loading = false
                             this.$Message.success(this.$t('importSetting.messages.importSuc'))
                         }).catch((ex) => {
+                            this.$logUtil.logClick('importFail')
                             this.loading = false
                             this.$Message.error(ex.message)
                         })

@@ -100,6 +100,7 @@
         },
         methods: {
             onCall() {
+                this.$logUtil.logClick('callClick')
                 if (!this.currentWallet.account) {
                     this.$Modal.confirm({
                         title: this.$t('common.title.guideToImport'),
@@ -154,6 +155,7 @@
                     'method_name': this.name,
                     'data': data
                 }, this.tempAsset.id, this.tempPwd, true, this.amount).then((resp) => {
+                    this.$logUtil.logClick('callSuc')
                     const txid = resp[0].id
                     this.$eventBus.$emit('log:push', {
                         info: this.$t('contract.messages.callSuc') + `,txid:${txid}`,
@@ -162,6 +164,7 @@
                     this.$Message.success(this.$t('contract.messages.callSuc'))
                     this.$store.dispatch('updateCurrentBalancesAndAssets')
                 }).catch(ex => {
+                    this.$logUtil.logClick('callFail')
                     this.$eventBus.$emit('log:push', {
                         info: ex.message,
                         level: 'error'

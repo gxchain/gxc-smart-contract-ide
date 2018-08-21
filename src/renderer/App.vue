@@ -74,7 +74,6 @@
 <script>
     import {locale} from 'iview'
     import {mapActions, mapState} from 'vuex'
-    import {ipcRenderer} from 'electron'
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
@@ -116,10 +115,12 @@
                 reconnect()
             },
             onDocumentClick() {
-                ipcRenderer.send('loadDocumentWindow')
+                this.$logUtil.logClick('documentClick')
+                this.$electron.remote.shell.openExternal('https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md')
             },
             onFeedbackClick() {
-                ipcRenderer.send('loadFeedbackWindow')
+                this.$logUtil.logClick('feedbackClick')
+                this.$electron.remote.shell.openExternal('http://blockcity.mikecrm.com/1WDrQXM')
             },
             setLang(lang) {
                 localStorage.setItem('lang', lang)
