@@ -175,6 +175,8 @@
     }
 
     .hd {
+        position: relative;
+        z-index: 902;
         -webkit-app-region: drag;
         background: url('~top-banner.png');
         background-size: 100%;
