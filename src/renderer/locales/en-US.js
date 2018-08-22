@@ -260,6 +260,9 @@ const locale = {
                 description: 'a red packet contract, offer issue, open and close redpacket method'
             }
         }
+    },
+    tool: {
+        use: 'Use'
     }
 }
 

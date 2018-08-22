@@ -10,6 +10,9 @@
                 <router-link class="nav-item" :to="{name:'compile-server'}">
                     {{$t('importSetting.title.compileServer')}}
                 </router-link>
+                <router-link class="nav-item" :to="{name:'tool'}">
+                    {{$t('importSetting.title.tool')}}
+                </router-link>
             </Sider>
             <Content style="padding: 20px 30px;">
                 <keep-alive>

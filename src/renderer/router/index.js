@@ -27,6 +27,10 @@ export default new Router({
                 path: '/setting/compile-server',
                 name: 'compile-server',
                 component: require('@/components/SettingPage/CompileServer').default
+            }, {
+                path: '/setting/tool',
+                name: 'tool',
+                component: require('@/components/SettingPage/Tool').default
             }]
         }
     ]
