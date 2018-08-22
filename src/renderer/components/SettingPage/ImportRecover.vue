@@ -29,7 +29,7 @@
 
 <script>
     import {mapState, mapActions} from 'vuex'
-    import {PrivateKey} from 'gxbjs/lib/index.js'
+    import {PrivateKey} from 'gxbjs'
     import {
         import_account
     } from '@/services/WalletService'

@@ -1,5 +1,4 @@
-import types from 'gxbjs/lib/serializer/src/types'
-import * as ops from 'gxbjs/lib/serializer/src/operations'
+import {types, ops} from 'gxbjs'
 import ByteBuffer from 'bytebuffer'
 import {cloneDeep} from 'lodash'
 

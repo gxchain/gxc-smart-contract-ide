@@ -1,5 +1,5 @@
 <template>
-    <Button class="copyBtn" type="primary" @click="onCopyClick">{{text}}</Button>
+    <Button class="copyBtn" :size="size" type="primary" @click="onCopyClick">{{text}}</Button>
 </template>
 <script>
     export default {
@@ -20,7 +20,8 @@
                 default() {
                     return this.$t('common.messages.copySuc')
                 }
-            }
+            },
+            size: String
         },
         methods: {
             onCopyClick() {
@@ -36,3 +37,9 @@
         }
     }
 </script>
+
+<style lang="scss" type="text/scss" scoped>
+    .copyBtn{
+        vertical-align: middle;
+    }
+</style>
