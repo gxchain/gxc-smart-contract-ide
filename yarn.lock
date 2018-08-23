@@ -4368,9 +4368,9 @@ gxbjs@1.2.89, gxbjs@^1.2.81:
     secp256k1 "^3.3.0"
     secure-random "^1.1.1"
 
-gxc-frontend-base@gxchain/gxc-frontend-base#e2cbd9f:
+gxc-frontend-base@gxchain/gxc-frontend-base#71242a0:
   version "0.1.0"
-  resolved "https://codeload.github.com/gxchain/gxc-frontend-base/tar.gz/e2cbd9f70d3b1b70b036f9e7dd8b70f71087537f"
+  resolved "https://codeload.github.com/gxchain/gxc-frontend-base/tar.gz/71242a0043e69f2625ac8332337310900c4fe9f0"
 
 gxclient@^1.1.1:
   version "1.1.1"

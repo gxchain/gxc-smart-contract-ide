@@ -1,14 +1,17 @@
 <template>
     <div class="tool-layout">
         <generate-key-pair></generate-key-pair>
+        <generate-signature></generate-signature>
     </div>
 </template>
 
 <script>
     import GenerateKeyPair from './Tool/GenerateKeyPair'
+    import GenerateSignature from './Tool/GenerateSignature'
     export default {
         components: {
-            GenerateKeyPair
+            GenerateKeyPair,
+            GenerateSignature
         },
         name: 'Tool'
     }

@@ -1,9 +1,9 @@
 <template>
-    <base-tool :loading="true" modalClass="generate-key-pair-modal" class="generate-key-pair-layout" :title="$t('title')"
+    <base-tool @visible-change="onVisibleChange" :loading="true" modalClass="generate-key-pair-modal" class="generate-key-pair-layout" :title="$t('title')"
             :description="$t('description')">
         <div class="content">
             <Button class="btn" type="primary" @click="updateKeyPair">{{$t('updateKeyPair')}}</Button>
-            <Form class="pure-text-form" label-position="left" :label-width="120">
+            <Form class="pure-text-form" label-position="left" :label-width="80">
                 <FormItem :label="$t('pub')">
                     <span class="text">{{pub}}</span>
                     <copy-btn size="small" :value="pub"></copy-btn>
@@ -31,8 +31,7 @@
         data() {
             return {
                 priv: '',
-                pub: '',
-                buttonLoading: false
+                pub: ''
             }
         },
         created() {
@@ -47,6 +46,11 @@
             generateKeyPair() {
                 let client = new GXClient()
                 return client.generateKey()
+            },
+            onVisibleChange(visible) {
+                if (visible) {
+                    // this.updateKeyPair()
+                }
             }
         },
         i18n: { // `i18n` option, setup locale info for component
@@ -84,16 +88,6 @@
 
         .btn {
             margin-bottom: 10px;
-        }
-
-        .content {
-            .ivu-form-item-label {
-                width: 80px !important;
-            }
-
-            .ivu-form-item-content {
-                margin-left: 80px !important;
-            }
         }
 
         .text {

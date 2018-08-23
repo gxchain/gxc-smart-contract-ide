@@ -108,7 +108,7 @@
     "fs-extra": "^7.0.0",
     "gxbjs": "1.2.89",
     "gxbjs-ws": "^1.1.18",
-    "gxc-frontend-base": "gxchain/gxc-frontend-base#e2cbd9f",
+    "gxc-frontend-base": "gxchain/gxc-frontend-base#71242a0",
     "gxclient": "^1.1.1",
     "iview": "^3.0.0",
     "jdenticon": "^2.1.0",
