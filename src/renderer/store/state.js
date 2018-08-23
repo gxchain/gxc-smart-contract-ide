@@ -12,7 +12,7 @@ const state = {
 
 if (process.env.NODE_ENV === 'development') {
     state.apiServers.push({
-        url: 'ws://192.168.1.118:28099',
+        url: 'ws://192.168.1.118:28090',
         location: '',
         latency: '?'
     })
