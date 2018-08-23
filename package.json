@@ -94,8 +94,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "DophinL",
-        "repo": "test-gxchain-alpha"
+        "owner": "gxchain",
+        "repo": "gxchain-alpha"
       }
     ]
   },
