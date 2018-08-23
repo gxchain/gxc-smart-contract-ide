@@ -262,7 +262,10 @@ const locale = {
         }
     },
     tool: {
-        use: 'Use'
+        use: 'Use',
+        title: {
+            tool: 'Tool'
+        }
     }
 }
 

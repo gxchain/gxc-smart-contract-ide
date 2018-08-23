@@ -57,7 +57,7 @@
             messages: {
                 'en-US': {
                     title: 'Generate Key Pair',
-                    description: 'Generate GXC key pair, you may use it on some contract function params',
+                    description: 'Generate GXC key pair, you may use it when generate some contract function params',
                     pub: 'pubKey',
                     priv: 'privateKey',
                     updateKeyPair: 'Update Key Pair'

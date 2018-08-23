@@ -95,7 +95,7 @@
             messages: {
                 'en-US': {
                     title: 'Generate Signature',
-                    description: 'Generate signature based on ECDSA and SHA256, you may use it on some contract function params',
+                    description: 'Generate signature based on ECDSA and SHA256, you may use it when generate some contract function params',
                     sign: 'Sign',
                     wifKey: 'WifKey',
                     message: 'Message',
@@ -115,8 +115,8 @@
                     }
                 },
                 'zh-CN': {
-                    title: '生成公私钥对',
-                    description: '生成GXC公私钥对，你可能会在合约的函数参数用到',
+                    title: '生成签名',
+                    description: '生成基于ECDSA和SHA256算法的数字签名，你可能会在构造合约的函数参数时用到',
                     sign: '签名',
                     wifKey: '私钥',
                     message: '消息',

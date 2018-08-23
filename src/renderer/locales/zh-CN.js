@@ -262,7 +262,10 @@ const locale = {
         }
     },
     tool: {
-        use: '使用'
+        use: '使用',
+        title: {
+            tool: '工具'
+        }
     }
 }
 
