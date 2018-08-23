@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import locales from '@/locales'
 import {webFrame} from 'electron'
 
 import App from './App'
@@ -15,5 +16,6 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
     components: {App},
-    template: '<App/>'
+    template: '<App/>',
+    i18n: locales
 }).$mount('#app')

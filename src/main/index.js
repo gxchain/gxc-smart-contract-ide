@@ -128,19 +128,16 @@ function createWindow() {
     })
 }
 
-function createUpdateWindow(info) {
+function createUpdateWindow(info = {}) {
     const updateWindow = new BrowserWindow({
-        minHeight: 696,
-        minWidth: 1180,
-        height: 696,
-        useContentSize: true,
-        width: 1180,
+        height: 500,
+        width: 700,
+        // resizable: false,
         show: false
     })
 
     updateWindow.once('ready-to-show', () => {
         updateWindow.show()
-        // TODO show update note
         updateWindow.webContents.send('releaseNoteGet', info)
     })
 
@@ -154,6 +151,7 @@ function createUpdateWindow(info) {
 app.on('ready', () => {
     createMenu()
     createWindow()
+    // createUpdateWindow()
 })
 
 app.on('window-all-closed', () => {

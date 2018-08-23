@@ -2,8 +2,9 @@
 @import "iviewOveride";
 @import "helper";
 
-body{
+body {
   overflow: hidden;
+  margin: 0;
 }
 
 *, *::after, *::before {

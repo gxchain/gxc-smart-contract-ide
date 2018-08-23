@@ -146,6 +146,10 @@ let rendererConfig = {
             }
         }),
         new ExtractTextPlugin('styles.css'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common',
+            minChunks: 2
+        }),
         new HtmlWebpackPlugin({
             filename: 'update.html',
             template: path.resolve(__dirname, '../src/update.ejs'),
@@ -154,7 +158,7 @@ let rendererConfig = {
                 removeAttributeQuotes: true,
                 removeComments: true
             },
-            chunks: ['update'],
+            chunks: ['common', 'update'],
             nodeModules: process.env.NODE_ENV !== 'production'
                 ? path.resolve(__dirname, '../node_modules')
                 : false
@@ -167,7 +171,7 @@ let rendererConfig = {
                 removeAttributeQuotes: true,
                 removeComments: true
             },
-            chunks: ['renderer'],
+            chunks: ['common', 'renderer'],
             nodeModules: process.env.NODE_ENV !== 'production'
                 ? path.resolve(__dirname, '../node_modules')
                 : false
