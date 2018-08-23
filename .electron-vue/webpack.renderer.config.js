@@ -24,7 +24,8 @@ let whiteListedModules = ['vue', 'iview']
 let rendererConfig = {
     devtool: '#cheap-module-eval-source-map',
     entry: {
-        renderer: path.join(__dirname, '../src/renderer/main.js')
+        renderer: path.join(__dirname, '../src/renderer/main.js'),
+        update: path.join(__dirname, '../src/renderer/pages/update/main.js')
     },
     externals: [
         ...Object.keys(dependencies || {}).filter(d => !whiteListedModules.includes(d))
@@ -42,11 +43,11 @@ let rendererConfig = {
                     }
                 }
             },
-            // use lodash template engine
+            // will influence entry ejs if not exclude
             {
                 test: /\.ejs$/,
                 loader: 'raw-loader',
-                exclude: /index\.ejs/
+                exclude: /(index|update)\.ejs/
             },
             {
                 test: /\.scss$/,
@@ -146,6 +147,19 @@ let rendererConfig = {
         }),
         new ExtractTextPlugin('styles.css'),
         new HtmlWebpackPlugin({
+            filename: 'update.html',
+            template: path.resolve(__dirname, '../src/update.ejs'),
+            minify: {
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+                removeComments: true
+            },
+            chunks: ['update'],
+            nodeModules: process.env.NODE_ENV !== 'production'
+                ? path.resolve(__dirname, '../node_modules')
+                : false
+        }),
+        new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, '../src/index.ejs'),
             minify: {
@@ -153,6 +167,7 @@ let rendererConfig = {
                 removeAttributeQuotes: true,
                 removeComments: true
             },
+            chunks: ['renderer'],
             nodeModules: process.env.NODE_ENV !== 'production'
                 ? path.resolve(__dirname, '../node_modules')
                 : false

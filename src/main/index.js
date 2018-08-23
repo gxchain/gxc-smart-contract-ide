@@ -1,6 +1,6 @@
 'use strict'
 
-import {app, BrowserWindow, Menu, dialog} from 'electron'
+import {app, BrowserWindow, Menu, dialog, ipcMain} from 'electron'
 import filesUtil from './util/filesUtil'
 import {autoUpdater} from 'electron-updater'
 
@@ -16,6 +16,10 @@ let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
+
+const updateWinURL = process.env.NODE_ENV === 'development'
+    ? `http://localhost:9080/update.html`
+    : `file://${__dirname}/update.html`
 
 function createMenu() {
     const application = {
@@ -124,6 +128,29 @@ function createWindow() {
     })
 }
 
+function createUpdateWindow(info) {
+    const updateWindow = new BrowserWindow({
+        minHeight: 696,
+        minWidth: 1180,
+        height: 696,
+        useContentSize: true,
+        width: 1180,
+        show: false
+    })
+
+    updateWindow.once('ready-to-show', () => {
+        updateWindow.show()
+        // TODO show update note
+        updateWindow.webContents.send('releaseNoteGet', info)
+    })
+
+    updateWindow.loadURL(updateWinURL)
+
+    ipcMain.on('quitAndInstall', () => {
+        autoUpdater.quitAndInstall()
+    })
+}
+
 app.on('ready', () => {
     createMenu()
     createWindow()
@@ -149,10 +176,11 @@ app.on('activate', () => {
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-autoUpdater.on('update-downloaded', () => {
-    autoUpdater.quitAndInstall()
+autoUpdater.on('update-downloaded', (info) => {
+    createUpdateWindow(info)
 })
 
+// will auto download
 app.on('ready', () => {
     if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
