@@ -46,10 +46,6 @@
         passwordUtil.setPassword('')
     })
 
-    instance.$on('removeWallet', () => {
-        passwordUtil.setPassword('')
-    })
-
     export default Vue.extend({
         name: 'PasswordConfirmModal',
         data() {

@@ -17,7 +17,6 @@ actions.removeWallet = ({state, dispatch, commit}, account) => {
     if (account === state.currentWallet.account) {
         dispatch('changeWallet', state.wallets[0] && state.wallets[0].account)
     }
-    instance.$emit('changeWallet')
 }
 
 actions.changeWallet = ({commit, dispatch}, account) => {
