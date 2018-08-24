@@ -23,12 +23,37 @@
     import {
         unlock_wallet
     } from '@/services/WalletService'
+    import {instance} from '@/plugins/eventBus'
+
+    const passwordUtil = {
+        lastSetTime: 0,
+        password: '',
+        getPassword: function () {
+            const now = new Date()
+            // if exceed time : 10 min
+            if (now - this.lastSetTime > 10 * 60 * 1000) {
+                this.setPassword('')
+            }
+            return this.password
+        },
+        setPassword: function (pwd) {
+            this.lastSetTime = new Date()
+            this.password = pwd
+        }
+    }
+
+    instance.$on('changeWallet', () => {
+        passwordUtil.setPassword('')
+    })
+
+    instance.$on('removeWallet', () => {
+        passwordUtil.setPassword('')
+    })
 
     export default Vue.extend({
         name: 'PasswordConfirmModal',
         data() {
             return {
-                pwd: '',
                 loading: true,
                 model: false,
                 title: this.$t('unlock.title'),
@@ -48,7 +73,7 @@
                     }]
                 },
                 form: {
-                    pwd: '',
+                    pwd: passwordUtil.getPassword(),
                     asset_id: ''
                 }
             }
@@ -79,6 +104,7 @@
                     if (valid) {
                         this.model = false
                         unlock_wallet(store.state.currentWallet.account, this.form.pwd).then(() => {
+                            passwordUtil.setPassword(this.form.pwd)
                             var asset = this.formatBalances.find((asset) => {
                                 return asset.id === this.form.asset_id
                             })

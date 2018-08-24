@@ -1,7 +1,6 @@
 import {Apis, Manager} from 'gxbjs-ws'
 import store from '@/store'
 // import Vue from 'vue'
-// import va from '@/util/vue-agency'
 
 // let tempVue = new Vue()
 

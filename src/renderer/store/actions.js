@@ -1,6 +1,7 @@
 import {fetch_account_balances, get_assets_by_ids} from '@/services/WalletService'
 import {Manager} from 'gxbjs-ws'
 import {reconnect} from '@/services/connect'
+import {instance} from '@/plugins/eventBus'
 
 const actions = {}
 
@@ -16,11 +17,13 @@ actions.removeWallet = ({state, dispatch, commit}, account) => {
     if (account === state.currentWallet.account) {
         dispatch('changeWallet', state.wallets[0] && state.wallets[0].account)
     }
+    instance.$emit('changeWallet')
 }
 
 actions.changeWallet = ({commit, dispatch}, account) => {
     commit('CHANGE_WALLET', account)
     dispatch('updateCurrentBalancesAndAssets')
+    instance.$emit('changeWallet')
 }
 
 actions.updateCurrentBalancesAndAssets = ({dispatch, state}) => {

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 class EventBus {
     constructor (vue) {
         if (!this.handles) {
@@ -41,9 +42,12 @@ class EventBus {
 }
 // 下面写成Vue插件形式，直接引入然后Vue.use($EventBus)进行使用
 let $EventBus = {}
+let _instance = new EventBus(Vue)
+
+export const instance = _instance
 
 $EventBus.install = (Vue, option) => {
-    Vue.prototype.$eventBus = new EventBus(Vue)
+    Vue.prototype.$eventBus = _instance
     Vue.mixin({
         beforeDestroy () {
             this.$eventBus.$offVmEvent(this._uid) // 拦截beforeDestroy钩子自动销毁自身所有订阅的事件
