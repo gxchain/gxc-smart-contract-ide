@@ -1,24 +1,26 @@
 <template>
     <div class="layout">
         <Layout class="layout-container" style="flex-direction: row">
-            <Sider hide-trigger style="background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;"
-                    width="240">
-                <fTree ref="tree"></fTree>
-            </Sider>
-            <Layout style="flex-direction: column;height:100%;overflow: auto;">
-                <Content class="code-wrap">
-                    <template v-if="projects.length>0">
-                        <code-panel></code-panel>
-                    </template>
-                    <template v-else>
-                        <div class="empty-add-file">
-                            <i @click="onAddProjectClick" class="icon-add-file"></i>
-                            <p class="desc">{{$t('files.addProject')}}</p>
-                        </div>
-                    </template>
-                </Content>
-                <info-panel :bytecode="bytecode" :abi="abi"></info-panel>
-            </Layout>
+            <Split min="240px" v-model="splitVal">
+                <Sider slot="left" hide-trigger
+                        style="width:100%;min-width:auto;max-width:none;background:#151935;height:100%;overflow:auto;color:white;overflow-x:hidden;">
+                    <fTree ref="tree"></fTree>
+                </Sider>
+                <Layout slot="right" style="flex-direction: column;height:100%;overflow: auto;">
+                    <Content class="code-wrap">
+                        <template v-if="projects.length>0">
+                            <code-panel></code-panel>
+                        </template>
+                        <template v-else>
+                            <div class="empty-add-file">
+                                <i @click="onAddProjectClick" class="icon-add-file"></i>
+                                <p class="desc">{{$t('files.addProject')}}</p>
+                            </div>
+                        </template>
+                    </Content>
+                    <info-panel :bytecode="bytecode" :abi="abi"></info-panel>
+                </Layout>
+            </Split>
             <Sider class="rightPane" width="320" style="height:100%;overflow: auto;">
                 <div class="operation-panel">
                     <div class="compile-area">
@@ -86,7 +88,8 @@
                 abi: {},
                 isCompiling: false,
                 tempPwd: '',
-                tempAsset: {}
+                tempAsset: {},
+                splitVal: this.$store.state.ContractOperation.splitval
             }
         },
         computed: {
@@ -102,6 +105,11 @@
             entryProjectName() {
                 const project = this.projects.find(project => project.id === this.entry)
                 return project ? project.title : ''
+            }
+        },
+        watch: {
+            splitVal: function (newVal) {
+                this.$store.dispatch('ContractOperation/changeSplitval', newVal)
             }
         },
         created() {
@@ -323,25 +331,25 @@
         font-size: 20px;
     }
 
-    .compile-area, .deploy-area{
+    .compile-area, .deploy-area {
         display: flex;
     }
 
     .entry-select {
         width: 0;
-        flex-grow:3;
+        flex-grow: 3;
         margin-right: 15px;
     }
 
     .contractName {
         width: 0;
-        flex-grow:3;
+        flex-grow: 3;
         margin-right: 15px;
     }
 
     .compileBtn, .deployBtn {
         width: 0;
-        flex-grow:1;
+        flex-grow: 1;
         border-color: #6699ff;
         color: #6699ff;
     }
@@ -377,7 +385,7 @@
         position: absolute;
         left: 50%;
         top: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         .icon-add-file {
             display: block;
             cursor: pointer;

@@ -110,7 +110,7 @@
     "gxbjs-ws": "^1.1.18",
     "gxc-frontend-base": "gxchain/gxc-frontend-base#71242a0",
     "gxclient": "^1.1.1",
-    "iview": "^3.0.0",
+    "iview": "^3.0.1",
     "jdenticon": "^2.1.0",
     "localforage": "^1.7.2",
     "lodash": "^4.17.10",
