@@ -87,7 +87,7 @@ const locale = {
             }
         },
         content: {
-            removeContract: '确认移除该合约?'
+            removeContract: '确认移除(本地)该合约?'
         },
         error: {
             fromAccountNotExist: '账户不存在',

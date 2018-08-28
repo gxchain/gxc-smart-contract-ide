@@ -87,7 +87,7 @@ const locale = {
             }
         },
         content: {
-            removeContract: 'Confirm remove the contract?'
+            removeContract: 'Confirm remove(locally) the contract?'
         },
         error: {
             fromAccountNotExist: 'Account not exist',
