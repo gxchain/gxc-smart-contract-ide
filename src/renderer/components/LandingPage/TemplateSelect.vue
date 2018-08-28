@@ -29,7 +29,6 @@
         },
         computed: {
             metas() {
-                debugger
                 return this.filterMetas(cloneDeep(templateUtil.metas), this.lang)
             }
         },
