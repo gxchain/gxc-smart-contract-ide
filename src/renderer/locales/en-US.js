@@ -245,20 +245,6 @@ const locale = {
         validate: {
             required: 'Please enter project name',
             format: 'Incorrect project name format: /^[\\w]+[\\w.-]*$/'
-        },
-        meta: {
-            bank: {
-                description: 'bank contract offer deposit and withdraw method, you can deposit asset into the contract, or with draw your asset'
-            },
-            hello: {
-                description: 'hello contract is a simple demonstration, just offer a hi method which will print a log, but it\'s not visible on frontend'
-            },
-            empty: {
-                description: 'empty project'
-            },
-            redpacket: {
-                description: 'a red packet contract, offer issue, open and close redpacket method'
-            }
         }
     },
     tool: {

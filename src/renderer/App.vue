@@ -77,6 +77,7 @@
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
+    import {SWITCH_LANG} from '@/const/eventBus'
 
     import en from 'iview/dist/locale/en-US'
     import zh from 'iview/dist/locale/zh-CN'
@@ -123,6 +124,7 @@
                 this.$electron.remote.shell.openExternal('http://blockcity.mikecrm.com/1WDrQXM')
             },
             setLang(lang) {
+                this.$eventBus.$emit(SWITCH_LANG, lang)
                 localStorage.setItem('lang', lang)
                 this.lang = lang
             }

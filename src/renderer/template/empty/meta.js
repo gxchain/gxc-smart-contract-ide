@@ -1,8 +1,9 @@
-import i18n from '@/locales'
-
 export default {
     title: 'empty',
-    description: i18n.t('template.meta.empty.description', 'en-US'),
+    description: {
+        'en-US': 'empty project',
+        'zh-CN': '空工程'
+    },
     entry: 'xxx.cpp',
     position: 1
 }

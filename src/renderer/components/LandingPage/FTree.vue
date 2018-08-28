@@ -22,7 +22,7 @@
     import Rules from '@/const/rules'
 
     import electron from 'electron'
-    import templateUtil from '@/util/templateUtil'
+    import templateUtil from '@/template/templateUtil'
 
     const remote = electron.remote
     const Menu = remote.Menu
@@ -47,9 +47,6 @@
                 return data
             }
         },
-        created() {
-            console.log('tpl', templateUtil.compile('hello').render({title: 'lzyzyzy'}))
-        },
         methods: {
             ...mapActions('ContractFiles', ['addProject', 'appendFile', 'changeFileStatus', 'selectFile', 'openFile', 'removeFile']),
             onAddProjectClick() {
@@ -72,7 +69,7 @@
                     onOk() {
                         if (!!selected) {
                             this.cancel()
-                            const compiled = templateUtil.compile(selected.title)
+                            const compiled = templateUtil.compile(selected)
                             // must use setTimeout instead of nextTick, iview bug skr
                             setTimeout(() => {
                                 that.showEditDirectoryNameModal({

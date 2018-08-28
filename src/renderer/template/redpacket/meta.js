@@ -1,8 +1,9 @@
-import i18n from '@/locales'
-
 export default {
     title: 'redpacket',
-    description: i18n.t('template.meta.redpacket.description', 'en-US'),
+    description: {
+        'en-US': 'a red packet contract, offer issue, open and close redpacket method',
+        'zh-CN': 'redpacket 合约是一个红包合约，提供了发行红包(issue)、打开红包(open) 和关闭红包(close)方法'
+    },
     entry: 'redpacket.cpp',
     position: 4
 }

@@ -245,20 +245,6 @@ const locale = {
         validate: {
             required: '请输入工程名称',
             format: '工程名称格式错误: /^[\\w]+[\\w.-]*$/'
-        },
-        meta: {
-            bank: {
-                description: 'bank合约提供了充值(deposit)和提现(withdraw)方法，可以向合约充值、从合约中提取资产'
-            },
-            hello: {
-                description: 'hello 合约用于简单的演示，提供了一个hi方法，调用该合约会打印一行日志，不过这对前端并不可见'
-            },
-            empty: {
-                description: '空工程'
-            },
-            redpacket: {
-                description: 'redpacket 合约是一个红包合约，提供了发行红包(issue)、打开红包(open) 和关闭红包(close)方法'
-            }
         }
     },
     tool: {
