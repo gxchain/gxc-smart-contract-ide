@@ -261,6 +261,7 @@
                         this.tempAsset = asset
                         this.confirmDeployModalVisible = true
                     }).catch(ex => {
+                        console.error(ex)
                         this.renderLog({info: ex.message, level: 'error'})
                         this.$Message.error(this.$t('contract.error.feeCompute'))
                     })

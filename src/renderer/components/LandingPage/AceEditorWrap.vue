@@ -9,7 +9,7 @@
     import ace from 'ace-builds'
     import 'ace-builds/webpack-resolver'
     import 'ace-builds/src-noconflict/ext-language_tools'
-    import {types} from '@/const/cppCompletions'
+    import {types, apis} from '@/const/cppCompletions'
     import {INFO_PANEL_TOGGLE} from '@/const/eventBus'
 
     // HACK: webpack-resolver not add snippets url
@@ -19,7 +19,7 @@
     const langTools = ace.require('ace/ext/language_tools')
     const completions = {
         getCompletions: function (editor, session, pos, prefix, callback) {
-            callback(null, types)
+            callback(null, [...types, ...apis])
         }
     }
     langTools.addCompleter(completions)
