@@ -2,8 +2,8 @@
     <Layout :class="{isFold:isFold}" class="infoPanel">
         <Tabs class="infoPanel" type="card" :animated="false">
             <div class="fold-trigger" slot="extra">
-                <Icon v-if="!isFold" @click="isFold=true" type="ios-arrow-down"/>
-                <Icon v-if="isFold" @click="isFold=false" type="ios-arrow-up"/>
+                <Icon v-if="!isFold" @click="onToggleClick(true)" type="ios-arrow-down"/>
+                <Icon v-if="isFold" @click="onToggleClick(false)" type="ios-arrow-up"/>
             </div>
             <TabPane label="LOGS">
                 <div class="logs-wrap" style="height: 100%;" @contextmenu="onLogRightClick">
@@ -26,6 +26,7 @@
     import Logs from './Logs'
     import CopyBtn from '@/components/common/CopyBtn.vue'
     import {isEmpty} from 'lodash'
+    import {INFO_PANEL_TOGGLE} from '@/const/eventBus'
 
     import electron from 'electron'
 
@@ -71,6 +72,10 @@
         methods: {
             onLogRightClick() {
                 this.menu.popup(remote.getCurrentWindow())
+            },
+            onToggleClick(flag) {
+                this.isFold = flag
+                this.$eventBus.$emit(INFO_PANEL_TOGGLE, flag)
             }
         }
     }

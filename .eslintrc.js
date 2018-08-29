@@ -30,6 +30,7 @@ module.exports = {
         'eqeqeq': 0,
         'no-extra-boolean-cast': 0,
         'import/first': 0,
-        'no-return-assign': 0
+        'no-return-assign': 0,
+        'import/no-webpack-loader-syntax': 0
     }
 }

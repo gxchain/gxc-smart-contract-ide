@@ -1,9 +1,10 @@
 <template>
     <div class='code-panel-layout' style='height: 100%;'>
-        <Tabs v-if="files.length>0" :animated="false" type="card" :value="id" closable @on-tab-remove="onTabRemove" @on-click="onTabClick">
+        <Tabs v-if="files.length>0" :animated="false" type="card" :value="id" closable @on-tab-remove="onTabRemove"
+                @on-click="onTabClick">
             <TabPane v-for="file in files" :key="file.id" :name="file.id" :label="file.title">
                 <div class="codemirror-wrap">
-                    <codemirror-wrap :file="file" :show="currentOpenedFile.id===file.id"></codemirror-wrap>
+                    <ace-editor-wrap :file="file" :show="currentOpenedFile.id===file.id"></ace-editor-wrap>
                 </div>
             </TabPane>
         </Tabs>
@@ -12,10 +13,10 @@
 <script>
     import {mapState, mapActions} from 'vuex'
     import {cloneDeep} from 'lodash'
-    import CodemirrorWrap from './CodemirrorWrap'
+    import AceEditorWrap from './AceEditorWrap'
 
     export default {
-        components: {CodemirrorWrap},
+        components: {AceEditorWrap},
         computed: {
             ...mapState('ContractFiles', ['currentOpenedFile', 'openedFiles']),
             files() {
@@ -38,14 +39,6 @@
 </script>
 
 <style lang="scss" type="text/scss" scoped>
-    .vue-codemirror {
-        height: 100%;
-    }
-
-    .vue-codemirror > > > .CodeMirror {
-        height: 100%;
-    }
-
     .codemirror-wrap {
         // TODO this shit thing which iview do waste me 3 hours, I will figure it out if I have time, skr
         visibility: visible !important;
@@ -58,10 +51,6 @@
 
     .code-panel-layout {
         & /deep/ .ivu-tabs-tabpane {
-            height: 100%;
-        }
-
-        & /deep/ .CodeMirror {
             height: 100%;
         }
 
