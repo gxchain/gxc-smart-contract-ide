@@ -117,7 +117,7 @@
             },
             onDocumentClick() {
                 this.$logUtil.logClick('documentClick')
-                this.$electron.remote.shell.openExternal('https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md')
+                this.$electron.remote.shell.openExternal('https://docs.gxchain.org/guide/contract.html')
             },
             onFeedbackClick() {
                 this.$logUtil.logClick('feedbackClick')
