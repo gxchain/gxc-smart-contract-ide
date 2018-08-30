@@ -123,6 +123,7 @@
                     }
                 })
             })
+            this.$store.dispatch('CppCompletion/updateCompletions')
         },
         methods: {
             ...mapActions('ContractOperation', ['appendContract']),

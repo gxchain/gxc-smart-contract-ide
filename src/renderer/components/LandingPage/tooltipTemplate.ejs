@@ -1,0 +1,13 @@
+<div class="editor-tooltip">
+    <p class="method">
+        <%- returnType %> <%- name %>(<% _.forEach(fields, function(field, idx){ %><% if(idx>0){ %>, <% } %><%- field.type %> <%- field.name %><% }); %>)
+    </p>
+    <p class="include"><%- label.include %>: <%- belong %></p>
+    <p class="desc"><%- label.description %>: <%- desc %></p>
+    <% if(fields.length > 0) { %>
+        <label class="fields-label"><%- label.fields %>:</label>
+        <ul class="fields">
+            <% _.forEach(fields, function(field){ %> <li class="field"><<%- field.type %>> <%- field.name %>: <%- field.desc %></li> <% }); %>
+        </ul>
+    <% } %>
+</div>

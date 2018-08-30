@@ -26,8 +26,7 @@ export const types = [{
 
 export const apis = [{
     value: 'current_receiver',
-    meta: 'gxc_api',
-    comments: 'haheheheheh'
+    meta: 'gxc_api'
 }, {
     value: 'get_action_asset_id',
     meta: 'gxc_api'

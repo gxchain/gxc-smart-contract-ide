@@ -5,21 +5,68 @@
 
 <script>
     import {mapActions} from 'vuex'
-    import {debounce} from 'lodash'
+    import {debounce, template, cloneDeep} from 'lodash'
     import ace from 'ace-builds'
     import 'ace-builds/webpack-resolver'
     import 'ace-builds/src-noconflict/ext-language_tools'
-    import {types, apis} from '@/const/cppCompletions'
     import {INFO_PANEL_TOGGLE} from '@/const/eventBus'
+    import store from '@/store'
+    import tooltipTemplate from './tooltipTemplate.ejs'
+
+    const compiled = template(tooltipTemplate)
 
     // HACK: webpack-resolver not add snippets url
     ace.config.setModuleUrl('ace/snippets/c_cpp', require('file-loader!ace-builds/src-noconflict/snippets/c_cpp'))
     ace.config.setModuleUrl('ace/snippets/text', require('file-loader!ace-builds/src-noconflict/snippets/text'))
 
+    function i18nFilter(item, lang) {
+        var labelI18nMap = {
+            include: {
+                'en-US': 'include',
+                'zh-CN': '所属'
+            },
+            description: {
+                'en-US': 'description',
+                'zh-CN': '描述'
+            },
+            fields: {
+                'en-US': 'fields',
+                'zh-CN': '参数'
+            }
+        }
+
+        if (typeof item.description === 'string') {
+            item.desc = item.description
+        } else {
+            item.desc = item.description[lang]
+        }
+
+        item.fields.forEach((field) => {
+            if (typeof field.description === 'string') {
+                field.desc = field.description
+            } else {
+                field.desc = field.description[lang]
+            }
+        })
+
+        item.label = {
+            include: labelI18nMap.include[lang],
+            description: labelI18nMap.description[lang],
+            fields: labelI18nMap.fields[lang]
+        }
+        return item
+    }
+
     const langTools = ace.require('ace/ext/language_tools')
     const completions = {
         getCompletions: function (editor, session, pos, prefix, callback) {
-            callback(null, [...types, ...apis])
+            // console.log(store.state.CppCompletion.completions)
+            callback(null, cloneDeep(store.state.CppCompletion.completions))
+        },
+        getDocTooltip(item) {
+            if (item.meta == 'gxc_api' && !item.docHTML) {
+                item.docHTML = compiled(i18nFilter(item, localStorage.getItem('lang')))
+            }
         }
     }
     langTools.addCompleter(completions)
