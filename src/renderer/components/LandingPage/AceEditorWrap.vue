@@ -75,7 +75,58 @@
         return oh
     }
 
-    const completions = {
+    // auto insert
+    function autoInsertLibrary(code, item) {
+        let inserted = `#include ${item.belong}\n`
+        const reg = /#include.+/g
+        const includes = []
+
+        // get all #include
+        try {
+            let match
+            while (!!(match = reg.exec(code))) {
+                includes.push(match)
+            }
+
+            const repeat = includes.find(include => {
+                return include[0].includes(item.belong)
+            })
+
+            if (!!repeat) {
+                return {
+                    repeat: true,
+                    code: code
+                }
+            }
+
+            // insert lib at the beginning
+            code = inserted + code
+        } catch (err) {
+            return {
+                repeat: true,
+                code: code
+            }
+        }
+
+        return {
+            repeat: false,
+            code: code
+        }
+    }
+    const AutoComplete = ace.require('ace/autocomplete')
+    const oldInsertMatch = AutoComplete.Autocomplete.prototype.insertMatch
+    AutoComplete.Autocomplete.prototype.insertMatch = function () {
+        oldInsertMatch.apply(this, arguments)
+        const item = this.popup.getData(this.popup.getRow())
+        const ret = autoInsertLibrary(this.editor.getValue(), item)
+        if (!ret.repeat) {
+            this.editor.setValue(ret.code, -1)
+            this.editor.gotoLine(0, 0)
+        }
+    }
+
+    // add completor
+    const completor = {
         getCompletions: function (editor, session, pos, prefix, callback) {
             callback(null, cloneDeep(store.state.CppCompletion.completions))
         },
@@ -85,7 +136,7 @@
             }
         }
     }
-    langTools.addCompleter(completions)
+    langTools.addCompleter(completor)
 
     export default {
         name: 'AceEditorWrap',
