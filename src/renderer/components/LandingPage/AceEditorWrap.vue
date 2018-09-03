@@ -9,6 +9,7 @@
     import ace from 'ace-builds'
     import 'ace-builds/webpack-resolver'
     import 'ace-builds/src-noconflict/ext-language_tools'
+    import 'ace-builds/src-noconflict/mode-c_cpp'
     import {INFO_PANEL_TOGGLE} from '@/const/eventBus'
     import store from '@/store'
     import tooltipTemplate from './tooltipTemplate.ejs'
@@ -58,9 +59,24 @@
     }
 
     const langTools = ace.require('ace/ext/language_tools')
+
+    // extend highlight rules
+    const CppMode = ace.require('ace/mode/c_cpp').Mode
+    const mode = new CppMode()
+    const OldHighlight = mode.HighlightRules
+    mode.HighlightRules = function () {
+        const oh = new OldHighlight(...arguments)
+        oh.$rules.singleLineComment.push({
+            token: 'keyword',
+            regex: '@abi',
+            next: 'singleLineComment'
+        })
+
+        return oh
+    }
+
     const completions = {
         getCompletions: function (editor, session, pos, prefix, callback) {
-            // console.log(store.state.CppCompletion.completions)
             callback(null, cloneDeep(store.state.CppCompletion.completions))
         },
         getDocTooltip(item) {
@@ -91,12 +107,13 @@
         mounted() {
             var editor = this.editor = ace.edit(this.$refs.editor)
             editor.setTheme('ace/theme/xcode')
-            editor.session.setMode('ace/mode/c_cpp')
+            editor.session.setMode(mode)
             editor.setOptions({
                 enableBasicAutocompletion: true,
                 enableSnippets: true,
                 enableLiveAutocompletion: true
             })
+
             editor.setShowPrintMargin(false)
             editor.on('change', debounce(() => {
                 this.changeFileContent({
