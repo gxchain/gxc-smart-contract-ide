@@ -1,6 +1,6 @@
 <template>
     <div class="logs-layout">
-        <p class="log-item" :class="{'error':log.level==='error'}" v-for="log in logs">{{log.info}}</p>
+        <p class="log-item" :class="{'error':log.level==='error'}" v-for="log in logs"><span class="time-tag">{{log.time|dateFilter}}</span>{{log.info}}</p>
     </div>
 </template>
 

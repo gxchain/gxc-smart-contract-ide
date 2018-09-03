@@ -66,6 +66,7 @@
         },
         mounted() {
             this.$eventBus.$on('log:push', (log) => {
+                log.time = new Date()
                 this.logger.push(log)
             })
         },

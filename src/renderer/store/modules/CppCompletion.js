@@ -16,9 +16,20 @@ const mutations = {
 }
 
 function filterJson(json) {
+    json.types = json.types || []
+    json.keywords = json.keywords || []
+    json.apis = json.apis || []
+
     const types = json.types.map((type) => {
         return {
             value: type.name,
+            meta: 'keyword'
+        }
+    })
+
+    const keywords = json.keywords.map((keyword) => {
+        return {
+            value: keyword.name,
             meta: 'keyword'
         }
     })
@@ -33,7 +44,7 @@ function filterJson(json) {
         }
     })
 
-    return [...types, ...apis]
+    return [...types, ...keywords, ...apis]
 }
 
 const actions = {

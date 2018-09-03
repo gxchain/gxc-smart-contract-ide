@@ -68,8 +68,8 @@
         const oh = new OldHighlight(...arguments)
         oh.$rules.singleLineComment.push({
             token: 'keyword',
-            regex: '@abi',
-            next: 'singleLineComment'
+            regex: '@abi.*',
+            next: 'start'
         })
 
         return oh
