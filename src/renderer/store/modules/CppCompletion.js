@@ -3,7 +3,7 @@ import {b64_to_utf8} from 'gxc-frontend-base/src/script/util/index'
 
 const state = {
     lastSha: '',
-    completions: []
+    completions: {}
 }
 
 const mutations = {
@@ -18,19 +18,30 @@ const mutations = {
 function filterJson(json) {
     json.types = json.types || []
     json.keywords = json.keywords || []
+    json.abi_keywords = json.abi_keywords || []
     json.apis = json.apis || []
 
     const types = json.types.map((type) => {
         return {
             value: type.name,
-            meta: 'keyword'
+            meta: 'keyword',
+            score: 9999999
         }
     })
 
     const keywords = json.keywords.map((keyword) => {
         return {
             value: keyword.name,
-            meta: 'keyword'
+            meta: 'keyword',
+            score: 9999999
+        }
+    })
+
+    const abi_keywords = json.abi_keywords.map((keyword) => {
+        return {
+            value: keyword.name,
+            meta: 'keyword',
+            score: 9999999
         }
     })
 
@@ -44,7 +55,12 @@ function filterJson(json) {
         }
     })
 
-    return [...types, ...keywords, ...apis]
+    return {
+        types: types,
+        keywords: keywords,
+        abi_keywords: abi_keywords,
+        apis: apis
+    }
 }
 
 const actions = {

@@ -113,11 +113,15 @@
             code: code
         }
     }
+
     const AutoComplete = ace.require('ace/autocomplete')
     const oldInsertMatch = AutoComplete.Autocomplete.prototype.insertMatch
     AutoComplete.Autocomplete.prototype.insertMatch = function () {
         oldInsertMatch.apply(this, arguments)
         const item = this.popup.getData(this.popup.getRow())
+        if (!item.belong) {
+            return
+        }
         const ret = autoInsertLibrary(this.editor.getValue(), item)
         if (!ret.repeat) {
             this.editor.setValue(ret.code, -1)
@@ -128,13 +132,21 @@
     // add completor
     const completor = {
         getCompletions: function (editor, session, pos, prefix, callback) {
-            callback(null, cloneDeep(store.state.CppCompletion.completions))
+            const reg = /\/\/.*@abi/
+            const completions = cloneDeep(store.state.CppCompletion.completions)
+            if (reg.test(session.getLine(pos.row))) {
+                callback(null, [...completions.abi_keywords])
+            } else {
+                callback(null, [...completions.types, ...completions.keywords, ...completions.apis])
+            }
         },
         getDocTooltip(item) {
             if (item.meta == 'gxc_api' && !item.docHTML) {
                 item.docHTML = compiled(i18nFilter(item, localStorage.getItem('lang')))
             }
-        }
+        },
+        // default is [/[a-zA-Z_0-9$\-\u00A2-\uFFFF]/] which not trigger popup when input `@`
+        identifierRegexps: [/[a-zA-Z_0-9$@\-\u00A2-\uFFFF]/]
     }
     langTools.addCompleter(completor)
 
