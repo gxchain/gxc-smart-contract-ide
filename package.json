@@ -106,6 +106,7 @@
     "bluebird": "^3.5.1",
     "bourbon": "^5.1.0",
     "bytebuffer": "^5.0.1",
+    "dateformat": "^3.0.3",
     "fs-extra": "^7.0.0",
     "gxbjs": "1.2.89",
     "gxbjs-ws": "^1.1.18",

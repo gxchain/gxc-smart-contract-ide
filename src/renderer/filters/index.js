@@ -1,3 +1,5 @@
+import util from '@/util/util'
+
 export default {
     number(value, precision = 0) {
         value = value + ''
@@ -48,5 +50,8 @@ export default {
             case '1.3.1':
                 return 'GXS'
         }
+    },
+    timeFilter(date) {
+        return util.formatTime(date)
     }
 }

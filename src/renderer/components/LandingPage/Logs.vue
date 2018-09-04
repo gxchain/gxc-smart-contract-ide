@@ -1,6 +1,6 @@
 <template>
     <div class="logs-layout">
-        <p class="log-item" :class="{'error':log.level==='error'}" v-for="log in logs"><span class="time-tag">{{log.time|dateFilter}}</span>{{log.info}}</p>
+        <p class="log-item" :class="{'error':log.level==='error'}" v-for="log in logs"><span class="time-tag">[{{log.time|timeFilter}}]</span>{{log.info}}</p>
     </div>
 </template>
 
@@ -32,5 +32,9 @@
         &:first-child {
             margin-top: 0;
         }
+    }
+
+    .time-tag{
+        color: #2d8cf0;
     }
 </style>
