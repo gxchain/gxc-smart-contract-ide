@@ -1,9 +1,27 @@
-.pure-text-form{
-  .ivu-form-item{
+@import "./variable";
+
+.pure-text-form {
+  .ivu-form-item {
     margin-bottom: 0;
 
-    .text{
+    .text {
       user-select: auto;
     }
+  }
+}
+
+.ivu-modal-confirm-head-icon.ivu-modal-confirm-head-icon-confirm {
+  position: relative;
+  top:1px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: $base-color;
+  background-image: url("~white-logo.png");
+  .ivu-icon-ios-help-circle {
+    display: none;
   }
 }
