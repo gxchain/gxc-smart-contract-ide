@@ -96,15 +96,22 @@
         height: 100%;
         cursor: pointer;
         color: #666;
+        background-color: rgb(207, 221, 252);
 
         .title {
             position: relative;
             z-index: 1;
+            line-height: 50px;
+            font-size: 22px;
+            text-align: left;
+            margin-left: 20px;
         }
 
         .bg {
             z-index: 0;
             position: absolute;
+            right: 0;
+            bottom: 0;
             width: 100%;
             height: 100%;
             background-size: contain;
@@ -112,15 +119,12 @@
         }
 
         .default-bg {
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-            @include sprite($light-logo);
+            @include sprite($template-logo);
             background-size: auto;
         }
     }
 
     .ivu-card.selected {
-        border: 1px solid #57a3f3;
+        box-shadow: 2px 2px 10px #c8c8c8;
     }
 </style>

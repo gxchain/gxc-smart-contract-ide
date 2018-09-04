@@ -395,4 +395,8 @@
             font-size: 18px;
         }
     }
+
+    .template-select-layout {
+        padding-right: 30px;
+    }
 </style>

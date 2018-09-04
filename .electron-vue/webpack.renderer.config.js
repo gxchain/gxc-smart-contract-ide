@@ -135,7 +135,7 @@ let rendererConfig = {
         new SpritesmithPlugin({
             src: {
                 cwd: path.resolve(__dirname, '../src/renderer/assets/images/sprites-source'),
-                glob: '*.png'
+                glob: '*.{png,jpg}'
             },
             target: {
                 image: path.resolve(__dirname, '../src/renderer/assets/images/sprites-dest/sprite.png'),

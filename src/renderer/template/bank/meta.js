@@ -5,5 +5,12 @@ export default {
         'zh-CN': 'bank合约提供了充值(deposit)和提现(withdraw)方法，可以向合约充值、从合约中提取资产'
     },
     entry: 'bank.cpp',
-    position: 3
+    position: 3,
+    bgStyle: {
+        width: '74px',
+        height: '78px'
+    },
+    bdStyle: {
+        backgroundColor: 'rgb(212, 244, 254)'
+    }
 }
