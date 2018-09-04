@@ -159,6 +159,15 @@ const locale = {
         document: 'document',
         feedback: 'feedback'
     },
+    setting: {
+        clearCache: 'Clear Cache',
+        title: {
+            confirmClearCache: 'Clear Cache'
+        },
+        content: {
+            confirmClearCache: 'Confirm clear local cache?'
+        }
+    },
     importSetting: {
         title: {
             importRecover: 'Import',

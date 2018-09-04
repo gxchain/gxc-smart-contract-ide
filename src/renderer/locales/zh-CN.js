@@ -159,6 +159,15 @@ const locale = {
         document: '文档',
         feedback: '反馈'
     },
+    setting: {
+        clearCache: '清除缓存',
+        title: {
+            confirmClearCache: '清除缓存'
+        },
+        content: {
+            confirmClearCache: '确定要清除本地缓存吗？'
+        }
+    },
     importSetting: {
         title: {
             importRecover: '导入',
