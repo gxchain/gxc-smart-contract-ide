@@ -86,6 +86,7 @@
             }
         },
         created() {
+            this.form.asset_id = this.formatBalances[0] ? this.formatBalances[0].id : ''
             this.$mount()
         },
         mounted() {
