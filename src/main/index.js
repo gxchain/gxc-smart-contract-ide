@@ -1,8 +1,8 @@
 'use strict'
 
-import {app, BrowserWindow, Menu, dialog, ipcMain} from 'electron'
+import { app, BrowserWindow, Menu, dialog, ipcMain } from 'electron'
 import filesUtil from './util/filesUtil'
-import {autoUpdater} from 'electron-updater'
+import { autoUpdater } from 'electron-updater'
 
 /**
  * Set `__static` path to static files in production
@@ -13,6 +13,7 @@ if (process.env.NODE_ENV !== 'development') {
 }
 
 let mainWindow
+let aboutWindow
 const winURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080`
     : `file://${__dirname}/index.html`
@@ -21,13 +22,20 @@ const updateWinURL = process.env.NODE_ENV === 'development'
     ? `http://localhost:9080/update.html`
     : `file://${__dirname}/update.html`
 
+const aboutWinUrl = process.env.NODE_ENV === 'development'
+    ? `http://localhost:9080/about.html`
+    : `file://${__dirname}/about.html`
+
 function createMenu() {
     const application = {
         label: 'Application',
         submenu: [
             {
                 label: 'About Application',
-                role: 'about'
+                click: () => {
+                    showAboutWindow()
+                }
+                // role: 'about'
             },
             {
                 type: 'separator'
@@ -131,7 +139,7 @@ function createUpdateWindow(info = {}) {
     const updateWindow = new BrowserWindow({
         height: 500,
         width: 700,
-        // resizable: false,
+        resizable: false,
         show: false
     })
 
@@ -144,6 +152,24 @@ function createUpdateWindow(info = {}) {
 
     ipcMain.on('quitAndInstall', () => {
         autoUpdater.quitAndInstall()
+    })
+}
+
+function showAboutWindow() {
+    if (!!aboutWindow) {
+        aboutWindow.focus()
+        return
+    }
+    aboutWindow = new BrowserWindow({
+        height: 180,
+        width: 280,
+        resizable: false
+    })
+
+    aboutWindow.loadURL(aboutWinUrl)
+
+    aboutWindow.on('closed', () => {
+        aboutWindow = null
     })
 }
 

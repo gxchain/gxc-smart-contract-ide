@@ -3,7 +3,7 @@
 process.env.BABEL_ENV = 'renderer'
 
 const path = require('path')
-const {dependencies} = require('../package.json')
+const { dependencies } = require('../package.json')
 const webpack = require('webpack')
 
 const BabiliWebpackPlugin = require('babili-webpack-plugin')
@@ -11,6 +11,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
+
+const packageJson = require('../package.json')
+const VERSION = packageJson.version
+const AUTHOR = packageJson.author
+const PROJECT_NAME = packageJson.name
 
 /**
  * List of node_modules to include in webpack bundle
@@ -47,7 +52,7 @@ let rendererConfig = {
             {
                 test: /\.ejs$/,
                 loader: 'raw-loader',
-                exclude: /(index|update)\.ejs/
+                exclude: /(index|update|about)\.ejs/
             },
             {
                 test: /\.scss$/,
@@ -172,6 +177,24 @@ let rendererConfig = {
                 removeComments: true
             },
             chunks: ['common', 'renderer'],
+            nodeModules: process.env.NODE_ENV !== 'production'
+                ? path.resolve(__dirname, '../node_modules')
+                : false
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'about.html',
+            template: path.resolve(__dirname, '../src/about.ejs'),
+            minify: {
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+                removeComments: true
+            },
+            chunks: [],
+            templateParameters: {
+                version: VERSION,
+                author: AUTHOR,
+                name: PROJECT_NAME
+            },
             nodeModules: process.env.NODE_ENV !== 'production'
                 ? path.resolve(__dirname, '../node_modules')
                 : false
