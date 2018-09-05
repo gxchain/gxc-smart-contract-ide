@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Layout>
+        <Layout class="hd-layout">
             <Header class="hd" style="height: 64px;">
                 <router-link class="logo" :to="{name:'landing-page'}"></router-link>
                 <!--<Button @click="testAddContract">添加合约(test)</Button>-->
@@ -174,6 +174,11 @@
         background-size: cover;
 
         background: url('~logo.svg');
+    }
+
+    .hd-layout{
+        // fix windows background-image white border bug
+        background:#151935;
     }
 
     .hd {

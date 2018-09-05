@@ -1,8 +1,8 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, dialog, ipcMain } from 'electron'
+import {app, BrowserWindow, Menu, dialog, ipcMain} from 'electron'
 import filesUtil from './util/filesUtil'
-import { autoUpdater } from 'electron-updater'
+import {autoUpdater} from 'electron-updater'
 
 /**
  * Set `__static` path to static files in production
@@ -148,6 +148,9 @@ function createUpdateWindow(info = {}) {
         updateWindow.webContents.send('releaseNoteGet', info)
     })
 
+    // for windows & linux
+    updateWindow.setMenu(null)
+
     updateWindow.loadURL(updateWinURL)
 
     ipcMain.on('quitAndInstall', () => {
@@ -165,6 +168,9 @@ function showAboutWindow() {
         width: 280,
         resizable: false
     })
+
+    // for windows & linux
+    aboutWindow.setMenu(null)
 
     aboutWindow.loadURL(aboutWinUrl)
 
