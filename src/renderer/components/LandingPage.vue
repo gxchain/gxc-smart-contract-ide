@@ -67,7 +67,7 @@
     import AdmZip from 'adm-zip'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {mapState, mapGetters, mapActions} from 'vuex'
-    import {contractNameFormat} from 'gxc-frontend-base/src/rule/contract'
+    import {ChainValidation} from 'gxbjs'
     import {
         deploy_contract
     } from '@/services/WalletService'
@@ -219,6 +219,7 @@
                 this.abi = abi ? JSON.parse(abi) : {}
             },
             onDeploy() {
+                let errMsg
                 this.$logUtil.logClick('deployClick')
                 if (!this.currentWallet.account) {
                     this.$Modal.confirm({
@@ -238,8 +239,9 @@
                 if (!this.contractName) {
                     this.$Message.warning(this.$t('contract.validate.name.required'))
                     return
-                } else if (!contractNameFormat.test(this.contractName)) {
-                    this.$Message.warning(this.$t('contract.validate.name.format'))
+                } else if (!!(errMsg = ChainValidation.is_account_name_error(this.contractName))) {
+                    // FIXME i18n
+                    this.$Message.warning(errMsg)
                     return
                 }
                 // this.$refs.pwdModal

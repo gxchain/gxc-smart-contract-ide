@@ -29,8 +29,8 @@
     import {mapState, mapActions} from 'vuex'
     import {cloneDeep} from 'lodash'
     import {fetch_account} from '@/services/WalletService'
-    import {contractNameFormat} from 'gxc-frontend-base/src/rule/contract'
     import {Form, FormItem, Input} from 'iview'
+    import {ChainValidation} from 'gxbjs'
 
     function contractsFilter(contracts) {
         return contracts.map(contract => {
@@ -117,11 +117,12 @@
                             message: this.$t('contract.validate.name.required')
                         }, {
                             validator: (rule, value, callback) => {
-                                const err_msg = new Error(this.$t('contract.validate.name.format'))
-                                if (contractNameFormat.test(value)) {
-                                    callback()
+                                let errMsg
+                                // FIXME i18n
+                                if (!!(errMsg = ChainValidation.is_account_name_error(value))) {
+                                    callback(errMsg)
                                 } else {
-                                    callback(err_msg)
+                                    callback()
                                 }
                             }
                         }]
