@@ -7,7 +7,6 @@
     import {mapActions} from 'vuex'
     import {debounce, template, cloneDeep} from 'lodash'
     import ace from 'ace-builds'
-    import 'ace-builds/webpack-resolver'
     import 'ace-builds/src-noconflict/ext-language_tools'
     import 'ace-builds/src-noconflict/mode-c_cpp'
     import {INFO_PANEL_TOGGLE} from '@/const/eventBus'
@@ -19,6 +18,9 @@
     // HACK: webpack-resolver not add snippets url
     ace.config.setModuleUrl('ace/snippets/c_cpp', require('file-loader!ace-builds/src-noconflict/snippets/c_cpp'))
     ace.config.setModuleUrl('ace/snippets/text', require('file-loader!ace-builds/src-noconflict/snippets/text'))
+    ace.config.setModuleUrl('ace/ext/language_tools', require('file-loader!ace-builds/src-noconflict/ext-language_tools.js'))
+    ace.config.setModuleUrl('ace/mode/c_cpp', require('file-loader!ace-builds/src-noconflict/mode-c_cpp.js'))
+    ace.config.setModuleUrl('ace/theme/xcode', require('file-loader!ace-builds/src-noconflict/theme-xcode.js'))
 
     function i18nFilter(item, lang) {
         var labelI18nMap = {
