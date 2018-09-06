@@ -119,6 +119,7 @@ function createWindow() {
     /**
      * Initial window options
      */
+    const initTime = new Date()
     mainWindow = new BrowserWindow({
         minHeight: 696,
         minWidth: 1180,
@@ -129,6 +130,11 @@ function createWindow() {
     })
 
     mainWindow.loadURL(winURL)
+
+    // test render time
+    setTimeout(function () {
+        mainWindow.webContents.send('send-init-time', +initTime)
+    }, 10000)
 
     mainWindow.on('closed', () => {
         mainWindow = null

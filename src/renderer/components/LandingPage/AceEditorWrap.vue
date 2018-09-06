@@ -15,7 +15,7 @@
 
     const compiled = template(tooltipTemplate)
 
-    // HACK: webpack-resolver not add snippets url
+    // HACK: in order to support ace.require
     ace.config.setModuleUrl('ace/snippets/c_cpp', require('file-loader!ace-builds/src-noconflict/snippets/c_cpp'))
     ace.config.setModuleUrl('ace/snippets/text', require('file-loader!ace-builds/src-noconflict/snippets/text'))
     ace.config.setModuleUrl('ace/ext/language_tools', require('file-loader!ace-builds/src-noconflict/ext-language_tools.js'))

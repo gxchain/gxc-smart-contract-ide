@@ -47,12 +47,14 @@
                 </div>
                 <div class="f-fr">
                     <div class="status-item">
-                        <i v-if="currentApiServerStatus==='open' || currentApiServerStatus=='reconnect'" class="blue-lamp"></i>
+                        <i v-if="currentApiServerStatus==='open' || currentApiServerStatus=='reconnect'"
+                                class="blue-lamp"></i>
                         <i v-else class="pink-lamp"></i>
                         <Tooltip placement="top">
                             <a class="text">{{$t('statusbar.currentApiServer')}}</a>
                             <div slot="content">
-                                <Button v-if="currentApiServerStatus!=='open' && currentApiServerStatus!=='reconnect'" type="error" size="small" shape="circle"
+                                <Button v-if="currentApiServerStatus!=='open' && currentApiServerStatus!=='reconnect'"
+                                        type="error" size="small" shape="circle"
                                         icon="md-refresh"
                                         @click="onReconnectClick"></Button>
                                 {{currentApiServer.url}}
@@ -78,6 +80,7 @@
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
     import {SWITCH_LANG} from '@/const/eventBus'
+    import {ipcRenderer} from 'electron'
 
     import en from 'iview/dist/locale/en-US'
     import zh from 'iview/dist/locale/zh-CN'
@@ -159,6 +162,12 @@
         mounted() {
             const animationEntry = document.getElementById('entry-animation-wrap')
             animationEntry.classList.add('z-hide')
+
+            const date = new Date()
+
+            ipcRenderer.on('send-init-time', function (event, initTime) {
+                console.log(`mounted:${date - initTime},initTime:${initTime}`)
+            })
         }
     }
 </script>
@@ -176,9 +185,9 @@
         background: url('~logo.svg');
     }
 
-    .hd-layout{
+    .hd-layout {
         // fix windows background-image white border bug
-        background:#151935;
+        background: #151935;
     }
 
     .hd {

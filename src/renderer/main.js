@@ -6,7 +6,6 @@ import store from './store'
 import locales from '@/locales'
 import filters from '@/filters'
 import iviewLocales from 'iview/dist/locale/en-US'
-import '@/assets/icons'
 import {connect} from './services/connect'
 import {webFrame} from 'electron'
 import logUtil from '@/util/logUtil'
@@ -14,6 +13,8 @@ import logUtil from '@/util/logUtil'
 import App from './App'
 
 import iView from 'iview'
+
+import '@/assets/icons' // alibaba icon-font
 import 'iview/dist/styles/iview.css'
 import '@styles/base.scss'
 import '@styles/entryAnimation.scss'
