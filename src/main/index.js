@@ -133,7 +133,7 @@ function createWindow() {
 
     // test render time
     setTimeout(function () {
-        mainWindow.webContents.send('send-init-time', +initTime)
+        mainWindow && mainWindow.webContents.send('send-init-time', +initTime)
     }, 10000)
 
     mainWindow.on('closed', () => {

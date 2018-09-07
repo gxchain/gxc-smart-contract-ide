@@ -166,7 +166,7 @@
             const date = new Date()
 
             ipcRenderer.on('send-init-time', function (event, initTime) {
-                console.log(`mounted:${date - initTime},initTime:${initTime}`)
+                console.log(`render time:${date - initTime},initTime:${initTime}`)
             })
         }
     }
