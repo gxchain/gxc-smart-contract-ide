@@ -32,7 +32,10 @@
       "output": "build"
     },
     "files": [
-      "dist/electron/**/*"
+      "dist/electron/**/*",
+      "!**/node_modules/iview/**",
+      "!**/node_modules/mockjs/**",
+      "!**/node_modules/localforage/**"
     ],
     "nsis": {
       "oneClick": false,

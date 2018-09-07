@@ -1,5 +1,6 @@
 @import "hack";
 @import "iviewOveride";
+@import "aceEditorOveride";
 @import "helper";
 
 body {
@@ -9,4 +10,10 @@ body {
 
 *, *::after, *::before {
   -webkit-user-select: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

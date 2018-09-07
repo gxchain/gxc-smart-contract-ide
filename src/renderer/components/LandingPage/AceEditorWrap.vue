@@ -7,8 +7,11 @@
     import {mapActions} from 'vuex'
     import {debounce, template, cloneDeep} from 'lodash'
     import ace from 'ace-builds'
+
+    // must import
     import 'ace-builds/src-noconflict/ext-language_tools'
     import 'ace-builds/src-noconflict/mode-c_cpp'
+
     import {INFO_PANEL_TOGGLE} from '@/const/eventBus'
     import store from '@/store'
     import tooltipTemplate from './tooltipTemplate.ejs'

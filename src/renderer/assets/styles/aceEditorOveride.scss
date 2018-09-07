@@ -1,0 +1,14 @@
+.editor-tooltip {
+  max-width: 500px;
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.8;
+
+  .method, .include {
+    user-select: auto;
+  }
+
+  .returnType, .fieldType{
+    color:#C800A4;
+  }
+}
