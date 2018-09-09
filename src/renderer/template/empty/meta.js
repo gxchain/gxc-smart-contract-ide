@@ -5,5 +5,5 @@ export default {
         'zh-CN': '空工程'
     },
     entry: 'xxx.cpp',
-    position: 1
+    score: 100
 }

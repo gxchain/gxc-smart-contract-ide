@@ -42,9 +42,13 @@ util.metas = metaFiles.keys().map(key => {
     var meta = metaFiles(key).default
 
     // add other key val pairs
-    meta.type = /^\.\/(.+)\/meta\.js$/.exec(key)[1]
+    meta.type = /^\.\/(.+)\/meta\.js$/.exec(key)[1] // folder name in fact
     meta.bgStyle = meta.bgStyle || {}
     meta.bdStyle = meta.bdStyle || {}
+
+    // if title not exist, same with the type
+    meta.title = meta.title || meta.type
+
     // if bg url exist
     if (!!bgMap[meta.type]) {
         meta.bgUrl = bgMap[meta.type]
@@ -53,7 +57,7 @@ util.metas = metaFiles.keys().map(key => {
 
     return meta
 }).sort((a, b) => {
-    return a.position - b.position
+    return b.score - a.score
 })
 
 util.metas.forEach((val) => {
