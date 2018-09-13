@@ -21,7 +21,7 @@
                 <FormItem :label="$t('contract.label.methodName')">{{name}}</FormItem>
                 <FormItem style="word-break: break-all" :label="$t('contract.label.params')">{{callParams}}</FormItem>
                 <FormItem v-if="amount.amount" :label="$t('contract.label.carryAmount')">
-                    {{amount.asset_id|assetId2Symbol}}, {{amount.amount}}
+                    {{this.assetId2Symbol(amount.asset_id)}}, {{amount.amount}}
                 </FormItem>
                 <FormItem :label="$t('contract.label.costAmount')">{{tempAsset.symbol}}, {{fee}}</FormItem>
             </Form>
@@ -89,7 +89,7 @@
         },
         computed: {
             ...mapState(['wallets', 'currentWallet', 'assets']),
-            ...mapGetters(['formatBalances']),
+            ...mapGetters(['formatBalances', 'assetMap']),
             fee() {
                 if (!this.callTransaction) {
                     return 0
@@ -180,6 +180,9 @@
                 })
 
                 return JSON.stringify(ret)
+            },
+            assetId2Symbol(id) {
+                return this.assetMap[id].symbol
             }
         }
     }
@@ -210,8 +213,8 @@
         width: 90px;
     }
 
-    .extra-asset{
-        display:flex;
+    .extra-asset {
+        display: flex;
     }
 
     .asset-select {

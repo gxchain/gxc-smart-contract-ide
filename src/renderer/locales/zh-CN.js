@@ -93,7 +93,9 @@ const locale = {
             fromAccountNotExist: '账户不存在',
             contractAccountNotExist: '合约不存在',
             paramCompute: '参数计算错误',
-            feeCompute: '费用计算错误'
+            feeCompute: '费用计算错误',
+            notContract: '不是合约',
+            repeat: '重复合约'
         },
         label: {
             name: '合约名称',
@@ -122,7 +124,8 @@ const locale = {
             compileSuc: '合约编译成功',
             compileFail: '合约编译失败',
             callSuc: '合约调用成功',
-            callFail: '合约调用失败'
+            callFail: '合约调用失败',
+            importSuc: '合约导入成功'
         }
     },
     files: {

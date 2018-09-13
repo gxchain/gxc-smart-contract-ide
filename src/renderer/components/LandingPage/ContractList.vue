@@ -83,7 +83,7 @@
                     fetch_account(name).then((account) => {
                         // not exist
                         if (!account) {
-                            this.$Message.error(this.$t('contract.error.notExist'))
+                            this.$Message.error(this.$t('contract.error.contractAccountNotExist'))
                             return
                         }
                         // not contract

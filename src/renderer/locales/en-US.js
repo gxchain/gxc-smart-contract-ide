@@ -93,7 +93,9 @@ const locale = {
             fromAccountNotExist: 'Account not exist',
             contractAccountNotExist: 'Contract not exist',
             paramCompute: 'Param compute error',
-            feeCompute: 'Fee compute error'
+            feeCompute: 'Fee compute error',
+            notContract: 'Not a contract',
+            repeat: 'Contract repeat'
         },
         label: {
             name: 'Contract Name',
@@ -122,7 +124,8 @@ const locale = {
             compileSuc: 'Contract compile success',
             compileFail: 'Contract compile failed',
             callSuc: 'Contract call success',
-            callFail: 'Contract call failed'
+            callFail: 'Contract call failed',
+            importSuc: 'Contract import success'
         }
     },
     files: {

@@ -1,6 +1,6 @@
 {
   "name": "gxchain-alpha",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "GXC TEAM",
   "email": "liuzongyuan@gxb.io",
   "description": "gxchain smart contract IDE alpha",
@@ -112,7 +112,7 @@
     "dateformat": "^3.0.3",
     "electron-store": "^2.0.0",
     "fs-extra": "^7.0.0",
-    "gxbjs": "1.2.89",
+    "gxbjs": "^1.2.93",
     "gxbjs-ws": "^1.1.18",
     "gxc-frontend-base": "gxchain/gxc-frontend-base#7bcd077",
     "gxclient": "^1.1.1",

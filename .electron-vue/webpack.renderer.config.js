@@ -78,7 +78,9 @@ let rendererConfig = {
                 use: {
                     loader: 'babel-loader'
                 },
-                exclude: /node_modules/
+                include: [
+                    path.join(__dirname, "../src")
+                ]
             },
             {
                 test: /\.node$/,
