@@ -4391,6 +4391,12 @@ gxbjs-ws@^1.1.18:
     babel-preset-stage-1 "^6.16.0"
     ws "^2.2.0"
 
+gxbjs-ws@^1.1.20:
+  version "1.1.20"
+  resolved "https://registry.yarnpkg.com/gxbjs-ws/-/gxbjs-ws-1.1.20.tgz#adf041e8654c5e0aa9550640315db6704c71ef38"
+  dependencies:
+    ws "^4.1.0"
+
 gxbjs@^1.2.81:
   version "1.2.89"
   resolved "https://codeload.github.com/gxchain/gxbjs/tar.gz/15a1f3d0e61e18b685c026e6401307e053689326"
@@ -4412,13 +4418,10 @@ gxbjs@^1.2.81:
     secp256k1 "^3.3.0"
     secure-random "^1.1.1"
 
-gxbjs@^1.2.93:
-  version "1.2.93"
-  resolved "https://registry.yarnpkg.com/gxbjs/-/gxbjs-1.2.93.tgz#16b5f122d24aa02710621b18fe2be8cf1881b48a"
+gxbjs@^1.2.95:
+  version "1.2.95"
+  resolved "https://registry.yarnpkg.com/gxbjs/-/gxbjs-1.2.95.tgz#36e75262341f31a95a1217490a56a682f92ea088"
   dependencies:
-    babel-plugin-add-module-exports "^0.2.1"
-    babel-preset-es2015 "^6.18.0"
-    babel-preset-stage-1 "^6.16.0"
     bigi "^1.4.1"
     bs58 "^3.0.0"
     bytebuffer "^5.0.0"
@@ -4428,7 +4431,7 @@ gxbjs@^1.2.93:
     deep-equal "^1.0.1"
     ecurve "^1.0.2"
     event-emitter "^0.3.4"
-    gxbjs-ws "^1.1.18"
+    gxbjs-ws "^1.1.20"
     immutable "^3.7.6"
     secp256k1 "^3.3.0"
     secure-random "^1.1.1"
@@ -5924,11 +5927,12 @@ math-random@^1.0.1:
   resolved "https://registry.yarnpkg.com/math-random/-/math-random-1.0.1.tgz#8b3aac588b8a66e4975e3cdea67f7bb329601fac"
 
 md5.js@^1.3.4:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.4.tgz#e9bdbde94a20a5ac18b04340fc5764d5b09d901d"
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+    safe-buffer "^5.1.2"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -6212,8 +6216,8 @@ nan@^2.10.0, nan@^2.9.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
 nan@^2.2.1:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.0.tgz#574e360e4d954ab16966ec102c0c049fd961a099"
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.1.tgz#90e22bccb8ca57ea4cd37cc83d3819b52eea6766"
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -9625,9 +9629,9 @@ ws@^2.2.0:
     safe-buffer "~5.0.1"
     ultron "~1.1.0"
 
-ws@^4.0.0:
+ws@^4.0.0, ws@^4.1.0:
   version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-4.1.0.tgz#a979b5d7d4da68bf54efe0408967c324869a7289"
+  resolved "http://registry.npmjs.org/ws/-/ws-4.1.0.tgz#a979b5d7d4da68bf54efe0408967c324869a7289"
   dependencies:
     async-limiter "~1.0.0"
     safe-buffer "~5.1.0"
