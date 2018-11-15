@@ -30,7 +30,7 @@
     import {cloneDeep} from 'lodash'
     import {fetch_account} from '@/services/WalletService'
     import {Form, FormItem, Input} from 'iview'
-    import {ChainValidation} from 'gxbjs'
+    import {ChainValidation} from 'gxbjs/es/index'
 
     function contractsFilter(contracts) {
         return contracts.map(contract => {

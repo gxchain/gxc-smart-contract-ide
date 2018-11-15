@@ -24,7 +24,7 @@
 <script>
     import CopyBtn from '@/components/common/CopyBtn.vue'
     import BaseTool from './BaseTool'
-    import {Serializer, Signature, PrivateKey, types} from 'gxbjs'
+    import {Serializer, Signature, PrivateKey, types} from 'gxbjs/es/index'
     import {wifKeyFormat} from 'gxc-frontend-base/src/rule'
 
     export default {

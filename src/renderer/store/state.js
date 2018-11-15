@@ -20,11 +20,15 @@ if (process.env.NODE_ENV === 'development') {
         url: 'http://192.168.1.118:3000'
     })
 } else {
-    state.apiServers.push({
+    state.apiServers = [{
+        url: 'wss://node1.gxb.io',
+        location: '',
+        latency: '?'
+    }, {
         url: 'wss://testnet.gxchain.org',
         location: '',
         latency: '?'
-    })
+    }]
     state.compileServers.push({
         url: 'https://testnet.gxx.gxchain.org'
     })

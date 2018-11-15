@@ -1,4 +1,4 @@
-import {types, ops} from 'gxbjs'
+import {types, ops} from 'gxbjs/es/index'
 import ByteBuffer from 'bytebuffer'
 import {cloneDeep} from 'lodash'
 

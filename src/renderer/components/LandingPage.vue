@@ -67,7 +67,7 @@
     import AdmZip from 'adm-zip'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {mapState, mapGetters, mapActions} from 'vuex'
-    import {ChainValidation} from 'gxbjs'
+    import {ChainValidation} from 'gxbjs/es/index'
     import {
         deploy_contract
     } from '@/services/WalletService'
