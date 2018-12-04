@@ -265,7 +265,7 @@
                         this.confirmDeployModalVisible = true
                     }).catch(ex => {
                         console.error(ex)
-                        this.renderLog({info: ex.message, level: 'error'})
+                        this.renderLog({info: ex, level: 'error'})
                         this.$Message.error(this.$t('contract.error.feeCompute'))
                     })
                 })
@@ -292,7 +292,7 @@
                     this.$store.dispatch('updateCurrentBalancesAndAssets')
                 }).catch(ex => {
                     this.$logUtil.logClick('deployFail')
-                    this.renderLog({info: ex.message, level: 'error'})
+                    this.renderLog({info: ex, level: 'error'})
                     this.$Message.error(this.$t('contract.messages.deployFail'))
                     this.$eventBus.$emit('log:push', {
                         info: this.$t('contract.messages.deployFail'),

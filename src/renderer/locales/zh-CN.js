@@ -1,6 +1,7 @@
 const locale = {
     common: {
         copy: '复制',
+        detail: '详情',
         title: {
             guideToImport: '前往导入账户'
         },

@@ -1,6 +1,7 @@
 const locale = {
     common: {
         copy: 'Copy',
+        detail: 'Detail',
         title: {
             guideToImport: 'Go to import account'
         },

@@ -122,7 +122,7 @@
                     } catch (ex) {
                         console.error(ex)
                         this.$eventBus.$emit('log:push', {
-                            info: ex.message,
+                            info: ex,
                             level: 'error'
                         })
                         this.$Message.error(this.$t('contract.error.paramCompute'))
@@ -140,7 +140,7 @@
                     }).catch(ex => {
                         console.error(ex)
                         this.$eventBus.$emit('log:push', {
-                            info: ex.message,
+                            info: ex,
                             level: 'error'
                         })
                         this.$Message.error(this.$t('contract.error.feeCompute'))
@@ -166,7 +166,7 @@
                 }).catch(ex => {
                     this.$logUtil.logClick('callFail')
                     this.$eventBus.$emit('log:push', {
-                        info: ex.message,
+                        info: ex,
                         level: 'error'
                     })
                     this.$Message.error(this.$t('contract.messages.callFail'))

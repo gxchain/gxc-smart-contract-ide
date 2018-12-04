@@ -1,5 +1,6 @@
 import {isArray} from 'lodash'
 
+// item.log could be a object(error)
 class Logger {
     constructor({limit = 50, logs = []} = {}) {
         this.logs = logs

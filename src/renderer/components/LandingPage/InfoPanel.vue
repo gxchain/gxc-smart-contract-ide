@@ -67,7 +67,7 @@
         mounted() {
             this.$eventBus.$on('log:push', (log) => {
                 log.time = new Date()
-                this.logger.push(log)
+                this.logger.push(this.formatLog(log))
             })
         },
         methods: {
@@ -77,6 +77,36 @@
             onToggleClick(flag) {
                 this.isFold = flag
                 this.$eventBus.$emit(INFO_PANEL_TOGGLE, flag)
+            },
+            formatLog(log) {
+                const MAX_MSG_LEN = 60
+                if (log.level === 'error') {
+                    if (typeof log.info === 'string') {
+                        if (log.info.length >= MAX_MSG_LEN) {
+                            const rawInfo = log.info
+                            log.info = {
+                                message: rawInfo.slice(0, MAX_MSG_LEN) + '...',
+                                detail: rawInfo
+                            }
+                        } else {
+                            log.info = {
+                                message: log.info
+                            }
+                        }
+                        // error object
+                    } else if (typeof log.info === 'object') {
+                        const rawInfo = log.info
+                        log.info = {
+                            message: rawInfo.message.length >= MAX_MSG_LEN ? rawInfo.message.slice(0, MAX_MSG_LEN) + '...' : rawInfo.message,
+                            detail: {message: rawInfo.message, detail: rawInfo.stack || rawInfo.data}
+                        }
+                    } else {
+                        log.info = {
+                            message: ''
+                        }
+                    }
+                }
+                return log
             }
         }
     }
