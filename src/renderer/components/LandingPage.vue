@@ -134,7 +134,7 @@
                             zip.addFile(base + file.title + '/', Buffer.alloc(0))
                             recur(zip, file.children, base + file.title + '/')
                         } else {
-                            zip.addFile(base + file.title, Buffer.alloc(file.content.length, file.content))
+                            zip.addFile(base + file.title, Buffer.from(file.content))
                         }
                     })
                 }
