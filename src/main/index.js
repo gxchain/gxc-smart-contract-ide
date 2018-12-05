@@ -4,6 +4,20 @@ import {app, BrowserWindow, Menu, dialog, ipcMain} from 'electron'
 import filesUtil from './util/filesUtil'
 import {autoUpdater} from 'electron-updater'
 
+// Install `electron-debug` with `devtron`
+require('electron-debug')({enabled: true})
+
+// Install `vue-devtools`
+app.on('ready', () => {
+    let installExtension = require('electron-devtools-installer')
+    installExtension.default(installExtension.VUEJS_DEVTOOLS)
+        .then(() => {
+        })
+        .catch(err => {
+            console.log('Unable to install `vue-devtools`: \n', err)
+        })
+})
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
