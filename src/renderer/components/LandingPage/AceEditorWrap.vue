@@ -22,6 +22,7 @@
     ace.config.setModuleUrl('ace/snippets/c_cpp', require('file-loader!ace-builds/src-noconflict/snippets/c_cpp'))
     ace.config.setModuleUrl('ace/snippets/text', require('file-loader!ace-builds/src-noconflict/snippets/text'))
     ace.config.setModuleUrl('ace/ext/language_tools', require('file-loader!ace-builds/src-noconflict/ext-language_tools.js'))
+    ace.config.setModuleUrl('ace/ext/searchbox', require('file-loader!ace-builds/src-noconflict/ext-searchbox.js'))
     ace.config.setModuleUrl('ace/mode/c_cpp', require('file-loader!ace-builds/src-noconflict/mode-c_cpp.js'))
     ace.config.setModuleUrl('ace/theme/xcode', require('file-loader!ace-builds/src-noconflict/theme-xcode.js'))
 
