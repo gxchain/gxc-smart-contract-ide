@@ -1,8 +1,10 @@
 <template>
     <div class="logs-layout">
-        <p class="log-item" :class="{'error':log.level==='error'}" v-for="log in logs"><a
+        <p v-for="(log,idx) in logs" :ref="'item'+idx" class="log-item" :class="{'error':log.level==='error'}"><a
                 class="time-tag" @click="onTimeClick(log)">[{{log.time|timeFilter}}] </a>{{log.info.message||log.info}}
-            <Button class="detail-btn" size="small" v-if="log.info.detail" @click="onShowLogDetail(log)">{{$t('common.detail')}}</Button>
+            <Button class="detail-btn" size="small" v-if="log.info.detail" @click="onShowLogDetail(log)">
+                {{$t('common.detail')}}
+            </Button>
         </p>
     </div>
 </template>
@@ -16,6 +18,14 @@
                 default: () => {
                     return []
                 }
+            }
+        },
+        watch: {
+            logs(newval) {
+                const len = newval.length - 1
+                this.$nextTick(() => {
+                    this.$refs['item' + (len)][0].scrollIntoView({behavior: 'smooth'})
+                })
             }
         },
         methods: {
@@ -78,7 +88,7 @@
         color: #2d8cf0;
     }
 
-    .detail-btn{
+    .detail-btn {
         padding: 0 7px;
     }
 </style>
