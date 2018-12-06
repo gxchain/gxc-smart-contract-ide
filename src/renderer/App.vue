@@ -88,7 +88,7 @@
     // import * as testAbi from '../../test/unit/data/abi'
 
     export default {
-        name: 'gxb-wallet-2',
+        name: 'gxc-app',
         components: {
             AccountImage
         },
