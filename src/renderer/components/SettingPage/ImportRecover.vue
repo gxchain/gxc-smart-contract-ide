@@ -23,7 +23,7 @@
             {{$t('importSetting.importTitle')}}
         </Button>
 
-        <p>当前chainId:{{$store.state.curChainId}}</p>
+        <p class="curChain">ChainId: <b>{{$store.state.curChainId}}</b></p>
 
         <Table :columns="columns" :data="data"></Table>
     </div>
@@ -173,10 +173,16 @@
     }
 </script>
 
-<style scoped>
+<style scoped type="text/scss" lang="scss">
     .import {
         min-width: 96px;
         margin-top: 10px;
         margin-bottom: 20px;
+    }
+
+    .curChain {
+        b {
+            user-select: auto;
+        }
     }
 </style>
