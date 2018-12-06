@@ -23,12 +23,14 @@
             {{$t('importSetting.importTitle')}}
         </Button>
 
+        <p>当前chainId:{{$store.state.curChainId}}</p>
+
         <Table :columns="columns" :data="data"></Table>
     </div>
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex'
+    import {mapActions} from 'vuex'
     import {PrivateKey} from 'gxbjs/es/index'
     import {
         import_account
@@ -139,13 +141,11 @@
             }
         },
         computed: {
-            ...mapState({
-                data: state => {
-                    return state.wallets.map((wallet) => {
-                        return Object.assign({}, wallet, {id: wallet.id.split('.')[2]})
-                    })
-                }
-            })
+            data() {
+                return this.$store.getters.walletsFromCurChain.map((wallet) => {
+                    return Object.assign({}, wallet, {id: wallet.id.split('.')[2]})
+                })
+            }
         },
         methods: {
             ...mapActions(['appendWallet', 'removeWallet']),

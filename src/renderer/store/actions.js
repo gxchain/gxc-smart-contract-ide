@@ -75,7 +75,7 @@ actions.updateApiServersLatency = ({commit, state}) => {
     })
 }
 
-actions.changeCurrentApiServer = ({dispatch, commit, state}, url) => {
+actions.changeCurrentApiServer = ({dispatch, commit, state, getters}, url) => {
     return new Promise((resolve) => {
         const node = state.apiServers.filter(node => {
             if (url === node.url) {
@@ -88,7 +88,11 @@ actions.changeCurrentApiServer = ({dispatch, commit, state}, url) => {
             reconnect(async () => {
                 const chainId = await Apis.instance().db_api().exec('get_chain_id', [])
                 commit('UPDATE_CURRENT_CHAIN_ID', chainId)
-                resolve(commit('UPDATE_API_SERVER_CHAIN_ID', {url, chainId}))
+                commit('UPDATE_API_SERVER_CHAIN_ID', {url, chainId})
+                const targetWallet = getters.walletsFromCurChain[0]
+                // update wallet
+                dispatch('changeWallet', targetWallet && targetWallet.account)
+                resolve()
             })
             dispatch('updateApiServers')
         }

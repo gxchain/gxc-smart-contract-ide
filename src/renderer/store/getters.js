@@ -24,4 +24,8 @@ getters.assetMap = state => {
     return map
 }
 
+getters.walletsFromCurChain = state => {
+    return state.wallets.filter(wallet => wallet.chainId === state.curChainId)
+}
+
 export default getters

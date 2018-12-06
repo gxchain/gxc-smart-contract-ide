@@ -28,6 +28,12 @@ const mutations = {
     }
 }
 
+const getters = {
+    contractsFromCurChain: (state, getters, rootState) => {
+        return state.contracts.filter(contract => contract.chainId === rootState.curChainId)
+    }
+}
+
 const actions = {
     appendContract({commit}, contract) {
         commit('APPEND_CONTRACT', contract)
@@ -43,6 +49,7 @@ const actions = {
 export default {
     namespaced: true,
     state,
+    getters,
     mutations,
     actions
 }

@@ -75,7 +75,7 @@
 
 <script>
     import {locale} from 'iview'
-    import {mapActions, mapState} from 'vuex'
+    import {mapActions, mapGetters, mapState} from 'vuex'
     import {lang2IconClassMap, langText} from '@/const/i18n'
     import AccountImage from '@/components/common/AccountImage'
     import {reconnect} from '@/services/connect'
@@ -93,7 +93,10 @@
             AccountImage
         },
         computed: {
-            ...mapState(['wallets', 'currentWallet', 'currentCompileServer', 'currentApiServer', 'currentApiServerStatus'])
+            ...mapState(['currentWallet', 'currentCompileServer', 'currentApiServer', 'currentApiServerStatus']),
+            ...mapGetters({
+                'wallets': 'walletsFromCurChain'
+            })
         },
         data() {
             return {

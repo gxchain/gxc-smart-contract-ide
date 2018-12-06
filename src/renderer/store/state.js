@@ -16,7 +16,7 @@ const state = {
 if (process.env.NODE_ENV === 'development') {
     state.curChainId = TESTNET_CHAIN_ID
     state.apiServers.push({
-        url: 'ws://192.168.1.118:28090',
+        url: 'wss://testnet.gxchain.org',
         location: '',
         latency: '?',
         chainId: TESTNET_CHAIN_ID

@@ -64,6 +64,7 @@ const import_account = (wifKey, password) => {
                             if (!alreadyExist) {
                                 // 修改store状态
                                 let wallet = {
+                                    chainId: store.state.curChainId,
                                     id: account.id,
                                     account: account.name,
                                     password_pubkey,
@@ -142,6 +143,7 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
                 if (resp instanceof Array) {
                     return fetch_account(contractName).then((account) => {
                         resp[0].ext = {
+                            chainId: store.state.curChainId,
                             abi,
                             from,
                             contractName,

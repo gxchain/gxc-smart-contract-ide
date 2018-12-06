@@ -26,7 +26,7 @@
 
 <script>
     import FunctionCard from './FunctionCard'
-    import {mapState, mapActions} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
     import {cloneDeep} from 'lodash'
     import {fetch_account} from '@/services/WalletService'
     import {Form, FormItem, Input} from 'iview'
@@ -60,11 +60,10 @@
             Input
         },
         computed: {
-            ...mapState('ContractOperation', {
-                contracts: state => {
-                    return contractsFilter(cloneDeep(state.contracts))
-                }
-            })
+            ...mapGetters('ContractOperation', ['contractsFromCurChain']),
+            contracts() {
+                return contractsFilter(cloneDeep(this.contractsFromCurChain))
+            }
         },
         methods: {
             ...mapActions('ContractOperation', ['removeContract', 'appendContract']),
@@ -98,6 +97,7 @@
                         }
 
                         const contract = {
+                            chainId: this.$store.state.curChainId,
                             abi: account.abi,
                             from: account.referer,
                             contractName: account.name,
