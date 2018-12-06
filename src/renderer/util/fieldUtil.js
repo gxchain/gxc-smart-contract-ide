@@ -7,6 +7,30 @@ import {
 import {accMult} from 'gxc-frontend-base/src/script/util/index'
 
 const handlers = {
+    'int8': function(value) {
+        return +value
+    },
+    'int16': function(value) {
+        return +value
+    },
+    'int32': function(value) {
+        return +value
+    },
+    'int64': function(value) {
+        return +value
+    },
+    'uint8': function(value) {
+        return +value
+    },
+    'uint16': function(value) {
+        return +value
+    },
+    'uint32': function(value) {
+        return +value
+    },
+    'uint64': function(value) {
+        return +value
+    },
     'account_name': async function (value) {
         return fetch_account(value).then((account) => {
             if (!account) {

@@ -169,7 +169,7 @@ const locale = {
             confirmClearCache: '清除缓存'
         },
         content: {
-            confirmClearCache: '确定要清除本地缓存吗？'
+            confirmClearCache: '确定要清除本地缓存吗(还原到初始状态)？'
         }
     },
     importSetting: {

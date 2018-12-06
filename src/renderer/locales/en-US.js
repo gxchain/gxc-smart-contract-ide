@@ -169,7 +169,7 @@ const locale = {
             confirmClearCache: 'Clear Cache'
         },
         content: {
-            confirmClearCache: 'Confirm clear local cache?'
+            confirmClearCache: 'Confirm clear local cache(back to initial state)?'
         }
     },
     importSetting: {
