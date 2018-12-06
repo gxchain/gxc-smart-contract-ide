@@ -16,8 +16,8 @@ let connect = function (callback = function () {
     return connectionManager
 }
 
-let reconnect = function () {
-    connect()
+let reconnect = function (callback) {
+    connect(callback)
 }
 
 // websocket 状态处理

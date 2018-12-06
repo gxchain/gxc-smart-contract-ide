@@ -1,5 +1,5 @@
 import {fetch_account_balances, get_assets_by_ids} from '@/services/WalletService'
-import {Manager} from 'gxbjs-ws'
+import {Manager, Apis} from 'gxbjs-ws'
 import {reconnect} from '@/services/connect'
 import {instance} from '@/plugins/eventBus'
 
@@ -76,20 +76,26 @@ actions.updateApiServersLatency = ({commit, state}) => {
 }
 
 actions.changeCurrentApiServer = ({dispatch, commit, state}, url) => {
-    const node = state.apiServers.filter(node => {
-        if (url === node.url) {
-            return true
+    return new Promise((resolve) => {
+        const node = state.apiServers.filter(node => {
+            if (url === node.url) {
+                return true
+            }
+        })
+
+        if (!!node) {
+            commit('CHANGE_CURRENT_API_SERVER', node[0])
+            reconnect(async () => {
+                const chainId = await Apis.instance().db_api().exec('get_chain_id', [])
+                commit('UPDATE_CURRENT_CHAIN_ID', chainId)
+                resolve(commit('UPDATE_API_SERVER_CHAIN_ID', {url, chainId}))
+            })
+            dispatch('updateApiServers')
         }
     })
-
-    if (!!node) {
-        commit('CHANGE_CURRENT_API_SERVER', node[0])
-        reconnect()
-        dispatch('updateApiServers')
-    }
 }
 
-actions.addApiServer = ({dispatch, commit, state}, url) => {
+actions.addApiServer = async ({dispatch, commit, state}, url) => {
     // 是否url已存在
     let flag = false
     state.apiServers.find(node => {
@@ -100,7 +106,7 @@ actions.addApiServer = ({dispatch, commit, state}, url) => {
     if (flag) {
         return flag
     } else {
-        commit('ADD_API_SERVER', url)
+        commit('ADD_API_SERVER', {url})
         dispatch('updateApiServers')
         return flag
     }

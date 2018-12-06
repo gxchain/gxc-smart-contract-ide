@@ -1,5 +1,9 @@
 const mutations = {}
 
+mutations.UPDATE_CURRENT_CHAIN_ID = (state, chainId) => {
+    state.curChainId = chainId
+}
+
 mutations.APPEND_WALLET = (state, wallet) => {
     state.wallets.push(Object.assign({
         account: ''
@@ -57,11 +61,17 @@ mutations.CHANGE_CURRENT_API_SERVER = (state, currentApiServer) => {
     state.currentApiServer = currentApiServer
 }
 
-mutations.ADD_API_SERVER = (state, url) => {
+mutations.UPDATE_API_SERVER_CHAIN_ID = (state, {url, chainId}) => {
+    const node = state.apiServers.find(node => node.url === url)
+    node.chainId = chainId
+}
+
+mutations.ADD_API_SERVER = (state, {url}) => {
     state.apiServers.push({
-        url: url,
+        url,
         location: '',
-        latency: '?'
+        latency: '?',
+        chainId: ''
     })
 }
 

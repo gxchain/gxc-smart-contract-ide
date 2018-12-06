@@ -120,7 +120,7 @@
             },
             onDocumentClick() {
                 this.$logUtil.logClick('documentClick')
-                this.$electron.remote.shell.openExternal('https://docs.gxchain.org/guide/contract.html')
+                this.$electron.remote.shell.openExternal('https://docs.gxchain.org/zh/guide/contract.html')
             },
             onFeedbackClick() {
                 this.$logUtil.logClick('feedbackClick')

@@ -6,7 +6,8 @@
             </Option>
         </Select>
         <div class="btn-group">
-            <Button class="addPoint" type="primary" @click="onAddApiServerClick">{{$t('apiServer.addEntryPoint')}}</Button>
+            <Button class="addPoint" type="primary" @click="onAddApiServerClick">{{$t('apiServer.addEntryPoint')}}
+            </Button>
             <Button type="error" @click="onRemoveApiServerClick">{{$t('apiServer.removeEntryPoint')}}</Button>
         </div>
         <Modal
