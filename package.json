@@ -1,5 +1,5 @@
 {
-  "name": "gxchain-alpha",
+  "name": "gxc-smart-contract-ide",
   "version": "0.0.6",
   "author": "GXC TEAM",
   "email": "liuzongyuan@gxb.io",
@@ -26,7 +26,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "gxchain-alpha",
+    "productName": "gxc-smart-contract-ide",
     "appId": "org.simulatedgreg.electron-vue",
     "directories": {
       "output": "build"
@@ -98,7 +98,7 @@
       {
         "provider": "github",
         "owner": "gxchain",
-        "repo": "gxchain-alpha"
+        "repo": "gxc-smart-contract-ide"
       }
     ]
   },

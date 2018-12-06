@@ -1,7 +1,7 @@
 <p align="center">
     <img src="./static/icon.png">
 </p>
-<h1 align="center">Gxchain-alpha</h1>
+<h1 align="center">GXC Smart Contract IDE</h1>
 
 gxchain smart contract IDE alpha
 
