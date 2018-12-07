@@ -189,7 +189,7 @@ const locale = {
         },
         label: {
             importType: '导入方式',
-            wifKey: '私钥',
+            wifKey: '私钥 (Active Key)',
             pwd: '密码',
             pwdCheck: '确认密码',
             importWifKey: '导入私钥'

@@ -189,7 +189,7 @@ const locale = {
         },
         label: {
             importType: 'Import Type',
-            wifKey: 'WifKey',
+            wifKey: 'WifKey (Active Key)',
             pwd: 'Password',
             pwdCheck: 'Password Check',
             importWifKey: 'Import WifKey'
