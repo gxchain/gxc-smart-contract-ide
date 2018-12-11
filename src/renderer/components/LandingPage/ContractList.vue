@@ -277,7 +277,7 @@
                     label: this.$t('contract.label.costAmount'),
                     desc: await this.getUpdateFeeStr(asset_id, asset, contract, newOwner, pwd)
                 }, {
-                    label: this.$t('label.from'),
+                    label: this.$t('contract.label.callAccount'),
                     desc: this.currentWallet.account
                 }, {
                     label: this.$t('contract.label.name'),

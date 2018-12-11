@@ -80,7 +80,8 @@ const locale = {
             removeContract: 'Remove Contract',
             callConfirm: 'Call Confirm',
             importContract: 'Import Contract',
-            updateContract: 'Update Contract'
+            updateContract: 'Update Contract',
+            updateContractConfirm: 'Update Contract Confirm'
         },
         placeholder: {
             changeOwner: 'New Owner',
@@ -109,7 +110,8 @@ const locale = {
             costAmount: 'Cost Amount',
             methodName: 'Method Name',
             params: 'Params',
-            carryAmount: 'Carry Amount'
+            carryAmount: 'Carry Amount',
+            newOwner: 'New Owner'
         },
         validate: {
             entryProject: {
@@ -128,7 +130,9 @@ const locale = {
             compileFail: 'Contract compile failed',
             callSuc: 'Contract call success',
             callFail: 'Contract call failed',
-            importSuc: 'Contract import success'
+            importSuc: 'Contract import success',
+            updateContractSuc: 'Contract update success ',
+            updateContractFail: 'Contract update failed'
         },
         desc: {
             changeOwner: 'If you don\'t want to change the owner, just omit'

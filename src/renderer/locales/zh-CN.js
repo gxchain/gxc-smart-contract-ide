@@ -80,7 +80,8 @@ const locale = {
             removeContract: '移除合约',
             callConfirm: '调用确认',
             importContract: '导入合约',
-            updateContract: '更新合约'
+            updateContract: '更新合约',
+            updateContractConfirm: '更新合约确认'
         },
         placeholder: {
             changeOwner: '新owner',
@@ -109,7 +110,8 @@ const locale = {
             costAmount: '消耗数额',
             methodName: '调用方法',
             params: '调用参数',
-            carryAmount: '附带资产'
+            carryAmount: '附带资产',
+            newOwner: '新Owner'
         },
         validate: {
             entryProject: {
@@ -128,7 +130,9 @@ const locale = {
             compileFail: '合约编译失败',
             callSuc: '合约调用成功',
             callFail: '合约调用失败',
-            importSuc: '合约导入成功'
+            importSuc: '合约导入成功',
+            updateContractSuc: '更新合约成功',
+            updateContractFail: '更新合约失败'
         },
         desc: {
             changeOwner: '如果你不想改变owner，可以省略'
