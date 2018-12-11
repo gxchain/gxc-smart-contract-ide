@@ -7,8 +7,7 @@
         <div class="contract-wrap">
             <Collapse v-for="contract in contracts" value="1">
                 <Panel name="1">
-                    <div class="f-toe" :title="contract.contractName"
-                            style="display:inline-block;width:200px;vertical-align: middle;position: relative;top: -1px;">
+                    <div class="f-toe contractName" :title="contract.contractName">
                         {{contract.contractName}}
                     </div>
                     <Icon class="updateContract" type="md-refresh"
@@ -34,6 +33,7 @@
     import {Form, FormItem, Input} from 'iview'
     import {ChainValidation} from 'gxbjs/es/index'
     import {confirmTransaction, confirmPassword} from '@/util/modalUtil'
+    import {noAccountGuard} from '@/util/guard'
 
     function contractsFilter(contracts) {
         return contracts.map(contract => {
@@ -167,13 +167,29 @@
                     newOwner: ''
                 }
 
-                // TODO add rules
+                var rules = {
+                    newOwner: [{
+                        validator: (rule, value, callback) => {
+                            if (!value) {
+                                callback()
+                            } else {
+                                const errMsg = ChainValidation.is_account_name_error(value)
+                                if (!!errMsg) {
+                                    callback(errMsg)
+                                } else {
+                                    callback()
+                                }
+                            }
+                        }
+                    }]
+                }
+
                 this.$Modal.confirm({
                     title: this.$t('contract.title.updateContract'),
                     loading: true,
                     render: (h) => {
                         return (
-                            <Form ref="form" style={{'margin-top': '30px'}} model={model}>
+                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
                                 <FormItem prop="newOwner">
                                     <Input v-model={model.newOwner} autofocus={true}
                                         placeholder={this.$t('suit your self')}/>
@@ -182,11 +198,30 @@
                         )
                     },
                     onOk: function () {
-                        callback(model.newOwner)
+                        this.$refs.form.validate((valid) => {
+                            if (valid) {
+                                this.cancel()
+                                callback(model.newOwner)
+                            } else {
+                                this.buttonLoading = false
+                            }
+                        })
                     }
                 })
             },
             onContractUpdateClick(evt, contract) {
+                evt.stopPropagation()
+                this.$logUtil.logClick('updateContractClick')
+                if (!noAccountGuard()) {
+                    return
+                }
+
+                // must compile first
+                if (!this.bytecode) {
+                    this.$Message.warning(this.$t('contract.validate.needToCompileFirst'))
+                    return
+                }
+
                 this.showUpdateContractModal(newOwner => {
                     confirmPassword(async ({pwd, asset_id, asset}) => {
                         let items
@@ -305,6 +340,14 @@
         position: absolute;
         right: 20px;
         top: 14px;
+    }
+
+    .contractName {
+        display: inline-block;
+        width: 190px;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
     }
 
     .ivu-icon-md-add-circle {
