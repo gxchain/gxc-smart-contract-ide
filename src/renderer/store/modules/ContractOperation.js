@@ -23,10 +23,11 @@ const mutations = {
 
         state.contracts.splice(idx, 1)
     },
-    UPDATE_CONTRACT(state, {chainId, id, abi}) {
-        const node = state.contracts.filter(contract => contract.chainId === chainId).find(contract => contract.id === id)
+    UPDATE_CONTRACT(state, {chainId, id, abi, newOwner}) {
+        const node = state.contracts.filter(contract => contract.chainId === chainId).find(contract => contract.contractId === id)
         if (!!node) {
             node.abi = abi
+            newOwner && (node.from = newOwner)
         }
     },
     CHANGE_SPLITVAL(state, val) {
@@ -47,8 +48,8 @@ const actions = {
     removeContract({commit}, id) {
         commit('REMOVE_CONTRACT', id)
     },
-    updateContract({commit, getters}, {chainId, id, abi}) {
-        commit('UPDATE_CONTRACT', {chainId, id, abi})
+    updateContract({commit, getters}, {chainId, id, abi, newOwner}) {
+        commit('UPDATE_CONTRACT', {chainId, id, abi, newOwner})
     },
     changeSplitval({commit}, val) {
         commit('CHANGE_SPLITVAL', val)

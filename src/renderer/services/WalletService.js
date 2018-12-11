@@ -366,8 +366,14 @@ const fetch_account_balances = (account_name) => {
     })
 }
 
+const get_account_by_id = async function (id) {
+    const accounts = await get_objects([id])
+    return accounts[0]
+}
+
 export {
     get_objects,
+    get_account_by_id,
     get_assets_by_ids,
     fetch_account_balances,
     call_contract,

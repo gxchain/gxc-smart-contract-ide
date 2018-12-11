@@ -7,9 +7,11 @@
         <div class="contract-wrap">
             <Collapse v-for="contract in contracts" value="1">
                 <Panel name="1">
-                    <div class="f-toe contractName" :title="contract.contractName">
-                        {{contract.contractName}}
-                    </div>
+                    <Tooltip :content="'owner: '+contract.from" placement="top">
+                        <div class="f-toe contractName" :title="contract.contractName">
+                            {{contract.contractName}}
+                        </div>
+                    </Tooltip>
                     <Icon class="updateContract" type="md-refresh"
                             @click="onContractUpdateClick($event,contract)"></Icon>
                     <Icon class="closeContract" type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
@@ -29,7 +31,7 @@
     import FunctionCard from './FunctionCard'
     import {mapGetters, mapActions, mapState} from 'vuex'
     import {cloneDeep} from 'lodash'
-    import {fetch_account, update_contract} from '@/services/WalletService'
+    import {fetch_account, update_contract, get_account_by_id} from '@/services/WalletService'
     import {Form, FormItem, Input} from 'iview'
     import {ChainValidation} from 'gxbjs/es/index'
     import {confirmTransaction, confirmPassword} from '@/util/modalUtil'
@@ -84,7 +86,7 @@
             },
             onContractImportClick() {
                 this.showEditContractNameModal((name) => {
-                    fetch_account(name).then((account) => {
+                    fetch_account(name).then(async (account) => {
                         // not exist
                         if (!account) {
                             this.$Message.error(this.$t('contract.error.contractAccountNotExist'))
@@ -101,10 +103,12 @@
                             return
                         }
 
+                        const fromAcc = await get_account_by_id(account.referrer)
+
                         const contract = {
                             chainId: this.$store.state.curChainId,
                             abi: account.abi,
-                            from: account.referer,
+                            from: fromAcc.name,
                             contractName: account.name,
                             contractId: account.id
                         }
@@ -184,17 +188,22 @@
                     }]
                 }
 
+                const desc = this.$t('contract.desc.changeOwner')
+
                 this.$Modal.confirm({
                     title: this.$t('contract.title.updateContract'),
                     loading: true,
                     render: (h) => {
                         return (
-                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
-                                <FormItem prop="newOwner">
-                                    <Input v-model={model.newOwner} autofocus={true}
-                                        placeholder={this.$t('suit your self')}/>
-                                </FormItem>
-                            </Form>
+                            <div>
+                                <p>{desc}</p>
+                                <Form ref="form" style={{'margin-top': '10px'}} rules={rules} model={model}>
+                                    <FormItem prop="newOwner">
+                                        <Input v-model={model.newOwner} autofocus={true}
+                                            placeholder={this.$t('contract.placeholder.changeOwner')}/>
+                                    </FormItem>
+                                </Form>
+                            </div>
                         )
                     },
                     onOk: function () {
@@ -237,8 +246,9 @@
                             onOk: () => {
                                 this.updateContract(asset_id, pwd, contract, newOwner).then((trx) => {
                                     this.updateContractAction({
+                                        newOwner,
                                         chainId: this.curChainId,
-                                        id: contract.id,
+                                        id: contract.contractId,
                                         abi: this.abi
                                     })
                                     this.$logUtil.logClick('updateContractSuc')
@@ -338,8 +348,9 @@
 
     .updateContract {
         position: absolute;
-        right: 20px;
-        top: 14px;
+        right: 15px;
+        top: 9px;
+        padding: 5px;
     }
 
     .contractName {

@@ -79,9 +79,11 @@ const locale = {
         title: {
             removeContract: 'Remove Contract',
             callConfirm: 'Call Confirm',
-            importContract: 'Import Contract'
+            importContract: 'Import Contract',
+            updateContract: 'Update Contract'
         },
         placeholder: {
+            changeOwner: 'New Owner',
             name: {
                 required: 'Please enter contract name',
                 format: 'Incorrect contract name format: /^[A-Za-z0-9]+[\\w.-]*[\\w]$/'
@@ -127,6 +129,9 @@ const locale = {
             callSuc: 'Contract call success',
             callFail: 'Contract call failed',
             importSuc: 'Contract import success'
+        },
+        desc: {
+            changeOwner: 'If you don\'t want to change the owner, just omit'
         }
     },
     files: {

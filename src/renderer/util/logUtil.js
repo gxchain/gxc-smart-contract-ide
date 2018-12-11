@@ -17,6 +17,9 @@
  * addCompileServerSuc
  * documentClick
  * feedbackClick
+ * updateContractClick
+ * updateContractSuc
+ * updateContractFail
  */
 
 const util = {}

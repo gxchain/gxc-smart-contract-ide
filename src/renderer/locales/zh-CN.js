@@ -79,9 +79,11 @@ const locale = {
         title: {
             removeContract: '移除合约',
             callConfirm: '调用确认',
-            importContract: '导入合约'
+            importContract: '导入合约',
+            updateContract: '更新合约'
         },
         placeholder: {
+            changeOwner: '新owner',
             name: {
                 required: '请输入合约名称',
                 format: '合约名称格式错误: /^[A-Za-z0-9]+[\\w.-]*[\\w]$/'
@@ -127,6 +129,9 @@ const locale = {
             callSuc: '合约调用成功',
             callFail: '合约调用失败',
             importSuc: '合约导入成功'
+        },
+        desc: {
+            changeOwner: '如果你不想改变owner，可以省略'
         }
     },
     files: {
