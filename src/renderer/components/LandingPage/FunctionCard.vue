@@ -21,6 +21,7 @@
         call_contract
     } from '@/services/WalletService'
     import fieldUtil from '@/util/fieldUtil'
+    import {noAccountGuard} from '@/util/guard'
     import {confirmTransaction, confirmPassword} from '@/util/modalUtil'
 
     export default {
@@ -74,14 +75,7 @@
         methods: {
             onCall() {
                 this.$logUtil.logClick('callClick')
-                if (!this.currentWallet.account) {
-                    this.$Modal.confirm({
-                        title: this.$t('common.title.guideToImport'),
-                        content: this.$t('common.content.guideToImport'),
-                        onOk: () => {
-                            this.$router.push({name: 'import-recover'})
-                        }
-                    })
+                if (!noAccountGuard()) {
                     return
                 }
 
@@ -93,6 +87,7 @@
                     } catch (err) {
                         return console.error(err)
                     }
+
                     confirmTransaction({
                         title: this.$t('contract.title.callConfirm'),
                         items: items,

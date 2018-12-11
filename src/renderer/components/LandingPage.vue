@@ -72,6 +72,7 @@
         deploy_contract
     } from '@/services/WalletService'
     import electron from 'electron'
+    import {noAccountGuard} from '@/util/guard'
 
     const ipcRenderer = electron.ipcRenderer
 
@@ -221,16 +222,11 @@
             onDeploy() {
                 let errMsg
                 this.$logUtil.logClick('deployClick')
-                if (!this.currentWallet.account) {
-                    this.$Modal.confirm({
-                        title: this.$t('common.title.guideToImport'),
-                        content: this.$t('common.content.guideToImport'),
-                        onOk: () => {
-                            this.$router.push({name: 'import-recover'})
-                        }
-                    })
+
+                if (!noAccountGuard()) {
                     return
                 }
+
                 // 如果没有编译过，需要先编译
                 if (!this.bytecode) {
                     this.$Message.warning(this.$t('contract.validate.needToCompileFirst'))
