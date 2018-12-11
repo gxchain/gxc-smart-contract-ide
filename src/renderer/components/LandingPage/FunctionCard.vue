@@ -17,12 +17,11 @@
     import Fields from './Fields'
     import {mapState, mapGetters} from 'vuex'
     import serializer from '@/util/serializer'
-    import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
     import {
         call_contract
     } from '@/services/WalletService'
     import fieldUtil from '@/util/fieldUtil'
-    import {confirmTransaction} from '@/util/modalUtil'
+    import {confirmTransaction, confirmPassword} from '@/util/modalUtil'
 
     export default {
         name: 'FunctionCard',
@@ -85,8 +84,8 @@
                     })
                     return
                 }
-                const modal = new PasswordConfirmModal({i18n: this.$i18n})
-                modal.$on('unlocked', async ({pwd, asset_id, asset}) => {
+
+                confirmPassword(async ({pwd, asset_id, asset}) => {
                     let items
                     this.callParams = this.computeCallParams()
                     try {

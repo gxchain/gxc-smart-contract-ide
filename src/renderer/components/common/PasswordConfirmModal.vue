@@ -24,6 +24,7 @@
         unlock_wallet
     } from '@/services/WalletService'
     import {instance} from '@/plugins/eventBus'
+    import i18n from '@/locales'
 
     const passwordUtil = {
         lastSetTime: 0,
@@ -48,6 +49,7 @@
 
     export default Vue.extend({
         name: 'PasswordConfirmModal',
+        i18n,
         data() {
             return {
                 loading: true,
