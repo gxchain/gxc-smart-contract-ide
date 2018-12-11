@@ -66,7 +66,7 @@
     import InfoPanel from './LandingPage/InfoPanel'
     import AdmZip from 'adm-zip'
     import PasswordConfirmModal from '@/components/common/PasswordConfirmModal'
-    import {mapState, mapGetters, mapActions} from 'vuex'
+    import {mapState, mapGetters, mapActions, mapMutations} from 'vuex'
     import {ChainValidation} from 'gxbjs/es/index'
     import {
         deploy_contract
@@ -85,8 +85,6 @@
                 confirmDeployModalVisible: false,
                 contractName: '',
                 entry: '',
-                bytecode: '',
-                abi: {},
                 isCompiling: false,
                 tempPwd: '',
                 tempAsset: {},
@@ -95,7 +93,7 @@
         },
         computed: {
             ...mapGetters('ContractFiles', ['projects']),
-            ...mapState(['wallets', 'currentWallet', 'assets']),
+            ...mapState(['wallets', 'currentWallet', 'assets', 'abi', 'bytecode']),
             fee() {
                 if (!this.deployTransaction) {
                     return 0
@@ -128,6 +126,7 @@
         },
         methods: {
             ...mapActions('ContractOperation', ['appendContract']),
+            ...mapMutations(['SET_ABI', 'SET_BYTECODE']),
             archiveFiles(entry) {
                 function recur(zip, files, base = '') {
                     files.forEach(function (file) {
@@ -214,10 +213,10 @@
                 this.$eventBus.$emit('log:push', log)
             },
             renderBytecode(bytecode) {
-                this.bytecode = bytecode
+                this.SET_BYTECODE(bytecode)
             },
             renderAbi(abi) {
-                this.abi = abi ? JSON.parse(abi) : {}
+                this.SET_ABI(abi ? JSON.parse(abi) : {})
             },
             onDeploy() {
                 let errMsg

@@ -8,6 +8,7 @@ import modules from './modules'
 import createPersistedState from 'vuex-persistedstate/index'
 import ElectronStore from 'electron-store'
 import isElectron from 'is-electron'
+import paths from '@/const/persistState'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ let presistPlugin
 
 if (isElectron()) {
     presistPlugin = createPersistedState({
+        paths,
         key: STORAGE_KEY,
         storage: {
             getItem: key => electronStore.get(key),
@@ -28,6 +30,7 @@ if (isElectron()) {
     })
 } else {
     presistPlugin = createPersistedState({
+        paths,
         key: STORAGE_KEY
     })
 }

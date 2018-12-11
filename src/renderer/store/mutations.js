@@ -111,4 +111,25 @@ mutations.REMOVE_COMPILE_SERVER = (state, url) => {
     state.compileServers.splice(idx, 1)
 }
 
+mutations.SET_ABI = (state, abi) => {
+    state.abi = abi || {}
+}
+
+mutations.SET_BYTECODE = (state, bytecode) => {
+    state.bytecode = bytecode || ''
+}
+
+mutations.REMOVE_COMPILE_SERVER = (state, url) => {
+    var idx = -1
+
+    state.compileServers.find((node, i) => {
+        if (node.url === url) {
+            idx = i
+            return true
+        }
+    })
+
+    state.compileServers.splice(idx, 1)
+}
+
 export default mutations

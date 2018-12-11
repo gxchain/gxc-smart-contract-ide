@@ -41,6 +41,7 @@
         "stage-0"
       ],
       "plugins": [
+        "jsx-v-model",
         "transform-vue-jsx"
       ]
     },

@@ -10,7 +10,11 @@ const state = {
     currentApiServer: {},
     currentApiServerStatus: 'closed',
     compileServers: [],
-    currentCompileServer: {}
+    currentCompileServer: {},
+
+    // not persist
+    abi: {},
+    bytecode: ''
 }
 
 if (process.env.NODE_ENV === 'development') {

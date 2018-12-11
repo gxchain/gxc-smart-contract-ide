@@ -117,7 +117,7 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
     let vm_version = '0'
 
     return new Promise((resolve, reject) => {
-        resolve(Promise.all([fetch_account(from), unlock_wallet(from, password)]).then(results => {
+        resolve(Promise.all([fetch_account(from)]).then(results => {
             let fromAcc = results[0]
             if (!fromAcc) {
                 throw new Error(i18n.t('contract.error.fromAccountNotExist'))
@@ -163,7 +163,7 @@ const deploy_contract = ({from = '', contractName = '', code = '', abi = '', fee
 
 const call_contract = (from, target, act, fee_id, password, broadcast = true, amount = {}) => {
     return new Promise((resolve, reject) => {
-        resolve(Promise.all([fetch_account(from), fetch_account(target), unlock_wallet(from, password)]).then(results => {
+        resolve(Promise.all([fetch_account(from), fetch_account(target)]).then(results => {
             let fromAcc = results[0]
             let contractAccount = results[1]
             if (!fromAcc) {
@@ -192,6 +192,60 @@ const call_contract = (from, target, act, fee_id, password, broadcast = true, am
                 opts.amount = {...amount, amount: computedAmount}
             }
             tr.add_operation(tr.get_type_operation('call_contract', opts))
+            return process_transaction(tr, from, password, broadcast)
+        }))
+    })
+}
+
+/**
+ * update contract
+ * @param from
+ * @param contractName
+ * @param newOwner
+ * @param code
+ * @param abi
+ * @param password
+ * @param broadcast
+ */
+const update_contract = function ({from, contractName, newOwner, code, abi, fee_id, password, broadcast = true}) {
+    return new Promise((resolve, reject) => {
+        const promises = [fetch_account(from), fetch_account(contractName)]
+        if (!!newOwner) {
+            promises.push(fetch_account(newOwner))
+        }
+        resolve(Promise.all(promises).then(results => {
+            let fromAcc = results[0]
+            let contractAccount = results[1]
+
+            if (!fromAcc) {
+                throw new Error(i18n.t('contract.error.fromAccountNotExist'))
+            }
+
+            if (!contractAccount) {
+                throw new Error(i18n.t('contract.error.contractAccountNotExist'))
+            }
+
+            if (!!newOwner && !results[2]) {
+                throw new Error(i18n.t('contract.error.newOwnerAccountNotExist'))
+            }
+
+            let tr = new TransactionBuilder()
+            let opt = {
+                'fee': {
+                    'amount': 0,
+                    'asset_id': fee_id
+                },
+                owner: fromAcc.id,
+                contract: contractAccount.id,
+                code,
+                abi
+            }
+
+            if (newOwner) {
+                opt.new_owner = results[2].id
+            }
+
+            tr.add_operation(tr.get_type_operation('update_contract', opt))
             return process_transaction(tr, from, password, broadcast)
         }))
     })
@@ -317,6 +371,7 @@ export {
     get_assets_by_ids,
     fetch_account_balances,
     call_contract,
+    update_contract,
     fetch_account,
     unlock_wallet,
     process_transaction,

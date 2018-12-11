@@ -11,6 +11,8 @@
                             style="display:inline-block;width:200px;vertical-align: middle;position: relative;top: -1px;">
                         {{contract.contractName}}
                     </div>
+                    <Icon class="updateContract" type="md-refresh"
+                            @click="onContractUpdateClick($event,contract)"></Icon>
                     <Icon class="closeContract" type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
                     <div slot="content">
                         <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi"
@@ -26,11 +28,12 @@
 
 <script>
     import FunctionCard from './FunctionCard'
-    import {mapGetters, mapActions} from 'vuex'
+    import {mapGetters, mapActions, mapState} from 'vuex'
     import {cloneDeep} from 'lodash'
-    import {fetch_account} from '@/services/WalletService'
+    import {fetch_account, update_contract} from '@/services/WalletService'
     import {Form, FormItem, Input} from 'iview'
     import {ChainValidation} from 'gxbjs/es/index'
+    import {confirmTransaction, confirmPassword} from '@/util/modalUtil'
 
     function contractsFilter(contracts) {
         return contracts.map(contract => {
@@ -60,6 +63,7 @@
             Input
         },
         computed: {
+            ...mapState(['abi', 'bytecode', 'currentWallet', 'curChainId']),
             ...mapGetters('ContractOperation', ['contractsFromCurChain']),
             contracts() {
                 return contractsFilter(cloneDeep(this.contractsFromCurChain))
@@ -67,6 +71,7 @@
         },
         methods: {
             ...mapActions('ContractOperation', ['removeContract', 'appendContract']),
+            ...mapActions('ContractOperation', {'updateContractAction': 'updateContract'}),
             onContractRemoveClick(evt, contract) {
                 evt.stopPropagation()
                 this.$Modal.confirm({
@@ -132,10 +137,6 @@
                     name: ''
                 }
 
-                function handleInput(val) {
-                    model.name = val
-                }
-
                 this.$Modal.confirm({
                     title: this.$t('contract.title.importContract'),
                     loading: true,
@@ -143,7 +144,7 @@
                         return (
                             <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
                                 <FormItem prop="name">
-                                    <Input on-input={handleInput} value={model.name} autofocus={true}
+                                    <Input v-model={model.name} autofocus={true}
                                         placeholder={this.$t('contract.placeholder.name.required')}/>
                                 </FormItem>
                             </Form>
@@ -159,6 +160,126 @@
                             }
                         })
                     }
+                })
+            },
+            showUpdateContractModal(callback) {
+                var model = {
+                    newOwner: ''
+                }
+
+                // TODO add rules
+                this.$Modal.confirm({
+                    title: this.$t('contract.title.updateContract'),
+                    loading: true,
+                    render: (h) => {
+                        return (
+                            <Form ref="form" style={{'margin-top': '30px'}} model={model}>
+                                <FormItem prop="newOwner">
+                                    <Input v-model={model.newOwner} autofocus={true}
+                                        placeholder={this.$t('suit your self')}/>
+                                </FormItem>
+                            </Form>
+                        )
+                    },
+                    onOk: function () {
+                        callback(model.newOwner)
+                    }
+                })
+            },
+            onContractUpdateClick(evt, contract) {
+                this.showUpdateContractModal(newOwner => {
+                    confirmPassword(async ({pwd, asset_id, asset}) => {
+                        let items
+                        try {
+                            items = await this.buildUpdateItems(contract, newOwner, asset_id, asset, pwd)
+                        } catch (err) {
+                            return console.error(err)
+                        }
+
+                        confirmTransaction({
+                            title: this.$t('contract.title.updateContractConfirm'),
+                            items: items,
+                            onOk: () => {
+                                this.updateContract(asset_id, pwd, contract, newOwner).then((trx) => {
+                                    this.updateContractAction({
+                                        chainId: this.curChainId,
+                                        id: contract.id,
+                                        abi: this.abi
+                                    })
+                                    this.$logUtil.logClick('updateContractSuc')
+                                    const txid = trx[0].id
+                                    this.$eventBus.$emit('log:push', {
+                                        info: this.$t('contract.messages.updateContractSuc') + `,txid:${txid}`,
+                                        level: 'success'
+                                    })
+                                    this.$Message.success(this.$t('contract.messages.updateContractSuc'))
+                                    this.$store.dispatch('updateCurrentBalancesAndAssets')
+                                }).catch(err => {
+                                    this.$logUtil.logClick('updateContractFail')
+                                    this.$eventBus.$emit('log:push', {
+                                        info: err,
+                                        level: 'error'
+                                    })
+                                    this.$Message.error(this.$t('contract.messages.updateContractFail'))
+                                })
+                            }
+                        })
+                    })
+                })
+            },
+            async buildUpdateItems(contract, newOwner, asset_id, asset, pwd) {
+                const items = [{
+                    label: this.$t('contract.label.costAmount'),
+                    desc: await this.getUpdateFeeStr(asset_id, asset, contract, newOwner, pwd)
+                }, {
+                    label: this.$t('label.from'),
+                    desc: this.currentWallet.account
+                }, {
+                    label: this.$t('contract.label.name'),
+                    desc: contract.contractName
+                }]
+
+                if (!!newOwner) {
+                    items.push({
+                        label: this.$t('contract.label.newOwner'),
+                        desc: newOwner
+                    })
+                }
+
+                return items
+            },
+            getUpdateFeeStr(asset_id, asset, contract, newOwner, pwd) {
+                return new Promise((resolve, reject) => {
+                    this.updateContract(asset_id, pwd, contract, newOwner, false).then((trx) => {
+                        const str = asset.symbol + ', ' + trx.serialize().operations[0][1].fee.amount / (10 ** asset.precision)
+                        resolve(str)
+                    }).catch(err => {
+                        this.$eventBus.$emit('log:push', {
+                            info: err,
+                            level: 'error'
+                        })
+                        this.$Message.error(this.$t('contract.error.feeCompute'))
+                        reject(err)
+                    })
+                })
+            },
+            updateContract(asset_id, pwd, contract, newOwner, broadcast = true) {
+                return new Promise(async (resolve, reject) => {
+                    const params = {
+                        from: this.currentWallet.account,
+                        contractName: contract.contractName,
+                        code: this.bytecode,
+                        abi: this.abi,
+                        fee_id: asset_id,
+                        password: pwd,
+                        broadcast
+                    }
+
+                    if (!!newOwner) {
+                        params.newOwner = newOwner
+                    }
+
+                    resolve(update_contract(params))
                 })
             }
         }
@@ -177,6 +298,12 @@
     .closeContract {
         position: absolute;
         right: 0;
+        top: 14px;
+    }
+
+    .updateContract {
+        position: absolute;
+        right: 20px;
         top: 14px;
     }
 
