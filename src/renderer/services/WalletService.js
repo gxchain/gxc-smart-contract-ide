@@ -7,6 +7,7 @@ import store from '@/store'
 import find from 'lodash/find'
 import i18n from '@/locales'
 import {accMult} from 'gxc-frontend-base/src/script/util/index'
+import Wallet from '@/model/wallet'
 // import Vue from 'vue'
 /**
  * get account information by name
@@ -59,7 +60,11 @@ const import_account = (wifKey, password) => {
                         if (isKeyAvailable) {
                             // do not import a duplicate account
                             let alreadyExist = some(wallets, function (wallet) {
-                                return wallet.account == account.name
+                                const wl = Wallet.fromJson(wallet)
+                                return wl.unique() == Wallet.unique({
+                                    chainId: store.state.curChainId,
+                                    account: account.name
+                                })
                             })
                             if (!alreadyExist) {
                                 // 修改store状态

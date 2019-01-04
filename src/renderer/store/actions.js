@@ -85,8 +85,14 @@ actions.changeCurrentApiServer = ({dispatch, commit, state, getters}, url) => {
 
         if (!!node) {
             commit('CHANGE_CURRENT_API_SERVER', node[0])
-            reconnect(async () => {
-                const chainId = await Apis.instance().db_api().exec('get_chain_id', [])
+            reconnect(async (resp) => {
+                let chainId
+                try {
+                    chainId = await Apis.instance().db_api().exec('get_chain_id', [])
+                } catch (err) {
+                    chainId = 'connect error'
+                }
+
                 commit('UPDATE_CURRENT_CHAIN_ID', chainId)
                 commit('UPDATE_API_SERVER_CHAIN_ID', {url, chainId})
                 const targetWallet = getters.walletsFromCurChain[0]
