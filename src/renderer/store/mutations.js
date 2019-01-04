@@ -1,3 +1,4 @@
+import Wallet from '@/model/wallet'
 const mutations = {}
 
 mutations.UPDATE_CURRENT_CHAIN_ID = (state, chainId) => {
@@ -10,11 +11,12 @@ mutations.APPEND_WALLET = (state, wallet) => {
     }, wallet))
 }
 
-mutations.REMOVE_WALLET = (state, account) => {
+mutations.REMOVE_WALLET = (state, id) => {
     var idx = -1
 
     state.wallets.find((wallet, i) => {
-        if (wallet.account === account) {
+        const thisId = Wallet.unique(wallet)
+        if (thisId === id) {
             idx = i
             return true
         }

@@ -30,6 +30,7 @@
 </template>
 
 <script>
+    import Wallet from '@/model/wallet'
     import {mapActions} from 'vuex'
     import {PrivateKey} from 'gxbjs/es/index'
     import {
@@ -129,7 +130,7 @@
                                             title: this.$t('importSetting.title.removeAccount'),
                                             content: this.$t('importSetting.content.removeAccount'),
                                             onOk: () => {
-                                                this.removeWallet(params.row.account)
+                                                this.removeWallet(Wallet.unique(params.row))
                                             }
                                         })
                                     }

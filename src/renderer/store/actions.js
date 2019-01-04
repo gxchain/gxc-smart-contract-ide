@@ -2,6 +2,7 @@ import {fetch_account_balances, get_assets_by_ids} from '@/services/WalletServic
 import {Manager, Apis} from 'gxbjs-ws'
 import {reconnect} from '@/services/connect'
 import {instance} from '@/plugins/eventBus'
+import Wallet from '@/model/wallet'
 
 const actions = {}
 
@@ -12,9 +13,9 @@ actions.appendWallet = ({dispatch, commit, state}, wallet) => {
     }
 }
 
-actions.removeWallet = ({state, dispatch, commit}, account) => {
-    commit('REMOVE_WALLET', account)
-    if (account === state.currentWallet.account) {
+actions.removeWallet = ({state, dispatch, commit}, id) => {
+    commit('REMOVE_WALLET', id)
+    if (id === Wallet.unique(state.currentWallet.account)) {
         dispatch('changeWallet', state.wallets[0] && state.wallets[0].account)
     }
 }

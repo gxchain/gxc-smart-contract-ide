@@ -4354,6 +4354,12 @@ gxbjs-ws@^1.1.22:
   dependencies:
     ws "^4.1.0"
 
+gxbjs-ws@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/gxbjs-ws/-/gxbjs-ws-1.2.0.tgz#5fbb8a8261b5e5730c92b75c7d4c159d7ff2b3ca"
+  dependencies:
+    ws "^4.1.0"
+
 gxbjs@^1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/gxbjs/-/gxbjs-1.3.1.tgz#0d2778c81a3079e78fa99e8b3b8dfba80c6a15a6"
@@ -4372,9 +4378,9 @@ gxbjs@^1.3.0:
     secp256k1 "^3.3.0"
     secure-random "^1.1.1"
 
-gxbjs@^1.3.1:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/gxbjs/-/gxbjs-1.3.4.tgz#89f27c32cf744acc39dcba2f1af0419567e9f2fd"
+gxbjs@^1.3.8:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/gxbjs/-/gxbjs-1.3.8.tgz#0a226b934c24dd5f25e889a9dd508556e8ccff23"
   dependencies:
     bigi "^1.4.1"
     bs58 "^3.0.0"
@@ -4385,7 +4391,7 @@ gxbjs@^1.3.1:
     deep-equal "^1.0.1"
     ecurve "^1.0.2"
     event-emitter "^0.3.4"
-    gxbjs-ws "^1.1.22"
+    gxbjs-ws "^1.2.0"
     immutable "^3.7.6"
     secp256k1 "^3.3.0"
     secure-random "^1.1.1"
