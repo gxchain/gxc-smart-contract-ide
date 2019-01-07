@@ -112,7 +112,7 @@
     "dateformat": "^3.0.3",
     "electron-store": "^2.0.0",
     "fs-extra": "^7.0.0",
-    "gxbjs": "^1.3.8",
+    "gxbjs": "^1.3.9",
     "gxc-frontend-base": "gxchain/gxc-frontend-base",
     "gxclient": "^1.4.3",
     "is-electron": "^2.1.0",
