@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">GXC Smart Contract IDE</h1>
 
-gxchain smart contract IDE alpha
+<img width="400px" src='https://raw.githubusercontent.com/gxchain/gxips/master/assets/images/task-ide.png'/>
 
 ## Install
 ```bash
