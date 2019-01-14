@@ -3,8 +3,14 @@
 </p>
 <h1 align="center">GXC Smart Contract IDE</h1>
 
-<img width="400px" src='https://raw.githubusercontent.com/gxchain/gxips/master/assets/images/task-ide.png'/>
-
+<p>
+    <a href="javascript:;">
+        <img width="300px" src='https://raw.githubusercontent.com/gxchain/gxips/master/assets/images/task-ide.png'/>
+    </a>
+    <a href="javascript:;">
+        <img width="300px" src='https://raw.githubusercontent.com/gxchain/gxips/master/assets/images/task-ide-en.png'/>
+    </a>
+</p>
 ## Install
 ```bash
 git clone https://github.com/gxchain/gxchain-alpha.git
