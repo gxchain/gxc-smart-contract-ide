@@ -11,9 +11,10 @@
         <img width="300px" src='https://raw.githubusercontent.com/gxchain/gxips/master/assets/images/task-ide-en.png'/>
     </a>
 </p>
+
 ## Install
 ```bash
-git clone https://github.com/gxchain/gxchain-alpha.git
+git clone https://github.com/gxchain/gxc-smart-contract-ide.git
 cd gxchain-alpha
 npm install
 ```
