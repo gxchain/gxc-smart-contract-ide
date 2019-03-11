@@ -11,10 +11,11 @@
         <img width="300px" src='https://raw.githubusercontent.com/gxchain/gxips/master/assets/images/task-ide-en.png'/>
     </a>
 </p>
+
 ## Install
 ```bash
-git clone https://github.com/gxchain/gxchain-alpha.git
-cd gxchain-alpha
+git clone https://github.com/gxchain/gxc-smart-contract-ide.git
+cd gxc-smart-contract-ide
 npm install
 ```
 
@@ -42,7 +43,7 @@ npm run build:linux
 you could find executable or installer in `build` directory
 
 ## Document
-You could find some useful instruction [here](https://github.com/gxchain/Technical-Documents/blob/master/gxchain_contract_start.md)
+You could find some useful instruction [here](https://docs.gxchain.org/zh/contract/deploy.html)
 
 ## Resource
 You could find some desgin details on this [demonstration](https://slides.com/jaredliu/deck/)
