@@ -1,6 +1,6 @@
 {
   "name": "gxc-smart-contract-ide",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "author": "GXC TEAM",
   "email": "liuzongyuan@gxb.io",
   "description": "gxchain smart contract IDE alpha",
@@ -112,7 +112,7 @@
     "dateformat": "^3.0.3",
     "electron-store": "^2.0.0",
     "fs-extra": "^7.0.0",
-    "gxbjs": "^1.3.11",
+    "gxbjs": "^1.3.24",
     "gxc-frontend-base": "^0.1.2",
     "gxclient": "^1.4.3",
     "is-electron": "^2.1.0",
