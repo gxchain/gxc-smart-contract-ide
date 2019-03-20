@@ -59,8 +59,7 @@
     },
     "mac": {
       "icon": "build/icons/icon.icns",
-      "category": "public.app-category.developer-tools",
-      "identity": null
+      "category": "public.app-category.developer-tools"
     },
     "win": {
       "icon": "build/icons/icon.ico",
