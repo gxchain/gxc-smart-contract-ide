@@ -5,7 +5,7 @@
             <Icon type="md-add-circle" @click="onContractImportClick"></Icon>
         </h3>
         <div class="contract-wrap">
-            <Collapse v-for="contract in contracts" value="1">
+            <Collapse v-for="(contract,idx) in contracts" :key="idx" value="1">
                 <Panel name="1">
                     <Tooltip :content="'owner: '+contract.from" placement="top">
                         <div class="f-toe contractName" :title="contract.contractName">
@@ -13,13 +13,14 @@
                         </div>
                     </Tooltip>
                     <Icon class="updateContract" type="md-refresh"
-                            @click="onContractUpdateClick($event,contract)"></Icon>
+                          @click="onContractUpdateClick($event,contract)"></Icon>
                     <Icon class="closeContract" type="md-close" @click="onContractRemoveClick($event,contract)"></Icon>
                     <div slot="content">
-                        <function-card v-for="f in contract.functions" :payable="f.payable" :abi="contract.abi"
-                                :contractName="contract.contractName"
-                                :name="f.name"
-                                :fields="f.fields"></function-card>
+                        <function-card v-for="f in contract.functions" :key="f.name" :payable="f.payable"
+                                       :abi="contract.abi"
+                                       :contractName="contract.contractName"
+                                       :name="f.name"
+                                       :fields="f.fields"></function-card>
                     </div>
                 </Panel>
             </Collapse>
@@ -29,12 +30,12 @@
 
 <script>
     import FunctionCard from './FunctionCard'
-    import {mapGetters, mapActions, mapState} from 'vuex'
+    import {mapActions, mapGetters, mapState} from 'vuex'
     import {cloneDeep} from 'lodash'
-    import {fetch_account, update_contract, get_account_by_id} from '@/services/WalletService'
+    import {fetch_account, get_account_by_id, update_contract} from '@/services/WalletService'
     import {Form, FormItem, Input} from 'iview'
     import {ChainValidation} from 'gxbjs/es/index'
-    import {confirmTransaction, confirmPassword} from '@/util/modalUtil'
+    import {confirmPassword, confirmTransaction} from '@/util/modalUtil'
     import {noAccountGuard} from '@/util/guard'
 
     function contractsFilter(contracts) {
@@ -119,7 +120,7 @@
                 })
             },
             showEditContractNameModal(callback) {
-                const rules = {
+                var rules = {
                     name: [
                         {
                             required: true,

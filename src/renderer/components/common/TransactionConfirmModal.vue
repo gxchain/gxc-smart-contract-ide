@@ -1,7 +1,7 @@
 <template>
     <Modal class="pure-text-form" :title="title" v-model="model" @on-ok="_onOk">
         <Form ref="form" label-position="left" :label-width="120">
-            <FormItem v-for="item in items" :label="item.label">{{item.desc}}</FormItem>
+            <FormItem v-for="item in items" :key="item.label" :label="item.label">{{item.desc}}</FormItem>
         </Form>
     </Modal>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class="fields-layout">
-        <field-item v-for="field in data" :name="field.name" :type="field.type"></field-item>
+        <field-item v-for="field in data" :key="field.name" :name="field.name" :type="field.type"></field-item>
     </div>
 </template>
 

@@ -4,7 +4,7 @@
             <Icon type="md-add" @click="onAddItemClick"></Icon>
         </h3>
         <div class="wrap">
-            <single v-for="(item,idx) in items" :type="type">
+            <single v-for="(item,idx) in items" :type="type" :key="idx">
                 <Icon type="md-remove" @click="onRemoveItemClick(idx)"></Icon>
             </single>
         </div>

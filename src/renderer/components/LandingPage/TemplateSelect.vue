@@ -1,7 +1,7 @@
 <template>
     <div class="template-select-layout">
         <Row style="margin-left: -24px;">
-            <Col v-for="meta in metas" span="6" offset="2">
+            <Col v-for="(meta,idx) in metas" :key="idx" span="6" offset="2">
             <Card title="" :class="{selected:selected.title===meta.title}" style="text-align: center">
                 <div class="cnt" @click="onTemplateClick(meta)" :style="meta.bdStyle">
                     <div class="bg" :class="{'default-bg':!meta.bgUrl}" :style="meta.bgStyle"></div>

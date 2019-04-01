@@ -11,7 +11,7 @@
                         <DropdownMenu slot="list">
                             <DropdownItem class="account-item"
                                     :class="{'z-sel':wallet.account === currentWallet.account}"
-                                    v-for="wallet in wallets" :name="wallet.account">{{wallet.account}}
+                                    v-for="wallet in wallets" :key="wallet.account" :name="wallet.account">{{wallet.account}}
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
@@ -26,7 +26,7 @@
                             <use :xlink:href="lang|iconclass"></use>
                         </svg>
                         <DropdownMenu slot="list">
-                            <DropdownItem v-for="lang in langText" :name="lang.symbol">{{lang.text}}</DropdownItem>
+                            <DropdownItem v-for="lang in langText" :key="lang.symbol" :name="lang.symbol">{{lang.text}}</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>
