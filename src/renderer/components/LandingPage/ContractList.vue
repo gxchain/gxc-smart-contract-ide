@@ -59,6 +59,16 @@
 
     export default {
         name: 'ContractList',
+        data () {
+            return {
+                modelImport: {
+                    name: ''
+                },
+                modelUpdate: {
+                    newOwner: ''
+                }
+            }
+        },
         components: {
             FunctionCard,
             Form,
@@ -120,7 +130,7 @@
                 })
             },
             showEditContractNameModal(callback) {
-                var rules = {
+                const rules = {
                     name: [
                         {
                             required: true,
@@ -138,18 +148,14 @@
                         }]
                 }
 
-                let model = {
-                    name: ''
-                }
-
                 this.$Modal.confirm({
                     title: this.$t('contract.title.importContract'),
                     loading: true,
                     render: (h) => {
                         return (
-                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
+                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={this.modelImport}>
                                 <FormItem prop="name">
-                                    <Input v-model={model.name} autofocus={true}
+                                    <Input v-model={this.modelImport.name} autofocus={true}
                                         placeholder={this.$t('contract.placeholder.name.required')}/>
                                 </FormItem>
                             </Form>
@@ -159,7 +165,7 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                callback(model.name)
+                                callback(this.modelImport.name)
                             } else {
                                 this.buttonLoading = false
                             }
@@ -168,11 +174,7 @@
                 })
             },
             showUpdateContractModal(callback) {
-                var model = {
-                    newOwner: ''
-                }
-
-                var rules = {
+                const rules = {
                     newOwner: [{
                         validator: (rule, value, callback) => {
                             if (!value) {
@@ -198,9 +200,9 @@
                         return (
                             <div>
                                 <p>{desc}</p>
-                                <Form ref="form" style={{'margin-top': '10px'}} rules={rules} model={model}>
+                                <Form ref="form" style={{'margin-top': '10px'}} rules={rules} model={this.modelUpdate}>
                                     <FormItem prop="newOwner">
-                                        <Input v-model={model.newOwner} autofocus={true}
+                                        <Input v-model={this.modelUpdate.newOwner} autofocus={true}
                                             placeholder={this.$t('contract.placeholder.changeOwner')}/>
                                     </FormItem>
                                 </Form>
@@ -211,7 +213,7 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                callback(model.newOwner)
+                                callback(this.modelUpdate.newOwner)
                             } else {
                                 this.buttonLoading = false
                             }
