@@ -1,6 +1,6 @@
 {
   "name": "gxc-smart-contract-ide",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "GXC TEAM",
   "email": "liuzongyuan@gxb.io",
   "description": "gxchain smart contract IDE",
@@ -46,13 +46,13 @@
       "contents": [
         {
           "x": 410,
-          "y": 150,
+          "y": 210,
           "type": "link",
           "path": "/Applications"
         },
         {
           "x": 130,
-          "y": 150,
+          "y": 210,
           "type": "file"
         }
       ]

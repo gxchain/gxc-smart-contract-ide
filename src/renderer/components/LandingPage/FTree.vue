@@ -38,7 +38,11 @@
             TemplateSelect
         },
         data() {
-            return {}
+            return {
+                editFile: {
+                    name: ''
+                }
+            }
         },
         computed: {
             ...mapState('ContractFiles', ['files', 'currentSelectedFile']),
@@ -207,12 +211,14 @@
                         }]
                 }
 
-                let model = {
-                    name: name
+                let self = this
+
+                if (name) {
+                    self.editFile.name = name
                 }
 
                 function handleInput(val) {
-                    model.name = val
+                    self.editFile.name = val
                 }
 
                 this.$Modal.confirm({
@@ -220,9 +226,9 @@
                     loading: true,
                     render: (h) => {
                         return (
-                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={model}>
+                            <Form ref="form" style={{'margin-top': '30px'}} rules={rules} model={this.editFile}>
                                 <FormItem prop="name">
-                                    <Input on-input={handleInput} value={model.name} autofocus={true}
+                                    <Input on-input={handleInput} value={this.editFile.name} autofocus={true}
                                         placeholder={this.$t('files.placeholder.required')}/>
                                 </FormItem>
                             </Form>
@@ -232,10 +238,11 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                callback(model.name)
+                                callback(self.editFile.name)
                             } else {
                                 this.buttonLoading = false
                             }
+                            self.editFile.name = ''
                         })
                     }
                 })

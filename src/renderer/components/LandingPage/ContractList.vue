@@ -129,8 +129,8 @@
                     })
                 })
             },
-            showEditContractNameModal(callback) {
-                const rules = {
+            showEditContractNameModal(cb) {
+                let rules = {
                     name: [
                         {
                             required: true,
@@ -147,6 +147,8 @@
                             }
                         }]
                 }
+
+                let self = this
 
                 this.$Modal.confirm({
                     title: this.$t('contract.title.importContract'),
@@ -165,10 +167,11 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                callback(this.modelImport.name)
+                                cb(self.modelImport.name)
                             } else {
-                                this.buttonLoading = false
+                                self.buttonLoading = false
                             }
+                            self.modelImport.name = ''
                         })
                     }
                 })
@@ -193,6 +196,8 @@
 
                 const desc = this.$t('contract.desc.changeOwner')
 
+                let self = this
+
                 this.$Modal.confirm({
                     title: this.$t('contract.title.updateContract'),
                     loading: true,
@@ -213,10 +218,11 @@
                         this.$refs.form.validate((valid) => {
                             if (valid) {
                                 this.cancel()
-                                callback(this.modelUpdate.newOwner)
+                                callback(self.modelUpdate.newOwner)
                             } else {
                                 this.buttonLoading = false
                             }
+                            self.modelUpdate.newOwner = ''
                         })
                     }
                 })
