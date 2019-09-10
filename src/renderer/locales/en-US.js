@@ -170,7 +170,8 @@ const locale = {
         currentApiServer: 'Api Server',
         currentCompileServer: 'Compile Server',
         document: 'document',
-        feedback: 'feedback'
+        feedback: 'feedback',
+        onlineLogs: 'Online Logs'
     },
     setting: {
         clearCache: 'Clear Cache',

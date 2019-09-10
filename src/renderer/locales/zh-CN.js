@@ -170,7 +170,8 @@ const locale = {
         currentApiServer: '接入点',
         currentCompileServer: '编译服务',
         document: '文档',
-        feedback: '反馈'
+        feedback: '反馈',
+        onlineLogs: '在线日志'
     },
     setting: {
         clearCache: '清除缓存',

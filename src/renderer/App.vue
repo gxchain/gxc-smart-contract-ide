@@ -10,8 +10,9 @@
                         <span class="text">{{$t('header.account')}}</span>
                         <DropdownMenu slot="list">
                             <DropdownItem class="account-item"
-                                    :class="{'z-sel':wallet.account === currentWallet.account}"
-                                    v-for="wallet in wallets" :key="wallet.account" :name="wallet.account">{{wallet.account}}
+                                          :class="{'z-sel':wallet.account === currentWallet.account}"
+                                          v-for="wallet in wallets" :key="wallet.account" :name="wallet.account">
+                                {{wallet.account}}
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
@@ -26,7 +27,9 @@
                             <use :xlink:href="lang|iconclass"></use>
                         </svg>
                         <DropdownMenu slot="list">
-                            <DropdownItem v-for="lang in langText" :key="lang.symbol" :name="lang.symbol">{{lang.text}}</DropdownItem>
+                            <DropdownItem v-for="lang in langText" :key="lang.symbol" :name="lang.symbol">
+                                {{lang.text}}
+                            </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                 </div>
@@ -44,11 +47,14 @@
                     <div class="status-item">
                         <a class="link" @click="onFeedbackClick">{{$t('statusbar.feedback')}}</a>
                     </div>
+                    <div v-if="isTestnet" class="status-item">
+                        <a class="link" @click="onLogsClick">{{$t('statusbar.onlineLogs')}}</a>
+                    </div>
                 </div>
                 <div class="f-fr">
                     <div class="status-item">
                         <i v-if="currentApiServerStatus==='open' || currentApiServerStatus=='reconnect'"
-                                class="blue-lamp"></i>
+                           class="blue-lamp"></i>
                         <i v-else class="pink-lamp"></i>
                         <Tooltip placement="top">
                             <a class="text">{{$t('statusbar.currentApiServer')}}</a>
@@ -96,7 +102,10 @@
             ...mapState(['currentWallet', 'currentCompileServer', 'currentApiServer', 'currentApiServerStatus']),
             ...mapGetters({
                 'wallets': 'walletsFromCurChain'
-            })
+            }),
+            isTestnet() {
+                return this.currentApiServer.chainId == 'c2af30ef9340ff81fd61654295e98a1ff04b23189748f86727d0b26b40bb0ff4'
+            }
         },
         data() {
             return {
@@ -128,6 +137,10 @@
             onFeedbackClick() {
                 this.$logUtil.logClick('feedbackClick')
                 this.$electron.remote.shell.openExternal('http://blockcity.mikecrm.com/1WDrQXM')
+            },
+            onLogsClick() {
+                this.$logUtil.logClick('logsClick')
+                this.$electron.remote.shell.openExternal('https://testnet.gxchain.org/witness_log/')
             },
             setLang(lang) {
                 this.$eventBus.$emit(SWITCH_LANG, lang)
