@@ -5,7 +5,7 @@
 
 using namespace graphene;
 
-class helloworld : public contract
+CONTRACT helloworld : public contract
 {
   public:
     helloworld(uint64_t id)
@@ -13,8 +13,7 @@ class helloworld : public contract
     {
     }
 
-    /// @abi action
-    void hi(std::string user)
+    ACTION hi(std::string user)
     {
         for (int i = 0; i < 2; ++i) {
             print("hi, ", user, "\n");

@@ -15,7 +15,7 @@ using namespace graphene;
 
 static const uint64_t redpacket_asset_id = 1;//GXS
 
-class redpacket : public contract
+CONTRACT redpacket : public contract
 {
   public:
     redpacket(uint64_t id)
@@ -25,9 +25,7 @@ class redpacket : public contract
     {
     }
 
-    // @abi action
-    // @abi payable
-    void issue(std::string pubkey, uint64_t number)
+    PAYABLE issue(std::string pubkey, uint64_t number)
     {
         // check publick key
         // TODO
@@ -75,8 +73,7 @@ class redpacket : public contract
         });
     }
 
-    // @abi action
-    void open(std::string issuer, signature sig)
+    ACTION open(std::string issuer, signature sig)
     {
         uint64_t sender = get_trx_sender();
         int64_t now = get_head_block_time();
@@ -129,8 +126,7 @@ class redpacket : public contract
         withdraw_asset(_self, sender, packet_iter->total_amount.asset_id, current_amount);
     }
 
-    // @abi action
-    void close()
+    ACTION close()
     {
         uint64_t owner = get_trx_sender();
         auto packet_iter = packets.find(owner);
@@ -153,8 +149,7 @@ class redpacket : public contract
     }
 
   private:
-    //@abi table packet i64
-    struct packet {
+    TABLE packet {
         uint64_t                issuer;
         std::string             pub_key;
         contract_asset          total_amount;

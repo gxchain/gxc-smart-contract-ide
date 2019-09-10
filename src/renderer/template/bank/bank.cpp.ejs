@@ -9,7 +9,7 @@
 
 using namespace graphene;
 
-class bank : public contract
+CONTRACT bank : public contract
 {
   public:
     bank(uint64_t account_id)
@@ -18,9 +18,7 @@ class bank : public contract
     {
     }
 
-    // @abi action
-    // @abi payable
-    void deposit()
+    PAYABLE deposit()
     {
         int64_t asset_amount = get_action_asset_amount();
         uint64_t asset_id = get_action_asset_id();
@@ -44,8 +42,7 @@ class bank : public contract
         }
     }
 
-    // @abi action
-    void withdraw(std::string to_account, contract_asset amount)
+    ACTION withdraw(std::string to_account, contract_asset amount)
     {
         int64_t account_id = get_account_id(to_account.c_str(), to_account.size());
         graphene_assert(account_id >= 0, "invalid account_name to_account");
@@ -81,8 +78,7 @@ class bank : public contract
     }
 
   private:
-    //@abi table account i64
-    struct account {
+    TABLE account {
         uint64_t owner;
         std::vector<contract_asset> balances;
 
