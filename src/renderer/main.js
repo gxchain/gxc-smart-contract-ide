@@ -11,6 +11,7 @@ import iviewLocales from 'iview/dist/locale/en-US'
 import {connect} from './services/connect'
 import {webFrame} from 'electron'
 import logUtil from '@/util/logUtil'
+import preventDragMixin from '@/mixin'
 
 import iView from 'iview'
 
@@ -38,6 +39,7 @@ Vue.use(iView, iviewOptions)
 Vue.use(TreeView)
 Vue.use(eventBus)
 Vue.mixin({filters})
+Vue.mixin(preventDragMixin)
 
 /* eslint-disable no-new */
 new Vue({
