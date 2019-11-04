@@ -150,8 +150,16 @@ function createWindow() {
         mainWindow && mainWindow.webContents.send('send-init-time', +initTime)
     }, 10000)
 
-    mainWindow.on('closed', () => {
-        mainWindow = null
+    // mainWindow.on('closed', () => {
+    //     mainWindow = null
+    // })
+    mainWindow.on('close', event => {
+        if (app.quitting) {
+            mainWindow = null
+        } else {
+            event.preventDefault()
+            mainWindow.hide()
+        }
     })
 }
 
@@ -211,10 +219,13 @@ app.on('window-all-closed', () => {
     }
 })
 
+app.on('before-quit', () => (app.quitting = true))
+
 app.on('activate', () => {
-    if (mainWindow === null) {
-        createWindow()
-    }
+    // if (mainWindow === null) {
+    //     createWindow()
+    // }
+    mainWindow.show()
 })
 
 /**
